@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.4 矩阵与矩阵的运算 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.5 矩阵的特征及矩阵" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html" />
+    <link rel="prev" title="1.3 向量空间" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.4 矩阵与矩阵的运算</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.4.1 矩阵的概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.4.2 矩阵的加法与乘法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">1.4.3 可逆矩阵和矩阵相似</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>1.4 矩阵与矩阵的运算</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/附录1量子计算数学基础3.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>1.4 矩阵与矩阵的运算<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<p>​  事实上，当提到矩阵时，并不陌生，只是在平时不把它叫做矩阵而已，而通常称作表。比如，一个班级有35名同学，这学期要修6门课程，在本学期期末考试后，为了便于管理和分析，老师将每位同学的各科成绩放在一起，做成一个35行，6列的表。在日常生活或在其他学科中有很多类似的表，将它们的特点进行提取，进而形成数学上的矩阵这样的抽象概念。其实这样的抽象过程也并不陌生，比如自然数的发明就是这样的一个过程。</p>
+<section id="id2">
+<h2>1.4.1 矩阵的概念<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.1\)</span>  由  <span class="math notranslate nohighlight">\(m \cdot n\)</span> 个数排成  <span class="math notranslate nohighlight">\(m\)</span> 行、  <span class="math notranslate nohighlight">\(n\)</span> 列的一张表称为一个  <span class="math notranslate nohighlight">\(m \times n\)</span> 矩阵[3]，其中的每一个数称为这个矩阵的一个元素，第  <span class="math notranslate nohighlight">\(i\)</span> 行与第  <span class="math notranslate nohighlight">\(j\)</span> 列交叉位置的元素称 为矩阵的  <span class="math notranslate nohighlight">\((i, j)\)</span> 元。</p>
+<p>​  如  <span class="math notranslate nohighlight">\(\begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{bmatrix}\quad\)</span> 或   <span class="math notranslate nohighlight">\(\left(\begin{array}{lll}1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6\end{array}\right)\)</span> 都是一个矩阵。 矩阵通常用大写英文字母  <span class="math notranslate nohighlight">\(A\)</span> , <span class="math notranslate nohighlight">\(B\)</span> , <span class="math notranslate nohighlight">\(C\)</span> , <span class="math notranslate nohighlight">\(\ldots\)</span> 表示。一个  <span class="math notranslate nohighlight">\(m \times n\)</span> 矩阵可以简单地记作  <span class="math notranslate nohighlight">\(A_{m m}\)</span> ，它的  <span class="math notranslate nohighlight">\((i, j)\)</span> 元记作  <span class="math notranslate nohighlight">\(A(i, j)\)</span> 。如果矩阵  <span class="math notranslate nohighlight">\(A\)</span> 的  <span class="math notranslate nohighlight">\((i, j)\)</span> 元是  <span class="math notranslate nohighlight">\(a_{i j}\)</span> ，那么可以记作 <span class="math notranslate nohighlight">\(A=\left[a_{i j}\right]\)</span> 或  <span class="math notranslate nohighlight">\(A=\left(a_{i j}\right)\)</span> 。 如果某个矩阵  <span class="math notranslate nohighlight">\(A\)</span> 的行数与列数相等, 则称之为方阵。  <span class="math notranslate nohighlight">\(m\)</span> 行  <span class="math notranslate nohighlight">\(m\)</span> 列的方阵也称为  <span class="math notranslate nohighlight">\(m\)</span> 级矩阵。 元素全为 0 的矩阵称为零矩阵，简记作  <span class="math notranslate nohighlight">\(0\)</span> 。 <span class="math notranslate nohighlight">\(m\)</span> 行  <span class="math notranslate nohighlight">\(n\)</span> 列的零矩阵可以记成  <span class="math notranslate nohighlight">\(0_{n \times n}\)</span> 。 数域  <span class="math notranslate nohighlight">\(G\)</span> 上两个矩阵称为相等，如果它们的行数相等，列数也相等，并且它们所有元素对应相等（即第一个矩阵的  <span class="math notranslate nohighlight">\((i, j)\)</span> 元等于第二个矩阵的  <span class="math notranslate nohighlight">\((i, j)\)</span> 元） 。</p>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.2\)</span>  设矩阵  <span class="math notranslate nohighlight">\(A=\left(a_{i j}\right){m \times n}\)</span> , 若矩阵  <span class="math notranslate nohighlight">\(B=\left(b{i j}\right){n \times m}\)</span> 满足  <span class="math notranslate nohighlight">\(a{i j}=b_{j i}\)</span> ，则称矩阵  <span class="math notranslate nohighlight">\(B\)</span> 为矩阵  <span class="math notranslate nohighlight">\(A\)</span> 的转置，将其记作  <span class="math notranslate nohighlight">\(A^{T}\)</span> 或  <span class="math notranslate nohighlight">\(A^{\prime}\)</span> 。一个矩阵  <span class="math notranslate nohighlight">\(A\)</span> 如果满足  <span class="math notranslate nohighlight">\(A=A^{T}\)</span> , 那么称  <span class="math notranslate nohighlight">\(A\)</span> 是对称矩阵。</p>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.3\)</span>  设  <span class="math notranslate nohighlight">\({n}\)</span> 级矩阵  <span class="math notranslate nohighlight">\(A=\left(a_{i j}\right){n \times n}\)</span> ，称  <span class="math notranslate nohighlight">\(T=\sum{i=1}^{n} a_{i i}\)</span> 为矩阵  <span class="math notranslate nohighlight">\(A\)</span> 的迹，记作  <span class="math notranslate nohighlight">\(\text{tr}(A)\)</span> 。 可以验证矩阵的迹有如下性质:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}&amp;1_{\circ} \text{tr}(A B)=\text{tr}(B A) \\&amp;2_{\circ} \text{tr}(A+B)=\text{tr}(A)+\text{tr}(B)\end{aligned}\end{split}\]</div>
+<p>​  由矩阵  <span class="math notranslate nohighlight">\(A\)</span> 的若干行、若干列的交叉位置元素按原来顺序排列成的矩阵称为  <span class="math notranslate nohighlight">\(A\)</span> 的一个子矩阵。</p>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.4\)</span>   把一个矩阵  <span class="math notranslate nohighlight">\(A\)</span> 的行分成若干组, 列也分成若干组，从而  <span class="math notranslate nohighlight">\(A\)</span> 被分成若干个子矩阵，把  <span class="math notranslate nohighlight">\(A\)</span> 看成是由 这些子矩阵组成的，这称为矩阵的分块，这种由子矩阵组成的矩阵称为分块矩阵。 例如矩阵  <span class="math notranslate nohighlight">\(A\)</span> 可写成分块矩阵的形式:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\left[\begin{array}{ll} A_{1} &amp; A_{2} \\ A_{3} &amp; A_{4} \end{array}\right]\end{split}\]</div>
+<p>​  从而</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^{T}=\left[\begin{array}{cc} A_{1}^{T} &amp; A_{3}^{T} \\ A_{2}^{T} &amp; A_{4}^{T} \end{array}\right]\end{split}\]</div>
+</section>
+<section id="id3">
+<h2>1.4.2 矩阵的加法与乘法<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.5\)</span>   设  <span class="math notranslate nohighlight">\(A=\left(a_{i j}\right), B=\left(b_{i j}\right)\)</span> 都是数域 <span class="math notranslate nohighlight">\(G\)</span> 上 <span class="math notranslate nohighlight">\(m \times n\)</span> 矩阵，令</p>
+<div class="math notranslate nohighlight">
+\[C=\left(a_{i j}+b_{i j}\right)_{m n}\]</div>
+<p>​  则称矩阵  <span class="math notranslate nohighlight">\(C\)</span> 是矩阵  <span class="math notranslate nohighlight">\(A\)</span> 与  <span class="math notranslate nohighlight">\(B\)</span> 的和，记作  <span class="math notranslate nohighlight">\(C=A+B\)</span> 。</p>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.6\)</span>  设  <span class="math notranslate nohighlight">\(A=\left(a_{ij}\right)\)</span> 是数域 <span class="math notranslate nohighlight">\(G\)</span> 上 <span class="math notranslate nohighlight">\(m \times n\)</span> 矩阵,  <span class="math notranslate nohighlight">\(k \in G\)</span>  ，令</p>
+<div class="math notranslate nohighlight">
+\[M=\left(k a_{i j}\right)_{m \times n}\]</div>
+<p>​  则称矩阵  <span class="math notranslate nohighlight">\(M\)</span> 是 <span class="math notranslate nohighlight">\(k\)</span>  与矩阵  <span class="math notranslate nohighlight">\(A\)</span>  的数量乘积，记作  <span class="math notranslate nohighlight">\(M=k A\)</span>  。 8条运算法则：设  <span class="math notranslate nohighlight">\(A\)</span> , <span class="math notranslate nohighlight">\(B\)</span> , <span class="math notranslate nohighlight">\(C\)</span> , 都是  <span class="math notranslate nohighlight">\(G\)</span>  上  <span class="math notranslate nohighlight">\(m \times n\)</span> 矩阵 <span class="math notranslate nohighlight">\(k, l \in G\)</span> , 有:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}&amp; 1^{\circ} A+B=B+A ; \\&amp;
+2^{\circ}(A+B)+C=A+(B+C) ;\\&amp;
+3^{\circ} A+0=0+A=A ;\\&amp;
+4^{\circ} A+(-A)=(-A)+A=0 ;  \\&amp;
+5^{\circ} 1 A=A ;\\&amp;
+6^{\circ}(k l) A=k(l A) ;\\&amp;
+7^{\circ}(k+l) A=k A+l A ; \\&amp;
+8^{\circ} k(A+B)=k A+k B .\end{aligned}\end{split}\]</div>
+<p>​  利用负矩阵的概念，可以定义矩阵的减法如下：设  <span class="math notranslate nohighlight">\(A\)</span> 、 <span class="math notranslate nohighlight">\(B\)</span>  都是  <span class="math notranslate nohighlight">\(m \times n\)</span> 矩阵，则  <span class="math notranslate nohighlight">\(A-B:=A+(-B)\)</span></p>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.7\)</span>   设  <span class="math notranslate nohighlight">\(A=\left(a_{i j}\right)_{m \times n}\)</span> ，  <span class="math notranslate nohighlight">\(B=\left(b_{i j}\right)_{n \times s}\)</span> ，令</p>
+<div class="math notranslate nohighlight">
+\[C=\left(c_{i j}\right)_{m \times s}\]</div>
+<p>​  其中</p>
+<div class="math notranslate nohighlight">
+\[c_{i j}=a_{11} b_{1 j}+a_{12} b_{2 j}+\ldots+a_{i n} b_{n j}=\sum_{k=1}^{n} a_{ik} b_{kj}\]</div>
+<p><span class="math notranslate nohighlight">\(i=1,2, \ldots, m ; j=1,2, \ldots, s\)</span> 。则矩阵  <span class="math notranslate nohighlight">\(C\)</span>  称为矩阵  <span class="math notranslate nohighlight">\(A\)</span>  与  <span class="math notranslate nohighlight">\(B\)</span>  的乘积, 记作  <span class="math notranslate nohighlight">\(C=A B\)</span> 。</p>
+<p>​  矩阵乘法需要注意以下两点:</p>
+<p>​  ​  (1) 只有左矩阵的列数与右矩阵的行数相同的两个矩阵才能相乘;</p>
+<p>​  ​  (2) 乘积矩阵的行数等于左矩阵的行数, 乘积矩阵的列数等于右矩阵的列数。</p>
+<p>​  例如设：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\left(\begin{array}{ll} 1 &amp; 2 \\ 3 &amp; 4 \\ 5 &amp; 6 \end{array}\right), B=\left(\begin{array}{cc} 7 &amp; 8 \\ 9 &amp; 10 \end{array}\right)\end{split}\]</div>
+<p>​  则:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A B=\left(\begin{array}{cc}25 &amp; 28 \\57 &amp; 64 \\89 &amp; 100\end{array}\right)\end{split}\]</div>
+<p>​  矩阵的乘法有下面两条性质：</p>
+<p>   <span class="math notranslate nohighlight">\(1^{\circ}\)</span>  矩阵的乘法适合结合律，但一般不适合交换律:</p>
+<p>  设  <span class="math notranslate nohighlight">\(A=\left(a_{ij}\right)_{m \times n}, B=\left(b_{i j}\right)_{n \times s}, C=\left(c_{i j}\right)_{s \times m}\)</span> , 则  <span class="math notranslate nohighlight">\((A B) C=A(B C)\)</span> 。 一般对矩阵  <span class="math notranslate nohighlight">\(A, B\)</span>  不成立  <span class="math notranslate nohighlight">\(A B=B A\)</span>  如</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\left(\begin{array}{ll} 1 &amp; 1 \end{array}\right), B=\left(\begin{array}{l} 1 \\ 1 \end{array}\right), A B=(2), B A=\left(\begin{array}{ll} 1 &amp; 1 \\ 1 &amp; 1 \end{array}\right), A B \neq B A\end{split}\]</div>
+<p>​  若对矩阵  <span class="math notranslate nohighlight">\(A\)</span> , <span class="math notranslate nohighlight">\(B\)</span>  成立  <span class="math notranslate nohighlight">\(A B=B A\)</span>  则称  <span class="math notranslate nohighlight">\(A\)</span>  与  <span class="math notranslate nohighlight">\(B\)</span>  可交换。</p>
+<p>   <span class="math notranslate nohighlight">\(2^{\circ}\)</span>  矩阵的乘法适合左分配律，也适合右分配律:</p>
+<div class="math notranslate nohighlight">
+\[A(B+C)=A B+A C,(B+C) D=B D+C D\]</div>
+<p><span class="math notranslate nohighlight">\(n\)</span> 级矩阵 <span class="math notranslate nohighlight">\(A=\left(a_{i j}\right)\)</span> 中的元素 <span class="math notranslate nohighlight">\(a_{i i}(i=1,\ldots, n)\)</span> 称为主对角线上元素。主对角线上元素都是  <span class="math notranslate nohighlight">\(1\)</span> ， 其余元素都是 0 的  <span class="math notranslate nohighlight">\(n\)</span> 级矩阵称为 <span class="math notranslate nohighlight">\(n\)</span>  级单位阵，记作  <span class="math notranslate nohighlight">\(I_{n}\)</span>  ，或简记作  <span class="math notranslate nohighlight">\(I\)</span>  。容易直接计算得：</p>
+<div class="math notranslate nohighlight">
+\[I_{ n} A_{n \times m }=A_{n \times m}, A_{n \times m} I_{m}=A_{n m}\]</div>
+<p>​  特别的，如果  <span class="math notranslate nohighlight">\(A\)</span>  是  <span class="math notranslate nohighlight">\(n\)</span>  阶矩阵，则</p>
+<div class="math notranslate nohighlight">
+\[I A=A I=A\]</div>
+<p>​  矩阵的乘法与数量乘法满足下述关系式:</p>
+<div class="math notranslate nohighlight">
+\[k(A B)=(k A) B=A(k B)\]</div>
+<p>​  矩阵的加法、数量乘法、乘法与矩阵的转置有如下关系:</p>
+<div class="math notranslate nohighlight">
+\[(A+B)^{\prime}=A^{\prime}+B^{\prime} ;(k A)^{\prime}=k A^{\prime} ;(A B)^{\prime}=B^{\prime} A^{\prime}\]</div>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.8\)</span>   主对角线以外的元素全为 0 的方阵称为对角矩阵，简记作</p>
+<div class="math notranslate nohighlight">
+\[\text{diag}\left\{d_{1}, d_{2}, \ldots, d_{n}\right\}\]</div>
+</section>
+<section id="id4">
+<h2>1.4.3 可逆矩阵和矩阵相似<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.9\)</span>   对于数域  <span class="math notranslate nohighlight">\(G\)</span>  上的矩阵  <span class="math notranslate nohighlight">\(A\)</span>  ，如果存在数域  <span class="math notranslate nohighlight">\(G\)</span>  上的矩阵  <span class="math notranslate nohighlight">\(B\)</span>  ，使得</p>
+<div class="math notranslate nohighlight">
+\[A B=B A=I\]</div>
+<p>那么称  <span class="math notranslate nohighlight">\(A\)</span>  是可逆矩阵 (或非奇异矩阵) ; 称  <span class="math notranslate nohighlight">\(B\)</span>  为  <span class="math notranslate nohighlight">\(A\)</span>  的逆矩阵，记作  <span class="math notranslate nohighlight">\(A^{-1}\)</span>  。</p>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.4.10\)</span>   设  <span class="math notranslate nohighlight">\(A\)</span>  与  <span class="math notranslate nohighlight">\(B\)</span>  都是数域  <span class="math notranslate nohighlight">\(G\)</span>  上的  <span class="math notranslate nohighlight">\(n\)</span>  级矩阵，如果存在数域  <span class="math notranslate nohighlight">\(G\)</span>  上的一个  <span class="math notranslate nohighlight">\(n\)</span>  级可逆矩阵  <span class="math notranslate nohighlight">\(P\)</span>  ，使得  <span class="math notranslate nohighlight">\(P^{-1} A P=B\)</span>  那么称  <span class="math notranslate nohighlight">\(A\)</span>  与  <span class="math notranslate nohighlight">\(B\)</span>  是相似的。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html" class="btn btn-neutral float-left" title="1.3 向量空间" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html" class="btn btn-neutral float-right" title="1.5 矩阵的特征及矩阵" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

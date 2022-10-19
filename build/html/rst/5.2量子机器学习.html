@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.2 量子机器学习 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.3 使用单振幅和部分振幅量子虚拟机" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html" />
+    <link rel="prev" title="5.1 利用QPanda测试量子系统噪声" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>5.2 量子机器学习</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/5.2量子机器学习.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>5.2 量子机器学习<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<p>  从《2001：太空漫游》中HAL9000的惊鸿一瞥，到大卫·杰洛德在《When HARLIE Was One》中对何为人类的探讨，再到近年《心理测量者》等对交由AI管理的反乌托邦社会的存在的合理性的思考，半个余世纪以来，伴随着计算机科学的飞速发展，人工智能成为了最引人注目的方向之一。这或许是千百年来人类“造物”畅想和现实最接近的一次。诸多科幻作品中描绘的足以撼动现代文明根基的新一代智慧生命的诞生可能离21世纪还很遥远，但如Siri、Cortana这般具备自我学习功能的程序已经深入到普通人的生活之中。</p>
+<p>  而机器学习正是实现人工智能的重要途径，其关注于通过经验自动改进的计算机算法的研究。换言之，我们期冀通过某些算法使计算机“学会”自行分析某一类数据中的规律，并利用获得的规律对未知数据进行预测。常见的机器学习算法可以分为监督学习、无监督学习和强化学习三类。监督学习从给定目标的训练集中学习得到某个函数，并通过函数对未知数据进行预测，本节着重讨论的分类器便是一例。无监督学习与监督学习相比，训练集不进行人为的目标标注，常见的有聚类算法。强化学习同样没有目标标注，而会对输入有着具有延时性的某种奖惩反馈，算法会随着环境的变动而逐步调整其行为，监督学习与无监督学习的数据之间是独立的，而强化学习存在前后依赖关系。Q-Learning是典型的强化学习算法。</p>
+<p>  如前文所言，量子计算机有着不容小觑的并行计算能力，而对于机器学习，强大的算力正是其需要的。这样，两者便有了结合的前提。本书其他章节介绍的变分本征求解器（VQE）、量子近似优化算法（QAOA算法）等便是其中的代表。包括上述在内的诸多目前被广泛讨论的量子机器学习算法都属于量子-经典混合算法的范畴。令量子计算机处理其擅长的部分，其余工作交给经典计算机，是一个较为现实的方案。</p>
+<p>  接下来以监督学习中的分类问题为例进行讨论。</p>
+<p>  鸢尾花数据集是机器学习中常用的数据集，由三种各50组鸢尾花样本构成。每个样本包含4个特征，分别为萼片(sepals)及花瓣(petals)的长和宽。我们要做的是从中抽取一部分样本对量子分类器进行训练，学习完成后，将剩余的样本用于分类测试，并期望预测的成功率尽可能高。图5.2.1，介绍了一种算法结构。</p>
+<a class="reference internal image-reference" href="../_images/5.2.1.png"><img alt="../_images/5.2.1.png" class="align-center" src="../_images/5.2.1.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>图5.2.1  一种算法结构</strong></p><p>  1. 将经典的鸢尾花数据 <span class="math notranslate nohighlight">\(X_{i}\)</span> 输入到某个带参数 <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> 的量子线路  <span class="math notranslate nohighlight">\(Q C\)</span> 中，其中  <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> 的初始值为  <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> 。</p>
+<p>  2. 经测量操作线路输出向量  <span class="math notranslate nohighlight">\(\vec{a}\)</span> ，通过某个映射  <span class="math notranslate nohighlight">\(g(\vec{a})\)</span> 得到对数据  <span class="math notranslate nohighlight">\(X_{i}\)</span> 的分类预测  <span class="math notranslate nohighlight">\(y_{i}\)</span>  。</p>
+<p>  3. 将分类预测  <span class="math notranslate nohighlight">\(y_{i}\)</span> 与训练集中给定的真实分类结果  <span class="math notranslate nohighlight">\(Y_{i}\)</span> 进行对比，并计算损失函数  <span class="math notranslate nohighlight">\(f[y_{i}(\vec{\theta})\)</span> , <span class="math notranslate nohighlight">\(Y_{i}]\)</span> 。</p>
+<p>  4. 返回第一步，将剩余的鸢尾花数据  <span class="math notranslate nohighlight">\(X_{i^{'}}\)</span> 依次输入到线路  <span class="math notranslate nohighlight">\(Q C\)</span> 中，得到对应的 <span class="math notranslate nohighlight">\(f[y_{i}(\vec{\theta})\)</span> , <span class="math notranslate nohighlight">\(Y_{i}^{\prime}]\)</span> ，并计算总代价函数  <span class="math notranslate nohighlight">\(\sum_{i \in S e t} f[y_{i}(\vec{\theta})\)</span> , <span class="math notranslate nohighlight">\(Y_{i}] / \mid Set \mid\)</span> 。</p>
+<p>  5. 利用经典计算机对代价函数进行最小化，重复更新线路中的参数  <span class="math notranslate nohighlight">\(\theta_{j}(j=1, \ldots , n)\)</span> ，直到优化到截止条件 。</p>
+<p>  这个算法的核心在于量子线路  <span class="math notranslate nohighlight">\(Q C\)</span> 的设计，首先我们需要考虑如何将经典数据输入到 <span class="math notranslate nohighlight">\(Q C\)</span> 中。常用的编码方式有两种，分别是编码到线路参数与编码到态振幅上。 对于本题而言，每个样本 <span class="math notranslate nohighlight">\(X_{i}\)</span> 都有4个特征。如果采取第一种方式，我们可以将每个特征分别编码到一个量子比特的初态上。例如图5.2.2：</p>
+<img alt="../_images/wps459.jpg" class="align-center" src="../_images/wps459.jpg" />
+<p class="centered">
+<strong>图5.2.2 第一种编码方式</strong></p><p> 如果采取第二种编码方式，希望得到量子态：</p>
+<div class="math notranslate nohighlight">
+\[\left|\varphi\left(X_{i}\right)\right\rangle=X_{i 0}|00\rangle+X_{i 1}|01\rangle+X_{i 2}|10\rangle+X_{i 3}|11\rangle\]</div>
+<p>  显而易见，这种编码方式能更好地节约量子比特。但与此同时，它的制备过程也更加复杂，如图5.2.3：</p>
+<img alt="../_images/wps461.jpg" class="align-center" src="../_images/wps461.jpg" />
+<p class="centered">
+<strong>图5.2.3 第二种编码方式</strong></p><p>  其中</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\theta_{1}=2 \sin ^{-1}\left(\sqrt{X_{i 2}^{2}+X_{i 3}^{2}} / \sqrt{X_{i 0}^{2}+X_{i 1}{ }^{2}+X_{i 2}{ }^{2}+X_{i 3}{ }^{2}}\right) \\ &amp;\theta_{2}=2 \sin ^{-1}\left(X_{i 1} / \sqrt{X_{i 0}^{2}+X_{i 1}^{2}}\right) \\ &amp;\theta_{3}=2 \sin ^{-1}\left(X_{i 3} / \sqrt{X_{i 2}^{2}+X_{i 3}^{2}}\right) \end{aligned}\end{split}\]</div>
+<p>事实上，对于包含  <span class="math notranslate nohighlight">\(m\)</span> 个特征的数据来说，采用第一种方案我们需要 <span class="math notranslate nohighlight">\(0(m)\)</span> 个量子比特和 <span class="math notranslate nohighlight">\(0(1)\)</span> 的线路深度，采用第二种方案我们需要 <span class="math notranslate nohighlight">\(0(\log m)\)</span> 个量子比特和  <span class="math notranslate nohighlight">\(O(m)\)</span> 的线路深度。</p>
+<p>  成功将经典数据编码到量子态后，需要考虑利用已有的量子比特或外加部分辅助比特设计量子线路。在设计线路时要尽快将量子比特纠缠起来。</p>
+<img alt="../_images/wps470.jpg" class="align-center" src="../_images/wps470.jpg" />
+<p class="centered">
+<strong>图5.2.4 一种较为常用的线路设计</strong></p><p>  图5.2.4是一种较为常用的线路设计。我们知道，所谓的各种量子门，本质上都是对态进行酉变换。（注意：当引入辅助比特时，线路对总的量子态依然进行酉变换 操作，但对于待测量部分的变换末必是酉的。）所以，将经典数据  <span class="math notranslate nohighlight">\(X_{i}\)</span> 编码到初态并利用含参数 <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> 的量子线路进行操作的全过程就是对  <span class="math notranslate nohighlight">\(X_{i}\)</span> 进行了映射，只不过这种 映射与经典函数映射不同，发生在欧式空间与希尔伯特空间之间。但这种映射依然可以理解为一个形如 <span class="math notranslate nohighlight">\(h_{\vec{\theta}}\left(X_{i}\right)\)</span> 的函数，与经典的机器学习类似。 考虑将经典数据  <span class="math notranslate nohighlight">\(X_{i}\)</span> 映射到量子态  <span class="math notranslate nohighlight">\(\left|\psi\left(X_{i}\right)\right\rangle\)</span> 上，经过线路  <span class="math notranslate nohighlight">\(U(\vec{\theta})\)</span> ，在  <span class="math notranslate nohighlight">\({z}\)</span> 方向上进行测量，得到比特串 <span class="math notranslate nohighlight">\(\vec{\ a_{k}}\)</span> 的概率</p>
+<div class="math notranslate nohighlight">
+\[p_{i k}=\langle\psi\left(X_{i}\right)|\ U^{\dagger}(\vec{\theta}) | a_{k}\rangle\langle a_{k}|U(\vec{\theta})| \psi\left(X_{i}\right)\rangle\]</div>
+<p>  希望每次测量后与真实分类结果 <span class="math notranslate nohighlight">\(Y_{i}\)</span> 对应的  <span class="math notranslate nohighlight">\(\vec{\ a_{a(i)}}\)</span> 中的元素（换言之，任取 <span class="math notranslate nohighlight">\(\vec{a} \in\{\vec{\ a_{a(i)}}\}\)</span> ，满足  <span class="math notranslate nohighlight">\(Y_{i}=g(\vec{a})\)</span> ) 出现的概率尽可能大，这样才能更加准确地进行分类预测。虽然我们很难直接从量子线路中读取到相关的概率分布，但可以通过多次测量，利用 <span class="math notranslate nohighlight">\(\vec{\ a_{k}}\)</span> 出现的频率  <span class="math notranslate nohighlight">\(n_{k} / N\)</span> 对概率  <span class="math notranslate nohighlight">\(p_{i k}\)</span> 进行估计。这样，待办事项转化为对线路重复测量，选取出现总频数 <span class="math notranslate nohighlight">\(N_{j}=\sum_{\vec{\ a_{k}} \in\{\tilde{a_{j}}\}} n_{k}\)</span> 最高的比特串组 <span class="math notranslate nohighlight">\(\{\vec {a_{j}}\}\)</span> ，得到与之对应的分类预测 <span class="math notranslate nohighlight">\(y^{j}\)</span> ，记为  <span class="math notranslate nohighlight">\(y_{i}\)</span> 。 显然，对尚末完成优化过程的分类器而言，其关于样本  <span class="math notranslate nohighlight">\(X_{i}\)</span> 的分类预测  <span class="math notranslate nohighlight">\(y_{i}\)</span> 并不能时常与真实的分类结果  <span class="math notranslate nohighlight">\(Y_{i}\)</span> 对应。可以以如下方式构造损失函数（方法不唯一）：</p>
+<div class="math notranslate nohighlight">
+\[\text{Loss}(i)=f\left[y_{i}(\vec{\theta}), Y_{i}\right]=p\left(y_{i} \neq Y_{i}\right)\]</div>
+<p>  设  <span class="math notranslate nohighlight">\(Y_{i}=y^{\alpha(i)}\)</span> ，其余两类分别为  <span class="math notranslate nohighlight">\(y^{\beta(i)}\)</span> 与  <span class="math notranslate nohighlight">\(y^{\gamma(i) \text { }}\)</span> 则</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{p}\left(y_{i} \neq Y_{i}\right)=\mathrm{p}\left[N_{\alpha(i)}^{i}&lt;\max \left(N_{\beta(i)}^{i}, N_{\gamma(i)}^{i}\right)\right]\]</div>
+<p>  记</p>
+<div class="math notranslate nohighlight">
+\[N_{i}=N_{\alpha(i)}^{i}+N_{\beta(i)}^{i}+N_{\gamma(i)}^{i}=N_{\alpha(i)}^{i}+2 \max \left(N_{\beta(i)}^{i}, N_{\gamma(i)}^{i}\right)+\left|N_{\beta(i)}^{i}-N_{\gamma(i)}^{i}\right|\]</div>
+<p>  有</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{p}\left(y_{i} \neq Y_{i}\right)=p\left[N_{\alpha(i)}^{i}&lt;\frac{N_{i}+\left|N_{\beta(i)}^{i}-N_{\gamma(i)}^{i}\right|}{3}\right]\\ &amp;=\sum_{j=0}^\frac{N_{i}+\left|N_{\beta(i)}^{i}-N_{\gamma(i)}^{i}\right|}{3}\ C_{N_{i}}^{j} p_{i \alpha}{ }^{j}\left(1-p_{i \alpha}\right)^{N_{i}-j} \\ &amp;\approx \int_{-\infty}^{\frac{N_{i}+\left|N_{\beta(i)}^{i}-N_{\gamma(i)}^{i}\right|}{3}} \frac{1}{\sqrt{2 \pi N_{i} p_{i \alpha}\left(1-p_{i \alpha}\right)}} e^{-\frac{\left(x-N_{i} p_{i \alpha}\right)^{2}}{2 N_{i} p_{i \alpha}\left(1-p_{i \alpha}\right)}} \mathrm{dx} \\ &amp;=\frac{1}{2}+\frac{1}{2} \text{erf}\left[\frac{N_{i}+\left|N_{\beta(i)}^{i}-N_{\gamma(i)}^{i}\right|-3 N_{a(i)}^{i}}{3 \sqrt{2 N_{\alpha(i)}^{i}\left(1-N_{\alpha(i)}^{i} / N_{i}\right)}}\right] \end{aligned}\end{split}\]</div>
+<p>  取一阶近似，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;p\left(y_{i} \neq Y_{i}\right) \approx \frac{1}{1+\exp \left[-\frac{4\left(N_{i}+\left|N_{\beta(i)}^{i}-N_{\gamma(i)}^{i}\right|-3 N_{\alpha(i)}^{i}\right)}{3 \sqrt{2 \pi N_{i c}\left(1-N_{\alpha(i)}^{i} / N_{i}\right)}}\right]} \\ &amp;=S\left[\frac{4 \sqrt{2}}{3 \sqrt{\pi}} \sqrt{N_{i}} \frac{\max \left(\left\{N_{i}\right\} \backslash\left\{N_{\alpha(i)}^{i}\right\}\right)-N_{\alpha(i)}^{i}}{\sqrt{N_{\alpha(i)}^{i}\left(N_{i}-N_{\alpha(i)}^{i}\right)}}\right] \end{aligned}\end{split}\]</div>
+<p>  其中</p>
+<div class="math notranslate nohighlight">
+\[S(x)=\frac{1}{1+e^{-x}}\]</div>
+<p>  为  <span class="math notranslate nohighlight">\(Sigmoid\)</span> 函数，常用于机器学习中。 计算总代价函数</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{r} &amp;\text { Cost }=\frac{1}{|\text{Set}|} \sum_{i \in Set} S\left[\frac{4 \sqrt{2}}{3 \sqrt{\pi}} \sqrt{N_{i}} \frac{\max \left(\left\{N_{i}\right\} \backslash\left\{N_{a(i)}^{i}\right\}\right)-N_{\alpha(i)}^{i}}{\sqrt{N_{\alpha(i)}^{i}\left(N_{i}-N_{\alpha(i)}^{i}\right)}}\right] \\ &amp;\approx \frac{1}{|S e t|} \sum_{i \in S e t} S\left[\sqrt{N_{i}} \frac{\max \left(\left\{N_{i}\right\} \backslash\left\{N_{\alpha(i)}^{i}\right\}\right)-N_{\alpha(i)}^{i}}{\sqrt{N_{\alpha(i)}^{i}\left(N_{i}-N_{\alpha(i)}^{i}\right)}}\right] \end{array}\end{split}\]</div>
+<p>  其中 <span class="math notranslate nohighlight">\(N_{i}\)</span> 为某一组参数 <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> 下 ，对样本 <span class="math notranslate nohighlight">\(X_{i}\)</span> 输入到线路后，进行的有效的重复测量次数， <span class="math notranslate nohighlight">\(N_{\alpha(i)}^{i}\)</span> 为测量得到 <span class="math notranslate nohighlight">\(Y_{i}\)</span> 的次数，而 <span class="math notranslate nohighlight">\(\mid Set\mid\)</span> 是数据集的大小。 总代价函数是参数 <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> 与数据集 <span class="math notranslate nohighlight">\(\{X_{i}, Y_{i}\}\)</span> 的函数，利用经典计算机对其采取最小化并不断对参数进行更新，直到优化到截止条件。我们完成了对分类器的训练过程。 当我们需要对新的数据进行预测或测试时，利用参数优化到 <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> 的 <span class="math notranslate nohighlight">\(Q C\)</span> 执行训练过程的前两步即可。</p>
+<img alt="../_images/wps520.jpg" class="align-center" src="../_images/wps520.jpg" />
+<p class="centered">
+<strong>图5.2.5 分类器的训练过程</strong></p><p>  1. 将待分类的鸢尾花数据 <span class="math notranslate nohighlight">\(X_{i}\)</span> 输入到训练完成的量子线路  <span class="math notranslate nohighlight">\(Q C\)</span> 中，其中  <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> 的值为  <span class="math notranslate nohighlight">\(\vec{\theta^{'}}\)</span> 。</p>
+<p>  2. 经测量操作线路输出向量 <span class="math notranslate nohighlight">\(\vec{a}\)</span> ，通过映射  <span class="math notranslate nohighlight">\(g\)</span> 得到对数据  <span class="math notranslate nohighlight">\(X_{i}\)</span> 的分类预测  <span class="math notranslate nohighlight">\(y_{i}\)</span> 。</p>
+<p>  实䟠出真知，让我们看看实际效果如何。</p>
+<p>  从数据集中随机挑选120组数据进行训练，采取第一类编码方式，利用本节介绍的线路设计方窣，线路深度为4层。优化方法为Powell法。比特串与分类预测的对 应关系如下：</p>
+<p>  1.  <span class="math notranslate nohighlight">\(0001、0010、0100、1000\)</span> ：山鸢尾</p>
+<p>  2.  <span class="math notranslate nohighlight">\(1110、1101、1011、0111\)</span> : 杂色鸢尾;</p>
+<p>  3.  <span class="math notranslate nohighlight">\(0011、0110、1100、1001\)</span>：维吉尼亚鸢尾。</p>
+<p>  最终将代价函数优化到0.045，利用剩余30组数据进行测试。结果如图5.2.6。</p>
+<a class="reference internal image-reference" href="../_images/5.2.6.png"><img alt="../_images/5.2.6.png" class="align-center" src="../_images/5.2.6.png" style="width: 350px;" /></a>
+<p class="centered">
+<strong>图5.2.6 结果</strong></p><p>  可见，对于新数据的预测成功率保持在较高的水准，训练过程不存在过拟合的情况。不过同时我们也能看到，杂色鸢尾与维吉尼亚鸢尾之间似乎比其与山鸢尾之间更不易区分。这是否与我们分类器的设计有关？该问题就留待读者朋友自行思考了。（提示：请关注比特串与分类预测的对应关系。）</p>
+<p>  本节以机器学习中常见的鸢尾花数据集分类问题为例，介绍了量子分类器的基本模型。但如同经典分类算法一样，实际操作中可能需要考虑核函数构造等更加复杂的问题，囿于篇幅所限，不在这里一一赘述。如果您日后打算更加深入地探究相关问题，请务必牢记，尽管与经典函数有着诸多不同，但量子线路的作用依然是为数据提供了某种映射操作，这是量子分类器能够生效的核心原因。当您希望针对某一问题进行改进时，不妨关注线路映射的空间。</p>
+<p>  不止于此，乃至更广阔的量子机器学习迄今依然是一个值得进入的研究领域，一方面，诸如量子分类器、量子生成对抗网络等在内的有价值的算法还在不断涌现，另一方面，仍有许多像“复杂数据集如何映射”的有趣问题尚待解决。这个领域欢迎更多志同道合的朋友共同探索新的进展。</p>
+<p>  本节用到的鸢尾花分类器的Python代码示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="kn">from</span> <span class="nn">pyqpanda.Algorithm.hamiltonian_simulation</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">3.</span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="mf">4.</span><span class="kn">import</span> <span class="nn">sklearn.datasets</span> <span class="k">as</span> <span class="nn">datasets</span>
+<span class="mf">5.</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="mf">6.</span><span class="kn">import</span> <span class="nn">math</span>
+<span class="mf">7.</span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span><span class="k">def</span> <span class="nf">initial_state</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="mf">10.</span>    <span class="n">qcir</span><span class="o">=</span><span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">11.</span>    <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="n">qubitlist</span><span class="p">:</span>
+<span class="mf">12.</span>        <span class="n">qcir</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">qubit</span><span class="p">))</span>
+<span class="mf">13.</span>    <span class="n">qcir</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RZ</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">4.3</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3.6</span><span class="p">))</span> \
+<span class="mf">14.</span>        <span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RZ</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.4</span><span class="p">))</span> \
+<span class="mf">15.</span>        <span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RZ</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">5.9</span><span class="p">))</span> \
+<span class="mf">16.</span>        <span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RZ</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.4</span><span class="p">))</span>
+<span class="mf">17.</span>    <span class="k">return</span> <span class="n">qcir</span>
+<span class="mf">18.</span>
+<span class="mf">19.</span><span class="k">def</span> <span class="nf">Uloc</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">,</span> <span class="n">theta_z</span><span class="p">):</span>
+<span class="mf">20.</span>    <span class="n">qcir</span><span class="o">=</span><span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">21.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">)):</span>
+<span class="mf">22.</span>        <span class="n">qcir</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RY</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">theta_y</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> \
+<span class="mf">23.</span>            <span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RZ</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">theta_z</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">24.</span>    <span class="k">return</span> <span class="n">qcir</span>
+<span class="mf">25.</span>
+<span class="mf">26.</span><span class="k">def</span> <span class="nf">Uent</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">):</span>
+<span class="mf">27.</span>    <span class="n">qcir</span><span class="o">=</span><span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">28.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">29.</span>        <span class="n">qcir</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CZ</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubitlist</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="mf">30.</span>    <span class="n">qcir</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CZ</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qubitlist</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="mf">31.</span>    <span class="k">return</span> <span class="n">qcir</span>
+<span class="mf">32.</span>
+<span class="mf">33.</span><span class="k">def</span> <span class="nf">Meas</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="mf">34.</span>    <span class="n">freq_y</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">35.</span>    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="mf">36.</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+<span class="mf">37.</span>            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;0001&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;0010&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;0100&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;1000&#39;</span><span class="p">:</span>
+<span class="mf">38.</span>                <span class="n">freq_y</span><span class="o">+=</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="mf">39.</span>    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="mf">40.</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+<span class="mf">41.</span>            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;1110&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;1101&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;1011&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;0111&#39;</span><span class="p">:</span>
+<span class="mf">42.</span>                <span class="n">freq_y</span><span class="o">+=</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="mf">43.</span>    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+<span class="mf">44.</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+<span class="mf">45.</span>            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;0011&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;0110&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;1100&#39;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;1001&#39;</span><span class="p">:</span>
+<span class="mf">46.</span>                <span class="n">freq_y</span><span class="o">+=</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="mf">47.</span>    <span class="k">return</span> <span class="n">freq_y</span>
+<span class="mf">48.</span>
+<span class="mf">49.</span><span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label_class</span><span class="p">):</span>
+<span class="mf">50.</span>    <span class="n">freq_total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">51.</span>    <span class="n">freq</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">52.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">label_class</span><span class="p">):</span>
+<span class="mf">53.</span>        <span class="n">freq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Meas</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="mf">54.</span>        <span class="n">freq_total</span> <span class="o">+=</span> <span class="n">Meas</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="mf">55.</span>    <span class="n">freq_without_y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+<span class="mf">56.</span>    <span class="k">del</span> <span class="n">freq_without_y</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
+<span class="mf">57.</span>    <span class="n">loss_value</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">freq_total</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">freq_without_y</span><span class="p">)</span> <span class="o">-</span> <span class="n">freq</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">freq_total</span> <span class="o">-</span> <span class="n">freq</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="o">*</span> <span class="n">freq</span><span class="p">[</span><span class="n">y</span><span class="p">]))))</span>
+<span class="mf">58.</span>    <span class="k">return</span> <span class="n">loss_value</span>
+<span class="mf">59.</span>
+<span class="mf">60.</span><span class="k">def</span> <span class="nf">cost</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">label_class</span><span class="p">):</span>
+<span class="mf">61.</span>    <span class="n">cost_value</span><span class="o">=</span><span class="mi">0</span>
+<span class="mf">62.</span>    <span class="n">theta_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">))</span>
+<span class="mf">63.</span>    <span class="n">theta_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">))</span>
+<span class="mf">64.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
+<span class="mf">65.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">qubit_num</span><span class="p">):</span>
+<span class="mf">66.</span>            <span class="n">theta_y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="n">qubit_num</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">j</span><span class="p">]</span>
+<span class="mf">67.</span>            <span class="n">theta_z</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="n">qubit_num</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mf">68.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
+<span class="mf">69.</span>        <span class="n">init</span><span class="p">(</span><span class="n">QMachineType</span><span class="o">.</span><span class="n">CPU</span><span class="p">)</span>
+<span class="mf">70.</span>        <span class="n">qubitlist</span> <span class="o">=</span> <span class="n">qAlloc_many</span><span class="p">(</span><span class="n">qubit_num</span><span class="p">)</span>
+<span class="mf">71.</span>        <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">()</span>
+<span class="mf">72.</span>        <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">initial_state</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> \
+<span class="mf">73.</span>            <span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Uloc</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">theta_z</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">74.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">depth</span><span class="p">):</span>
+<span class="mf">75.</span>            <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Uent</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">))</span> \
+<span class="mf">76.</span>                <span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Uloc</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">theta_z</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+<span class="mf">77.</span>        <span class="n">directly_run</span><span class="p">(</span><span class="n">prog</span><span class="p">)</span>
+<span class="mf">78.</span>        <span class="n">result</span> <span class="o">=</span> <span class="n">quick_measure</span><span class="p">([</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="mf">79.</span>        <span class="n">cost_value</span> <span class="o">+=</span> <span class="n">loss</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label_class</span><span class="p">)</span>
+<span class="mf">80.</span>        <span class="n">finalize</span><span class="p">()</span>
+<span class="mf">81.</span>    <span class="n">cost_value</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="mf">82.</span>    <span class="nb">print</span><span class="p">(</span><span class="n">cost_value</span><span class="p">)</span>
+<span class="mf">83.</span>    <span class="k">return</span> <span class="n">cost_value</span>
+<span class="mf">84.</span>
+<span class="mf">85.</span><span class="k">def</span> <span class="nf">binding</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">label_class</span><span class="p">):</span>
+<span class="mf">86.</span>    <span class="k">return</span> <span class="n">partial</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">qubit_num</span><span class="o">=</span><span class="n">qubit_num</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="n">depth</span><span class="p">,</span> <span class="n">label_class</span><span class="o">=</span><span class="n">label_class</span><span class="p">)</span>
+<span class="mf">87.</span>
+<span class="mf">88.</span><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">label_class</span><span class="p">):</span>
+<span class="mf">89.</span>    <span class="n">y_predict</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">90.</span>    <span class="n">theta_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">))</span>
+<span class="mf">91.</span>    <span class="n">theta_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">depth</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">))</span>
+<span class="mf">92.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">depth</span><span class="p">):</span>
+<span class="mf">93.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">qubit_num</span><span class="p">):</span>
+<span class="mf">94.</span>            <span class="n">theta_y</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="n">qubit_num</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">j</span><span class="p">]</span>
+<span class="mf">95.</span>            <span class="n">theta_z</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="n">qubit_num</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mf">96.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+<span class="mf">97.</span>        <span class="n">init</span><span class="p">(</span><span class="n">QMachineType</span><span class="o">.</span><span class="n">CPU</span><span class="p">)</span>
+<span class="mf">98.</span>        <span class="n">qubitlist</span> <span class="o">=</span> <span class="n">qAlloc_many</span><span class="p">(</span><span class="n">qubit_num</span><span class="p">)</span>
+<span class="mf">99.</span>        <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">()</span>
+<span class="mf">100.</span>        <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">initial_state</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> \
+<span class="mf">101.</span>            <span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Uloc</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">,</span><span class="n">theta_y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">theta_z</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">102.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">depth</span><span class="p">):</span>
+<span class="mf">103.</span>            <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Uent</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">))</span> \
+<span class="mf">104.</span>                <span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Uloc</span><span class="p">(</span><span class="n">qubitlist</span><span class="p">,</span> <span class="n">theta_y</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">theta_z</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+<span class="mf">105.</span>        <span class="n">directly_run</span><span class="p">(</span><span class="n">prog</span><span class="p">)</span>
+<span class="mf">106.</span>        <span class="n">result</span> <span class="o">=</span> <span class="n">quick_measure</span><span class="p">([</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">qubitlist</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="mf">107.</span>        <span class="n">freq</span><span class="o">=</span><span class="p">[]</span>
+<span class="mf">108.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">label_class</span><span class="p">):</span>
+<span class="mf">109.</span>            <span class="n">freq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Meas</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+<span class="mf">110.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">label_class</span><span class="p">):</span>
+<span class="mf">111.</span>            <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">freq</span><span class="p">):</span>
+<span class="mf">112.</span>                <span class="n">y_predict</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+<span class="mf">113.</span>                <span class="k">break</span>
+<span class="mf">114.</span>        <span class="n">finalize</span><span class="p">()</span>
+<span class="mf">115.</span>    <span class="k">return</span> <span class="n">y_predict</span>
+<span class="mf">116.</span>
+<span class="mf">117.</span><span class="k">def</span> <span class="nf">success_rate</span><span class="p">(</span><span class="n">predict_Y</span><span class="p">,</span> <span class="n">test_Y</span><span class="p">):</span>
+<span class="mf">118.</span>    <span class="n">success</span><span class="o">=</span><span class="mi">0</span>
+<span class="mf">119.</span>    <span class="n">fail</span><span class="o">=</span><span class="mi">0</span>
+<span class="mf">120.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">predict_Y</span><span class="p">)):</span>
+<span class="mf">121.</span>        <span class="k">if</span> <span class="p">(</span><span class="n">predict_Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">test_Y</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+<span class="mf">122.</span>            <span class="n">success</span><span class="o">+=</span><span class="mi">1</span>
+<span class="mf">123.</span>        <span class="k">else</span><span class="p">:</span>
+<span class="mf">124.</span>            <span class="n">fail</span><span class="o">+=</span><span class="mi">1</span>
+<span class="mf">125.</span>    <span class="k">return</span> <span class="n">success</span><span class="p">,</span><span class="n">fail</span>
+<span class="mf">126.</span>
+<span class="mf">127.</span><span class="k">def</span> <span class="nf">data_shuffle_and_make_train_test</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">train_percentage</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">):</span>
+<span class="mf">128.</span>    <span class="n">n_data</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="mf">129.</span>    <span class="n">permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_data</span><span class="p">))</span>
+<span class="mf">130.</span>    <span class="n">n_train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_data</span> <span class="o">*</span> <span class="n">train_percentage</span><span class="p">)</span>
+<span class="mf">131.</span>    <span class="n">n_test</span> <span class="o">=</span> <span class="n">n_data</span> <span class="o">-</span> <span class="n">n_train</span>
+<span class="mf">132.</span>    <span class="n">train_permutation</span> <span class="o">=</span> <span class="n">permutation</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_train</span><span class="p">]</span>
+<span class="mf">133.</span>    <span class="n">test_permutation</span> <span class="o">=</span> <span class="n">permutation</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
+<span class="mf">134.</span>    <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">train_permutation</span><span class="p">],</span> <span class="n">label</span><span class="p">[</span><span class="n">train_permutation</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">test_permutation</span><span class="p">],</span> <span class="n">label</span><span class="p">[</span><span class="n">test_permutation</span><span class="p">]</span>
+<span class="mf">135.</span>
+<span class="mf">136.</span><span class="n">qubit_num</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="mf">137.</span><span class="n">depth</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="mf">138.</span><span class="n">label_class</span><span class="o">=</span><span class="mi">3</span>
+<span class="mf">139.</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="mf">140.</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">test_d</span> <span class="p">,</span> <span class="n">test_l</span> <span class="o">=</span> <span class="n">data_shuffle_and_make_train_test</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">label</span><span class="p">)</span>
+<span class="mf">141.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">qubit_num</span> <span class="o">*</span> <span class="n">depth</span><span class="p">)</span>
+<span class="mf">142.</span><span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">binding</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">label_class</span><span class="p">),</span> <span class="n">theta</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;Powell&#39;</span><span class="p">)</span>
+<span class="mf">143.</span>
+<span class="mf">144.</span><span class="n">y_predict</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">145.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+<span class="mf">146.</span><span class="n">y_predict</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">test_d</span><span class="p">,</span> <span class="n">qubit_num</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">label_class</span><span class="p">)</span>
+<span class="mf">147.</span><span class="n">success</span><span class="p">,</span> <span class="n">fail</span> <span class="o">=</span> <span class="n">success_rate</span><span class="p">(</span><span class="n">y_predict</span><span class="p">,</span> <span class="n">test_l</span><span class="p">)</span>
+<span class="mf">148.</span><span class="n">print</span><span class="p">(</span><span class="n">test_l</span><span class="p">)</span>
+<span class="mf">149.</span><span class="n">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_predict</span><span class="p">))</span>
+<span class="mf">150.</span><span class="n">print</span><span class="p">(</span><span class="n">success</span><span class="o">/</span><span class="p">(</span><span class="n">success</span><span class="o">+</span><span class="n">fail</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html" class="btn btn-neutral float-left" title="5.1 利用QPanda测试量子系统噪声" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html" class="btn btn-neutral float-right" title="5.3 使用单振幅和部分振幅量子虚拟机" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

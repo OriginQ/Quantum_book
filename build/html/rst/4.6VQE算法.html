@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.6 VQE算法 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.7 Shor分解算法" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html" />
+    <link rel="prev" title="4.5 QAOA算法" href="4.5QAOA%E7%AE%97%E6%B3%95.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.6 VQE算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">4.6.1 计算化学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.6.2 量子化学</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.6.3 量子化学模拟</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">4.6.4 费米子的哈密顿量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">4.6.5 算法原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">4.6.6 综合示例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>4.6 VQE算法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/4.6VQE算法.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vqe">
+<h1>4.6 VQE算法<a class="headerlink" href="#vqe" title="Permalink to this heading">¶</a></h1>
+<p>  随着量子化学理论的不断完善，计算化学已经成了化学工作者解释实验现象、预测实验结果、指导实验设计的重要工具，在药物的合成、催化剂的制备等方面有着广泛的应用。但是，面对计算化学所涉及的巨大计算量，经典计算机在计算精度、计算尺寸等方面显得能力有限，这就在一定程度上限制了计算化学的发展。而费曼曾提出：可以创造一个与已知物理系统条件相同的系统，让它以相同的规律演化，进而获得我们自己想要的信息。费曼的这一猜想提示我们——既然化学所研究的体系是量子体系，我们何不在量子计算机上对其进行模拟呢？</p>
+<p>  就目前的量子计算机发展水平而言，可以通过变分量子特征值求解算法（Variational-Quantum-Eigensolver，简称VQE），在量子计算机上实现化学模拟。该算法作为用于寻找一个较大矩阵H的特征值的量子与经典混合算法，不仅能保证量子态的相干性，其计算结果还能达到化学精度。</p>
+<section id="id1">
+<h2>4.6.1 计算化学<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><strong>1.1 定义</strong></p>
+<p>  计算化学，顾名思义，就是利用数学方法通过计算机程序对化学体系进行模拟计算，以解释或解决化学问题。它主要包括两个分支——量子化学与分子模拟。</p>
+<img alt="../_images/4.6.1.png" class="align-center" src="../_images/4.6.1.png" />
+<p class="centered">
+<strong>图4.6.1 计算化学</strong></p><p><strong>1.2 作用</strong></p>
+<p>  早期由于计算能力较弱，化学研究主要以理论和实验交互为主。但随着科学技术的蓬勃发展、量子化学理论的不断完善，计算已经成为一种独立的科研手段，与理论和实验形成三足鼎立之势，如图4.6.2。</p>
+<img alt="../_images/4.6.2.png" class="align-center" src="../_images/4.6.2.png" />
+<p class="centered">
+<strong>图4.6.2 三足鼎立之势</strong></p><p>  而如今，计算化学对于化学工作者来说，已经成了解释实验现象、预测实验结果、指导实验设计的重要工具，在材料科学、纳米科学、生命科学等领域得到了广泛的应用。</p>
+<p><strong>（1）原子间库仑衰变现象的成功预测</strong> </p>
+<p>  早在1997年，赛德鲍姆（Cederbaum）等人通过计算和分析HF分子和水分子的电离谱，成功预测了2003年才发现的原子间库仑衰变现象（Interatomic Coulobic Decay,简称ICD）。</p>
+<img alt="../_images/4.6.3.png" class="align-center" src="../_images/4.6.3.png" />
+<p class="centered">
+<strong>图4.6.3 HF分子和水分子的电离谱  <span class="math notranslate nohighlight">\(^{[52]}\)</span></strong></p><p>  原子间库仑衰变现象是指对于组成团簇的原子（或分子），如果它的电子层中存在激发态的电子，就可能会把能量传递到相邻原子的价层电子，使得后者电离变成阳离子。</p>
+<img alt="../_images/4.6.4.png" class="align-center" src="../_images/4.6.4.png" />
+<p class="centered">
+<strong>图4.6.4 原子间库仑衰变现象 <span class="math notranslate nohighlight">\(^{[53]}\)</span></strong></p><p>  如图4.6.4中所示，左侧原子中的一个激发态电子，从高能级跃迁至低能级时，所释放出的能量被右侧原子的一个价层电子吸收，由于原子核对价层电子的束缚能力本来就比较弱，所以吸收了这部分能量的价层电子很容易逸出，使右侧原子变成阳离子。</p>
+<p>  如今，人们正在尝试将这种现象应用于DNA损伤修复领域。</p>
+<img alt="../_images/wps819.png" class="align-center" src="../_images/wps819.png" />
+<p class="centered">
+<strong>图4.6.5 DNA损伤修复</strong></p><p><strong>（2）α突触核蛋白聚集过程的动力学模拟</strong> </p>
+<p>  2007年，齐格列尼等美国科研工作者利用超级计算中心的运算能力，对含有23万多个原子的体系进行动力学模拟，并结合生物化学分析和超微结构分析，首次揭示了α突触核蛋白的聚集过程及其在细胞膜表面形成致病孔状结构的复杂过程，这一成果为帕金森症的治疗提供了新的线索。</p>
+<img alt="../_images/4.6.6.png" class="align-center" src="../_images/4.6.6.png" />
+<p class="centered">
+<strong>图4.6.6 动力学模拟</strong></p></section>
+<section id="id2">
+<h2>4.6.2 量子化学<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>  量子化学，作为计算化学的主要研究方向之一，简单来说就是应用量子力学的规律和方法来研究化学问题。</p>
+<img alt="../_images/4.6.7.png" class="align-center" src="../_images/4.6.7.png" />
+<p class="centered">
+<strong>图4.6.7 量子化学</strong></p><p>  量子化学的研究范围包括：分子的结构、性质及其结构与性能之间的关系；分子与分子之间的相互作用；分子之间的相互碰撞和相互反应等问题。P.O.Lowdin提出量子化学可以分为三个领域，包括基础理论、计算方法和应用研究，三者之间相互影响，构成了三角关系，只有严密的理论、精细的算法、深入的应用相结合，才能构成完美的量子化学。但是，要想真正通过计算模拟、运用基础理论去解决或解释化学问题，仅仅依靠精细的算法还是无法实现，必须还要借助于计算机的计算能力。可以说，量子化学的发展与计算机的发展息息相关。</p>
+<img alt="../_images/4.6.8.png" class="align-center" src="../_images/4.6.8.png" />
+<p class="centered">
+<strong>图4.6.8 三角关系</strong></p><p>  由于在对一个 <span class="math notranslate nohighlight">\(N\)</span> 电子体系计算模拟时，往往需要解薛定谔方程，这就涉及到了 <span class="math notranslate nohighlight">\(3N\)</span> 维波函数的求解。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\hat{H} \Psi=E \Psi \\ &amp;\hat{H}=\frac{h^{2}}{2 m_{e}} \sum_{i=1}^{n} \nabla_{i}^{2}-\sum_{i=1}^{n} \frac{Z e^{2}}{r_{i}}+\sum_{i=1}^{n} \sum_{j=1}^{n} \frac{e^{2}}{r_{i j}} \end{aligned}\end{split}\]</div>
+<p>  由此可知，计算量会随着研究体系的电子数的增加而呈指数式递增。</p>
+<p>  就目前而言，面对量子化学计算中所涉及到的如此惊人的计算量，经典计算机在计算精度、计算范围等方面十分有限。想要突破这一瓶颈，就必须依靠量子计算机强大的计算能力。因此，在量子计算机上实现量子化学模拟刻不容缓。</p>
+</section>
+<section id="id3">
+<h2>4.6.3 量子化学模拟<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>  量子计算最引人注目的可能性之一是对其它量子系统的模拟。量子系统的量子模拟包含了广泛的任务，其中最重要的任务包括：</p>
+<ol class="arabic simple">
+<li><p>量子系统时间演化的模拟。</p></li>
+<li><p>基态属性的计算。</p></li>
+</ol>
+<p>  当考虑相互作用的费米子系统时这些应用特别有用，例如分子和强相关材料；费米子系统的基态性质的计算是凝聚态哈密顿量的相图映射出来的起点，它也为量子化学中电子结构问题的关键问题即反应速率提供了途径。</p>
+<p>  由于在化学应用中的相关性，尺寸相对适中的分子系统，它们被认为是早期量子计算机的理想测试平台。更正式地，基态问题要求如下：</p>
+<p>  对于某些物理哈密顿量 <span class="math notranslate nohighlight">\(\mathrm{H}\)</span> , 找到其最小特征值  <span class="math notranslate nohighlight">\(\mathrm{E}{g}\)</span> ，这样  <span class="math notranslate nohighlight">\(\mathrm{H}\left|\varphi{g}\right\rangle=\mathrm{E}{g}\left|\varphi{g}\right\rangle\)</span> ，其中 <span class="math notranslate nohighlight">\(\left|\varphi_{g}\right\rangle\)</span> 是对应于  <span class="math notranslate nohighlight">\(\mathrm{E}_{g}\)</span> 的特征向量。</p>
+<p>  而量子化学模拟是指，将真实化学体系的哈密顿量（包括其形式和参数）映射到由自己构建的可操作哈密顿量上，然后通过调制参数和演化时间，找到能够反映真实体系的本征态。</p>
+<img alt="../_images/4.6.9.png" class="align-center" src="../_images/4.6.9.png" />
+<p class="centered">
+<strong>图4.6.9 量子化学模拟过程</strong></p><p>  众所周知，即使在量子计算机上，这个问题通常也是难以处理的，这意味着不能指望有一种有效的量子算法可以用来准备一般哈密顿量的基态。尽管存在这种限制，但对于特定的哈密顿量而言考虑到相互作用的物理限制，有可能有效地解决上述问题。目前，至少存在四种不同的方法来解决这个问题：</p>
+<p>​  量子相位估计：假设可以近似准备状态 <span class="math notranslate nohighlight">\(| \varphi_g \rangle\)</span> ，该例使用哈密顿量的受控来找到其最小的特征值。</p>
+<p>​  量子力学的绝热定理：通过哈密顿量的缓慢演化，量子系统被绝热地从一个普通哈密顿量的基态演化为期望目标问题的哈密顿量基态。</p>
+<p>​  耗散（非酉矩阵）量子操作：目标系统的基态是个固定点，而非平凡假设是指在量子硬件上实现耗散映射。</p>
+<p>​  变分量子特征值求解算法：假设基态可以用包含相对较少参数的参数化表示。</p>
+<p>  为了使量子化学模拟在近期硬件设备上实现，我们采用变分量子特征值求解算法(Variational-Quantum-Eigensolver，简称VQE)来寻找体系的基态。该量子算法不仅能保证量子态的相干性，其计算结果还能达到化学精度。</p>
+<p>  该算法是用于寻找一个较大矩阵H的特征值的量子与经典混合算法，如图4.6.10所示：</p>
+<img alt="../_images/4.6.10.png" class="align-center" src="../_images/4.6.10.png" />
+<p class="centered">
+<strong>图4.6.10 算法示意图</strong></p><p><strong>量子化学计算包</strong></p>
+<p>  常用的量子化学包有ussian16、PyQuante、pySCF、PSI4等。</p>
+<img alt="../_images/4.6.11.png" class="align-center" src="../_images/4.6.11.png" />
+<p class="centered">
+<strong>图4.6.11 量子化学计算包</strong></p><p>  其中，PSI4；它是开源的一款从头算量子化学计算包，它能够运用Hatree-Fock方法、密度泛函理论、耦合团簇理论、组态相互作用方法等方法对电子结构进行计算。后续章节将利用PSI4中的Hatree-Fock方法计算得到的二次哈密顿量构造量子线路，寻找H2的基态。</p>
+</section>
+<section id="id4">
+<h2>4.6.4 费米子的哈密顿量<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p><strong>1、二次量子化哈密顿量</strong></p>
+<div class="math notranslate nohighlight">
+\[H \Psi=E \Psi \qquad (1)\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{\mathrm{H}}_{\mathrm{el}}=-\frac{1}{2} \sum_{i=1}^{N} \nabla_{i}^{2}-\sum_{i=1}^{N_{\mathrm{el}}} \sum_{A=1}^{N_{\mathrm{nu}}} \frac{Z_{A}}{r_{i A}}+\sum_{i=1, j&gt;i}^{N_{\mathrm{el}}, N_{\mathrm{el}}} \frac{1}{r_{i j}} \qquad(2)\]</div>
+<p>  在之前的章节中，我们曾提到描述  <span class="math notranslate nohighlight">\(N\)</span> 电子体系的薛定谔方程，其中式 (1) 中的  <span class="math notranslate nohighlight">\(\hat{\mathrm{H}}\)</span> 算符就是哈密顿算符。在玻恩-奥本海默近似下，电子哈密顿算符可以写成式 (2) 这种形式，其中  <span class="math notranslate nohighlight">\(-\frac{1}{2} \sum_{i} \nabla_{i}^{2}\)</span> 是电子的动能项;  <span class="math notranslate nohighlight">\(-\sum_{A,i} \frac{Z_{A}}{r_{A i}}\)</span> 是核与电子之间的引力势能项;  <span class="math notranslate nohighlight">\(\sum_{i&gt;j}\frac{1}{r_{i j}}\)</span> 是电子之间的排斥能项。式 (2) 被称之为 “一次量子化电子哈密顿算符”。</p>
+<p>  如图4.6.12所示，由于一次量子化哈密顿量映射到量子比特上需要耗费的量子比特数要比二次量子化哈密顿量多，VQE算法选择了更为经济的二次量子化哈密顿量。</p>
+<img alt="../_images/4.6.12.png" class="align-center" src="../_images/4.6.12.png" />
+<p class="centered">
+<strong>图4.6.12 一次量子化与二次量子化</strong></p><p>  所谓二次量子化哈密顿量就是将波场函数转换为场算符，这一转换需要借助创造算子 <span class="math notranslate nohighlight">\(\mathrm{a}{\mathrm{p}}^{\dagger}\)</span> 和湮灭算子  <span class="math notranslate nohighlight">\(\mathrm{a}{\mathrm{q}}\)</span> 来实现，它们满足反对易关系，即：</p>
+<div class="math notranslate nohighlight">
+\[\left\{a_{p}^{\dagger}, a_{q}\right\}=\delta_{p q}\]</div>
+<p>  最终可以得到如下形式的二次量子化哈密顿量：</p>
+<div class="math notranslate nohighlight">
+\[\hat{\mathrm{H}}_{P}=\sum_{p q} h_{p q} a_{p}^{\dagger} a_{q}+\frac{1}{2} \sum_{p q r s} h_{p q r s} a_{p}^{\dagger} a_{q}^{\dagger} a_{r} a_{s}\]</div>
+<p>  该式中，  <span class="math notranslate nohighlight">\(\sum_{p q} h_{p q} a_{p}^{\dagger} a_{q}\)</span> 是单粒子算符，  <span class="math notranslate nohighlight">\(\frac{1}{2} \sum_{p q r s} h_{p q r s} a_{p}^{\dagger} a_{q}^{\dagger} a_{r} a_{s}\)</span> 是双粒子算符；下标 <span class="math notranslate nohighlight">\(pqrs\)</span> 分别代表不同的单电子自旋分子轨道，  <span class="math notranslate nohighlight">\(h_{p q}\)</span> 和  <span class="math notranslate nohighlight">\(h_{p q r s}\)</span> 是常数项，前者称为 单电子积分项，后者称为双电子积分项。</p>
+<p>  计算公式如下:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;h_{p q}=\int d r x_{p}(\mathrm{r})^{*}\left(-\frac{1}{2} \nabla^{2}-\sum_{a} \frac{Z_{\alpha}}{\left|r_{\alpha}-r\right|}\right) x_{q}(r) \\ &amp;h_{p q r s}=\int d r_{1} d r_{2} \frac{1}{\left|r_{1}-r_{2}\right|} \cdot x_{p}\left(r_{1}\right)^{*} x_{q}\left(r_{2}\right)^{*} x_{r}\left(r_{1}\right) x_{s}\left(r_{2}\right) \end{aligned}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\chi_{\mathrm{p}}\)</span> 、 <span class="math notranslate nohighlight">\(\chi_{\mathrm{q}}\)</span> 等分别表示不同的单电子自旋轨道波函数；  <span class="math notranslate nohighlight">\(\mathrm{Z}_{\alpha}\)</span> 表示核电荷;  <span class="math notranslate nohighlight">\(\mathrm{r}_{\alpha}\)</span> 表示核位置;  <span class="math notranslate nohighlight">\(\mathrm{r}_{1}\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{r}_{2}\)</span> 分别表示不同电子的位置。</p>
+<p>  从  <span class="math notranslate nohighlight">\(h_{pq}\)</span> 的计算公式中，可以发现括号中的两项正是一次量子化哈密顿量中的电子动能项  <span class="math notranslate nohighlight">\(-\frac{1}{2} \nabla^{2}\)</span> 和核与电子之间的引力势能项  <span class="math notranslate nohighlight">\(-\sum_{\alpha} \frac{z_{\alpha}}{\left|r_{\alpha}-r\right|}\)</span> , 只不过这里采用的是原子单位; 从 <span class="math notranslate nohighlight">\(h_{p q r s}\)</span> 的计算公式中，可以发现，  <span class="math notranslate nohighlight">\(\frac{1}{\left|r_{1}-r_{2}\right|}\)</span> 正是一次量子化哈密顿量中的电子间排斥能项。由此可见，  <span class="math notranslate nohighlight">\(h_{p q}\)</span> 和   <span class="math notranslate nohighlight">\(h_{pqrs}\)</span> 起到了联系二次量子化哈密顿量与一次量化哈密顿量的作用。</p>
+<p><strong>2、H2分子费米子哈密顿量</strong></p>
+<p>  众所周知，每个氢原子都有一个电子，填充在1s轨道上，如图4.6.13所示：</p>
+<img alt="../_images/4.6.13.png" class="align-center" src="../_images/4.6.13.png" />
+<p class="centered">
+<strong>图4.6.13 氢原子</strong></p><p>  而氢分子则由两个氢原子组成，那么它就含有两个电子。以q0、q1量子比特表示a号氢原子自旋向下和自旋向上的1s轨道，以q2、q3分别表示b号氢原子自旋向下和自旋向上的1s轨道，如图4.6.14所示。</p>
+<img alt="../_images/4.6.14.png" class="align-center" src="../_images/4.6.14.png" />
+<p class="centered">
+<strong>图4.6.14 氢分子</strong></p><p>  假设氢分子的两个电子分别处在q0和q1这两个轨道上面，如图4.6.15所示：</p>
+<img alt="../_images/4.6.15.png" class="align-center" src="../_images/4.6.15.png" />
+<p class="centered">
+<strong>图4.6.15 q0和q1轨道</strong></p><p>  如果以量子态  <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 表示自旋轨道上有一个电子，以量子态  <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 表示自旋轨道为空轨道，那么此时氢分子的状态可以表示为  <span class="math notranslate nohighlight">\(|0011 \rangle\)</span> 。</p>
+<p>  当q0上的电子跃迁到q2上时，也就是电子先从q0上“湮灭”，然后在q1上“创造”，如图4.6.16所示：</p>
+<img alt="../_images/4.6.16.png" class="align-center" src="../_images/4.6.16.png" />
+<p class="centered">
+<strong>图4.6.16 q0上的电子跃迁到q2上</strong></p><p>  此时，其簇算符表示为</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}_{1}=t_{20} a_{2}^{\dagger} a_{0}\]</div>
+<p>  同理，当q0上的电子跃迁到q3上时，其哈密顿量可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}_{2}=\mathrm{t}_{30} a_{3}^{\dagger} a_{0}\]</div>
+<p>  当q1上的电子跃迁到q2上时，其哈密顿量可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}_{3}=\mathrm{t}_{21} a_{2}^{\dagger} a_{1}\]</div>
+<p>  当q1上的电子跃迁到q3上时，其哈密顿量可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}_{4}=\mathrm{t}_{31} a_{3}^{\dagger} a_{1}\]</div>
+<p>  当q0、q1上的电子同时跃迁到q2、q3上时，其哈密顿量可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}_{5}=\mathrm{t}_{3210}a_{3}^{\dagger} a_{2}^{\dagger} a_{0} a_{1}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathrm{\hat{T}}_{1}\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}_{2}\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}_{3}\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}_{4}\)</span> 所描述的电子跃迁形式为单激发形式，而H5则是双激发形式。对于氢分子而言，由前四项单激发所构造成的哈密顿量称之为CCS，而由单激发和双激发所共同构造成的哈密顿量被称之为CCSD，也就是这五项之和，即：</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}_{U}=t_{20} a_{2}^{\dagger} a_{0}+t_{30} a_{3}^{\dagger} a_{0}+t_{21} a_{2}^{\dagger} a_{1}+t_{31} a_{3}^{\dagger} a_{1}+t_{3210} a_{3}^{\dagger} a_{2}^{\dagger} a_{0} a_{1}\]</div>
+<img alt="../_images/4.6.17.png" class="align-center" src="../_images/4.6.17.png" />
+<p class="centered">
+<strong>图4.6.17 CCS和CCSD</strong></p><p><strong>3、费米子算符类</strong></p>
+<p>  假设，用字符串 <span class="math notranslate nohighlight">\(X\)</span> 来表示湮没算符，用字符串 <span class="math notranslate nohighlight">\(X+\)</span> 来表示创建算符，其中 <span class="math notranslate nohighlight">\(X\)</span> 表示电子轨道的序号，表达为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;{ }^{\prime \prime} X^{\prime \prime} \equiv a_{x} \\ &amp;{ }^{\prime \prime} X+^{\prime \prime} \equiv a_{x}^{\dagger} \end{aligned}\end{split}\]</div>
+<p>  例如,  <span class="math notranslate nohighlight">\(\{^{\prime \prime} 1+0^{\prime \prime}, 2\} \equiv 2 a_{1}^{\dagger} a_{0}\)</span>  ，表示电子在 0 号轨道湮没，在1号轨道创建，其系数为2;  <span class="math notranslate nohighlight">\(\{^{\prime \prime}3+2+1+0^{\prime \prime}, 3\} \equiv 3 a_{3}^{\dagger} a_{2}^{\dagger} a_{1} a_{0}\)</span>  表示有两个电子同时从0号轨道和1号轨道湮没，并在3号轨道和 2 号轨道创建，其系数为3。另外也可以定义电子之间的排斥能，例如：  <span class="math notranslate nohighlight">\(\{^{\prime \prime\ \ \prime\prime}, 2\}=2 I\)</span> ，表示电子之间的排斥能为 2 。</p>
+<p>  在QPanda中实现示例</p>
+<p>  通过如下示例代码构建费米子算符类。使用C++构建方式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.#include &quot;Operator/FermionOperator.h&quot;
+2.int main()
+3.{
+4.    using namespace QPanda;
+5.    FermionOperator p1;
+6.    FermionOperator p2({ {“1+  0”, 2},{“3+ 2+  1 0”, 3} });
+7.    FermionOperator p3(“1+ 0”, 2);
+8.    FermionOperator p4(2); // FermionOperator p4(“”, 2);
+9.    FermionOperator p5(p2);
+10.
+11.    return 0;
+12.}
+</pre></div>
+</div>
+<p>  python构建方式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>    <span class="n">p1</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">()</span>
+<span class="mf">4.</span>    <span class="n">p2</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">({</span><span class="s1">&#39;1+ 0&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span><span class="s1">&#39;3+ 2+ 1 0&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="mf">5.</span>    <span class="n">p3</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">(</span><span class="s1">&#39;1+ 0&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">6.</span>    <span class="n">p4</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="mf">7.</span>    <span class="n">p5</span> <span class="o">=</span> <span class="n">p2</span>
+</pre></div>
+</div>
+<p>  构造一个空的费米子算符类P1，里面不包含任何创建和湮没算符及单位矩阵；也可以通过前面所述的规则，以字典序的形式构建多个表达式，例如P2；或者只构建一个表达式例如P3；还可以只构造一个电子之间排斥能项，例如P4；也可以通过已经构造好的费米子算符来构造它的一份副本例如P5。</p>
+<p>  费米子算符类支持常规的加、减、乘等运算操作。计算返回的结果还是一个费米子算符类。</p>
+<p>  假设定义了a和b两个费米子算符类，可以让费米子算符类之间进行加操作，减操作和乘操作。使用C++示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.#include &quot;Operator/FermionOperator.h&quot;
+2.using namespace QPanda;
+3.int main()
+4.{
+5.    FermionOperator a(“1+  0&quot;, 2);
+6.    FermionOperator b(“3+  2&quot;, 3);
+7.    auto plus = a + b;
+8.    auto minus = a - b;
+9.    auto muliply = a * b;
+10.
+11.    return 0;
+12.}
+</pre></div>
+</div>
+<p>  python示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">(</span><span class="s1">&#39;1+ 0&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">4.</span>    <span class="n">b</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">(</span><span class="s1">&#39;3+ 2&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">5.</span>    <span class="n">plus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="mf">6.</span>    <span class="n">minus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="mf">7.</span>    <span class="n">muliply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>  费米子算符类同样也支持打印功能，可以直接将费米子算符类打印输出到屏幕上。C++打印输出方式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a + b = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">plus</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">2.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a - b = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">minus</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">3.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a * b = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">multiply</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>  python打印输出方式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a + b = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plus</span><span class="p">))</span>
+<span class="mf">2.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a - b = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minus</span><span class="p">))</span>
+<span class="mf">3.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a * b = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">muliply</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>  通过使用上述示例代码， a+b，a-b和a*b的计算结果如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">2.1</span><span class="o">+</span> <span class="mi">0</span> <span class="p">:</span> <span class="mf">2.000000</span>
+<span class="mf">3.3</span><span class="o">+</span> <span class="mi">2</span> <span class="p">:</span> <span class="mf">3.000000</span>
+<span class="mf">4.</span><span class="p">}</span>
+<span class="mf">5.</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">6.1</span><span class="o">+</span> <span class="mi">0</span> <span class="p">:</span> <span class="mf">2.000000</span>
+<span class="mf">7.3</span><span class="o">+</span> <span class="mi">2</span>  <span class="p">:</span> <span class="o">-</span><span class="mf">3.000000</span>
+<span class="mf">8.</span><span class="p">}</span>
+<span class="mf">9.</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">10.1</span><span class="o">+</span> <span class="mi">0</span> <span class="mi">3</span><span class="o">+</span> <span class="mi">2</span> <span class="p">:</span> <span class="mf">6.000000</span>
+<span class="mf">11.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  还可以通过normal_ordered接口对费米子算符进行整理。在这个转换中规定张量因子从高到低进行排序，并且创建算符出现在湮没算符之前。</p>
+<p>  整理规则如下：对于相同数字，交换湮没和创建算符，等价于单位1减去正规序，如果同时存在两个创建或湮没算符，则该项表达式等于0；对于不同的数字，整理成正规序，需要将正规序的系数变为相反数。</p>
+<p>  normal_ordered接口的使用方式如示例代码所示。C++示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.#include &quot;Operator/FermionOperator.h&quot;
+2.using namespace QPanda;
+3.int main()
+4.{
+5.    FermionOperator a(&quot;0 1 3+ 2+&quot;, 2);
+6.    auto muliply = a.normal_ordered() ;
+7.    std::cout &lt;&lt; “before = &quot; &lt;&lt; a &lt;&lt; std::endl;
+8.    std::cout &lt;&lt; “after = &quot; &lt;&lt; b &lt;&lt; std::endl;
+9.    return 0;
+10.}
+</pre></div>
+</div>
+<p>  python示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">(</span><span class="s1">&#39;0 1 3+ 2+&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">4.</span>    <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">normal_ordered</span><span class="p">()</span>
+<span class="mf">5.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;before = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="mf">6.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;after = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>  对于表达式“0 1 3+ 2+”，整理成正规序“3+ 2+ 1 0”，相当于不同数字交换了5次，系数变为了相反数。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">before</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">2.0</span> <span class="mi">1</span> <span class="mi">3</span><span class="o">+</span> <span class="mi">2</span><span class="o">+</span> <span class="p">:</span> <span class="mf">2.000000</span>
+<span class="mf">3.</span><span class="p">}</span>
+<span class="mf">4.</span><span class="n">after</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">5.3</span><span class="o">+</span> <span class="mi">2</span><span class="o">+</span> <span class="mi">1</span> <span class="mi">0</span> <span class="p">:</span> <span class="o">-</span><span class="mf">2.000000</span>
+<span class="mf">6.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  费米子算符类还提供了其它一些常用功能，例如：isEmpyt接口，用来判断是否是个空的费米子算符；toString接口返回费米子算符的字符串形式；data接口返回费米子算符内部为维护的数据</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">isEmpyt</span><span class="p">()</span>       <span class="o">//</span> <span class="n">判空</span>
+<span class="mf">2.</span><span class="n">toString</span><span class="p">()</span>       <span class="o">//</span> <span class="n">返回字符串形式</span>
+<span class="mf">3.</span><span class="n">data</span><span class="p">()</span>            <span class="o">//</span> <span class="n">返回内部维护的数据</span>
+</pre></div>
+</div>
+<p>  C++示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.#include &quot;Operator/FermionOperator.h&quot;
+2.using namespace QPanda;
+3.int main()
+4.{
+5.    FermionOperator a(“1+  0&quot;, 2);
+6.
+7.    auto data = a.data();
+8.
+9.    std::cout &lt;&lt; “isEmpty = “ &lt;&lt; a.isEmpty() &lt;&lt; std::endl;
+10.    std::cout &lt;&lt; “stringValue = “ &lt;&lt; a.toString() &lt;&lt; std::endl;
+11.
+12.    return 0;
+13.}
+</pre></div>
+</div>
+<p>  python示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">(</span><span class="s1">&#39;1+ 0&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">5.</span>
+<span class="mf">6.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;isEmpty = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()))</span>
+<span class="mf">7.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;strValue = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">toString</span><span class="p">()))</span>
+<span class="mf">8.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;data = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">data</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>  计算结果为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">isEmpty</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="mf">2.</span><span class="n">strValue</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">3.1</span><span class="o">+</span> <span class="mi">0</span> <span class="p">:</span> <span class="mf">2.000000</span>
+<span class="mf">4.</span><span class="p">}</span>
+<span class="mf">5.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[(([(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)],</span> <span class="s1">&#39;1+ 0&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">0</span><span class="n">j</span><span class="p">))]</span>
+</pre></div>
+</div>
+<p><strong>4、可变费米子算符类和可变泡利算符类</strong></p>
+<p>  费米算符类是一个模板类，如果用complex来构造该模板参数T，得到的就是费米子算符类；如果用complex_var类来构造模板参数T，得到的就是可变费米子算符类；同样泡利算符类也是一个模板类，选择不同的模板参数类型，可以得到泡利算符类和可变泡利算符类，如图4.6.18。</p>
+<img alt="../_images/4.6.18.png" class="align-center" src="../_images/4.6.18.png" />
+<p class="centered">
+<strong>图4.6.18 泡利算符类和可变泡利算符类</strong></p><p>  可变费米子算符类和可变泡利算符类，跟费米子算符类和泡利算符类拥有相同的接口，但是在构造它们的时候所传的参数是个Var变量。Var类是VQNet框架中的符号计算系统，在表达式不变的情况下，通过改变Var的值，即可改变表达式的值。因此可以通过构造可变费米子算符类和可变泡利算符类并利用VQNet框架，来实现VQE算法。</p>
+<p>  C++示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include “Veriational/VarFermionOperator.h&quot;</span>
+<span class="mf">2.</span><span class="c1">#include “Veriational/VarPauliOperator.h&quot;</span>
+<span class="mf">3.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">QPanda</span><span class="p">;</span>
+<span class="mf">4.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">Variational</span><span class="p">;</span>
+<span class="mf">5.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">6.</span><span class="p">{</span>
+<span class="mf">7.</span>    <span class="n">var</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span> <span class="p">;</span>
+<span class="mf">8.</span>    <span class="n">var</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span> <span class="p">;</span>
+<span class="mf">9.</span>    <span class="n">VarFermionOperator</span> <span class="n">fermion_op</span><span class="p">(</span><span class="s2">&quot;1+  0&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+<span class="mf">10.</span>    <span class="n">VarPauliOperator</span> <span class="n">pauli_op</span><span class="p">(</span><span class="s2">&quot;Z1  Z0&quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="mf">11.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">12.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  python示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="mf">5.</span>    <span class="n">b</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="mf">6.</span>    <span class="n">fermion_op</span> <span class="o">=</span> <span class="n">VarFermionOperator</span><span class="p">(</span><span class="s1">&#39;1+ 0&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="mf">7.</span>    <span class="n">pauli_op</span> <span class="o">=</span> <span class="n">VarPauliOperator</span><span class="p">(</span><span class="s1">&#39;Z1 Z0&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>费米子算符类构造分子的哈密顿量示例介绍</strong></p>
+<p>  通过向get_ccsd接口传入轨道个数（也就是比特数）、电子数和每一个子项的系数，即可构造所需的费米子哈密顿量。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">get_ccsd</span><span class="p">(</span><span class="n">qn</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span> <span class="n">para</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="k">if</span> <span class="n">n_electron</span><span class="o">&gt;</span><span class="n">n_qubit</span><span class="p">:</span>
+<span class="mf">3.</span>        <span class="k">assert</span> <span class="kc">False</span>
+<span class="mf">4.</span>    <span class="k">if</span> <span class="n">n_electron</span><span class="o">==</span><span class="n">n_qubit</span><span class="p">:</span>
+<span class="mf">5.</span>        <span class="k">return</span> <span class="n">FermionOperator</span><span class="p">()</span>
+<span class="mf">6.</span>    <span class="k">if</span> <span class="n">get_ccsd_n_term</span><span class="p">(</span><span class="n">qn</span><span class="p">,</span> <span class="n">en</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">para</span><span class="p">):</span>
+<span class="mf">7.</span>        <span class="k">assert</span> <span class="kc">False</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="n">fermion_op</span> <span class="o">=</span> <span class="n">FermionOperator</span><span class="p">()</span>
+<span class="mf">12.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">en</span><span class="p">):</span>
+<span class="mf">13.</span>        <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">en</span><span class="p">,</span> <span class="n">qn</span><span class="p">):</span>
+<span class="mf">14.</span>            <span class="n">fermion_op</span> <span class="o">+=</span> <span class="n">FermionOperator</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;+ &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">para</span><span class="p">[</span><span class="n">cnt</span><span class="p">])</span>
+<span class="mf">15.</span>            <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="mf">16.</span>
+<span class="mf">17.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_electron</span><span class="p">):</span>
+<span class="mf">18.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n_electron</span><span class="p">):</span>
+<span class="mf">19.</span>            <span class="k">for</span> <span class="n">ex1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_electron</span><span class="p">,</span><span class="n">n_qubit</span><span class="p">):</span>
+<span class="mf">20.</span>                <span class="k">for</span> <span class="n">ex2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ex1</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n_qubit</span><span class="p">):</span>
+<span class="mf">21.</span>                    <span class="n">fermion_op</span> <span class="o">+=</span> <span class="n">FermionOperator</span><span class="p">(</span>
+<span class="mf">22.</span>                        <span class="nb">str</span><span class="p">(</span><span class="n">ex2</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;+ &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ex1</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;+ &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="mf">23.</span>                        <span class="n">para</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span>
+<span class="mf">24.</span>                    <span class="p">)</span>
+<span class="mf">25.</span>                    <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="mf">26.</span>
+<span class="mf">27.</span>    <span class="k">return</span> <span class="n">fermion_op</span>
+</pre></div>
+</div>
+<p>  在图4.6.19中，红色框起来的部分代码构造的是单电子激发的哈密顿量，绿色框起来的部分构造的是双电子激发的哈密顿量。构造CCS只需要包含红色框起来的部分即可，而构造CCSD需要包含红色和绿色框起来的代码。</p>
+<img alt="../_images/4.6.19.png" class="align-center" src="../_images/4.6.19.png" />
+<p class="centered">
+<strong>图4.6.19 构造CCS和CCSD</strong></p><p>  在二次量子化哈密顿量的介绍中，曾提到过费米子算符遵循反对易关系，  <span class="math notranslate nohighlight">\(\left[a_{p}^{\dagger}, a_{q}\right]=\delta_{p q}\)</span> ， 因此， 在进行量子化学模拟时，将费米子哈密顿量成功映射到量子比特 上的核心问题在于能否在量子线路的构造中将这一反对易关系反映出来,为了解决这一问题，需要通过J-W变换、Parity变换、B-K变换等方法将费米子算符转换成泡利算符。</p>
+<p><strong>J-W变换</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;a_{j}^{\dagger}=I^{\otimes n-j-1} \otimes Q^{+} \otimes Z_{j-1}^{\oplus}(1) \\ &amp;a_{j}=I^{\otimes n-j-1} \otimes Q^{-} \otimes Z_{j-1}^{\over{ }}(2) \end{aligned}\end{split}\]</div>
+<p>将创造算子和湮灭算子分别表示成式 (1) 、式 (2) 这种形式, 其中,  <span class="math notranslate nohighlight">\(n\)</span> 表示自旋轨道的数目，也就是量子比特数;  <span class="math notranslate nohighlight">\(j\)</span> 为算符所作用的子空间，也就是量子比特序号;  <span class="math notranslate nohighlight">\(\quad Z^{\rightarrow}_{j-1}\)</span> 这一项被称之为宇称算子，定义如下:</p>
+<div class="math notranslate nohighlight">
+\[Z_{j-1}^{\rightarrow}=\sigma_{j-1}^{z} \otimes \sigma_{j-2}^{z} \otimes \ldots \otimes \sigma_{1}^{z} \otimes \sigma_{0}^{z}\]</div>
+<p>  为了能够同  <span class="math notranslate nohighlight">\(Z_{j-1}\)</span> 一起将创造算子和湮灭算子之间的反对易关系反映出来，需要将  <span class="math notranslate nohighlight">\(Q^{+}\)</span> 、 <span class="math notranslate nohighlight">\(Q^{-}\)</span> 分别构造成  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 的外积、  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 的外积，即：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;Q^{+}=|1\rangle \langle0|=\frac{1}{2}\left(\sigma^{x}-i \sigma^{y}\right) \\ &amp;Q^{-}=|0\rangle \langle1|=\frac{1}{2}\left(\sigma^{x}+i \sigma^{y}\right) \end{aligned}\end{split}\]</div>
+<p>  <span class="math notranslate nohighlight">\(J-W\)</span> 变换需要消耗的逻辑门个数与量子比特数成线性关系。</p>
+<p>  可以通过QPanda或者pyQPanda来构造 <span class="math notranslate nohighlight">\(J-W\)</span> 变换，这里给出的是python代码示例， get_fermion_jordan_wigner接口返回的是费米子算符中的一个子项 <span class="math notranslate nohighlight">\(J-W\)</span> 变换。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">get_fermion_jordan_wigner</span><span class="p">(</span><span class="n">fermion_item</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">pauli</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="mf">3.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fermion_item</span><span class="p">:</span>
+<span class="mf">4.</span>        <span class="n">op_qubit</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="mf">5.</span>        <span class="n">op_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="mf">6.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">op_qubit</span><span class="p">):</span>
+<span class="mf">7.</span>            <span class="n">op_str</span> <span class="o">+=</span> <span class="s2">&quot;Z&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+<span class="mf">8.</span>        <span class="n">op_str1</span> <span class="o">=</span> <span class="n">op_str</span> <span class="o">+</span> <span class="s2">&quot;X&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">op_qubit</span><span class="p">)</span>
+<span class="mf">9.</span>        <span class="n">op_str2</span> <span class="o">=</span> <span class="n">op_str</span> <span class="o">+</span> <span class="s2">&quot;Y&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">op_qubit</span><span class="p">)</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>        <span class="n">pauli_map</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="mf">12.</span>        <span class="n">pauli_map</span><span class="p">[</span><span class="n">op_str1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="mf">13.</span>
+<span class="mf">14.</span>        <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+<span class="mf">15.</span>            <span class="n">pauli_map</span><span class="p">[</span><span class="n">op_str2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">j</span>
+<span class="mf">16.</span>        <span class="k">else</span><span class="p">:</span>
+<span class="mf">17.</span>            <span class="n">pauli_map</span><span class="p">[</span><span class="n">op_str2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="n">j</span>
+<span class="mf">18.</span>
+<span class="mf">19.</span>        <span class="n">pauli</span> <span class="o">*=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="n">pauli_map</span><span class="p">)</span>
+<span class="mf">20.</span>
+<span class="mf">21.</span>    <span class="k">return</span> <span class="n">pauli</span>
+</pre></div>
+</div>
+<p>  JordanWignerTransform是对整个费米子算符进行 <span class="math notranslate nohighlight">\(J-W\)</span> 变换。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">JordanWignerTransform</span><span class="p">(</span><span class="n">fermion_op</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">data</span> <span class="o">=</span> <span class="n">fermion_op</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="mf">3.</span>    <span class="n">pauli</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">()</span>
+<span class="mf">4.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+<span class="mf">5.</span>        <span class="n">pauli</span> <span class="o">+=</span> <span class="n">get_fermion_jordan_wigner</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="mf">6.</span>    <span class="k">return</span> <span class="n">pauli</span>
+</pre></div>
+</div>
+<p>  JordanWignerTransformVar是对可变费米子算符进行 <span class="math notranslate nohighlight">\(J-W\)</span> 变换。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">JordanWignerTransformVar</span><span class="p">(</span><span class="n">var_fermion_op</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">data</span> <span class="o">=</span> <span class="n">var_fermion_op</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="mf">3.</span>    <span class="n">var_pauli</span> <span class="o">=</span> <span class="n">VarPauliOperator</span><span class="p">()</span>
+<span class="mf">4.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+<span class="mf">5.</span>        <span class="n">one_pauli</span> <span class="o">=</span> <span class="n">get_fermion_jordan_wigner</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">6.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">one_pauli</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
+<span class="mf">7.</span>            <span class="n">var_pauli</span> <span class="o">+=</span> <span class="n">VarPauliOperator</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">complex_var</span><span class="p">(</span>
+<span class="mf">8.</span>                <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">()</span><span class="o">*</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">-</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">()</span><span class="o">*</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span>
+<span class="mf">9.</span>                <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">()</span><span class="o">*</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="o">+</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">()</span><span class="o">*</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">))</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="k">return</span> <span class="n">var_pauli</span>
+</pre></div>
+</div>
+<p><strong>Parity变换</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}a_{j}^{\dagger} &amp; \equiv \frac{1}{2} X_{j+1}^{\leftarrow} \otimes\left(\sigma_{j}^{x} \otimes \sigma_{j-1}^{z}-i \sigma_{j}^{y}\right) \\a_{j} &amp; \equiv \frac{1}{2} X_{j+1}^{\leftarrow} \otimes\left(\sigma_{j}^{x} \otimes \sigma_{j-1}^{z}+i \sigma_{j}^{y}\right)\end{aligned}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(X_{j+1}^{\leftarrow}\)</span> 称为更新算子，定义式如下：</p>
+<div class="math notranslate nohighlight">
+\[X_{j+1}^{\leftarrow}=\sigma_{n-1}^{x} \otimes \sigma_{n-2}^{x} \otimes \ldots \otimes \sigma_{j+2}^{x} \otimes \sigma_{j+1}^{x}\]</div>
+<p>  通过比较J-W变换和Parity变换，可以发现，由于J-W变换中存在宇称算子，而Parity变换中存在更新算子，所以Parity变换所需要消耗的逻辑门数也是与量子比特数成线性关系。</p>
+<p><strong>B-K 变换</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;a_{j}^{+}=\frac{1}{2} X_{U(j)} \otimes\left(\sigma_{j}^{x} \otimes Z_{P(j)}-i \sigma_{j}^{y} \otimes Z_{\rho(j)}\right) \\ &amp;a_{j}=\frac{1}{2} X_{U(j)} \otimes\left(\sigma_{j}^{x} \otimes Z_{P(j)}+i \sigma_{j}^{y} \otimes Z_{\rho(j)}\right) \end{aligned}\end{split}\]</div>
+<p>  从B-K变换的表达式不难发现，它要比J-W变换和Parity变换复杂的多，因为它既有更新算子 <span class="math notranslate nohighlight">\(X_U\)</span> ，又有宇称算子 <span class="math notranslate nohighlight">\(Z_P\)</span> ，只不过在这里，更新算子不再是 <span class="math notranslate nohighlight">\((\mathrm{n}-\mathrm{j}-1)\)</span> 个泡利X的张量积，宇称算子也不再是j个泡利Z的张量积。最后一项 <span class="math notranslate nohighlight">\(Z_{P(j)}\)</span> 在j为偶数时，就等于宇称算子，在j为奇数时，就等于 <span class="math notranslate nohighlight">\(Z_{R(j)}\)</span> 。 <span class="math notranslate nohighlight">\(R(j)\)</span> 被称之为余子集，它等于  <span class="math notranslate nohighlight">\(P(j)\)</span> 对翻转集  <span class="math notranslate nohighlight">\(F(j)\)</span> 求余，即：</p>
+<div class="math notranslate nohighlight">
+\[R(j)=P(j) \% F(j)\]</div>
+<p>  假设 <span class="math notranslate nohighlight">\(j=3\)</span> , 若 <span class="math notranslate nohighlight">\(U(3)=(q5,q6)\)</span> ,  <span class="math notranslate nohighlight">\(P(3)=(q0,q2)\)</span> ,  <span class="math notranslate nohighlight">\(F(3)=(q0)\)</span> ，则更新算子就等于作用于相应量子比特上的两个泡利  <span class="math notranslate nohighlight">\(x\)</span> 的张量积，宇称算子就等于作用于相应量子比特上的两个泡利  <span class="math notranslate nohighlight">\(z\)</span> 的张量积。</p>
+<div class="math notranslate nohighlight">
+\[X_{U(3)}=\sigma_{6}^{x} \otimes \sigma_{5}^{x}, \quad Z_{P(3)}=\sigma_{2}^{z} \sigma_{0}^{z}\]</div>
+<p>  而余子集：</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{R}(3)=P(3) \% F(3)=(\mathrm{q} 2)\]</div>
+<p>  由此：</p>
+<div class="math notranslate nohighlight">
+\[Z_{\rho(3)}=Z_{R(3)}=\sigma_{2}^{z}\]</div>
+<p>  虽然，B-K变换相对于J-W变换和Parity变换的在形式上很复杂，但实际上它所需要消耗的量子逻辑门数是与量子比特数的对数成线性关系，可以节省量子逻辑门资源，简化量子线路。</p>
+</section>
+<section id="id5">
+<h2>4.6.5 算法原理<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>  对于一个  <span class="math notranslate nohighlight">\(n\)</span> 阶的较大方阵，如果想找到它的特征值， <span class="math notranslate nohighlight">\(\lambda_{1} \lambda_{2} \ldots \lambda_{n}\)</span> 可以利用VQE算法，同样该算法也可以寻找到描述某一体系 (如多电子体系) 的哈密顿量的特征值，  <span class="math notranslate nohighlight">\(\mathrm{E}_{1} ,\mathrm{E}_{2}, \cdots ,\mathrm{E}_{n}\)</span> ，进而求得体系的基态能量 <span class="math notranslate nohighlight">\(\mathrm{E}_0\)</span> ， VQE算法是基于变分原理而提出的。</p>
+<p>  所谓变分原理，是指对于任意一个试验态 (它是一个品优波函数)，用某一体系 (如多电子体系) 的哈密顿量作用于它时，可以得到该体系在这一状态下的平均能量  <span class="math notranslate nohighlight">\(\mathrm{E}\)</span>  ，它将大于或接近于体系的基态能量  <span class="math notranslate nohighlight">\(\mathrm{E}_{0}\)</span> ，即：</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{E}=\frac{\left\langle\psi^{*}|\mathrm{H}| \psi\right\rangle}{\left\langle\psi^{*} \mid \psi\right\rangle} \geq \mathrm{E}_{0}\]</div>
+<p>  从该表达式中不难看出，如果所选择的试验态  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 正好就是体系的基态  <span class="math notranslate nohighlight">\(\left|\psi_{0}\right\rangle\)</span> , 那么不等式中的等号成立，直接得到了体系的基态能量 <span class="math notranslate nohighlight">\(\mathrm{E}\)</span> ; 但往往更多的情况是, 选择的试验态  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 与体系的基态相比有一定差距，导致计算得到的  <span class="math notranslate nohighlight">\(\mathrm{E}\)</span> 大于  <span class="math notranslate nohighlight">\(\mathrm{E}_0\)</span> 很多，这时就需要引入一组参数  <span class="math notranslate nohighlight">\(\vec{ \mathrm{t}}\)</span> ，通过不断调节 来调节试验态， <span class="math notranslate nohighlight">\(\vec{ \mathrm{t}}\)</span> 使其最终非常接近体系的基态。</p>
+<p>  通过对变分原理的介绍，可以发现：VQE算法在寻找体系基态能量时，实际上需要依次完成三步操作：</p>
+<p>   (1) 制备试验态  <span class="math notranslate nohighlight">\(\left|\psi\left(\vec{ \mathrm{t}}\right)\right\rangle\)</span> ；</p>
+<p>   (2) 测量试验态  <span class="math notranslate nohighlight">\(\left|\psi\left(\vec{ \mathrm{t}}\right)\right\rangle\)</span> 的平均能量 <span class="math notranslate nohighlight">\(\mathrm{E}_n\)</span> ;</p>
+<p>   (3) 判断 <span class="math notranslate nohighlight">\(\mathrm{E}_n - \mathrm{E}_{n-1}\)</span> 是否小于所设定的阈值，是，就返回 <span class="math notranslate nohighlight">\(\mathrm{E}_n\)</span> 作为基态能量; 否，则用优化器优化生成一组新参数  <span class="math notranslate nohighlight">\(\vec{ \mathrm{t}}\)</span> 重新制备试验态。</p>
+<img alt="../_images/4.6.20.png" class="align-center" src="../_images/4.6.20.png" />
+<p class="centered">
+<strong>图4.6.20 VQE算法</strong></p><p>  显然，如图4.6.20所示，这是一个循环迭代的过程。其中，步骤（1）和（2）是在量子处理器上完成的，步骤（3）是在经典处理器上完成的。在构造量子线路以制备试验态时， VQE算法利用了幺正耦合团簇理论(UCC理论)和渐进近似定理；在试验态能量进行测量时，VQE采用的是量子期望估计方法；在对参数  <span class="math notranslate nohighlight">\(\vec{t}\)</span> 进行优化时，VQE算法利用的是非线性的经典优化器，包括梯度无关和梯度相关两大类，这两类优化器已经在QAOA算法原理章节介绍过了，这里不再赘述。</p>
+<p><strong>1、初始化Hatree-Fock态</strong></p>
+<p>  对于含有四个单电子自旋分子轨道两个电子的氢分子的Hatree-Fock态，是用量子态 <span class="math notranslate nohighlight">\(|0011\rangle\)</span> 来表示的，即一个量子比特代表一个自旋分子轨道， <span class="math notranslate nohighlight">\(|0\rangle\)</span> 表示空轨道， <span class="math notranslate nohighlight">\(|1\rangle\)</span> 表示占据轨道。这样的话，只要在q[0]和q[1]上分别加上一个 <span class="math notranslate nohighlight">\(NOT\)</span> 门，就可以在量子线路中将 <span class="math notranslate nohighlight">\(|0000\rangle\)</span> 初始化成 <span class="math notranslate nohighlight">\(|0011\rangle\)</span> ，如图4.6.21所示。</p>
+<div class="math notranslate nohighlight">
+\[H_{2}:|\varphi\rangle_{\text {Hartree-Fock }}=|0011\rangle\]</div>
+<img alt="../_images/4.6.21.png" class="align-center" src="../_images/4.6.21.png" />
+<p class="centered">
+<strong>图4.6.21 初始化Hartree-Fock态</strong></p><p>  事实上，对于任意一个含有M个自旋分子轨道分子轨道的N电子体系，它的hatree-fock态都可以这样简单的表示，如图4.6.22所示，只要在量子线路中给定M个量子比特，然后在前N个量子线路上加上NOT门即可得到所需要的N电子体系的hatree-fock态。</p>
+<p>   <span class="math notranslate nohighlight">\(N\)</span> 电子体系（ <span class="math notranslate nohighlight">\(M\)</span> 自旋轨道）： <span class="math notranslate nohighlight">\(|\varphi\rangle_{\text {Hartree-Fock }} \equiv |0 \ldots 011 \ldots 11\rangle\)</span></p>
+<img alt="../_images/4.6.22.png" class="align-center" src="../_images/4.6.22.png" />
+<p class="centered">
+<strong>图4.6.22 N电子体系的Hartree-Fock态</strong></p><p>  在QPanda或pyQPanda中用如下示例代码来初始化Hatree-fock态：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">prepareInitialState</span><span class="p">(</span><span class="n">qlist</span><span class="p">,</span> <span class="n">en</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">circuit</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">3.</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qlist</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">en</span><span class="p">:</span>
+<span class="mf">4.</span>        <span class="k">return</span> <span class="n">circuit</span>
+<span class="mf">5.</span>
+<span class="mf">6.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">en</span><span class="p">):</span>
+<span class="mf">7.</span>        <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="k">return</span> <span class="n">circuit</span>
+</pre></div>
+</div>
+<p><strong>2、耦合簇法（Coupled Cluster, CC）</strong></p>
+<p>  它是一种从Hatree-Fock分子轨道  <span class="math notranslate nohighlight">\(|\varphi\rangle\)</span> 出发，通过拟设得到试验态  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 的方法。这里的拟设为指数耦合簇算符 <span class="math notranslate nohighlight">\(e^{T}\)</span> ：</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=e^{T}|\varphi\rangle_{\text {Hatree }-\text { Fock }}\]</div>
+<p>拟设中的 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}\)</span> 就是  <span class="math notranslate nohighlight">\(N\)</span> 电子簇算符，其定义式为若干激发算符之和，即:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}=\mathrm{\hat{T}}_{1}+\mathrm{\hat{T}}_{2}+\mathrm{\hat{T}}_{3}+\mathrm{\hat{T}}_{4}+\mathrm{\hat{T}}_{5}+\cdots+\mathrm{\hat{T}}_{N}\]</div>
+<p>  其中  <span class="math notranslate nohighlight">\($\mathrm{\hat{T}}_1\)</span> 是单粒子激发算符， <span class="math notranslate nohighlight">\($\mathrm{\hat{T}}_2\)</span> 是双粒子激发算符，其余项以此类推。由于在一个多电子体系中，三激发、四激发发生的概率很小，所以通常在双激发处进行“截 断”，最终只剩  <span class="math notranslate nohighlight">\($\mathrm{\hat{T}}_1\)</span> 和 <span class="math notranslate nohighlight">\($\mathrm{\hat{T}}_2\)</span> 两项，它们的定义式如下：</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}=\mathrm{\hat{T}}_{1}+\mathrm{\hat{T}}_{2}\]</div>
+<p>其中:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{\hat{T}}_{1}=\sum_{pq} t_{pq} a_{p}^{\dagger} a_{q} \\ &amp;\mathrm{\hat{T}}_{2}=\sum_{pq r s} t_{p q r s} a_{p}^{\dagger} a_{q}^{\dagger} a_{r} a_{s} \end{aligned}\end{split}\]</div>
+<p>这里的待定系数 <span class="math notranslate nohighlight">\(\mathrm{t}{\mathrm{pq}}\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{t}{\mathrm{p q r s}}\)</span> 就是需要通过优化器来寻找的参数 <span class="math notranslate nohighlight">\(\vec{ \mathrm{t}}\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[\vec{\mathrm{t}}= \begin{cases}\left.\mathrm{t}_{\mathrm{pq}}, \mathrm{t}_{\text {pqrs }}\right\} &amp; \end{cases}\]</div>
+<p>对于描述氢分子的 <span class="math notranslate nohighlight">\(|0011\rangle_{\text {hatree-fock }}\)</span> 态，此时的 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}\)</span> 正是费米子哈密顿量 <span class="math notranslate nohighlight">\(\mathrm{H}_{\mathrm{U}}\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{\hat{T}}=\mathrm{H}_{\mathrm{U}}=t_{20} a_{2}^{\dagger} a_{0}+t_{30} a_{3}^{\dagger} a_{0}+t_{21} a_{2}^{\dagger} a_{1}+t_{31} a_{3}^{\dagger} a_{1}+t_{3210} a_{3}^{\dagger} a_{2}^{\dagger} a_{1} a_{0} \\ &amp;\mathrm{\hat{T}}_{1}=t_{20} a_{2}^{\dagger} a_{0}+t_{30} a_{3}^{\dagger} a_{0}+t_{21} a_{2}^{\dagger} a_{1}+t_{31} a_{3}^{\dagger} a_{1} \\ &amp;\mathrm{\hat{T}}_{2}=t_{3210} a_{3}^{\dagger} a_{2}^{\dagger} a_{1} a_{0} \end{aligned}\end{split}\]</div>
+<p>  当 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}=\mathrm{\hat{T}}_1\)</span> 时，即由前四项单激发所构造成的哈密顿量，称之为 <span class="math notranslate nohighlight">\(\mathrm{CCS}\)</span> ; 当  <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}=\mathrm{\hat{T}}_1+\mathrm{\hat{T}}_2\)</span> 时，即由单激发和双激发所共同构造成的哈密顿量。称之为 <span class="math notranslate nohighlight">\(\mathrm{CCSD}\)</span> 。</p>
+<p><strong>3、耦合簇法（UCC）</strong></p>
+<p>  但是，想要将 <span class="math notranslate nohighlight">\(\mathrm{e}^{\mathrm{T}}\)</span> 这种指数耦合簇算符通过J-W变换、B-K变换等方法映射到量子比特上，这是行不通的，因为这 <span class="math notranslate nohighlight">\(\mathrm{e}^{\mathrm{T}}\)</span> 种指数耦合簇算符不是酉算子,无法设计成量子线路，所以，需要构造出酉算子版本的指数耦合笶算符，即么正耦合笶算符 (Unitary Coupled Cluster, UCC)，可以完美的解决这个问题。那么我如何构造UCC呢?</p>
+<p>  首先，定义一个等效的厄米哈密顿量  <span class="math notranslate nohighlight">\(\mathrm{\hat{T}(\vec{ \mathrm{t}})}\)</span> ， 令它等于 <span class="math notranslate nohighlight">\(i\left(\hat{T}-\hat{T}^{\dagger}\right)\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{T}}(\vec{\mathrm{t}})=\mathrm{i}\left(\mathrm{\hat{T}}-\mathrm{\hat{T}}^{\dagger}\right)\]</div>
+<p>  然后，以  <span class="math notranslate nohighlight">\(\mathrm{\hat{T}(\vec{ \mathrm{t}})}\)</span> 为生成元就生成了UCC算符：</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{U}[\mathrm{\hat{T}(\vec{ \mathrm{t}})}]=\exp [-\mathrm{i\hat{T}}({\vec{ \mathrm{t}}})]=e^{\mathrm{\hat{T}}-\mathrm{\hat{T}}^{\dagger}}\]</div>
+<p>  若UCC中的簇算符  <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}\)</span> 只含有 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}_1\)</span> 这一项，则称这一拟设为单激发耦合簇 (UCCS)；若UCC中的簇算符 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}\)</span> 含有 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}_{1}\)</span> 和 <span class="math notranslate nohighlight">\(\mathrm{\hat{T}}_{2}\)</span> 两项，则称这个拟设为单双激发耦合簇算符(UCCSD) 。</p>
+<p><strong>4、渐进近似定理</strong></p>
+<p>  费米子哈密顿量通过  <span class="math notranslate nohighlight">\(\mathrm{J}-\mathrm{W}\)</span> 变换变成泡利算子形式时，它是若干子项的和，表达式为：</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{H}}(\vec{t})=\mathrm{\hat{H}}(\vec{h})=\sum h_{\alpha}^{i} \sigma_{\alpha}^{i}+\sum h_{\alpha \beta}^{i j} \sigma_{\alpha}^{i} \otimes \sigma_{\beta}^{j}+\ldots\]</div>
+<p>  其中 <span class="math notranslate nohighlight">\(\sigma\)</span> 是泡利算子，  <span class="math notranslate nohighlight">\(\alpha, \beta \in(X, Y, Z, I)\)</span> ，而  <span class="math notranslate nohighlight">\(i\)</span> ,  <span class="math notranslate nohighlight">\(j\)</span> 则表示哈密顿量子项所作用的子空间，  <span class="math notranslate nohighlight">\(h\)</span> 是实数。但是，如果对这些子项进行求和，最后得到的泡利算子形式哈密顿量想要对角化以生成酉算子，是比较困难的。</p>
+<p>  那么，假设令 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_{k}\left(h_{a \beta}^{i j}\right)=\frac{h_{a}^{i} \sigma_{\alpha}^{j}}{h_{a}^{\alpha} \sigma_{\alpha}} / \sigma_{\alpha}^{i} \otimes \sigma_{\beta}^{j} /  \cdot\cdot\cdot\)</span> ，是不是就可以将该哈密顿量分解成有限个酉算子 <span class="math notranslate nohighlight">\(U_k\)</span> 了呢?</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} \mathrm{U}[\hat{H}(\vec{h})] &amp;=\exp [-\mathrm{iH}(\vec{h})] \\ &amp;=\exp \left[-\mathrm{i} \sum H_{k}\left(h_{a \beta . .}^{i j ..}\right)\right] \\ &amp;=\prod \exp \left[-\mathrm{i} \mathrm{H}_{k}\left(h_{\alpha \beta . .}^{i j . }\right)\right] \\ &amp;= \prod U_{k}\left[H_{k}\left(h_{\alpha \beta . .}^{i j . .}\right)\right] \end{aligned}\end{split}\]</div>
+<p>  答案是不可以，这是因为一般情况下，子项 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_k\)</span> 之间并不是对易的，即：</p>
+<div class="math notranslate nohighlight">
+\[\left[\mathrm{\hat{H}}_{k}, \mathrm{\hat{H}}_{l}\right] \neq 0\]</div>
+<p>  这推导过程中:</p>
+<div class="math notranslate nohighlight">
+\[\exp \left[-i \sum \mathrm{\hat{H}}_{k} \left( \ h_{\alpha \beta  . .}^{i j ..}\right)\right] \neq \prod \exp \left[-i\mathrm{\hat{H}}_{k}\left(h_{\alpha \beta . .}^{i j ..}\right)\right].\]</div>
+<p>为了能够以每个子项 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_k\)</span> 为生成元将UCC算符分解成有限个酉算子来进行哈密顿量模拟，有必要引进渐进近似定理一一特罗特公式 (Trotter Foluma)，该定理是量子仿真算法的核心:</p>
+<div class="math notranslate nohighlight">
+\[\lim _{n \rightarrow \infty}\left(e^{i A t / n} e^{i B t / n}\right)^{n}=e^{i(A+B) t}\]</div>
+<p>  其中， <span class="math notranslate nohighlight">\(A\)</span> 、 <span class="math notranslate nohighlight">\(B\)</span> 均为厄米算符,  <span class="math notranslate nohighlight">\(\mathrm{t}\)</span> 为实数， <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> 为正整数。</p>
+<p>  从特罗特公式可以看出，如果将系数 <span class="math notranslate nohighlight">\(h\)</span> 分成 <span class="math notranslate nohighlight">\(n\)</span> 片,每一片记为  <span class="math notranslate nohighlight">\(\theta\)</span> ， 即：</p>
+<div class="math notranslate nohighlight">
+\[h_{a \beta . .}^{i j ..}=\mathrm{n} * \theta_{\alpha \beta ..}^{i j ..}\]</div>
+<p>那么，当 <span class="math notranslate nohighlight">\(n\)</span> 趋于无穷大时，可以得到:</p>
+<div class="math notranslate nohighlight">
+\[\exp \left[-i \sum \hat{H}_{k}\left(h_{\alpha \beta . .}^{i j ..}\right)\right]=\left\{\prod\left[\exp \left[-\mathrm{i\hat{H}}_{k}\left(\theta_{\alpha \beta . .}^{i j ..}\right)\right]\right\}^{n}\right.\]</div>
+<p>  这就提供了一个分解UCC算子构造量子线路的新思路:   如图4.6.23所示，可以通过三次演化逐步逼近最终得到试验态，这样的话每一次演化都是通过有限个酉算子 <span class="math notranslate nohighlight">\(U_k\)</span> 所构造的量子线 <span class="math notranslate nohighlight">\(\mathrm{U}{k}\left(\Pi U{k}\right)\)</span> 。</p>
+<p>  此时， <span class="math notranslate nohighlight">\(U_k\)</span> 的生成元为：  <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_{k}\left(\theta_{\alpha \beta ..}^{\mathfrak{ij} ..}\right)\)</span> , 其中</p>
+<div class="math notranslate nohighlight">
+\[\theta_{\alpha, \beta . .}^{ij \ldots}=\frac{h_{\alpha, \beta . .}^{ij..}}{3}\]</div>
+<img alt="../_images/4.6.23.png" class="align-center" src="../_images/4.6.23.png" />
+<p class="centered">
+<strong>图4.6.23 三次演化</strong></p><p><strong>5、哈密顿量模拟</strong></p>
+<p>  假设 <span class="math notranslate nohighlight">\(J-W\)</span> 变换后的泡利算子型哈密顿量 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}\)</span> 形式如下:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{\hat{H}}=\mathrm{\hat{H}}_{1}+\mathrm{\hat{H}}_{2}+\mathrm{\hat{H}}_{3}+\mathrm{\hat{H}}_{4}+\mathrm{\hat{H}}_{5}=\sigma_{z}^{0}+\sigma_{z}^{0} \otimes \sigma_{z}^{1}+\sigma_{z}^{0} \otimes \sigma_{z}^{1} \otimes \sigma_{z}^{2}+\sigma_{x}^{0} \otimes \sigma_{z}^{1}+\sigma_{y}^{0} \otimes \sigma_{z}^{1}\]</div>
+<p>  将以它为例具体介绍如何构造量子线路来模拟哈密顿量。</p>
+<p>  根据渐进近似定理，可以逐项模拟。先对 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_1\)</span> 项进行模拟：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{U}_{1}\left(\mathrm{\hat{H}}_{1}, \mathrm{\theta}_{1}\right)=e^{-i \sigma_{z}^{0} \theta_{1}}=\left[\begin{array}{cc} e^{-i \theta_{1}} &amp; 0 \\ 0 &amp; e^{i \theta_{1}} \end{array}\right]=\mathrm{RZ}\left(0,2 \theta_{1}\right)\end{split}\]</div>
+<p>  通过推导，不难得出在 <span class="math notranslate nohighlight">\(q[0]\)</span> 上直接加上 <span class="math notranslate nohighlight">\(\mathrm{RZ}\)</span> 门即可模拟 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_1\)</span> 项。</p>
+<img alt="../_images/4.6.24.png" class="align-center" src="../_images/4.6.24.png" />
+<p class="centered">
+<strong>图4.6.24 模拟 <span class="math notranslate nohighlight">\(H_1\)</span> 项（此时 <span class="math notranslate nohighlight">\(RZ\)</span> 门表达式为 <span class="math notranslate nohighlight">\(2\theta_{1}\)</span> ）</strong></p><p>对于 <span class="math notranslate nohighlight">\(\mathrm{H}_2\)</span> 项进行模拟:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{U}_{2}\left(\mathrm{\hat{H}}_{2}, \theta_{2}\right)=e^{-i \sigma_{z}^{0} \otimes \sigma_{z}^{1} \theta_{2}}=\left[\begin{array}{cccc} e^{-i \theta_{2}} &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; e^{i \theta_{2}} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; e^{i \theta_{2}} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; e^{-i \theta_{2}} \end{array}\right] \\ &amp;=\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{array}\right]\left[\begin{array}{cccc} e^{i \theta_{2}} &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; e^{-i \theta_{2}} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; e^{i \theta_{2}} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; e^{-i \theta_{2}} \end{array}\right]\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{array}\right] \\ &amp;=\text{CNOT}(0,1) \ \text{RZ}\left(1,2 \theta_{2}\right) \ \text{CNOT}(0,1) \end{aligned}\end{split}\]</div>
+<p>  通过推导可以发现，想要模拟 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_2\)</span> 项，需以q0为控制比特以q1为目标比特加上 <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span> 门，然后在q1上加上 <span class="math notranslate nohighlight">\(\mathrm{RZ}(2 \theta{2})\)</span> 门，接着再以q0比特为控制比特以q1为目标比特加上 <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span> 门：</p>
+<img alt="../_images/4.6.25.png" class="align-center" src="../_images/4.6.25.png" />
+<p class="centered">
+<strong>图4.6.25 模拟 <span class="math notranslate nohighlight">\(H_2\)</span> 项（此时 <span class="math notranslate nohighlight">\(RZ\)</span> 门表达式为 <span class="math notranslate nohighlight">\(2\theta_{2}\)</span> ）</strong></p><p>  对于 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_3\)</span> 项，可以参照 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_1\)</span> 和 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_2\)</span> ，可得</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{U}_{3}\left(\mathrm{\hat{H}}_{3}, \theta_{3}\right)=e^{-i \sigma_{z}^{0} \otimes \sigma_{z}^{1} \otimes \sigma_{z}^{2} \theta_{3}}=\text{CNOT}(0,2) \text{CNOT}(1,2) \mathrm{RZ}\left(2,2 \theta_{3}\right) \text{CNOT}(1,2) \text{CNOT}(0,2)\]</div>
+<p>  通过推导，可知模拟 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}3\)</span> 项，需要先依次以q0为控制比特q2为目标比特、q1为控制比特q2为目标比特依次添加上两个 <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span> 门，然后在q2上加上  <span class="math notranslate nohighlight">\(\mathrm{RZ}(2 \theta{3})\)</span> 门，接着再依次以q0为控制比特q2为目标比特、q1为控制比特q2比特为目标比特依次添加上两个  <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span> 门：</p>
+<img alt="../_images/4.6.26.png" class="align-center" src="../_images/4.6.26.png" />
+<p class="centered">
+<strong>图4.6.26 模拟 <span class="math notranslate nohighlight">\(H_3\)</span> 项（此时 <span class="math notranslate nohighlight">\(RZ\)</span> 门表达式为 <span class="math notranslate nohighlight">\(2\theta_{3}\)</span> ）</strong></p><p>对于  <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}4\)</span> 项，因为  <span class="math notranslate nohighlight">\(\sigma{x}\)</span> 不是对角阵，所以需要将它先对角化，然后再进行推导</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} \mathrm{U}_{4}\left(\hat{H}_{4}, \theta_{4}\right) &amp;=e^{-{i} \sigma_{x}^{0} \otimes \sigma_{z}^{1} \theta_{4}}=e^{-i\left(\hat{H}_{0} \sigma_{z}^{0} H_{0}\right) \otimes \sigma_{z}^{1} \theta_{4}} \\ &amp;=H_{0} e^{-i \sigma_{\sigma}^{0} \otimes \sigma_{z}^{1} \theta_{4}} H_{0}=H(0) \text{CNOT}(0,1) R Z\left(1,2 \theta_{4}\right) C N O T(0,1) H(0) \end{aligned}\end{split}\]</div>
+<p>  通过推导可以发现模拟 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}4\)</span> 项，需先在q0上加上Hadamard门；再以q0比特为控制比特以q1为目标比特加上 <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span> ；接着在q1上加上 <span class="math notranslate nohighlight">\(\mathrm{RZ}(2 \theta{4})\)</span> 门；然后再以q0比特为控制比特以q1为目标比特加上 <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span> 再在q0的第二个 <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span>   <span class="math notranslate nohighlight">\({(0,1)}\)</span> ；最后再在q0上加上Hadamard门：</p>
+<img alt="../_images/4.6.27.png" class="align-center" src="../_images/4.6.27.png" />
+<p class="centered">
+<strong>图4.6.27 模拟 <span class="math notranslate nohighlight">\(H_4\)</span> 项（此时 <span class="math notranslate nohighlight">\(RZ\)</span> 门表达式为 <span class="math notranslate nohighlight">\(2\theta_{4}\)</span> ）</strong></p><p>对于 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_5\)</span> 项，因为  <span class="math notranslate nohighlight">\(\sigma{y}\)</span> 也不是对角阵, 所以需要对它进行对角化处理，类比  <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_4\)</span> , 不难得出</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{U}_{5}\left(\hat{H}_{5}, \theta_{5}\right)=e^{-i \sigma_{y}^{0} \otimes \sigma_{z}^{1} \theta_{5}}=e^{-i\left(R X_{0}\left(\frac{\pi}{2}\right) \sigma_{g}^{0} R X_{0}\left(-\frac{\pi}{2}\right)\right) \otimes \sigma_{z}^{1} \theta_{5}} \\ &amp; =R X_{0}\left(\frac{\pi}{2}\right) e^{-i \sigma_{z}^{0} \otimes \sigma_{z}^{1} \theta_{4}} R X_{0}\left(-\frac{\pi}{2}\right) \\ &amp;=R X\left(0, \frac{\pi}{2}\right) \text{CNOT}(0,1) R Z\left(1,2 \theta_{4}\right) \text{CNOT}(0,1) R X\left(0,-\frac{\pi}{2}\right) \end{aligned}\end{split}\]</div>
+<p>  因此要想模拟 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_5\)</span> 项,需先在q0上先加上 <span class="math notranslate nohighlight">\(\text{RX}\left(\frac{\pi}{2}\right)\)</span> 门；再以q0比特为控制比特以q1为目标比特加上 <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span> ；接着在q1上加上 <span class="math notranslate nohighlight">\(\mathrm{RZ}(2 \theta{5})\)</span> 门；然后再以q0比特为控制比特以q1为目标比特加上 <span class="math notranslate nohighlight">\(\mathrm{CNOT}\)</span> 再在q0的第二个 <span class="math notranslate nohighlight">\(\mathrm{CNOT(0,1)}\)</span> ；最后再在q1加上 <span class="math notranslate nohighlight">\(\text{RX}\left(-\frac{\pi}{2}\right)\)</span> 门：</p>
+<img alt="../_images/4.6.28.png" class="align-center" src="../_images/4.6.28.png" />
+<p class="centered">
+<strong>图4.6.28 模拟 <span class="math notranslate nohighlight">\(H_5\)</span> 项（此时 <span class="math notranslate nohighlight">\(RZ\)</span> 门表达式为 <span class="math notranslate nohighlight">\(2\theta_{5}\)</span> ）</strong></p><p>  那么，最终模拟 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}\)</span> 的量子线路构造为：</p>
+<img alt="../_images/4.6.29.png" class="align-center" src="../_images/4.6.29.png" />
+<p class="centered">
+<strong>图4.6.29 模拟H的量子线路构造</strong></p><p>  可以通过QPanda来实现上述的哈密顿量模拟算法，哈密顿量模拟的python示例代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">simulate_hamiltonian</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">,</span><span class="n">pauli</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">slices</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="mf">2.</span>     <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    Simulate a general case of hamiltonian by Trotter-Suzuki</span>
+<span class="s1">4.    approximation. U=exp(-iHt)=(exp(-i H1 t/n)*exp(-i H2 t/n))^n</span>
+<span class="s1">5.    &#39;&#39;&#39;</span>
+<span class="mf">6.</span>    <span class="n">circuit</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">slices</span><span class="p">):</span>
+<span class="mf">9.</span>        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">pauli</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
+<span class="mf">10.</span>            <span class="n">term</span> <span class="o">=</span> <span class="n">op</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="mf">11.</span>            <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+<span class="mf">12.</span>                <span class="n">simulate_one_term</span><span class="p">(</span>
+<span class="mf">13.</span>                    <span class="n">qubit_list</span><span class="p">,</span>
+<span class="mf">14.</span>                    <span class="n">term</span><span class="p">,</span> <span class="n">op</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">,</span>
+<span class="mf">15.</span>                    <span class="n">t</span><span class="o">/</span><span class="n">slices</span>
+<span class="mf">16.</span>                <span class="p">)</span>
+<span class="mf">17.</span>            <span class="p">)</span>
+<span class="mf">18.</span>
+<span class="mf">19.</span>    <span class="k">return</span> <span class="n">circuit</span>
+</pre></div>
+</div>
+<p>  simulate_hamiltonian接口需要传入的参数是哈密顿量相关联的一组量子比特，哈密顿量泡利算符，演化时间t和切片数。其中哈密顿量泡利算符、演化时间和切片数，分别对应特罗特公式中的H、t和n。</p>
+<p>  simulate_one_term接口是对哈密顿量的一个子项进行哈密顿量模拟，传入的参数分别为一组量子比特，哈密顿量子项，哈密顿量子项对应的系数以及演化时间。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">simulate_one_term</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">,</span> <span class="n">hamiltonian_term</span><span class="p">,</span> <span class="n">coef</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    Simulate a single term of Hamilonian like &quot;X0 Y1 Z2&quot; with</span>
+<span class="s1">4.    coefficient and time. U=exp(-it*coef*H)</span>
+<span class="s1">5.    &#39;&#39;&#39;</span>
+<span class="mf">6.</span>    <span class="n">circuit</span> <span class="o">=</span><span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">hamiltonian_term</span><span class="p">:</span>
+<span class="mf">9.</span>        <span class="k">return</span> <span class="n">circuit</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="n">transform</span><span class="o">=</span><span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">12.</span>    <span class="n">tmp_qlist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">13.</span>    <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">hamiltonian_term</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="mf">14.</span>        <span class="k">if</span> <span class="n">term</span> <span class="ow">is</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span>
+<span class="mf">15.</span>            <span class="n">transform</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">[</span><span class="n">q</span><span class="p">]))</span>
+<span class="mf">16.</span>        <span class="k">elif</span> <span class="n">term</span> <span class="ow">is</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span>
+<span class="mf">17.</span>            <span class="n">transform</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RX</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">[</span><span class="n">q</span><span class="p">],</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="mf">18.</span>
+<span class="mf">19.</span>        <span class="n">tmp_qlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">[</span><span class="n">q</span><span class="p">])</span>
+<span class="mf">20.</span>
+<span class="mf">21.</span>    <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span>
+<span class="mf">22.</span>
+<span class="mf">23.</span>    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">)</span>
+<span class="mf">24.</span>    <span class="k">if</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="mf">25.</span>        <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RZ</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="o">*</span><span class="n">coef</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+<span class="mf">26.</span>    <span class="k">elif</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="mf">27.</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">28.</span>            <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tmp_qlist</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="mf">29.</span>        <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RZ</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">[</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="o">*</span><span class="n">coef</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+<span class="mf">30.</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">31.</span>            <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tmp_qlist</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="mf">32.</span>
+<span class="mf">33.</span>    <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">transform</span><span class="o">.</span><span class="n">dagger</span><span class="p">())</span>
+<span class="mf">34.</span>
+<span class="mf">35.</span>    <span class="k">return</span> <span class="n">circuit</span>
+</pre></div>
+</div>
+<p><strong>6、量子期望估计算法</strong></p>
+<p>  VQE算法在制备出试验态 <span class="math notranslate nohighlight">\(\left|\psi_{n}\right\rangle\)</span> 后，需要开始利用量子期望估计算法来计算试验态 <span class="math notranslate nohighlight">\(\left|\psi_{n}\right\rangle\)</span> 在分子哈密顿量上的期望。那么，什么是量子期望估计方法呢? 所谓量子期望估计，是指对于多电子体系、Heisenberg模型 (海森堡模型) 、量子Ising模型 (易辛模型) 等体系的哈密顿量H可以展开成多个子项的和，即：</p>
+<div class="math notranslate nohighlight">
+\[H=\sum h_{\alpha}^{i} \sigma_{\alpha}^{i}+\sum h_{\alpha \beta}^{i j} \sigma_{\alpha}^{i} \sigma_{\beta}^{j}+\sum h_{\alpha \beta \gamma}^{i j k} \sigma_{\alpha}^{i} \sigma_{\beta}^{j} \sigma_{\gamma}^{k}+\ldots\]</div>
+<p>  其中， <span class="math notranslate nohighlight">\(\mathrm{h}\)</span> 是实数， <span class="math notranslate nohighlight">\(\mathrm{\sigma}\)</span> 是泡利算子（ <span class="math notranslate nohighlight">\(\alpha \)</span>beta` 、 <span class="math notranslate nohighlight">\(\gamma\)</span> 可以在 <span class="math notranslate nohighlight">\(\mathrm{X}/ \mathrm{Y}/ \mathrm{Z}/\mathrm{I}\)</span> 中进行取值），而  <span class="math notranslate nohighlight">\({i}\)</span> 、 <span class="math notranslate nohighlight">\({i}\)</span>mathrm{j}` 则表示哈密顿量子项所作用的子空间。</p>
+<p>  由于可观测量是线性的，因此在利用下式计算体系的平均能量时：</p>
+<div class="math notranslate nohighlight">
+\[E=\left\langle\psi^{*}|H| \psi\right\rangle\left(\psi^{*} \text { 与 } \psi\right. \text { 是正交归一的) }\]</div>
+<p>  等式右边也可以展开成这种形式：</p>
+<div class="math notranslate nohighlight">
+\[E=\sum h_{\alpha}^{i} \left\langle \psi^{*}\left|\sigma_{a}^{i}\right| \psi\right\rangle +\sum h_{\alpha \beta}^{i j}\left\langle\psi^{*}\left|\sigma_{a}^{i} \sigma_{\alpha \beta}^{i j}\right| \psi\right\rangle\]</div>
+<p>  由此可知，只须先对每个子项求期望，然后对各个期望求和，就能得到体系的平均能量 <span class="math notranslate nohighlight">\(E\)</span> 。</p>
+<p>  在VQE算法中，每个子项期望的测量是在量子处理器上进行的，而经典处理器则负责对各个期望进行求和。</p>
+<img alt="../_images/4.6.30.png" class="align-center" src="../_images/4.6.30.png" />
+<p class="centered">
+<strong>图4.6.30 各个期望求和</strong></p><p>  假设某一个体系的哈密顿量为 <span class="math notranslate nohighlight">\(\hat{H}\)</span> ，它最终可以展开成这种形式：</p>
+<div class="math notranslate nohighlight">
+\[\hat{H}_{P}=\hat{H}_{1}+\hat{H}_{2}+\hat{H}_{3}=I^{\otimes 2}+\sigma_{z}^{0} \otimes \sigma_{z}^{1}+\sigma_{x}^{0} \otimes \sigma_{y}^{1}\]</div>
+<p>  在该式中，所有子项系数  <span class="math notranslate nohighlight">\(h\)</span> 均是1。并假设所制备出的试验态为这种形式：</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=a|00\rangle +b| 01\rangle+c|10\rangle +d| 11\rangle\]</div>
+<p>  其中， <span class="math notranslate nohighlight">\(a^2\)</span> 、 <span class="math notranslate nohighlight">\(b^2\)</span> 、 <span class="math notranslate nohighlight">\(c^2\)</span> 、 <span class="math notranslate nohighlight">\(d^2\)</span> 分别是指测量试验态时，坍塌到 <span class="math notranslate nohighlight">\(|00 \rangle\)</span> 、 <span class="math notranslate nohighlight">\(|01\rangle\)</span> 、 <span class="math notranslate nohighlight">\(|10\rangle\)</span> 、 <span class="math notranslate nohighlight">\(|11\rangle\)</span> 的概率 <span class="math notranslate nohighlight">\(P_s\)</span> ，将哈密顿量的各个子项 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_1\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_2\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{\hat{H}}_3\)</span> 分别作用于试验态上，可以依次得到期望 <span class="math notranslate nohighlight">\(\mathrm{E}(1)\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{E}(2)\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{E}(3)\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{E}(1)=\left\langle\psi^{*}\left|\mathrm{\hat{H}}_{1}\right| \psi\right\rangle \\ &amp;\mathrm{E}(2)=\left\langle\psi^{*}\left|\mathrm{\hat{H}}_{2}\right| \psi\right\rangle \\ &amp;\mathrm{E}(3)=\left\langle\psi^{*}\left|\mathrm{\hat{H}}_{3}\right| \psi\right\rangle \end{aligned}\end{split}\]</div>
+<p>  下面将以 <span class="math notranslate nohighlight">\(\mathrm{E}(1)\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{E}(2)\)</span> 、 <span class="math notranslate nohighlight">\(\mathrm{E}(3)\)</span> 为例，详细介绍VQE算法是如何构造线路来测量各项期望进而计算出平均能量 <span class="math notranslate nohighlight">\(E\)</span> 的。</p>
+<p>  对于期望 <span class="math notranslate nohighlight">\(\mathrm{E}(1)\)</span> ，系数  <span class="math notranslate nohighlight">\(h\)</span> 就是期望，无须构造线路测量。</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{E}(1)=\left\langle\psi\left|\mathrm{I}^{\otimes 2}\right| \psi\right\rangle=h=1\]</div>
+<p>  对于期望 <span class="math notranslate nohighlight">\(\mathrm{E}(2)\)</span> ，其哈密顿量为</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{z}^{0} \otimes \sigma_{z}^{1}\]</div>
+<p>  由于测量操作是在 <span class="math notranslate nohighlight">\(\sigma_{z}\)</span> 上（以 <span class="math notranslate nohighlight">\(\sigma_{z}\)</span> 的特征向量为基向量所构成的子空间）进行的，所以只需要在0号量子比特和1号量子比特上加上测量门即可，然后将测量结果传递给经典处理器求和，如图4.6.31所示。</p>
+<img alt="../_images/wps1023.png" class="align-center" src="../_images/wps1023.png" />
+<p class="centered">
+<strong>图4.6.31 测量过程</strong></p><p>具体测量过程是这样的，因为两个 <span class="math notranslate nohighlight">\(\sigma_{z}\)</span> 张乘所形成的矩阵是一个对角阵:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_{z}^{0} \otimes \sigma_{z}^{1}=\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array}\right]\end{split}\]</div>
+<p>  根据线性代数知识可知其特征值就是对角线上的元素  <span class="math notranslate nohighlight">\(1\)</span> 、 <span class="math notranslate nohighlight">\(-1\)</span>  、 <span class="math notranslate nohighlight">\(-1\)</span> 、 <span class="math notranslate nohighlight">\(1\)</span> , 与特征值相对应的特征向量正好就是基底S:  <span class="math notranslate nohighlight">\(|00\rangle\)</span> 、 <span class="math notranslate nohighlight">\(|01\rangle\)</span> 、 <span class="math notranslate nohighlight">\(|10\rangle\)</span>、 <span class="math notranslate nohighlight">\(|11\rangle\)</span> , 如果仔细观察的话，可以发现，量子态为  <span class="math notranslate nohighlight">\(|00\rangle\)</span> 、 <span class="math notranslate nohighlight">\(|11\rangle\)</span> 时，其中1的个数分别为 0 和2，均为偶数，特征值均为  <span class="math notranslate nohighlight">\(+1\)</span> ，而量子态为  <span class="math notranslate nohighlight">\(|01\rangle\)</span> 、 <span class="math notranslate nohighlight">\(|10\rangle\)</span> 时，其中 1 的个数均为 1 ，为奇数，特征值均为  <span class="math notranslate nohighlight">\(-1\)</span> 。</p>
+<p>  事实上，对于任何作为基底的量子态的特征值都有这样“奇负偶正”的规律。这样的话，一将测量门加到相应的量子线路，试验态就会以一定概率坍塌到不同的量子态  <span class="math notranslate nohighlight">\(s\)</span> , 接着确定量子态  <span class="math notranslate nohighlight">\(s\)</span> 中1的个数  <span class="math notranslate nohighlight">\(N_s\)</span> 就行了，然后通过下式就可以计算出期望 <span class="math notranslate nohighlight">\(\mathrm{E}(i)\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[E(i)=h_{\alpha \beta ..}^{i j ..} \sum_{\mid 00 . .\rangle}^{\mid 11 ..\rangle}(-1)^{N_{s}} P_{s}\]</div>
+<p>  即，如果量子态中有奇数个 1 ，其概率  <span class="math notranslate nohighlight">\(P\)</span> 取负值; 如果量子态中有奇数个1，其概率  <span class="math notranslate nohighlight">\(P\)</span> 取正值，然后累加起来，再乘以系数  <span class="math notranslate nohighlight">\(h\)</span> 就得到了期望。</p>
+<div class="math notranslate nohighlight">
+\[E(2)=\left\langle\psi\left|\sigma_{z}^{0} \otimes \sigma_{z}^{1}\right| \psi\rangle=a^{2}-b^{2}-c^{2}+d^{2}\right.\]</div>
+<p>对于 <span class="math notranslate nohighlight">\(\mathrm{E}(3)\)</span> 项，其哈密顿量:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{x}^{0} \otimes \sigma_{y}^{1}\]</div>
+<p>  此时，不能直接测量。这是因为对于试验态中的每一个基底(如  <span class="math notranslate nohighlight">\(|01\rangle\)</span> ),它们均是单位阵和  <span class="math notranslate nohighlight">\(\sigma_{Z}\)</span> 的特征向量，但不是  <span class="math notranslate nohighlight">\(\sigma_{x}\)</span> 和  <span class="math notranslate nohighlight">\(\sigma_{y}\)</span> 的特征向量。 根据线性代数知识，需要分别对  <span class="math notranslate nohighlight">\(\sigma_{x}\)</span> 和  <span class="math notranslate nohighlight">\(\sigma_{y}\)</span> 进行换基操作，也就是让试验态再演化一次，而：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\sigma_{x}=H \times \sigma_{z} \times H \\ &amp;\sigma_{y}=R X\left(\frac{\pi}{2}\right) \times \sigma_{z} \times R X\left(-\frac{\pi}{2}\right) \end{aligned}\end{split}\]</div>
+<p>  所以在测量前，需要在 <span class="math notranslate nohighlight">\(q 0\)</span> 号量子比特上添上  <span class="math notranslate nohighlight">\(H\)</span> 门、在  <span class="math notranslate nohighlight">\(q 1\)</span> 号量子比特上添上  <span class="math notranslate nohighlight">\(RX\left(\frac{\pi}{2}\right)\)</span> 门，如图4.6.32所示。</p>
+<img alt="../_images/wps1045.png" class="align-center" src="../_images/wps1045.png" />
+<p class="centered">
+<strong>图4.6.32 测量操作</strong></p><p>  此时，试验态  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 演化为  <span class="math notranslate nohighlight">\(\left|\psi^{\prime}\right\rangle\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\left.\left.\left|\psi^{\prime}\right\rangle=A|00\rangle +B| 01\right\rangle+C|10\rangle +D| 11\right\rangle\]</div>
+<p>  之后再利用“奇负偶正”这一规律进行测量， 不难得到:</p>
+<div class="math notranslate nohighlight">
+\[E(3)=\left\langle\psi^{*}\left|\sigma_{x}^{0} \otimes \sigma_{y}^{1}\right| \psi\right\rangle=\left\langle\psi^{'*}\left|\sigma_{z}^{0} \otimes \sigma_{z}^{1}\right| \psi^{\prime}\right\rangle=A^{2}-B^{2}-C^{2}+D^{2}\]</div>
+<p>  在CPU上对这三个期望求和，就得到了平均能量  <span class="math notranslate nohighlight">\(\mathrm{E}\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[E=E(1)+E(2)+E(3)\]</div>
+<p>  同样，也可以利用QPanda来实现量子期望估计算法，在VQE算法演示中， 需要向优化器注册一个计算损失值的函数。</p>
+<p>  这里定义损失值为计算体系哈密顿量在试验态下的期望值，定义损失函数 loss_func，传入的参数为待优化的参数列表，量子比特个数，电子个数，体系哈密顿量。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">loss_func</span><span class="p">(</span><span class="n">para_list</span><span class="p">,</span> <span class="n">qubit_number</span><span class="p">,</span> <span class="n">electron_number</span><span class="p">,</span> <span class="n">Hamiltonian</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    &lt;𝜓^∗|𝐻|𝜓&gt;, Calculation system expectation of Hamiltonian in experimental state.</span>
+<span class="s1">4.    para_list: parameters to be optimized</span>
+<span class="s1">5.    qubit_number: qubit number</span>
+<span class="s1">6.    electron_number: electron number</span>
+<span class="s1">7.    Hamiltonian: System Hamiltonian</span>
+<span class="s1">8.    &#39;&#39;&#39;</span>
+<span class="mf">9.</span>    <span class="n">fermion_cc</span> <span class="o">=</span><span class="n">get_ccsd</span><span class="p">(</span><span class="n">qubit_number</span><span class="p">,</span> <span class="n">electron_number</span><span class="p">,</span> <span class="n">para_list</span><span class="p">)</span>
+<span class="mf">10.</span>    <span class="n">pauli_cc</span> <span class="o">=</span> <span class="n">JordanWignerTransform</span><span class="p">(</span><span class="n">fermion_cc</span><span class="p">)</span>
+<span class="mf">11.</span>    <span class="n">ucc</span> <span class="o">=</span> <span class="n">cc_to_ucc_hamiltonian</span><span class="p">(</span><span class="n">pauli_cc</span><span class="p">)</span>
+<span class="mf">12.</span>    <span class="n">expectation</span><span class="o">=</span><span class="mi">0</span>
+<span class="mf">13.</span>    <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">Hamiltonian</span><span class="p">:</span>
+<span class="mf">14.</span>        <span class="n">expectation</span><span class="o">+=</span><span class="n">get_expectation</span><span class="p">(</span><span class="n">qubit_number</span><span class="p">,</span> <span class="n">electron_number</span><span class="p">,</span> <span class="n">ucc</span><span class="p">,</span> <span class="n">component</span><span class="p">)</span>
+<span class="mf">15.</span>    <span class="n">expectation</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">expectation</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+<span class="mf">16.</span>
+<span class="mf">17.</span>    <span class="k">return</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">expectation</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>  get_expectation接口用来计算体系哈密顿量的子项在试验态下的期望。这个接口需要传入的参数为量子比特数，电子个数，通过UCC模型构造的哈密顿量，体系哈密顿量的一个子项。</p>
+<p>  程序大体流程是首先创建一个虚拟机，从虚拟机申请量子比特，接着构建量子线路，先制备初态，再构造UCC哈密顿量的模拟线路，并在测量前对体系哈密顿量子项进行换基操作，最后进行测量，并根据测量结果通过奇负偶正规则，计算当前体系哈密顿量子项的期望。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">get_expectation</span><span class="p">(</span><span class="n">n_qubit</span><span class="p">,</span> <span class="n">n_en</span><span class="p">,</span> <span class="n">ucc</span><span class="p">,</span> <span class="n">component</span><span class="p">):</span>
+<span class="mf">2.</span>     <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    get expectation of one hamiltonian.</span>
+<span class="s1">4.    n_qubit: qubit number</span>
+<span class="s1">5.    n_en: electron number</span>
+<span class="s1">6.    ucc: unitary coupled cluster operator</span>
+<span class="s1">7.    component: paulioperator and coefficient,e.g. (&#39;X0 Y1 Z2&#39;,0.2)</span>
+<span class="s1">8.    &#39;&#39;&#39;</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="n">machine</span><span class="o">=</span><span class="n">init_quantum_machine</span><span class="p">(</span><span class="n">QMachineType</span><span class="o">.</span><span class="n">CPU</span><span class="p">)</span>
+<span class="mf">11.</span>    <span class="n">q</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">qAlloc_many</span><span class="p">(</span><span class="n">n_qubit</span><span class="p">)</span>
+<span class="mf">12.</span>    <span class="n">prog</span><span class="o">=</span><span class="n">QProg</span><span class="p">()</span>
+<span class="mf">13.</span>
+<span class="mf">14.</span>    <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">prepareInitialState</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">n_en</span><span class="p">))</span>
+<span class="mf">15.</span>    <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">simulate_hamiltonian</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">ucc</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="mf">16.</span>
+<span class="mf">17.</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">component</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="mf">18.</span>        <span class="k">if</span> <span class="n">j</span><span class="o">==</span><span class="s1">&#39;X&#39;</span><span class="p">:</span>
+<span class="mf">19.</span>            <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">20.</span>        <span class="k">elif</span> <span class="n">j</span><span class="o">==</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span>
+<span class="mf">21.</span>            <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RX</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="mf">22.</span>
+<span class="mf">23.</span>    <span class="n">machine</span><span class="o">.</span><span class="n">directly_run</span><span class="p">(</span><span class="n">prog</span><span class="p">)</span>
+<span class="mf">24.</span>    <span class="n">result</span><span class="o">=</span><span class="n">machine</span><span class="o">.</span><span class="n">get_prob_dict</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">select_max</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="mf">25.</span>    <span class="n">machine</span><span class="o">.</span><span class="n">qFree_all</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="mf">26.</span>
+<span class="mf">27.</span>    <span class="n">expectation</span><span class="o">=</span><span class="mi">0</span>
+<span class="mf">28.</span>    <span class="c1">#奇负偶正</span>
+<span class="mf">29.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+<span class="mf">30.</span>        <span class="k">if</span> <span class="n">parity_check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">component</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+<span class="mf">31.</span>            <span class="n">expectation</span><span class="o">-=</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="mf">32.</span>        <span class="k">else</span><span class="p">:</span>
+<span class="mf">33.</span>            <span class="n">expectation</span><span class="o">+=</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="mf">34.</span>    <span class="k">return</span> <span class="n">expectation</span><span class="o">*</span><span class="n">component</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>  其中，奇偶校验代码如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">parity_check</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">terms</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">check</span><span class="o">=</span><span class="mi">0</span>
+<span class="mf">3.</span>    <span class="n">number</span><span class="o">=</span><span class="n">number</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="mf">4.</span>
+<span class="mf">5.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">terms</span><span class="p">:</span>
+<span class="mf">6.</span>        <span class="k">if</span> <span class="n">number</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">:</span>
+<span class="mf">7.</span>            <span class="n">check</span><span class="o">+=</span><span class="mi">1</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="k">return</span> <span class="n">check</span><span class="o">%</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p><strong>7、利用VQE算法寻找基态能量</strong></p>
+<p>  以氢分子基态的寻找为例，介绍VQE算法寻找基态能量的整个流程。</p>
+<img alt="../_images/4.6.33.png" class="align-center" src="../_images/4.6.33.png" />
+<p class="centered">
+<strong>图4.6.33 量子处理器与经典处理器的VQE工作流程图</strong></p><p>  首先，进行初始化，即在q0上和q1上分别加上  <span class="math notranslate nohighlight">\(NOT\)</span> 门，得到了氢分子的一个hatree-fock态 <span class="math notranslate nohighlight">\(|0011\rangle\)</span> 。</p>
+<img alt="../_images/4.6.34.png" class="align-center" src="../_images/4.6.34.png" />
+<p class="centered">
+<strong>图4.6.34 初始化</strong></p><p>  然后将hatree-fock态制备成试验态  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> ，演化经过的量子线路是通过  <span class="math notranslate nohighlight">\(J-W\)</span> 变换和渐进近似定理将费米子哈密顿量 <span class="math notranslate nohighlight">\(H_U\)</span> 映射到量子比特上构造出来的。 但需要注意的是，由于利用了渐进近似定理将系数 <span class="math notranslate nohighlight">\(\vec{h}\)</span> 分成了 3 个 <span class="math notranslate nohighlight">\(\vec{\theta}\)</span> ，所以需要循环演化hatree-fock态三次，才能制备出试验态 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 。</p>
+<img alt="../_images/4.6.35.png" class="align-center" src="../_images/4.6.35.png" />
+<p class="centered">
+<strong>图4.6.35 制备实验态</strong></p><p>  现在，以第一个酉算子为例，介绍氢分子试验态的制备过程。类比之前哈密顿量模拟时的推导过程，可以得到以下推导:</p>
+<div class="math notranslate nohighlight">
+\[U\left(\sigma_{y}^{0} \otimes \sigma_{z}^{1} \otimes \sigma_{z}^{2} \otimes \sigma_{x}^{3}, \theta\right)\]</div>
+<div class="math notranslate nohighlight">
+\[=R X\left(0, \frac{\pi}{2}\right) H(3) U\left(\sigma_{z}^{0} \otimes \sigma_{z}^{1} \otimes \sigma_{z}^{2} \otimes \sigma_{z}^{3}, \theta\right) H(3) R X\left(0,-\frac{\pi}{2}\right)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}=R X\left(0, \frac{\pi}{2}\right) H(3) \text{CNOT}(0,3) \text{CNOT}(1,3) \text{CNOT}(2,3) R Z(3,2 \theta) \text{CNOT}(2,3)\\ \text{CNOT}(1,3) \text{CNOT}(0,3) H(3) R X(0,\left.\quad-\frac{\pi}{2}\right)\end{split}\]</div>
+<p>  根据推导结果，构造出的量子线路为：</p>
+<img alt="../_images/4.6.36.png" class="align-center" src="../_images/4.6.36.png" />
+<p class="centered">
+<strong>图4.6.36 构造出的量子线路</strong></p><p>  再将剩下的哈密顿量子项也映射到量子比特，将费米子哈密顿量Hu模拟出来，然后利用这条线路对hatree-fock态循环演化三次，就制备出了试验态 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 。</p>
+<p>  下面，开始对试验态 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 进行测量，而测量线路则是通过J-W变换等方法 将 <span class="math notranslate nohighlight">\(Psi4\)</span> 所计算出来的氢分子哈密顿量 <span class="math notranslate nohighlight">\(H_P\)</span> 映射到量子比特构造出来。</p>
+<p>  在测量期望时，所运用的方法是量子期望估计算法，即首先分别构造整个氢分子哈密顿量 <span class="math notranslate nohighlight">\(H_P\)</span> 的15个子项的测量线路，测得各个子项的期望 <span class="math notranslate nohighlight">\(E(i)\)</span> 。</p>
+<img alt="../_images/4.6.37.png" class="align-center" src="../_images/4.6.37.png" />
+<p class="centered">
+<strong>图4.6.37 量子期望估计算法</strong></p><p>  将各个子项期望测量线路展开，即可得到各个子项期望 <span class="math notranslate nohighlight">\(E(i)\)</span> 的测量线路，如图4.6.38所示：</p>
+<img alt="../_images/4.6.38.png" class="align-center" src="../_images/4.6.38.png" />
+<p class="centered">
+<strong>图4.6.38 测量线路</strong></p><p>  接着，量子处理器将 <span class="math notranslate nohighlight">\(E(i)\)</span> 依次传给经典处理器求和，就得到了氢分子在该试验态下的平均能量 <span class="math notranslate nohighlight">\(E(n)\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[E_{n}=\sum_{i=1}^{15} E(i)\]</div>
+<p>  最后， <span class="math notranslate nohighlight">\(\mathrm{CPU}\)</span> 会将求和得到的平均能量En传给优化器，优化器会判断 <span class="math notranslate nohighlight">\(E_n - E_{n-1}\)</span> 是否小于阈值 <span class="math notranslate nohighlight">\(L\)</span> ，是的话就返回 <span class="math notranslate nohighlight">\(En\)</span> 的值，作为该键长下的基态能量，否的话优化器会利用梯度相关算法或无关算法优化参数 <span class="math notranslate nohighlight">\(\vec{t}_{n}\)</span> ，然后传给量子处理器，继续演化和测量，直至找到氢分子在该键隹下的基态能量。</p>
+<img alt="../_images/4.6.39.png" class="align-center" src="../_images/4.6.39.png" />
+<p class="centered">
+<strong>图4.6.39 优化过程</strong></p></section>
+<section id="id6">
+<h2>4.6.6 综合示例<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p><strong>使用梯度下降优化器进行演示</strong> </p>
+<p>  首先，开始准备工作，导入所需要的库：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="kn">from</span> <span class="nn">psi4_wrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">3.</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="mf">4.</span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="mf">5.</span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="mf">6.</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<p>  使用get_ccsd_n_term接口的作用是返回构造CCSD模型需要用到的参数个数：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">get_ccsd_n_term</span><span class="p">(</span><span class="n">qn</span><span class="p">,</span> <span class="n">en</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    coupled cluster single and double model.</span>
+<span class="s1">4.    e.g. 4 qubits, 2 electrons</span>
+<span class="s1">5.    then 0 and 1 are occupied,just consider 0-&gt;2,0-&gt;3,1-&gt;2,1-&gt;3,01-&gt;23</span>
+<span class="s1">6.    &#39;&#39;&#39;</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="k">if</span> <span class="n">n_electron</span><span class="o">&gt;</span><span class="n">n_qubit</span><span class="p">:</span>
+<span class="mf">9.</span>        <span class="k">assert</span> <span class="kc">False</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">qn</span> <span class="o">-</span> <span class="n">en</span><span class="p">)</span> <span class="o">*</span> <span class="n">en</span> <span class="o">+</span> <span class="p">(</span><span class="n">qn</span> <span class="o">-</span> <span class="n">en</span><span class="p">)</span><span class="o">*</span> <span class="p">(</span><span class="n">qn</span> <span class="o">-</span><span class="n">en</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">en</span> <span class="o">*</span> <span class="p">(</span><span class="n">en</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>  使用get_ccsd_var接口则是用来构造可变参数对应的CCSD模型哈密顿量，代码实</p>
+<p>  现跟get_ccsd接口一样，只不过这里用到的费米子算符类是可变费米子算符类获取CCSD模型的参数个数构造可变参数的CCSD模型的哈密顿量：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">get_ccsd_var</span><span class="p">(</span><span class="n">qn</span><span class="p">,</span> <span class="n">en</span><span class="p">,</span> <span class="n">para</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    get Coupled cluster single and double model with variational parameters.</span>
+<span class="s1">4.    e.g. 4 qubits, 2 electrons</span>
+<span class="s1">5.    then 0 and 1 are occupied,just consider 0-&gt;2,0-&gt;3,1-&gt;2,1-&gt;3,01-&gt;23.</span>
+<span class="s1">6.    returned FermionOperator like this:</span>
+<span class="s1">7.    { {&quot;2+ 0&quot;:var[0]},{&quot;3+ 0&quot;:var[1]},{&quot;2+ 1&quot;:var[2]},{&quot;3+ 1&quot;:var[3]},</span>
+<span class="s1">8.    {&quot;3+ 2+ 1 0&quot;:var[4]} }</span>
+<span class="s1">9.</span>
+<span class="s1">10.    &#39;&#39;&#39;</span>
+<span class="mf">11.</span>    <span class="k">if</span> <span class="n">en</span> <span class="o">&gt;</span> <span class="n">qn</span><span class="p">:</span>
+<span class="mf">12.</span>        <span class="k">assert</span> <span class="kc">False</span>
+<span class="mf">13.</span>    <span class="k">if</span> <span class="n">en</span> <span class="o">==</span> <span class="n">qn</span><span class="p">:</span>
+<span class="mf">14.</span>        <span class="k">return</span> <span class="n">VarFermionOperator</span><span class="p">()</span>
+<span class="mf">15.</span>
+<span class="mf">16.</span>    <span class="k">if</span> <span class="n">get_ccsd_n_term</span><span class="p">(</span><span class="n">qn</span><span class="p">,</span> <span class="n">en</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">para</span><span class="p">):</span>
+<span class="mf">17.</span>        <span class="k">assert</span> <span class="kc">False</span>
+<span class="mf">18.</span>
+<span class="mf">19.</span>    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">20.</span>    <span class="n">var_fermion_op</span> <span class="o">=</span> <span class="n">VarFermionOperator</span><span class="p">()</span>
+<span class="mf">21.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">en</span><span class="p">):</span>
+<span class="mf">22.</span>        <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">en</span><span class="p">,</span> <span class="n">qn</span><span class="p">):</span>
+<span class="mf">23.</span>            <span class="n">var_fermion_op</span> <span class="o">+=</span> <span class="n">VarFermionOperator</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;+ &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">para</span><span class="p">[</span><span class="n">cnt</span><span class="p">])</span>
+<span class="mf">24.</span>            <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="mf">25.</span>
+<span class="mf">26.</span>    <span class="k">return</span> <span class="n">var_fermion_op</span>
+<span class="mf">27.</span>
+<span class="mf">28.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">en</span><span class="p">):</span>
+<span class="mf">29.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">en</span><span class="p">):</span>
+<span class="mf">30.</span>            <span class="k">for</span> <span class="n">ex1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">en</span><span class="p">,</span> <span class="n">qn</span><span class="p">):</span>
+<span class="mf">31.</span>                <span class="k">for</span> <span class="n">ex2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ex1</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">qn</span><span class="p">):</span>
+<span class="mf">32.</span>                    <span class="n">fermion_op</span> <span class="o">+=</span> <span class="n">VarFermionOperator</span><span class="p">(</span>
+<span class="mf">33.</span>                        <span class="nb">str</span><span class="p">(</span><span class="n">ex2</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;+ &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ex1</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;+ &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+<span class="mf">34.</span>                        <span class="n">para</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span>
+<span class="mf">35.</span>                    <span class="p">)</span>
+<span class="mf">36.</span>                    <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="mf">37.</span>
+<span class="mf">38.</span>    <span class="k">return</span> <span class="n">fermion_op</span>
+</pre></div>
+</div>
+<p>  get_fermion_jordan_wigner接口则是将费米子哈密顿量的子项转换成泡利哈密顿量：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">get_fermion_jordan_wigner</span><span class="p">(</span><span class="n">fermion_item</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">pauli</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fermion_item</span><span class="p">:</span>
+<span class="mf">5.</span>        <span class="n">op_qubit</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="mf">6.</span>        <span class="n">op_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="mf">7.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">op_qubit</span><span class="p">):</span>
+<span class="mf">8.</span>            <span class="n">op_str</span> <span class="o">+=</span> <span class="s2">&quot;Z&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>        <span class="n">op_str1</span> <span class="o">=</span> <span class="n">op_str</span> <span class="o">+</span> <span class="s2">&quot;X&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">op_qubit</span><span class="p">)</span>
+<span class="mf">11.</span>        <span class="n">op_str2</span> <span class="o">=</span> <span class="n">op_str</span> <span class="o">+</span> <span class="s2">&quot;Y&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">op_qubit</span><span class="p">)</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>        <span class="n">pauli_map</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="mf">14.</span>        <span class="n">pauli_map</span><span class="p">[</span><span class="n">op_str1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="mf">15.</span>
+<span class="mf">16.</span>        <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+<span class="mf">17.</span>            <span class="n">pauli_map</span><span class="p">[</span><span class="n">op_str2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">j</span>
+<span class="mf">18.</span>        <span class="k">else</span><span class="p">:</span>
+<span class="mf">19.</span>            <span class="n">pauli_map</span><span class="p">[</span><span class="n">op_str2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="n">j</span>
+<span class="mf">20.</span>
+<span class="mf">21.</span>        <span class="n">pauli</span> <span class="o">*=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="n">pauli_map</span><span class="p">)</span>
+<span class="mf">22.</span>
+<span class="mf">23.</span>    <span class="k">return</span> <span class="n">pauli</span>
+</pre></div>
+</div>
+<p>  JordanWignerTransformVar接口的作用是将可变费米子哈密顿量转换成可变泡利哈密顿量：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">JordanWignerTransformVar</span><span class="p">(</span><span class="n">var_fermion_op</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">data</span> <span class="o">=</span> <span class="n">var_fermion_op</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="mf">3.</span>    <span class="n">var_pauli</span> <span class="o">=</span> <span class="n">VarPauliOperator</span><span class="p">()</span>
+<span class="mf">4.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+<span class="mf">5.</span>        <span class="n">one_pauli</span> <span class="o">=</span> <span class="n">get_fermion_jordan_wigner</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">6.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">one_pauli</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
+<span class="mf">7.</span>            <span class="n">var_pauli</span> <span class="o">+=</span> <span class="n">VarPauliOperator</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">complex_var</span><span class="p">(</span>
+<span class="mf">8.</span>                <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">()</span><span class="o">*</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">-</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">()</span><span class="o">*</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span>
+<span class="mf">9.</span>                <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">()</span><span class="o">*</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="o">+</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">()</span><span class="o">*</span><span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">))</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="k">return</span> <span class="n">var_pauli</span>
+</pre></div>
+</div>
+<p>  cc_to_ucc_hamiltonian_var接口的作用是CC模型对应的哈密顿量转成UCC模型对应的哈密顿量：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">cc_to_ucc_hamiltonian_var</span><span class="p">(</span><span class="n">cc_op</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    generate Hamiltonian form of unitary coupled cluster based on coupled cluster,H=1j*(T-dagger(T)),</span>
+<span class="s1">4.    then exp(-jHt)=exp(T-dagger(T))</span>
+<span class="s1">5.    &#39;&#39;&#39;</span>
+<span class="mf">6.</span>    <span class="n">pauli</span> <span class="o">=</span> <span class="n">VarPauliOperator</span><span class="p">()</span>
+<span class="mf">7.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cc_op</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
+<span class="mf">8.</span>        <span class="n">pauli</span> <span class="o">+=</span> <span class="n">VarPauliOperator</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">complex_var</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span><span class="p">(),</span> <span class="n">var</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="k">return</span> <span class="n">pauli</span>
+</pre></div>
+</div>
+<p>  prepareInitialState制备初态</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">prepareInitialState</span><span class="p">(</span><span class="n">qlist</span><span class="p">,</span> <span class="n">en</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    prepare initial state.</span>
+<span class="s1">4.    qlist: qubit list</span>
+<span class="s1">5.    en: electron number</span>
+<span class="s1">6.    return a QCircuit</span>
+<span class="s1">7.    &#39;&#39;&#39;</span>
+<span class="mf">8.</span>    <span class="n">circuit</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">9.</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qlist</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">en</span><span class="p">:</span>
+<span class="mf">10.</span>        <span class="k">return</span> <span class="n">circuit</span>
+<span class="mf">11.</span>
+<span class="mf">12.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">en</span><span class="p">):</span>
+<span class="mf">13.</span>        <span class="n">circuit</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="k">return</span> <span class="n">circuit</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>  simulate_one_term_var是构造哈密顿量子项的模拟线路：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">simulate_one_term_var</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">,</span> <span class="n">hamiltonian_term</span><span class="p">,</span> <span class="n">coef</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    Simulate a single term of Hamilonian like &quot;X0 Y1 Z2&quot; with</span>
+<span class="s1">4.    coefficient and time. U=exp(-it*coef*H)</span>
+<span class="s1">5.    &#39;&#39;&#39;</span>
+<span class="mf">6.</span>    <span class="n">vqc</span> <span class="o">=</span> <span class="n">VariationalQuantumCircuit</span><span class="p">()</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hamiltonian_term</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="mf">9.</span>        <span class="k">return</span> <span class="n">vqc</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="n">tmp_qlist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">12.</span>    <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">hamiltonian_term</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="mf">13.</span>        <span class="k">if</span> <span class="n">term</span> <span class="ow">is</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span>
+<span class="mf">14.</span>            <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">[</span><span class="n">q</span><span class="p">]))</span>
+<span class="mf">15.</span>        <span class="k">elif</span> <span class="n">term</span> <span class="ow">is</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span>
+<span class="mf">16.</span>            <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RX</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">[</span><span class="n">q</span><span class="p">],</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="mf">17.</span>
+<span class="mf">18.</span>        <span class="n">tmp_qlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">[</span><span class="n">q</span><span class="p">])</span>
+<span class="mf">19.</span>
+<span class="mf">20.</span>    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">)</span>
+<span class="mf">21.</span>    <span class="k">if</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="mf">22.</span>        <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">VariationalQuantumGate_RZ</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="o">*</span><span class="n">coef</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+<span class="mf">23.</span>    <span class="k">elif</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="mf">24.</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">25.</span>            <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tmp_qlist</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="mf">26.</span>        <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">VariationalQuantumGate_RZ</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">[</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="o">*</span><span class="n">coef</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+<span class="mf">27.</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">28.</span>            <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">tmp_qlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tmp_qlist</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="mf">29.</span>
+<span class="mf">30.</span>    <span class="c1"># dagger</span>
+<span class="mf">31.</span>    <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">hamiltonian_term</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="mf">32.</span>        <span class="k">if</span> <span class="n">term</span> <span class="ow">is</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span>
+<span class="mf">33.</span>            <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">[</span><span class="n">q</span><span class="p">]))</span>
+<span class="mf">34.</span>        <span class="k">elif</span> <span class="n">term</span> <span class="ow">is</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span>
+<span class="mf">35.</span>            <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">RX</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">[</span><span class="n">q</span><span class="p">],</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="mf">36.</span>
+<span class="mf">37.</span>    <span class="k">return</span> <span class="n">vqc</span>
+</pre></div>
+</div>
+<p>  simulate_hamiltonian_var接口作用是构造哈密顿量的模拟线路：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">simulate_hamiltonian_var</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">,</span><span class="n">var_pauli</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">slices</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">3.    Simulate a general case of hamiltonian by Trotter-Suzuki</span>
+<span class="s1">4.    approximation. U=exp(-iHt)=(exp(-i H1 t/n)*exp(-i H2 t/n))^n</span>
+<span class="s1">5.    &#39;&#39;&#39;</span>
+<span class="mf">6.</span>    <span class="n">vqc</span> <span class="o">=</span> <span class="n">VariationalQuantumCircuit</span><span class="p">()</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">slices</span><span class="p">):</span>
+<span class="mf">9.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">var_pauli</span><span class="o">.</span><span class="n">data</span><span class="p">():</span>
+<span class="mf">10.</span>            <span class="n">term</span> <span class="o">=</span> <span class="n">j</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="mf">11.</span>            <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">simulate_one_term_var</span><span class="p">(</span><span class="n">qubit_list</span><span class="p">,</span> <span class="n">term</span><span class="p">,</span> <span class="n">j</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">(),</span> <span class="n">t</span><span class="o">/</span><span class="n">slices</span><span class="p">))</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="k">return</span> <span class="n">vqc</span>
+</pre></div>
+</div>
+<p>  梯度下降优化算法的主体接口GradientDescent，该接口接受的参数是体系哈密顿量，轨道个数，电子个数，迭代次数。</p>
+<p>  具体看一下这个接口的实现，首先初始化一组var类型的待优化参数，利用ccsd模型构造的可变费米子哈密顿量，通过JW变换将可变费米子哈密顿量转换为可变泡利哈密顿量，接着将CC转化成UCC，然后创建一个量子虚拟机，并向量子虚拟机申请指定数量的量子比特，再接着构建可变量子线路。首先制备初态，然后构造哈密顿量模拟线路。</p>
+<p>  接着通过VQNet的qop操作构造损失函数，然后创建一个基于动量的梯度下降优化器，迭代执行优化器，最后返回优化器优化的最低能量。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">GradientDescent</span><span class="p">(</span><span class="n">mol_pauli</span><span class="p">,</span> <span class="n">n_qubit</span><span class="p">,</span> <span class="n">n_en</span><span class="p">,</span> <span class="n">iters</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">n_para</span> <span class="o">=</span> <span class="n">get_ccsd_n_term</span><span class="p">(</span><span class="n">n_qubit</span><span class="p">,</span> <span class="n">n_electron</span><span class="p">)</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span>    <span class="n">para_vec</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">5.</span>    <span class="n">var_para</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">6.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_para</span><span class="p">):</span>
+<span class="mf">7.</span>        <span class="n">var_para</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+<span class="mf">8.</span>        <span class="n">para_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="n">fermion_cc</span> <span class="o">=</span> <span class="n">get_ccsd_var</span><span class="p">(</span><span class="n">n_qubit</span><span class="p">,</span> <span class="n">n_en</span><span class="p">,</span> <span class="n">var_para</span><span class="p">)</span>
+<span class="mf">11.</span>    <span class="n">pauli_cc</span> <span class="o">=</span> <span class="n">JordanWignerTransformVar</span><span class="p">(</span><span class="n">fermion_cc</span><span class="p">)</span>
+<span class="mf">12.</span>    <span class="n">ucc</span> <span class="o">=</span> <span class="n">cc_to_ucc_hamiltonian_var</span><span class="p">(</span><span class="n">pauli_cc</span><span class="p">)</span>
+<span class="mf">13.</span>
+<span class="mf">14.</span>    <span class="n">machine</span><span class="o">=</span><span class="n">init_quantum_machine</span><span class="p">(</span><span class="n">QMachineType</span><span class="o">.</span><span class="n">CPU</span><span class="p">)</span>
+<span class="mf">15.</span>    <span class="n">qlist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">qAlloc_many</span><span class="p">(</span><span class="n">n_qubit</span><span class="p">)</span>
+<span class="mf">16.</span>
+<span class="mf">17.</span>    <span class="n">vqc</span> <span class="o">=</span> <span class="n">VariationalQuantumCircuit</span><span class="p">()</span>
+<span class="mf">18.</span>    <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">prepareInitialState</span><span class="p">(</span><span class="n">qlist</span><span class="p">,</span> <span class="n">n_en</span><span class="p">))</span>
+<span class="mf">19.</span>    <span class="n">vqc</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">simulate_hamiltonian_var</span><span class="p">(</span><span class="n">qlist</span><span class="p">,</span> <span class="n">ucc</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="mf">20.</span>
+<span class="mf">21.</span>    <span class="n">loss</span> <span class="o">=</span> <span class="n">qop</span><span class="p">(</span><span class="n">vqc</span><span class="p">,</span> <span class="n">mol_pauli</span><span class="p">,</span> <span class="n">machine</span><span class="p">,</span> <span class="n">qlist</span><span class="p">)</span>
+<span class="mf">22.</span>    <span class="n">gd_optimizer</span> <span class="o">=</span> <span class="n">MomentumOptimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="mf">23.</span>    <span class="n">leaves</span> <span class="o">=</span> <span class="n">gd_optimizer</span><span class="o">.</span><span class="n">get_variables</span><span class="p">()</span>
+<span class="mf">24.</span>
+<span class="mf">25.</span>    <span class="n">min_energy</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+<span class="mf">26.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iters</span><span class="p">):</span>
+<span class="mf">27.</span>        <span class="n">gd_optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">leaves</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mf">28.</span>        <span class="n">loss_value</span> <span class="o">=</span> <span class="n">gd_optimizer</span><span class="o">.</span><span class="n">get_loss</span><span class="p">()</span>
+<span class="mf">29.</span>
+<span class="mf">30.</span>        <span class="nb">print</span><span class="p">(</span><span class="n">loss_value</span><span class="p">)</span>
+<span class="mf">31.</span>        <span class="k">if</span> <span class="n">loss_value</span> <span class="o">&lt;</span> <span class="n">min_energy</span><span class="p">:</span>
+<span class="mf">32.</span>            <span class="n">min_energy</span> <span class="o">=</span> <span class="n">loss_value</span>
+<span class="mf">33.</span>            <span class="k">for</span> <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">var_para</span><span class="p">):</span>
+<span class="mf">34.</span>                <span class="n">para_vec</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="mf">35.</span>
+<span class="mf">36.</span>    <span class="k">return</span> <span class="n">min_energy</span>
+</pre></div>
+</div>
+<p>  获取原子对应的电子数</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">getAtomElectronNum</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">atom_electron_map</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">3.</span>        <span class="s1">&#39;H&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;He&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Li&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Be&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;Ne&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+<span class="mf">4.</span>        <span class="s1">&#39;Na&#39;</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;Mg&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;Al&#39;</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;Si&#39;</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;Cl&#39;</span><span class="p">:</span><span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;Ar&#39;</span><span class="p">:</span><span class="mi">18</span>
+<span class="mf">5.</span>    <span class="p">}</span>
+<span class="mf">6.</span>
+<span class="mf">7.</span>    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">atom_electron_map</span><span class="o">.</span><span class="fm">__contains__</span><span class="p">(</span><span class="n">atom</span><span class="p">)):</span>
+<span class="mf">8.</span>        <span class="k">return</span> <span class="mi">0</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="k">return</span> <span class="n">atom_electron_map</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>  最后，这是该示例对应的主函数，首先构造一组不同距离下的氢分子模型，然后计算每个氢分子模型对应的基态能量，最后将计算的结果绘制成曲线图。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">2.</span>    <span class="n">distances</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">25</span><span class="p">)]</span>
+<span class="mf">3.</span>    <span class="n">molecule</span> <span class="o">=</span> <span class="s2">&quot;H 0 0 0</span><span class="se">\n</span><span class="s2">H 0 0 </span><span class="si">{0}</span><span class="s2">&quot;</span>
+<span class="mf">4.</span>
+<span class="mf">5.</span>    <span class="n">molecules</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">6.</span>    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">distances</span><span class="p">:</span>
+<span class="mf">7.</span>        <span class="n">molecules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="n">chemistry_dict</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">10.</span>        <span class="s2">&quot;mol&quot;</span><span class="p">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="mf">11.</span>        <span class="s2">&quot;multiplicity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+<span class="mf">12.</span>        <span class="s2">&quot;charge&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+<span class="mf">13.</span>        <span class="s2">&quot;basis&quot;</span><span class="p">:</span><span class="s2">&quot;sto-3g&quot;</span><span class="p">,</span>
+<span class="mf">14.</span>    <span class="p">}</span>
+<span class="mf">15.</span>
+<span class="mf">16.</span>    <span class="n">energies</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">17.</span>
+<span class="mf">18.</span>    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">distances</span><span class="p">:</span>
+<span class="mf">19.</span>        <span class="n">mol</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="mf">20.</span>
+<span class="mf">21.</span>        <span class="n">chemistry_dict</span><span class="p">[</span><span class="s2">&quot;mol&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="mf">22.</span>        <span class="n">data</span> <span class="o">=</span> <span class="n">run_psi4</span><span class="p">(</span><span class="n">chemistry_dict</span><span class="p">)</span>
+<span class="mf">23.</span>        <span class="c1">#get molecule electron number</span>
+<span class="mf">24.</span>        <span class="n">n_electron</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">25.</span>        <span class="n">mol_splits</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="mf">26.</span>        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">27.</span>        <span class="k">while</span> <span class="p">(</span><span class="n">cnt</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mol_splits</span><span class="p">)):</span>
+<span class="mf">28.</span>            <span class="n">n_electron</span> <span class="o">+=</span> <span class="n">getAtomElectronNum</span><span class="p">(</span><span class="n">mol_splits</span><span class="p">[</span><span class="n">cnt</span><span class="p">])</span>
+<span class="mf">29.</span>            <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">4</span>
+<span class="mf">30.</span>
+<span class="mf">31.</span>        <span class="n">fermion_op</span> <span class="o">=</span> <span class="n">parsePsi4DataToFermion</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="mf">32.</span>        <span class="n">pauli_op</span> <span class="o">=</span> <span class="n">JordanWignerTransform</span><span class="p">(</span><span class="n">fermion_op</span><span class="p">)</span>
+<span class="mf">33.</span>
+<span class="mf">34.</span>        <span class="n">n_qubit</span> <span class="o">=</span> <span class="n">pauli_op</span><span class="o">.</span><span class="n">getMaxIndex</span><span class="p">()</span>
+<span class="mf">35.</span>
+<span class="mf">36.</span>        <span class="n">energies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GradientDescent</span><span class="p">(</span><span class="n">pauli_op</span><span class="p">,</span> <span class="n">n_qubit</span><span class="p">,</span> <span class="n">n_electron</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="mf">37.</span>
+<span class="mf">38.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distances</span> <span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="mf">39.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
+<span class="mf">40.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;energy&#39;</span><span class="p">)</span>
+<span class="mf">41.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;VQE PLOT&#39;</span><span class="p">)</span>
+<span class="mf">42.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>  图4.6.40所示就是对应的输出结果，是氢分子在不同距离下对应的基态能量：</p>
+<img alt="../_images/4.6.40.png" class="align-center" src="../_images/4.6.40.png" />
+<p class="centered">
+<strong>图4.6.40 氢分子在不同距离下对应的基态能量</strong></p><p><strong>参考文献</strong> </p>
+<p>[1] 图片引自论文《Giant Intermolecular Decay and Fragmentation of Clusters》</p>
+<p>[2] 图片引自论文《Interatomic and intermolecular Coulombic decay: the coming of age story》</p>
+<p>[3] 图片引自论文《Dynamics of a-synuclein aggregation and inhibition of pore-like oligomer development by b-synuclein》</p>
+<p>[4] 图片引自论文《A variational eigenvalue solver on a quantum processor》</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4.5QAOA%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-left" title="4.5 QAOA算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-right" title="4.7 Shor分解算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

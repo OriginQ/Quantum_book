@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1 概述 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.3 向量空间" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html" />
+    <link rel="prev" title="5.4 将量子程序编译到不同的量子芯片上" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">1.2 集合与映射</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.2.1 集合的概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">1.2.2 集合的关系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">1.2.3 集合的运算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1.2.4 集合的运算法则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">1.2.5 映射</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>1.1 概述</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/附录1量子计算数学基础1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>1.1 概述<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<p>  对于不具有任何高等数学基础背景的读者，本节将从集合与映射、向量空间、矩阵与矩阵的运算、矩阵的特征、矩阵的函数以及线性算子与矩阵表示等相对简单易懂的数学开始讲起，以便各位循序渐进理解量子计算的数学原理。</p>
+</section>
+<section id="id2">
+<h1>1.2 集合与映射<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h1>
+<section id="id3">
+<h2>1.2.1 集合的概念<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>  当提到中国古代四大发明时，大家一般会想到造纸术、印刷术、指南针和火药；当提到中国的四大名著时，大家会想起吴承恩的《西游记》、罗贯中的《三国演义》、曹雪芹的《红楼梦》、施耐庵的《水浒传》。生活中有很多类似于四大发明、四大名著的称呼，比如：世界上的所有国家、彩虹的颜色、三原色等等，这些称呼都有一个共同的特点，就是将具有明确地相同特性的事物放在一起的统称。</p>
+<p>  在数学上，把具有某种特征事物的总体称为集合（set）,组成该集合的事物称为该集合的元素（element）[1,5]。比如，中国的四大名著，就可以称为一个集合，《西游记》则是其中的一个元素。有时为了方便与简洁，在数学上会引进一些符号来表示一些数学名称，这就使得数学上了一个台阶，当通过练习知道这些符号代表的内在含义时，就很方便地去推导以及交流。</p>
+<p>  但是这种符号表示的简化也为后来学习者或多或少带来了一些障碍。因为当没有介绍过某个概念，突然看到一个符号表示，智力再好也不可能知道它代表的含义。比如世界上第一个人发明“※”表示太阳，但他没有告诉你，这符号“※”表示太阳,而是给你画出这个符号“※”，问你这是什么时，这个问题换着任何人都不可能回答，除非是发明者，因为只有他一个人知道这个符号代表的含义，当人们都开始用这个符号“※”表示太阳时，这就极大地方便人们之间的交流，因为这符号写起来相对简单些。如果过仅有部分人知道，还可以作为密码来使用，从某种意义上来说，数学也是一门符号化的语言。所以，在学习数学的时候，首先要弄明白符号背后的含义是什么。</p>
+<p>  下面，引进大写的拉丁字母A、B、C等符号来表示集合，用小写的拉丁字母a、b、c等符号表示集合的元素，需要注意的是有的时候拉丁字母不够多或者不方便时，也会引进其他的符号表示元素。比如用B这个符号表示四大名著，用 <span class="math notranslate nohighlight">\(b_1\)</span> 表示《西游记》、 <span class="math notranslate nohighlight">\(b_2\)</span> 表示《三国演义》、 <span class="math notranslate nohighlight">\(b_3\)</span> 表示《红楼梦》、 <span class="math notranslate nohighlight">\(b_4\)</span> 表示《水浒传》。 <span class="math notranslate nohighlight">\(b_1\)</span> 是B的元素，在数学上，通常说 <span class="math notranslate nohighlight">\(b_1\)</span> 属于B，记做 <span class="math notranslate nohighlight">\({b_1} \in B\)</span> 。假设，h表示《海底两万里》，h就不是集合B的元素，就说h不属于B，记做 <span class="math notranslate nohighlight">\({h} \notin B\)</span> 。</p>
+<p>  像四大名著这样的集合有有限个元素，称为有限集；也可以通过列举法来表示这个集合。例如，可以将C的元素一一列举出来写在大括号里面</p>
+<div class="math notranslate nohighlight">
+\[C=\left\{c_{1}, c_{2}, c_{3}, c_{4}\right\}\]</div>
+<p>  如果遇到像自然数集（自然数组成的集合）有无限多个元素该如何来表示呢？通常称有无限多个元素的集合为无限集，好在自然数集有了0和1，其他的数就都知道了；也可以通过列举法来列举出有限个，其余的用省略号代替。自然数集 <span class="math notranslate nohighlight">\(N\)</span> 用列举法表示为</p>
+<div class="math notranslate nohighlight">
+\[N=\{0,1,2, \cdots, n, \cdots\}\]</div>
+<p>  同样地，用列举法可以表示正整数集（所有正整数组成的集合）</p>
+<div class="math notranslate nohighlight">
+\[N^{+}=\{1,2,3, \cdots, n, \cdots\}\]</div>
+<p>  整数集（所有整数组成的集合）</p>
+<div class="math notranslate nohighlight">
+\[Z=\{\cdots,-n, \cdots, -2,-1,0,1,2, \cdots, n, \cdots\}\]</div>
+<p>  那像有理数集（所有有理数组成的集合）就不能用列举法来表示了，因为任意两个有理数之间一定还存在有理数（比如这两个有理数之间的中间值）。将有理数的性质描述出来写在大括号中：</p>
+<div class="math notranslate nohighlight">
+\[Q=\left\{q \mid q=\frac{m}{n}, m \in Z, n \in N^{+} \text {且 } m, n \text { 互质 }\right\}\]</div>
+<p>  这种将用元素具有的性质来表示的方法叫描述法。若集合 <span class="math notranslate nohighlight">\(A\)</span> 由具有某种性质 <span class="math notranslate nohighlight">\(\Gamma\)</span> 的元素 <span class="math notranslate nohighlight">\(a\)</span> 组成，则描述法的一般形式为</p>
+<div class="math notranslate nohighlight">
+\[A=\{a \mid a \text { 具有性质 } \Gamma\}\]</div>
+<p>  同样地，可以用描述法来表示无理数集</p>
+<div class="math notranslate nohighlight">
+\[P=\left\{p \mid p \neq \frac{m}{n}, \forall m \in Z, \forall n \in N^{+} \text {且 } m, n \text { 互质 }\right\}\]</div>
+<p>  其中符号 <span class="math notranslate nohighlight">\(\forall\)</span> 表示任意的。</p>
+<p>​  同时，也可以用自然语言描述法来描述集合，比如，实数集R是所有有理数和无理数组成的集合。</p>
+<p>​  在量子计算中常常会用到复数集</p>
+<div class="math notranslate nohighlight">
+\[C=\left\{c \mid c=a+b i, a, b \in R, i^{2}=-1\right\}\]</div>
+<p>  其中 <span class="math notranslate nohighlight">\({c}= {a}+ {bi}\)</span> 表示复数（complex number）,实部 <span class="math notranslate nohighlight">\(a\)</span> 和虚部 <span class="math notranslate nohighlight">\(b\)</span> 都是实数， <span class="math notranslate nohighlight">\(i\)</span> 在这里表示一个符号并且满足 <span class="math notranslate nohighlight">\(i^{2}=-1\)</span> 。 有时，用有序数对 <span class="math notranslate nohighlight">\((a,b)\)</span> 来表示复数 <span class="math notranslate nohighlight">\({a}+b {i}\)</span> 。</p>
+<p>  两个复数 <span class="math notranslate nohighlight">\(c_{1}=a_{1}+b_{1} i\)</span> 和 <span class="math notranslate nohighlight">\(c_{2}=a_{2}+b_{2} i\)</span> 相等的充要条件是实部和虚部分别对应相等，即</p>
+<div class="math notranslate nohighlight">
+\[c_{1}=c_{2} \Leftrightarrow a_{1}=a_{2}, b_{1}=b_{2}\]</div>
+<p>​  两个复数 <span class="math notranslate nohighlight">\(c_{1}=a_{1}+b_{1} i\)</span> 和 <span class="math notranslate nohighlight">\(c_{2}=a_{2}+b_{2} i\)</span> 做和相当于实部和虚部分别对应做和，即</p>
+<div class="math notranslate nohighlight">
+\[c_{1}+c_{2}=\left(a_{1}+a_{2}\right)+\left(b_{1}+b_{2}\right) i\]</div>
+<p>​  两个复数 <span class="math notranslate nohighlight">\(c_{1}=a_{1}+b_{1} i\)</span> 和 <span class="math notranslate nohighlight">\(c_{2}=a_{2}+b_{2} i\)</span> 做差相当于实部和虚部分别对应做差，即</p>
+<div class="math notranslate nohighlight">
+\[c_{1}-c_{2}=\left(a_{1}-a_{2}\right)+\left(b_{1}-b_{2}\right) i\]</div>
+<p>  两个复数 <span class="math notranslate nohighlight">\(c_{1}=a_{1}+b_{1} i\)</span> 和 <span class="math notranslate nohighlight">\(c_{2}=a_{2}+b_{2} i\)</span> 乘法被定义为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;c_{1} c_{2}=\left(a_{1}+b_{1} i\right)\left(a_{2}+b_{2} i\right) \\ &amp;=a_{1}\left(a_{2}+b_{2} i\right)+b_{1} i\left(a_{2}+b_{2} i\right) \\ &amp;=a_{1} a_{2}+a_{1} b_{2} i+b_{1} i a_{2}+b_{1} i b_{2} i \\ &amp;=a_{1} a_{2}+a_{1} b_{2} i+b_{1} a_{2} i+b_{1} b_{2} i^{2} \end{aligned}\end{split}\]</div>
+<p>  因为 <span class="math notranslate nohighlight">\(i^{2}=-1\)</span> ，因此</p>
+<div class="math notranslate nohighlight">
+\[\left(a_{1}+b_{1} i\right)\left(a_{2}+b_{2} i\right)=\left(a_{1} a_{2}-b_{1} b_{2}\right)+\left(a_{1} b_{2}+b_{1} a_{2}\right) i\]</div>
+<p>  比如</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;(1-2 i)(-3+4 i)=1 \cdot(-3+4 i)+(-2 i)(-3+4 i) \\ &amp;=1 \cdot(-3)+1 \cdot 4 i+(-2 i) \cdot(-3)+(-2 i) \cdot(4 i) \\ &amp;=-3+4 i+6 i+8 \\ &amp;=5+10 i \end{aligned}\end{split}\]</div>
+<p>  在给出两个复数除法的定义之前，先定义复数 <span class="math notranslate nohighlight">\(c=a+b i\)</span> 的复共轭（complex conjugate）为</p>
+<div class="math notranslate nohighlight">
+\[\bar{c}=a-b i\]</div>
+<p>  或</p>
+<div class="math notranslate nohighlight">
+\[c^{*}=a-b i\]</div>
+<p>  由复数的乘法，可知</p>
+<div class="math notranslate nohighlight">
+\[c \bar{c}=(a+b i)(a-b i)=a^{2}+b^{2}\]</div>
+<p>  那么根据复共轭的定义，两个复数） <span class="math notranslate nohighlight">\(c_{1}=a_{1}+b_{1} i\)</span> 和 <span class="math notranslate nohighlight">\(c_{2}=a_{2}+b_{2} i\)</span> 除法被定义为</p>
+<div class="math notranslate nohighlight">
+\[\frac{c_{1}}{c_{2}}=\frac{c_{1} \bar{c}_{2}}{c_{2} \bar{c}_{2}}=\frac{\left(a_{1}+b_{1} i\right)\left(a_{2}-b_{2} i\right)}{\left(a_{2}+b_{2} i\right)\left(a_{2}-b_{2} i\right)}=\frac{\left(a_{1} a_{2}+b_{1} b_{2}\right)+\left(b_{1} a_{2}-a_{1} b_{2}\right) i}{a_{2}^{2}+b_{2}^{2}}\]</div>
+<p>  比如，将 <span class="math notranslate nohighlight">\(\frac{1+2 i}{3-4 i}\)</span> 写成 <span class="math notranslate nohighlight">\(a+b i\)</span> 的形式为</p>
+<div class="math notranslate nohighlight">
+\[\frac{1+2 i}{3-4 i}=\frac{1+2 i}{3-4 i} \cdot \frac{3+4 i}{3+4 i}=\frac{-5+10 i}{3^{2}+4^{2}}=-\frac{1}{5}+\frac{2}{5} i\]</div>
+</section>
+<section id="id4">
+<h2>1.2.2 集合的关系<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>​  把集合看成一个对象，那么集合之间有什么关系呢？集合是由元素组成，因此还要从元素进行分析。</p>
+<p>​  假设有两个集合 <span class="math notranslate nohighlight">\(S_{1}\)</span> 和 <span class="math notranslate nohighlight">\(S_{2}\)</span> ，如果集合 <span class="math notranslate nohighlight">\(S_{1}\)</span> 的元素都是集合 <span class="math notranslate nohighlight">\(S_{2}\)</span> 的元素，那么称 <span class="math notranslate nohighlight">\(S_{1}\)</span> 是 <span class="math notranslate nohighlight">\(S_{2}\)</span> 的子集，记作 <span class="math notranslate nohighlight">\(S_{1} \subseteq S_{2}\)</span> （读作 <span class="math notranslate nohighlight">\(S_{1}\)</span> 包含于 <span class="math notranslate nohighlight">\(S_{2}\)</span> ）或 <span class="math notranslate nohighlight">\(S_{2} \supseteq S_{1}\)</span> （读作 <span class="math notranslate nohighlight">\(S_{2}\)</span> 包含 <span class="math notranslate nohighlight">\(S_{1}\)</span> ）。比如无理数集就是实数集的子集，因为无理数集中的每一个元素都在实数集中。</p>
+<p>​  如果两个集合中的元素都相同，那么称这两个集合相等，即是说，如果集合 <span class="math notranslate nohighlight">\(S_{1}\)</span> 与集合 <span class="math notranslate nohighlight">\(S_{2}\)</span> 互为子集，那么就称集合 <span class="math notranslate nohighlight">\(S_{1}\)</span> 与 <span class="math notranslate nohighlight">\(S_{2}\)</span> 相等,记作 <span class="math notranslate nohighlight">\(S_{1}=S_{2}\)</span> 。例如，偶数集 <span class="math notranslate nohighlight">\(S_{1}\)</span> 与集合 <span class="math notranslate nohighlight">\(S_{2}=\{n \mid n % m=0, m \in Z, n \in Z, m=2\}\)</span> 相等。注：这里的%表示取余运算（取余运算是指n除以m得到的余数）。</p>
+<p>​  如果 <span class="math notranslate nohighlight">\(S_{1} \subseteq S_{2}\)</span> 且 <span class="math notranslate nohighlight">\(S_{1} \neq S_{2}\)</span> ，那么称 <span class="math notranslate nohighlight">\(S_{1}\)</span> 是 <span class="math notranslate nohighlight">\(S_{2}\)</span> 的真子集，记作 <span class="math notranslate nohighlight">\(S_{1} \subset S_{2}\)</span> （读作 <span class="math notranslate nohighlight">\(S_{1}\)</span> 真包含于 <span class="math notranslate nohighlight">\(S_{2}\)</span> ）或 <span class="math notranslate nohighlight">\(S_{1} \subset S_{2}\)</span> （读作 <span class="math notranslate nohighlight">\(S_{2}\)</span> 真包含 <span class="math notranslate nohighlight">\(S_{1}\)</span> ）。比如， <span class="math notranslate nohighlight">\(Q \subset R\)</span> 。</p>
+<p>  通常，没有元素的集合称为空集，记作 <span class="math notranslate nohighlight">\(\varnothing\)</span> 。比如，由既是有理数又是无理数的实数为元素组成的集合。</p>
+</section>
+<section id="id5">
+<h2>1.2.3 集合的运算<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>​  类似于数的运算，集合也有运算规则。由于集合是具有共同特征事物的全体，因此会用到将两个集合  <span class="math notranslate nohighlight">\(S_{1}\)</span> 与  <span class="math notranslate nohighlight">\(S_{2}\)</span> 共同的部分提取出来，这就是取两个集合的交集。换句话说，由所有既属于  <span class="math notranslate nohighlight">\(S_{1}\)</span> 又属于  <span class="math notranslate nohighlight">\(S_{2}\)</span> 的元素组成的集合称为  <span class="math notranslate nohighlight">\(S_{1}\)</span> 与  <span class="math notranslate nohighlight">\(S_{2}\)</span> 的交集（简称交），记作  <span class="math notranslate nohighlight">\(S_{1} \cap S_{2}\)</span> 。用描述法表示为</p>
+<div class="math notranslate nohighlight">
+\[S_{1} \cap S_{2}=\left\{\mathrm{s} \mid \mathrm{s} \in S_{1} \text { 且 } \mathrm{s} \in S_{2}\right\}\]</div>
+<p>  比如，有理集  <span class="math notranslate nohighlight">\(Q\)</span> 与无理数集  <span class="math notranslate nohighlight">\(P\)</span> 的交集，  <span class="math notranslate nohighlight">\(Q \cap P=\varnothing\)</span> .</p>
+<p>  由所有属于  <span class="math notranslate nohighlight">\(S_{1}\)</span> 或者属于  <span class="math notranslate nohighlight">\(S_{2}\)</span> 的元素组成的集合称为  <span class="math notranslate nohighlight">\(S_{1}\)</span> 与  <span class="math notranslate nohighlight">\(S_{2}\)</span> 的并集 (简称并)，记作  <span class="math notranslate nohighlight">\(S_{1} \cup S_{2}\)</span> ，即</p>
+<div class="math notranslate nohighlight">
+\[S_{1} \cup S_{2}=\left\{s \mid s \in S_{1} \text { 或 } s \in S_{2}\right\}\]</div>
+<p>  比如，有理集  <span class="math notranslate nohighlight">\(Q\)</span> 与无理数集  <span class="math notranslate nohighlight">\(P\)</span> 的并集</p>
+<div class="math notranslate nohighlight">
+\[Q \cup P=\mathrm{R}\]</div>
+<p>  由所有属于  <span class="math notranslate nohighlight">\(S_{1}\)</span> 而不属于  <span class="math notranslate nohighlight">\(S_{2}\)</span> 的元素组成的集合称为  <span class="math notranslate nohighlight">\(S_{1}\)</span> 与  <span class="math notranslate nohighlight">\(S_{2}\)</span> 的差集 (简称差)，记作  <span class="math notranslate nohighlight">\(S_{1} \backslash S_{2}\)</span> ，即</p>
+<div class="math notranslate nohighlight">
+\[S_{1} \backslash S_{2}=\left\{s \mid s \in S_{1} \text { 且 } s \notin S_{2}\right\}\]</div>
+<p>  比如，有理集  <span class="math notranslate nohighlight">\(Q\)</span> 与无理数集  <span class="math notranslate nohighlight">\(P\)</span> 的差集</p>
+<div class="math notranslate nohighlight">
+\[Q \backslash P=Q\]</div>
+<p>  差集的一种特殊情况：当  <span class="math notranslate nohighlight">\(S_{1}\)</span> 为所研究问题的最大集合时，所要研究的其他集合  <span class="math notranslate nohighlight">\(S_{2}\)</span> 都是  <span class="math notranslate nohighlight">\(S_{1}\)</span> 的子集，称集合  <span class="math notranslate nohighlight">\(S_{1}\)</span> 为全集，称  <span class="math notranslate nohighlight">\(S_{1} \backslash S_{2}\)</span> 为  <span class="math notranslate nohighlight">\(S_{2}\)</span> 的补集或余集，记作  <span class="math notranslate nohighlight">\(S_{2}^{c}\)</span> 。</p>
+<p>  比如，在复数集  <span class="math notranslate nohighlight">\(C\)</span> 中，实数集  <span class="math notranslate nohighlight">\(R\)</span> 的补集为</p>
+<div class="math notranslate nohighlight">
+\[R^{c}=\{x \mid x=a+b \cdot i, a \in R, b \in R \text { 且 } b \neq 0\}\]</div>
+<p>​  除了集合之间的交、并和差运算之外, 还有一种常用的生成新集合的方式-直积或笛卡尔 (Descartes) 积。设  <span class="math notranslate nohighlight">\(X\)</span> 、 <span class="math notranslate nohighlight">\(Y\)</span> 是任意两个集合, 在集合X中任意取一个元素  <span class="math notranslate nohighlight">\(x\)</span> , 在集合Y中任意取一个元素y, 组成一个有序对  <span class="math notranslate nohighlight">\((\mathrm{x}, \mathrm{y})\)</span> ，再把这样大的有序对作为新的元素，它们全体组成集合称为集合  <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> 与集合  <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> 的直积，记作  <span class="math notranslate nohighlight">\(X \times Y\)</span> , 即</p>
+<div class="math notranslate nohighlight">
+\[X \times Y=\{(x, y) \mid x \in X \text { 且 } y \in Y\}\]</div>
+<p>  比如，  <span class="math notranslate nohighlight">\(C \times C=\{(x, y) \mid x \in C\)</span> , <span class="math notranslate nohighlight">\(y \in C}\\)</span> 常记为  <span class="math notranslate nohighlight">\(C^{2}\)</span> 。</p>
+</section>
+<section id="id6">
+<h2>1.2.4 集合的运算法则<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>​  类似于数的运算法则，集合也有自己的运算法则。集合的交、并和补运算满足以下法则。</p>
+<p>假设有任意的三个集合  <span class="math notranslate nohighlight">\(X\)</span> 、 <span class="math notranslate nohighlight">\(Y\)</span> 、 <span class="math notranslate nohighlight">\(Z\)</span> ， 则有以下法则：</p>
+<ol class="arabic simple">
+<li><p>交换律  <span class="math notranslate nohighlight">\(X \cup Y=Y \cup X\)</span> ,  <span class="math notranslate nohighlight">\(\quad X \cap Y=Y \cap X\)</span> ;</p></li>
+<li><p>结合律  <span class="math notranslate nohighlight">\((X \cup Y) \cup Z=X \cup(Y \cup Z)\)</span> , <span class="math notranslate nohighlight">\((X \cap Y) \cap Z=X \cap(Y \cap Z)\)</span> ;</p></li>
+<li><p>分配律  <span class="math notranslate nohighlight">\((X \cup Y) \cap Z=(X \cap Z) \cup(Y \cap Z)\)</span> ， <span class="math notranslate nohighlight">\((X \cap Y) \cup Z=(X \cup Z) \cap(Y \cup Z)\)</span> ;</p></li>
+<li><p>对偶律  <span class="math notranslate nohighlight">\((X \cup Y)^{c}=X^{c} \cap Y^{c}\)</span> , <span class="math notranslate nohighlight">\((X \cap Y)^{c}=X^{c} \cup Y^{c}\)</span> .</p></li>
+</ol>
+<p>  若对这些规则的证明感兴趣, 可以通过集合相等的定义来证明。</p>
+</section>
+<section id="id7">
+<h2>1.2.5 映射<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>​  上面讲述了集合, 然而有的集合之间并不是完全孤立的，而是有对应关系的。比如，中国四大名著的作者组成的集合A与四大名著B之间存在对应关系。</p>
+<p>​  ​将这种普遍的共性抽象出来，设 <span class="math notranslate nohighlight">\(D\)</span> 、 <span class="math notranslate nohighlight">\(E\)</span> 是两个非空集合，如果存在一个对应法则  <span class="math notranslate nohighlight">\(\mathrm{f}\)</span> , 使得对  <span class="math notranslate nohighlight">\(\mathrm{D}\)</span> 中每个元素  <span class="math notranslate nohighlight">\(x\)</span> , 按照对应法则  <span class="math notranslate nohighlight">\(f\)</span> , 在E中有唯一确定的元素  <span class="math notranslate nohighlight">\(y\)</span> 与  <span class="math notranslate nohighlight">\(x\)</span> 对应，则称 <span class="math notranslate nohighlight">\(f\)</span> 为从  <span class="math notranslate nohighlight">\(D\)</span> 到 <span class="math notranslate nohighlight">\(E\)</span> 的映射  <span class="math notranslate nohighlight">\([1, 3]\)</span>, 记作</p>
+<div class="math notranslate nohighlight">
+\[f: D \rightarrow E\]</div>
+<p>​  其中y称为元素  <span class="math notranslate nohighlight">\(x\)</span> 在映射  <span class="math notranslate nohighlight">\(f\)</span> 下的像，并记作  <span class="math notranslate nohighlight">\(f(x)\)</span> ，即  <span class="math notranslate nohighlight">\(y=f(x)\)</span> ，</p>
+<p>​  而元素 <span class="math notranslate nohighlight">\(x\)</span> 称为元素 <span class="math notranslate nohighlight">\(y\)</span> 在映射 <span class="math notranslate nohighlight">\(f\)</span> 下的一个原像; 集合 <span class="math notranslate nohighlight">\(D\)</span> 为映射的定义域；集合E称为映射的陪域;  <span class="math notranslate nohighlight">\(D\)</span> 中所有元素的像所组成的集合称为映射的值域，记作  <span class="math notranslate nohighlight">\(R_{f}\)</span> 或  <span class="math notranslate nohighlight">\(f(D)\)</span> ，即</p>
+<div class="math notranslate nohighlight">
+\[R_{f}=f(D)=\{f(x) \mid x \in D\}=\{y \in E \mid \exists x \in D, f(x)=y\}\]</div>
+<p>​  其中符号 <span class="math notranslate nohighlight">\(\exists\)</span> 表示存在，可以看出，f的值域是f的陪域的子集。</p>
+<p>​  集合D到自身一个映射，通常称为D上的一个变换。集合D到数集E的一个映射，常称为从D到E的函数。</p>
+<p>​  如果映射f与映射g的定义域、陪域、对应法则分别对应相同，那么称这两个映射相等。</p>
+<p>​  映射 <span class="math notranslate nohighlight">\(f: D \rightarrow D\)</span> ​如果把D中每一个元素对应到它自身，即</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\forall x \in D\)</span> ，有 <span class="math notranslate nohighlight">\(f(x)=x\)</span> ，</p>
+</div></blockquote>
+<p>​  那么称f为恒等映射（或D上的恒等变换），记作 <span class="math notranslate nohighlight">\(I_{D}\)</span> 。</p>
+<p>​  先后施行映射 <span class="math notranslate nohighlight">\(g: \mathrm{S}{1} \rightarrow S{2}\)</span> 和 <span class="math notranslate nohighlight">\(f: S_{2} \rightarrow S_{3}\)</span> ，得到 <span class="math notranslate nohighlight">\(S_{1}\)</span> 到 <span class="math notranslate nohighlight">\(S_{3}\)</span> 的一个映射，称为 <span class="math notranslate nohighlight">\(f\)</span> 与 <span class="math notranslate nohighlight">\(g\)</span> 的合成（或乘积），记作 <span class="math notranslate nohighlight">\(fg\)</span> 。即</p>
+<div class="math notranslate nohighlight">
+\[(f g)(x) \equiv f(g(x)), \forall x \in S_{1}\]</div>
+<p>​  定理 映射的乘法适合结合律。即如果</p>
+<div class="math notranslate nohighlight">
+\[h: S_{1} \rightarrow S_{2}, g: \mathrm{S}_{2} \rightarrow S_{3}, f: S_{3} \rightarrow S_{4}\]</div>
+<p>​  那么</p>
+<div class="math notranslate nohighlight">
+\[f(g h)=(f g) h\]</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html" class="btn btn-neutral float-left" title="5.4 将量子程序编译到不同的量子芯片上" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html" class="btn btn-neutral float-right" title="1.3 向量空间" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.7 Shor分解算法 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.1 利用QPanda测试量子系统噪声" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html" />
+    <link rel="prev" title="4.6 VQE算法" href="4.6VQE%E7%AE%97%E6%B3%95.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.7 Shor分解算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">4.7.1 加密与解密</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rsa">4.7.2 RSA加密算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.7.3 量子逻辑电路及量子傅里叶变换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.7.4 算法原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyqpanda">4.7.5 pyQPanda中的示例</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>4.7 Shor分解算法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/4.7Shor分解算法.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="shor">
+<h1>4.7 Shor分解算法<a class="headerlink" href="#shor" title="Permalink to this heading">¶</a></h1>
+<p>  Shor算法，又叫质因数分解算法，是以数学家Peter·Shor命名的。1994年，Shor针对“给定一个整数 <span class="math notranslate nohighlight">\(N\)</span> ，找出它的质因数”这道题，发明了破解RSA加密的量子算法。在一个量子计算机上面，要分解整数 <span class="math notranslate nohighlight">\(N\)</span> ，Shor算法的运作需要多项式时间（时间是 <span class="math notranslate nohighlight">\(\log N\)</span> 的某个多项式这么长， <span class="math notranslate nohighlight">\(\log N\)</span> 在这里的意义是输入的文件长度）。更精确的说，这个算法花费 <span class="math notranslate nohighlight">\(\mathrm{O}((\log N)^3)\)</span> 的时间，展示出质因数分解问题可以使用量子计算机以多项式时间解出，因此在复杂度类BQP里面。这比起传统已知最快的因数分解算法:普通数域筛选法，其花费次指数时间 – 大约 <span class="math notranslate nohighlight">\(\mathrm{O}\left(e^{1.92(\log N)^{1 / 3}(\log \log N) ^{2 / 3}}\right)\)</span> ，还要快了一个指数的差异。</p>
+<section id="id1">
+<h2>4.7.1 加密与解密<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>  自古以来，加密和解密都伴随着人类的发展。中国军事谋略中也常听到知己知彼，百战不殆的说法；在军事上，信息的安全保密被认为是取得胜利的关键因素；在生活中，也经常可以看到使用智慧找到解开密码的方法（方法就是密码学里的密钥），从而解开那些千奇百怪的密文。</p>
+<p>  密码学，主要分为古典密码学和现代密码学。对于计算机时代，主要讨论现代加密方式，就是基于二进制编码信息的现代密码学。</p>
+<p><strong>对称加密（symmetric encryption）</strong></p>
+<p>  采用单钥密码系统的加密方法，同一个密钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单钥加密。通俗的说，就是将明文（原本的信息）通过某种方式打乱，使得加密后的信息与原文不相同，但是这种打乱方式有一定的规律，使用密钥进行加密。</p>
+<p>  所谓对称，就是采用这种加密方法的双方使用方式用同样的密钥进行加密和解密。密钥是控制加密及解密过程的指令；算法是一组规则，规定如何进行加密和解密。</p>
+<p>  例如：Alice要给Bob发一段信息，需要用密钥给信息加密，而Bob接收信息时候需要利用相同的密钥，才可以解密信息。如图4.7.1：</p>
+<img alt="../_images/4.7.1.png" class="align-center" src="../_images/4.7.1.png" />
+<p class="centered">
+<strong>图4.7.1 对称加密</strong></p><p><strong>非对称加密（Asymmetric encryptio）</strong></p>
+<p>  非对称加密算法需要两个密钥来进行加密和解密，这两个密钥是公开密钥（public key，简称公钥）和私有密钥（private key，简称私钥）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。如图4.7.2所示：</p>
+<img alt="../_images/4.7.2.png" class="align-center" src="../_images/4.7.2.png" />
+<p class="centered">
+<strong>图4.7.2 非对称加密</strong></p></section>
+<section id="rsa">
+<h2>4.7.2 RSA加密算法<a class="headerlink" href="#rsa" title="Permalink to this heading">¶</a></h2>
+<p>  RSA加密算法是1977年由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）一起提出的。该算法是著名的非对称加密算法，它是数论与计算机科学相结合产物。目前，很多加密方式都采用这个原理，而Shor算法所威胁的正是RSA的加密方式.</p>
+<p>  RSA是Internet上的标准加密算法。该方法是公知的，但非常难以破解。其核心是它使用两个密钥进行加密，公钥是公开的，客户端使用它来加密随机会话密钥；截获加密密钥的任何人都必须使用第二个密钥（私钥）对其进行解密；否则，得到的信息是没有任何含义。而会话密钥解密后，服务器使用它以更快的算法加密和解密更多消息。因此，只要保证私钥安全，通信就是安全的。</p>
+<p>  实际上，RSA算法，其核心的思想并不困难，它使用的是，两个质数相乘容易，但是反过来分解成两个质数相乘却非常困难的规则来构建。</p>
+<img alt="../_images/4.7.3.png" class="align-center" src="../_images/4.7.3.png" />
+<p class="centered">
+<strong>图4.7.3 数字相乘与数字分解</strong></p><p>  例如图4.7.3，求这串数字相乘，对于经典计算机来说，非常的简单。但是如果将这串数字分解为两个质数相乘，就非常困难。</p>
+<p><strong>RSA算法规则</strong></p>
+<p>  首先要使用概率算法来验证随机产生的大的整数是否是质数，这样的算法比较快而且可以消除掉大多数非质数。假如有一个数通过了这个测试的话，那么要使用一个精确的测试来保证它的确是一个质数。</p>
+<p>  首先，生成两个大的质数  <span class="math notranslate nohighlight">\(\mathrm{p}\)</span> 和  <span class="math notranslate nohighlight">\(\mathrm{q}\)</span> ; 然后计算  <span class="math notranslate nohighlight">\(\mathrm{n}=\mathrm{p} \times \mathrm{q}\)</span> ， 以及  <span class="math notranslate nohighlight">\(\varphi=(p-1) \times(q-1)\)</span> ; 再选择一个随机数 <span class="math notranslate nohighlight">\(1&lt;e&lt;\varphi\)</span> , 那么， <span class="math notranslate nohighlight">\(\text{gcd}(e, \varphi)=1\)</span> ; 最后计算唯一的整数  <span class="math notranslate nohighlight">\(1&lt;d&lt;\varphi\)</span> , 那么: <span class="math notranslate nohighlight">\(e \times d=1(\bmod \varphi)\)</span> ; 就可以生成  <span class="math notranslate nohighlight">\((d, n)\)</span> 是私钥;  <span class="math notranslate nohighlight">\((e, n)\)</span> 用区间  <span class="math notranslate nohighlight">\([0, n-1]\)</span> 的整数来表示; 通过加密得到数据 <span class="math notranslate nohighlight">\(c\)</span> ，然后发送 <span class="math notranslate nohighlight">\(c\)</span>。</p>
+<div class="math notranslate nohighlight">
+\[c=m^{e} \bmod n\]</div>
+<p>  那么，解密钥则是:</p>
+<div class="math notranslate nohighlight">
+\[m=c^{d} \bmod n\]</div>
+<p><strong>GCD算法</strong></p>
+<p>  两个整数的最大公约数等于其中较小的那个数和两数相除余数的最大公约数；最大公约数缩写为GCD；GCD算法是最大公约数算法的简称；例如 <span class="math notranslate nohighlight">\(\text{gcd}(\mathrm{N}{1}, \mathrm{~N}{2})\)</span> ，就是求  <span class="math notranslate nohighlight">\(\mathrm{N}{1}, \mathrm{~N}{2}\)</span> 的最大公因数算法，如果  <span class="math notranslate nohighlight">\(\text{gcd}(\mathrm{N}{1}, \mathrm{~N}{2})=1\)</span> ，则称  <span class="math notranslate nohighlight">\(\mathrm{N}{1}, \mathrm{~N}{2}\)</span> 互质。</p>
+<p>  例，求  <span class="math notranslate nohighlight">\(\text{gcd}(12, 24)\)</span> ?</p>
+<p>  答: 数字 24 可以表示为几组不同正整数的乘积:</p>
+<div class="math notranslate nohighlight">
+\[24=1 \times 24=2 \times 12=3 \times 8=4 \times 6\]</div>
+<p>  所以，24 的正因数为: 1,2,3,4,6,8,12,24 。</p>
+<p>  数字 12 可以表示为几组不同正整数的乘积:</p>
+<div class="math notranslate nohighlight">
+\[12=1 \times 12=2 \times 6=3 \times 4\]</div>
+<p>  所以， 12 的正因素为 1 ， 2 ， 3 ， 4 ， 6 ， 12 。</p>
+<p>  两组数中共同的元素，就是它们的公因数：1，2，3，4，6，12；其中的最大公因数是 12 ，即  <span class="math notranslate nohighlight">\(\text{gcd}(12, 24)=12\)</span> 。</p>
+<p><strong>Mod运算符</strong></p>
+<p>  Mod 运算，是求模运算符（即求余运算），是在整数运算中求一个整数  <span class="math notranslate nohighlight">\(\mathrm{x}\)</span> 除以另一 个整数  <span class="math notranslate nohighlight">\(\mathrm{y}\)</span> 的余数的运算，且不考虑运算的商。例如  <span class="math notranslate nohighlight">\(a \bmod b=c\)</span> ，表明  <span class="math notranslate nohighlight">\({a}\)</span> 除以  <span class="math notranslate nohighlight">\({b}\)</span> 余数为  <span class="math notranslate nohighlight">\({c}\)</span> 。 如下所示:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} 1 \bmod 12 &amp;=1 \\ 4 \bmod 12 &amp;=4 \\ 20 \bmod 12 &amp;=8 \\ 25 \bmod 12 &amp;=1 \end{aligned}\end{split}\]</div>
+<p>  模运算满足条件:</p>
+<div class="math notranslate nohighlight">
+\[a b \bmod N=[(\text{amod} N) \times(b \bmod N)] \bmod N\]</div>
+<p>例: 求  <span class="math notranslate nohighlight">\(5^{3} \bmod 11\)</span> ?   答:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp; 5^{3} \bmod 11 \\ =&amp; 5^{2} \times 5 \bmod 11 \\ =&amp; 25 \times 5 \bmod 11 \\ =&amp; 3 \times 5 \bmod 11 \\ =&amp; 15 \bmod 11=4 \end{aligned}\end{split}\]</div>
+<p>  那么，由此推导得出的公式为</p>
+<div class="math notranslate nohighlight">
+\[f(r)=a^{r} \bmod N\]</div>
+<p><strong>RSA加密原理</strong></p>
+<img alt="../_images/4.7.4.png" class="align-center" src="../_images/4.7.4.png" />
+<p class="centered">
+<strong>图4.7.4 RSA加密原理</strong></p><p>  RSA加密原理，就是发送方把信息进行RSA加密算法的运算，得到加密的信息进行传输，传输完成，接收方收到的加密信息需要进行解密算法的运算，才可以得出原始传输数据信息。讯息，也是明文。比如文本，有效数据之类的信息。</p>
+<p>  例：假设A=65，B=66，…，Z=90，…；怎样可以安全的把BY这个信息从上海带回合肥？</p>
+<img alt="../_images/4.7.5.png" class="align-center" src="../_images/4.7.5.png" />
+<p class="centered">
+<strong>图4.7.5 例题图</strong></p><p>  答: 由上述信息可知，运用 RSA算法，明文 BY 对应的字符串 T 是： 66,89 ；再构 造公钥和私么钥: 选取  <span class="math notranslate nohighlight">\(p=103\)</span> , <span class="math notranslate nohighlight">\(q=97\)</span> ；那么，得出公钥为  <span class="math notranslate nohighlight">\((e, n)=(1213, 9991)\)</span> , 私钥为 <span class="math notranslate nohighlight">\((d, n)=(4117, 9991)\)</span> 。 由  <span class="math notranslate nohighlight">\(\mathrm{RSA}\)</span> 加宓公式 <span class="math notranslate nohighlight">\(c=m^{e} \bmod n\)</span> ;可得:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l} C_{1}=66^{1213} \bmod 9991=8151 \\ C_{2}=89^{1213} \bmod 9991=176 \end{array}\end{split}\]</div>
+<p>  所以，最终荧回合肥的信息为 <span class="math notranslate nohighlight">\(8151\)</span> ， <span class="math notranslate nohighlight">\(176\)</span> 。</p>
+<p>  那么，最终带回合肥的信息如何解密呢?</p>
+<p>  由上述的可知，私钥为  <span class="math notranslate nohighlight">\((d, n)=(4117, 9991)\)</span> ; 再进行 RSA 解密运算  <span class="math notranslate nohighlight">\(m=c^{d} \bmod n\)</span> ； 可得</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} m_{1} &amp;=8151^{4117} \bmod 9991=66 \\ m_{2} &amp;=176^{4117} \bmod 9991=89 \end{aligned}\end{split}\]</div>
+<p>  再由题中的已知条件，就可以恢复明文为 BY。</p>
+<p><strong>Shor算法破解RSA加密问题</strong></p>
+<p>  在一个量子计算机上面，要分解整数  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> ， Shor 算法的运作需要多项式时间 ( 时间是  <span class="math notranslate nohighlight">\(\log \mathrm{N}\)</span> 的某个多项式这么长，  <span class="math notranslate nohighlight">\(\log \mathrm{N}\)</span> 在这里的意义是输入的档案长度 ) ; 更精确的说，这个算法花费  <span class="math notranslate nohighlight">\(\mathrm{O}((\log \mathrm{N}))\)</span> 的时间，展示出质因数分解问题可以使用量子计算机以多项式时间解 出，因此在复杂度类  <span class="math notranslate nohighlight">\(\mathrm{BQP}\)</span> 里面，Shor 算法比起传统已知最快的因数分解算法、普通数域筛选法还要快了一个指数的差异。</p>
+<p>  参考图4.7.6的线路图，量子部分，主要帮助寻找到周期：</p>
+<img alt="../_images/wps1126.jpg" class="align-center" src="../_images/wps1126.jpg" />
+<p class="centered">
+<strong>图4.7.6 线路图</strong></p><p>  Shor算法可以分为经典部分和量子部分，通过两个部分的相互结合，从而到到分解的目的。经典部分，主要是在传统计算机上进行运行，目前不存在已知的算法可以对RSA带来威胁；但是量子部分是需要用量子系统来处理，量子计算对RSA提供了解决方案。</p>
+<p><strong>shor算法运算流程：</strong> </p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>随机选择任意数字 <span class="math notranslate nohighlight">\(1&lt;a&lt;N\)</span> ；</p></li>
+<li><p>计算 <span class="math notranslate nohighlight">\(\text{gcd}(a, N)\)</span>。使用经典算法完成；</p></li>
+<li><p>如果  <span class="math notranslate nohighlight">\(\text{gcd}{(a}, N) \neq 1\)</span> 则返回到第一步；</p></li>
+<li><p>当 <span class="math notranslate nohighlight">\(\text{gcd}(a, N)=1\)</span> 时，构造函数 <span class="math notranslate nohighlight">\(f(x)= a^{x} \bmod N\)</span> 。 寻找最小周期  <span class="math notranslate nohighlight">\(r\)</span> ,使得 <span class="math notranslate nohighlight">\(f(x+ r)=f(x)\)</span>.（量子计算部分）；</p></li>
+<li><p>如果得到找到的 <span class="math notranslate nohighlight">\(\mathrm{r}\)</span> 是奇数，回到第1步；</p></li>
+<li><p>如果 <span class="math notranslate nohighlight">\(a^{\frac{r}{2}}=-1(\bmod N)\)</span> ，同样回到第1步，从新开始选择 <span class="math notranslate nohighlight">\(a\)</span> ；</p></li>
+<li><p>如果 <span class="math notranslate nohighlight">\(a^{\frac{r}{2}} \neq-1(\bmod N)\)</span> ，则  <span class="math notranslate nohighlight">\(\text{gcd}(a^{\frac{r}{2}} \pm 1, N)\)</span> 即为所求, 分解完成。</p></li>
+</ol>
+</div></blockquote>
+<a class="reference internal image-reference" href="../_images/4.7.7.png"><img alt="../_images/4.7.7.png" class="align-center" src="../_images/4.7.7.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.7 Shor算法运算流程</strong></p><p><strong>量子算法效能比较：</strong> </p>
+<p>  经典算法和Shor算法就这个问题的对比情况（如图4.7.8）；随着问题的增加，所需要的时间差异非常的大。</p>
+<a class="reference internal image-reference" href="../_images/4.7.8.png"><img alt="../_images/4.7.8.png" class="align-center" src="../_images/4.7.8.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.8 经典算法和Shor算法对比情况</strong></p></section>
+<section id="id2">
+<h2>4.7.3 量子逻辑电路及量子傅里叶变换<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>  量子逻辑电路,分为经典不可逆逻辑电路和经典可逆逻辑电路。</p>
+<p><strong>经典不可逆逻辑电路</strong></p>
+<p>  对于经典计算，可建立抽象的计算模型。如图4.7.9所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.9.png"><img alt="../_images/4.7.9.png" class="align-center" src="../_images/4.7.9.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.9 计算模型</strong></p><p>  因为有信息擦出，从而导致，输出不可复原输入；这种不可复原输入的计算模型被称为不可逆计算。</p>
+<p>  例，假设这里有个黑盒子，给 <span class="math notranslate nohighlight">\(a\)</span> ,  <span class="math notranslate nohighlight">\(b\)</span> 做模运算，输入 <span class="math notranslate nohighlight">\({a=1}\)</span> ,  <span class="math notranslate nohighlight">\({b=0}\)</span> ，进行模运算后，得出结果为： <span class="math notranslate nohighlight">\(x=1\)</span> ，如图4.7.10所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.10.png"><img alt="../_images/4.7.10.png" class="align-center" src="../_images/4.7.10.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.10 模运算</strong></p><p>  但是，假设已知  <span class="math notranslate nohighlight">\(x=1\)</span> ，返回去是不能求出  <span class="math notranslate nohighlight">\(a\)</span> 和  <span class="math notranslate nohighlight">\(b\)</span> 的；因为 <span class="math notranslate nohighlight">\(a\)</span> 和  <span class="math notranslate nohighlight">\(b\)</span> 都有可能为1。由此得出，输出不可复原输入，是不可逆计算。</p>
+<p><strong>经典可逆逻辑电路</strong></p>
+<p>  对于经典计算，可建立抽象的计算模型。如图4.7.11所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.11.png"><img alt="../_images/4.7.11.png" class="align-center" src="../_images/4.7.11.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.11 计算模型</strong></p><p>  Bennett已经证明了任何经典不可逆计算都可以转化为可逆计算的形式；可逆计算的优点，是可以通过逆计算恢复原始输入。</p>
+<p><strong>量子线路</strong></p>
+<p>  在量子计算里，酉变换构成的线路是可逆的，如图4.7.12所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.12.png"><img alt="../_images/4.7.12.png" class="align-center" src="../_images/4.7.12.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.12 量子可逆线路</strong></p><p>  经典线路不可逆计算可以通过特殊的方式转换为量子线路；通过构建黑盒子 <span class="math notranslate nohighlight">\(U_{a}\)</span> 来完成可逆计算，使用  <span class="math notranslate nohighlight">\(U_{a}^{-1}\)</span> 可以复原  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|a\rangle\)</span> 。</p>
+<p>  量子可逆逻辑电路是构建量子计算机的基本单元，量子可逆逻辑电路综合就是根据电路功能,以较小的量子代价自动构造量子可逆逻辑电路。</p>
+<p><strong>量子加法器</strong></p>
+<p>  经典加法器的模型，包括了三个输入和两个输出；其中输出与输入的对应关系是：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c} s_{i}=a_{i} \oplus b_{i} \oplus c_{i} \\ c_{i+1}=a_{i} b_{i} \oplus b_{i} c_{i} \oplus a_{i} c_{i} \end{array}\end{split}\]</div>
+<p>  模型如图4.7.13所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.13.png"><img alt="../_images/4.7.13.png" class="align-center" src="../_images/4.7.13.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.13 经典加法器模型</strong></p><p>  其对应的真值表，如表4.7.1所示：</p>
+<p class="centered">
+<strong>表4.7.1 经典加法器真值表</strong></p><img alt="../_images/表4.7.1.png" class="align-center" src="../_images/表4.7.1.png" />
+<p>  由上述可知，假设给定任意的输入  <span class="math notranslate nohighlight">\(a_{i}\)</span> ,  <span class="math notranslate nohighlight">\(b_{i}\)</span> ,  <span class="math notranslate nohighlight">\(c_{i}\)</span> ，都能有对应的值输出; 并且它们都 满足上述的加法条件。</p>
+<p><strong>量子加法器假想模型</strong></p>
+<p>  经典加法器的模型，实际上是一个不可逆的变换，因为它有三个输入两个输出，不可实现复原操作。所以量子加法器的模型需要去构建一个酉变换，也就是可逆操作；它可以通过一次计算，同时得到  <span class="math notranslate nohighlight">\(s_{i}\)</span> 和  <span class="math notranslate nohighlight">\(c_{i+1}\)</span> 。如图4.7.14：</p>
+<img alt="../_images/4.7.14.png" class="align-center" src="../_images/4.7.14.png" />
+<p class="centered">
+<strong>图4.7.14 量子加法器模型</strong></p><p>  相对于经典加法器, 它的三个输入没有发生变化，只是输出由之前的  <span class="math notranslate nohighlight">\(s_{i}\)</span> 和  <span class="math notranslate nohighlight">\(c_{i+1}\)</span> ， 多了一个输出  <span class="math notranslate nohighlight">\(a_{i}\)</span> 。 那么，输出与输入的对应关系是;</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c} s_{i}=a_{i} \oplus b_{i} \oplus c_{i} \\ c_{i+1}=a_{i} b_{i} \oplus b_{i} c_{i} \oplus a_{i} c_{i} \end{array}\end{split}\]</div>
+<p>  由此，可以发现其对应关系是没有发生变化的。</p>
+<p>  通过上述假想模型，给量子加法器提供了很好的思考方向；量子加法器里包含两个重要的模块，MAJ模块和UMA模块。</p>
+<img alt="../_images/4.7.15.png" class="align-center" src="../_images/4.7.15.png" />
+<p class="centered">
+<strong>图4.7.15 MAJ模块和UMA模块</strong></p><p>  两个模块是构建量子加法器的基本组件；是作为量子加法器最重要的核心单元之一。</p>
+<p>  假设给定MAG和UMA模块后，给定i=4，那么可以看到，它呈现一种递进关系，如图4.7.16：</p>
+<img alt="../_images/4.7.16.png" class="align-center" src="../_images/4.7.16.png" />
+<p class="centered">
+<strong>图4.7.16 递进关系</strong></p><p>  给定一个初始辅助比特  <span class="math notranslate nohighlight">\(c_{0}\)</span> 和 0 ; 重要的是比如  <span class="math notranslate nohighlight">\(a_{0}\)</span> 的输出  <span class="math notranslate nohighlight">\(a_{0+1}\)</span> ，那么  <span class="math notranslate nohighlight">\(a_{0+1}\)</span> 就会作下一个模块的输入，依次递进；然后这个控制位，主要是用来判断是否有进位项；最后再通过一系列UMA模块的操作，从而将比特复原，给下一次反复使用。</p>
+<p><strong>MAJ单元</strong></p>
+<p>  MAJ 单元包含三个输入:  <span class="math notranslate nohighlight">\(a_{i}, b_{i}, c_{i}\)</span> , 以及三个输出:  <span class="math notranslate nohighlight">\(c_{i+1}\)</span> , <span class="math notranslate nohighlight">\(a_{i} \oplus b_{i}\)</span> , <span class="math notranslate nohighlight">\(a_{i} \oplus c_{i}\)</span> 。</p>
+<a class="reference internal image-reference" href="../_images/4.7.17.png"><img alt="../_images/4.7.17.png" class="align-center" src="../_images/4.7.17.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.17 MAJ单元</strong></p><p>  那么， <span class="math notranslate nohighlight">\(c_{i+1}\)</span> 在这里被定义为三个输入两两相乘相加的结果，通过转换可以得到如下等价形式:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} c_{i+1} &amp;=a_{i} b_{i} \oplus b_{i} c_{i} \oplus c_{i} a_{i} \\ &amp;=a_{i} \oplus a_{i} a_{i} \oplus a_{i} b_{i} \oplus b_{i} c_{i} \oplus c_{i} a_{i} \\ &amp;=a_{i} \oplus\left(a_{i} \oplus c_{i}\right)\left(a_{i} \oplus b_{i}\right) \end{aligned}\end{split}\]</div>
+<p><strong>量子逻辑门</strong></p>
+<p>  在量子计算，特别是量子线路的计算模型里面，一个量子逻辑门是一个基本的、操作一个小数量量子位元的量子线路。它是量子线路的基础，就像传统逻辑门跟一般数位线路之间的关系，与多数传统逻辑门不同，量子逻辑门是可逆的； 然而，传统的计算可以只使用可逆的门表示。</p>
+<p><span class="math notranslate nohighlight">\(CNOT\)</span> 门，对应两个输入 <span class="math notranslate nohighlight">\(a\)</span> ， <span class="math notranslate nohighlight">\(b\)</span> ； <span class="math notranslate nohighlight">\(CNOT\)</span> 门具备这样的操作关系，如图4.7.18：</p>
+<a class="reference internal image-reference" href="../_images/4.7.18.png"><img alt="../_images/4.7.18.png" class="align-center" src="../_images/4.7.18.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.18 CNOT门</strong></p><p>  其中输入a为控制位，b为受控位；a不发生变化，如a为1时，b发生改变，得到结果为 <span class="math notranslate nohighlight">\(a \oplus b\)</span> 。</p>
+<p>   <span class="math notranslate nohighlight">\(Toffoli\)</span> 门，对应的是两个控制位分别是 <span class="math notranslate nohighlight">\(a\)</span> , <span class="math notranslate nohighlight">\(b\)</span> ，那么  <span class="math notranslate nohighlight">\(c\)</span> 为受控位；输出的分别是  <span class="math notranslate nohighlight">\(a\)</span> ,  <span class="math notranslate nohighlight">\(b\)</span> , <span class="math notranslate nohighlight">\(c \oplus a b_{}\)</span> 。如图4.7.19：</p>
+<a class="reference internal image-reference" href="../_images/4.7.19.png"><img alt="../_images/4.7.19.png" class="align-center" src="../_images/4.7.19.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.19 Toffoli门</strong></p><p>  基于这样基本的一个构造方式，给定三个输入；然后从上到下，逐个去实现，最后可以完整的推导出MAJ模块的实际构造情况，如图4.7.20所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.20.png"><img alt="../_images/4.7.20.png" class="align-center" src="../_images/4.7.20.png" style="width: 800px;" /></a>
+<p class="centered">
+<strong>图4.7.20 MAJ模块的实际构造</strong></p><p>  输出结果与MAJ模块输出相同：</p>
+<a class="reference internal image-reference" href="../_images/4.7.21.png"><img alt="../_images/4.7.21.png" class="align-center" src="../_images/4.7.21.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.21 输出结果</strong></p><p><strong>UMA单元</strong></p>
+<p>  UMA单元同样需要  <span class="math notranslate nohighlight">\(CNOT\)</span> 门和  <span class="math notranslate nohighlight">\(Toffoli\)</span> 门来实现构造，不过UMA单元使用MAJ单元的输出作为输入，如图4.7.22：</p>
+<a class="reference internal image-reference" href="../_images/4.7.22.png"><img alt="../_images/4.7.22.png" class="align-center" src="../_images/4.7.22.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.22 UMA单元</strong></p><a class="reference internal image-reference" href="../_images/4.7.23.png"><img alt="../_images/4.7.23.png" class="align-center" src="../_images/4.7.23.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.23 CNOT门和Toffoli门</strong></p><a class="reference internal image-reference" href="../_images/4.7.24.png"><img alt="../_images/4.7.24.png" class="align-center" src="../_images/4.7.24.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.24 UMA单元使用MAJ单元的输出作为输入</strong></p><p>  最后可以完整的推导出UMA模块的实际构造情况，输出结果如图4.7.25：</p>
+<a class="reference internal image-reference" href="../_images/4.7.25.png"><img alt="../_images/4.7.25.png" class="align-center" src="../_images/4.7.25.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.25 输出结果</strong></p><p><strong>量子加法器电路</strong></p>
+<p>  从上述的两个模块中，可以把完整的时序电路绘画出来，如图4.7.26：</p>
+<a class="reference internal image-reference" href="../_images/4.7.26.png"><img alt="../_images/4.7.26.png" class="align-center" src="../_images/4.7.26.png" style="width: 800px;" /></a>
+<p class="centered">
+<strong>图4.7.26 完整的时序电路</strong></p><p>  量子加法器电路其实是可以优化的，可以采用更少的逻辑门来实现相同的结果。在上图中，如果要完成  <span class="math notranslate nohighlight">\(n\)</span> 位的加法器，则需要长度为 <span class="math notranslate nohighlight">\(6n+1\)</span> 的时序电路。</p>
+<p><strong>快速傅里叶变换（FFT）</strong></p>
+<p>  快速傅里叶变换是快速计算序列的离散傅里叶变换（DFT）或其逆变换的方法。如图4.7.27所示，傅里叶变换是一种积分变换，将信号从频域转换到时域的表示。</p>
+<a class="reference internal image-reference" href="../_images/4.7.27.png"><img alt="../_images/4.7.27.png" class="align-center" src="../_images/4.7.27.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.27 傅里叶变换</strong></p><p>  傅里叶变换可以将一个时域信号转换成在不同频率下对应的振幅及相位，其频谱就是时域信号在频域下的表现，而逆傅里叶变换可以将频谱再转换回时域的信号。</p>
+<p>  例：在图4.7.28的两个区域中，存在哪些联系和关系？</p>
+<a class="reference internal image-reference" href="../_images/4.7.28.png"><img alt="../_images/4.7.28.png" class="align-center" src="../_images/4.7.28.png" style="width: 600px;" /></a>
+<p class="centered">
+<strong>图4.7.28 两个区域</strong></p><p>  时域中的周期和频率中的周期成反比关系; 如果函数在时域中具有周期  <span class="math notranslate nohighlight">\(r\)</span> ，则变换函 数在频域中具有  <span class="math notranslate nohighlight">\(\frac{1}{r}\)</span> 的周期变化。</p>
+<p>  那么，快速傅里叶变换在数学上的表达形式为：</p>
+<div class="math notranslate nohighlight">
+\[y_{k}=\sum_{j=0}^{N-1} e^{\frac{2 \pi i k j}{N}} x_{j}\]</div>
+<p>  其中  <span class="math notranslate nohighlight">\(\mathrm{x}_{\mathrm{j}}\)</span> 是输入，  <span class="math notranslate nohighlight">\(\mathrm{y}_{\mathrm{k}}\)</span> 是输出；由此可见，如果用量子计算中的一些相位门来表达傅里叶变换，以  <span class="math notranslate nohighlight">\(e\)</span> 为底，在量子计算中的表达是:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; e^{i \theta} \end{array}\right]\left[\begin{array}{c} \alpha_{0} \\ \alpha_{1} \end{array}\right]\end{split}\]</div>
+<p><strong>量子傅里叶变换（QFT）</strong></p>
+<p>  量子傅里叶变换(quantum Fourier transform)是一种离散傅里叶变换，将原式分解成更为简单的多个幺正矩阵的积。</p>
+<p>  量子傅里叶变换实际上是作用在  <span class="math notranslate nohighlight">\(C^{2 n}\)</span> 空间上的离散傅立叶变换。离散傅立叶变换是作用在复  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 维欧氏空间  <span class="math notranslate nohighlight">\(C^{N}\)</span> 上的一个酉变换，当输入为复向量  <span class="math notranslate nohighlight">\(\left(x_{0}, x_{1}, \cdots, x_{N-1}\right)\)</span> 时，其输出为复向量  <span class="math notranslate nohighlight">\(\left(y_{0}, y_{1}, \cdots, y_{N-1}\right)\)</span> ,其中:</p>
+<div class="math notranslate nohighlight">
+\[y_{k}=\frac{1}{\sqrt{N}} \sum_{i=0}^{N-1} x_{j} e^{\frac{2 \pi j i k}{N}}(k=0,1, L, N-1)\]</div>
+<p>  由上式得出：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(y_{0}, y_{1}, \cdots, y_{N-1}\right)=\left(x_{0}, x_{1}, \cdots, x_{N-1}\right)\left[\begin{array}{cccc} 1 &amp; 1 &amp; \cdots &amp; 1 \\ 1 &amp; e^{\frac{2 \pi j}{N}} &amp; \cdots &amp; e^{\frac{2 \pi(N-1) j}{N}} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 1 &amp; e^{\frac{2 \pi(N-1) j}{N}} &amp; \cdots &amp; \mathrm{e}^{\frac{2 \pi(N-1)^{2}j}{N}} \end{array}\right] \frac{1}{\sqrt{N}}\end{split}\]</div>
+<p>  量子傅里叶变换，在量子力学的方式上，表达形式为：</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j} \alpha_{j}|j\rangle \rightarrow \sum_{k} \tilde{\alpha}_{k}|k\rangle\]</div>
+<p>  其中  <span class="math notranslate nohighlight">\(\tilde{\alpha}_{\mathrm{k}}\)</span> 的定义形式为:</p>
+<div class="math notranslate nohighlight">
+\[\tilde{\alpha}_{k}=\frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} e^{2 \pi i j k / N} \alpha_{j}\]</div>
+<p>  由此可见，量子傅里叶变换是可逆的，而且是一个酉变化。</p>
+<p>例，假设输入一个  <span class="math notranslate nohighlight">\(|10\rangle\)</span> ，通过傅里叶变换之后，得出 <span class="math notranslate nohighlight">\(|00\rangle\)</span> , <span class="math notranslate nohighlight">\(|01\rangle\)</span> , <span class="math notranslate nohighlight">\(|10\rangle\)</span> , <span class="math notranslate nohighlight">\(|11\rangle\)</span> 的叠加态，就到了基底的叠加态。如图 4.7.29 所示:</p>
+<a class="reference internal image-reference" href="../_images/4.7.29.png"><img alt="../_images/4.7.29.png" class="align-center" src="../_images/4.7.29.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.29 傅里叶变换</strong></p><p>  如果以线性算子的方式来理解量子傅里叶变换，那就是被定义为一个酉矩阵，表达形式是：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{QFT}=\frac{1}{\sqrt{M}}\left(\begin{array}{cccccc} 1 &amp; 1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \\ 1 &amp; \omega &amp; \omega^{2} &amp; \omega^{3} &amp; \cdots &amp; \omega^{M-1} \\ 1 &amp; \omega^{2} &amp; \omega^{4} &amp; \omega^{6} &amp; \cdots &amp; \omega^{2 M-2} \\ \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 1 &amp; \omega^{M-1} &amp; \omega^{2 M-2} \omega^{3 M-3} &amp; \cdots&amp; \cdots &amp; \omega^{(M-1)(M-1)} \end{array}\right)\end{split}\]</div>
+<p>  例，假设  <span class="math notranslate nohighlight">\(M=4\)</span> ，  <span class="math notranslate nohighlight">\(\omega^{0}=1\)</span> ， <span class="math notranslate nohighlight">\(\omega^{1}=i\)</span> ，  <span class="math notranslate nohighlight">\(\omega^{2}=-1\)</span> ， <span class="math notranslate nohighlight">\(\omega^{3}=-i\)</span> ，分别求出 0,1,2,3 。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{1}{2}(|0\rangle+|1\rangle+|2\rangle+|3\rangle)=\frac{1}{2}\left(\begin{array}{l} 1 \\ 1 \\ 1 \\ 1 \end{array}\right)\end{split}\]</div>
+<p>  进行傅里叶变换，得出：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|\hat{f}\rangle=\frac{1}{4}\left(\begin{array}{cccc} 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; i &amp; -1 &amp; -i \\ 1 &amp; -1 &amp; 1 &amp; -1 \\ 1 &amp; -i &amp; -1 &amp; i \end{array}\right)\left(\begin{array}{l} 1 \\ 1 \\ 1 \\ 1 \end{array}\right)=\left(\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right)\end{split}\]</div>
+<p>  最终的得出状态被映射成 1 ， 0 ， 0 ， 0 。假设得知最终状态，进行逆变换验证:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l} \frac{1}{4}\left(\begin{array}{cccc} 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; i &amp; -1 &amp; -i \\ 1 &amp; -1 &amp; 1 &amp; -1 \\ 1 &amp; -i &amp; -1 &amp; i \end{array}\right)\left(\begin{array}{l} 1 \\ 1 \\ 1 \\ 1 \end{array}\right)=\left(\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right) \\ \frac{1}{2}\left(\begin{array}{cccc} 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; i &amp; -1 &amp; -i \\ 1 &amp; -1 &amp; 1 &amp; -1 \\ 1 &amp; -i &amp; -1 &amp; i \end{array}\right)\left(\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right)=\left(\begin{array}{l} 1 \\ 1 \\ 1 \\ 1 \end{array}\right) \end{array}\end{split}\]</div>
+<p>  结果可以从输出态1，0，0，0又转换为输入态1，1，1，1；那如果用不同的输入重复计算的时候，其结果如图4.7.30所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.30.png"><img alt="../_images/4.7.30.png" class="align-center" src="../_images/4.7.30.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.30 结果</strong></p><p><strong>量子傅里叶的量子计算的符号</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}j=j_{1} j_{2} \cdots j_{n}=j_{1} 2^{n-1}+j_{2} 2^{n-2}+\cdots+j_{n} \\0 . j_{l} j_{l+1} \cdots j_{m}=\frac{j_{l}}{2}+\frac{j_{l+1}}{4}+\cdots+\frac{j_{m}}{2^{m-l+1}}\end{array}\end{split}\]</div>
+<p>  例，假设令  <span class="math notranslate nohighlight">\(j=2\)</span> ，使用二进制表达为 <span class="math notranslate nohighlight">\(10\)</span> ， <span class="math notranslate nohighlight">\(j_{1}=1\)</span> , <span class="math notranslate nohighlight">\(j_{2}=0\)</span> , 表达形式如下:</p>
+<div class="math notranslate nohighlight">
+\[j=j_{1} j_{2} \cdots j_{n}=j_{1}{2^{n-1}}+j_{2}{2^{n-2}}+\cdots+j_{n}\]</div>
+<p>  假设令  <span class="math notranslate nohighlight">\(j=0.5\)</span> ，使用二进制表达为  <span class="math notranslate nohighlight">\(0.10\)</span> ; 表达形式为：</p>
+<div class="math notranslate nohighlight">
+\[0 . j_{l} j_{l+1} \cdots j_{m}=\frac{j_{l}}{2}+\frac{j_{l+1}}{4}+\cdots+\frac{j_{m}}{2^{m-l+1}}\]</div>
+<p>  通过证明可以迭代执行量子傅里叶变换为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c} \left|j_{1} \cdots j_{n}\right\rangle \\ \frac{\left(|0\rangle+e^{2 \pi i 0 . j_{n}}|1\rangle\right)\left(|0\rangle+e^{2 \pi i 0 . j_{n-1} j_{n}}|1\rangle \cdots|0\rangle+e^{2 \pi i 0 . j_{1} j_{2} \cdots j_{n}}|1\rangle\right.}{2^{n / 2}} \end{array}\end{split}\]</div>
+<p>  如果，给定输入状态，以二进制表示的  <span class="math notranslate nohighlight">\(\mathrm{j}{1}\)</span> 到  <span class="math notranslate nohighlight">\(\mathrm{j}{\mathrm{n}}\)</span> , 可以将状态变换。通过这个表达式, 可以转换为相位门的表达方式。 <span class="math notranslate nohighlight">\(CR\)</span> 量子门在控制位为 <span class="math notranslate nohighlight">\(|1\rangle\)</span> 时做控制相位变换操作, 受控运算符的矩阵形式为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{R}_{k}=\left(\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; e^{2 \pi i / 2^{k}} \end{array}\right)\end{split}\]</div>
+<p>  那么，通过一系列受控 <span class="math notranslate nohighlight">\(R\)</span> 门实现量子傅里叶变换，它的线路图如图4.7.31所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.31.png"><img alt="../_images/4.7.31.png" class="align-center" src="../_images/4.7.31.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.31 线路图</strong></p><p>  在第一个比特位上，总共会有 <span class="math notranslate nohighlight">\(n-1\)</span> 个控制位；状态也被置于叠加态。例如，6比特的量子云平台绘图形式如图4.7.32：</p>
+<img alt="../_images/4.7.32.png" class="align-center" src="../_images/4.7.32.png" />
+<p class="centered">
+<strong>图4.7.32 6比特的量子云平台绘图形式</strong></p><p>  控制位从  <span class="math notranslate nohighlight">\(\frac{\pi}{2}\)</span> 开始，受控位为  <span class="math notranslate nohighlight">\(\frac{\pi}{2}\)</span> 、 <span class="math notranslate nohighlight">\(\frac{\pi}{4}\)</span> 、 <span class="math notranslate nohighlight">\(\frac{\pi}{8}\)</span> 、 <span class="math notranslate nohighlight">\(\frac{\pi}{16}\)</span> 、 <span class="math notranslate nohighlight">\(\frac{\pi}{32} \ldots\)</span> (数字依赖于输入比特的数量)。其表 达形式为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{R}_{k}=\left(\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; e^{2 \pi i / 2^{k}} \end{array}\right)\end{split}\]</div>
+<p>  如果初始化都是0，则控制不工作。线路等价于对所有比特做H门操作。</p>
+<img alt="../_images/4.7.33.png" class="align-center" src="../_images/4.7.33.png" />
+<p class="centered">
+<strong>图4.7.33 H门操作</strong></p><p><strong>PyQPanda演示</strong> </p>
+<img alt="../_images/4.7.34.png" class="align-center" src="../_images/4.7.34.png" />
+<p class="centered">
+<strong>图4.7.34 PyQPanda演示</strong></p></section>
+<section id="id3">
+<h2>4.7.4 算法原理<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p><strong>算法原理概述</strong></p>
+<p>  从时间复杂度上比较：使用传统计算机，解决素数分解的最佳复杂度如图4.7.35所示：（n，表示素数乘积的位数）</p>
+<a class="reference internal image-reference" href="../_images/4.7.35.png"><img alt="../_images/4.7.35.png" class="align-center" src="../_images/4.7.35.png" style="width: 250px;" /></a>
+<p class="centered">
+<strong>图4.7.35 解决素数分解的最佳复杂度</strong></p><p>  Shor算法则可以将复杂度大幅降低，如图4.7.36所示:</p>
+<a class="reference internal image-reference" href="../_images/4.7.36.png"><img alt="../_images/4.7.36.png" class="align-center" src="../_images/4.7.36.png" style="width: 250px;" /></a>
+<p class="centered">
+<strong>图4.7.36 复杂度大幅降低</strong></p><p>  由此可见，shor算法提供了超多项式执行加速；复杂度的降低，同时使RSA加密算法处在危险中。</p>
+<p>  Shor算法的思想，是将分解问题转化为寻找模指数电路的周期问题，构建模指数电路，通过逆QFT找到模指数电路的周期。</p>
+<p>  Shor 算法的核心电路主要包含傅里叶变换 (QFT)，模指线路 <span class="math notranslate nohighlight">\(U_{\mathrm{f}}\)</span> 计算函数，以及逆傅里叶变换  <span class="math notranslate nohighlight">\(\left(\mathrm{QFT}^{-1}\right)\)</span> 。</p>
+<a class="reference internal image-reference" href="../_images/4.7.37.png"><img alt="../_images/4.7.37.png" class="align-center" src="../_images/4.7.37.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.37 Shor算法的核心电路</strong></p><p>  模指线路 <span class="math notranslate nohighlight">\(U_{\mathrm{f}}\)</span> 计算函数：</p>
+<a class="reference internal image-reference" href="../_images/4.7.37.1.png"><img alt="../_images/4.7.37.1.png" class="align-center" src="../_images/4.7.37.1.png" style="width: 500px;" /></a>
+<p>  线路图总览：</p>
+<a class="reference internal image-reference" href="../_images/4.7.38.png"><img alt="../_images/4.7.38.png" class="align-center" src="../_images/4.7.38.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.38 本源量子Shor算法实施线路图</strong></p><p>  n取决于N的比特位编码个数；比如分解15的时候，实际上会用4个比特位去表示。</p>
+<p><strong>问题转化</strong></p>
+<p>  假设分解的数为 <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> ，任取  <span class="math notranslate nohighlight">\(a \in[2, N-1]\)</span> , 满足  <span class="math notranslate nohighlight">\(\mathrm{a}\)</span> 和  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 互质,且</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}a^{r}=1 \bmod N \quad \text { (其中 } \mathrm{r} \text { 为偶数) } \\\left(a^{\frac{r}{2}}+1\right)\left(a^{\frac{r}{2}}-1\right)=k N\end{array}\end{split}\]</div>
+<p>  如果</p>
+<div class="math notranslate nohighlight">
+\[a^{\frac{r}{2}} \neq-1 \bmod N, a^{\frac{r}{2}} \neq 1 \bmod N\]</div>
+<p>  得到  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 的两个因子  <span class="math notranslate nohighlight">\(p_{1}\)</span> 和  <span class="math notranslate nohighlight">\(p_{2}\)</span></p>
+<div class="math notranslate nohighlight">
+\[p_{1}=\text{gcd}\left(a^{\frac{r}{2}}+1, N\right) \text { 和 } p_{2}=\text{gcd}\left(a^{\frac{r}{2}}-1, N\right)\]</div>
+<p>  在上述转化中，有个特殊的情况需要考虑;</p>
+<p>  如果 <span class="math notranslate nohighlight">\(N=p^{m}\)</span> ，则无法用该方法进行转化，所以在算法开始之前，还需做如下判定: 判断 <span class="math notranslate nohighlight">\(\sqrt[k]{N} \in Z\)</span> 是否为真，其中  <span class="math notranslate nohighlight">\(k \leq \log {2} N{\circ}\)</span></p>
+<p><strong>Shor算法电路框架</strong></p>
+<p>  Shor算法电路框架总共包括四个板块，分别是模指模块、常数模乘、常数模加、以及加法器的构造。</p>
+<a class="reference internal image-reference" href="../_images/4.7.39.png"><img alt="../_images/4.7.39.png" class="align-center" src="../_images/4.7.39.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>图4.7.39 Shor算法电路框架</strong></p><p>  那么，构建量子加法器，它是作为模指底层的核心组件，通过加法器的构造来构建常数模加，它是将问题转换为常数模加，借用辅助比特完成操作；再由常数模加来构建常数模乘，将模指问题转换为可求解的模常数模块；再由常数模乘来完成最终的模指模块，该模块就是为问题解决的模块。</p>
+<p>  Shor算法的量子线路图，如图4.7.40所示：</p>
+<a class="reference internal image-reference" href="../_images/4.7.40.png"><img alt="../_images/4.7.40.png" class="align-center" src="../_images/4.7.40.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>图4.7.40 Shor算法的量子线路图</strong></p><p><strong>模指模块</strong></p>
+<p>  QFT和模指数电路 <span class="math notranslate nohighlight">\(f(x)=a^{x} \bmod N\)</span></p>
+<a class="reference internal image-reference" href="../_images/4.7.41.png"><img alt="../_images/4.7.41.png" class="align-center" src="../_images/4.7.41.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.41 QFT和模指数电路</strong></p><p>  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 对应的二进制长度为 <span class="math notranslate nohighlight">\(n\)</span> ，输入的 <span class="math notranslate nohighlight">\(x\)</span> 的位数 <span class="math notranslate nohighlight">\(m\)</span> 不固定，一般为 <span class="math notranslate nohighlight">\(2 n\)</span> 位，即  <span class="math notranslate nohighlight">\(m=2 n\)</span> ; 考虑  <span class="math notranslate nohighlight">\(\left[\log _{2} N\right]\)</span> 是分解数  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 所需要表示的比特数。</p>
+<p><strong>常数模乘</strong></p>
+<p>  模指:  <span class="math notranslate nohighlight">\(f(x)=a^{x} \bmod N\)</span> ， <span class="math notranslate nohighlight">\(\mathrm{x}\)</span> 的二进制表达方式如下:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{x}=\left(\mathrm{x}_{2 \mathrm{n}-1}, \cdots, x_{1}, \mathrm{x}_{0}\right)=\sum_{i=0}^{2 n-1} x_{i} \times 2^{i}\]</div>
+<p>  其中</p>
+<div class="math notranslate nohighlight">
+\[X_{i},(i=0 \ldots 2 n-1)\]</div>
+<p><span class="math notranslate nohighlight">\(\mathrm{f}(\mathrm{x})\)</span> 可以写成</p>
+<div class="math notranslate nohighlight">
+\[f(x)=\prod_{i=0}^{t-1} a^{2^{i} x_{i}} \bmod N=a^{x_{i} \times \sum_{i}^{2 n-1} a^{i}} \bmod N\]</div>
+<p>  即：</p>
+<div class="math notranslate nohighlight">
+\[\left(\mathrm{a}^{2^{0}} \bmod N\right)^{x_{0}} \cdot\left(a^{2^{1}} \bmod N\right)^{x_{1}} \cdots\left(a^{2^{2 n-1}} \bmod N\right)^{x_{2 n-1}} \bmod N\]</div>
+<p>  如图4.7.42：</p>
+<a class="reference internal image-reference" href="../_images/4.7.42.png"><img alt="../_images/4.7.42.png" class="align-center" src="../_images/4.7.42.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.42 常数模指</strong></p><p>  假设有电路 <span class="math notranslate nohighlight">\(U|y\rangle\rightarrow|Cy \ mod\ N)\)</span> , 取 <span class="math notranslate nohighlight">\(C\)</span> 为 <span class="math notranslate nohighlight">\(a^{2^i}\)</span> , <span class="math notranslate nohighlight">\(i=0\)</span> , <span class="math notranslate nohighlight">\(1\)</span> , <span class="math notranslate nohighlight">\(\ldots\)</span> , <span class="math notranslate nohighlight">\(2 n-1\)</span> , 将 <span class="math notranslate nohighlight">\(|y\rangle\)</span> 的初态设为 <span class="math notranslate nohighlight">\(|1\rangle\)</span> , 然后依次经过 <span class="math notranslate nohighlight">\(C_{i} U_{i}\)</span> 门 : ( 常数模乘 )</p>
+<div class="math notranslate nohighlight">
+\[|1\rangle \rightarrow\left|a^{x_{i} \times \sum_{i}^{2 n-1} a^{i}}\right\rangle \sim \sim\left|a^{x} \bmod N\right\rangle\]</div>
+<p>  如图4.7.43：</p>
+<a class="reference internal image-reference" href="../_images/4.7.43.png"><img alt="../_images/4.7.43.png" class="align-center" src="../_images/4.7.43.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.43 常数模乘</strong></p><p><strong>线路框架</strong></p>
+<a class="reference internal image-reference" href="../_images/4.7.44.png"><img alt="../_images/4.7.44.png" class="align-center" src="../_images/4.7.44.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>图4.7.44 线路框架</strong></p><p>  首先在  <span class="math notranslate nohighlight">\(|x\rangle\)</span> 上加 <span class="math notranslate nohighlight">\(Q F T\)</span> 构成叠加态，同时将 <span class="math notranslate nohighlight">\(2^{2 n-1}\)</span> 个  <span class="math notranslate nohighlight">\(x\)</span> 输入电路，用  <span class="math notranslate nohighlight">\(Q F T^{-1}\)</span> 分析经过模 指电路后的态的周期性，从而得到 <span class="math notranslate nohighlight">\(f(x)\)</span> 的周期；</p>
+<a class="reference internal image-reference" href="../_images/4.7.45.png"><img alt="../_images/4.7.45.png" class="align-center" src="../_images/4.7.45.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>图4.7.45 线路说明</strong></p><p>  这里总共有 <span class="math notranslate nohighlight">\(2 \mathrm{n}\)</span> 个控制  <span class="math notranslate nohighlight">\(\mathrm{U}\)</span> 块。每个输入量子比特都控制着下方的模  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 乘法器  <span class="math notranslate nohighlight">\(\mathrm{CU}_{\mathrm{a}^{2^{i}}}\)</span> ，注意这里设其常数为 <span class="math notranslate nohighlight">\(a^{2^{i}}\)</span> 。例: <span class="math notranslate nohighlight">\(U|y\rangle \rightarrow|Cy \mod N\rangle\)</span> 使用同样的方法，用二进制表示  <span class="math notranslate nohighlight">\(y=\sum_{i=0}^{n-1} y_{i} \times 2^{i}\)</span> ,同理  <span class="math notranslate nohighlight">\(y_{i}\)</span> 做控制位，将所需问题转化为加法  <span class="math notranslate nohighlight">\(C_{i}-U(A D D)\)</span> :</p>
+<a class="reference internal image-reference" href="../_images/4.7.46.png"><img alt="../_images/4.7.46.png" class="align-center" src="../_images/4.7.46.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>图4.7.46 转换成一组常数模加</strong></p><div class="math notranslate nohighlight">
+\[|y\rangle|z\rangle \rightarrow|y\rangle\left|z+C \times 2^{i}\right\rangle\]</div>
+<p>  首先,  <span class="math notranslate nohighlight">\(|z\rangle\)</span> 初态置为 <span class="math notranslate nohighlight">\(|0\rangle\)</span> , 经过一连串 <span class="math notranslate nohighlight">\(C_{i}-A D D\)</span> 得到</p>
+<div class="math notranslate nohighlight">
+\[|y\rangle|0\rangle \rightarrow|y\rangle|C y \ \bmod N\rangle\]</div>
+<p>  再通过交换操作：</p>
+<div class="math notranslate nohighlight">
+\[|y\rangle|C y \bmod N\rangle \rightarrow|C y \bmod N\rangle|y\rangle\]</div>
+<a class="reference internal image-reference" href="../_images/4.7.47.png"><img alt="../_images/4.7.47.png" class="align-center" src="../_images/4.7.47.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>图4.7.47 将常数模加中的辅助比特回收</strong></p><p>  最终目标:</p>
+<div class="math notranslate nohighlight">
+\[|C y \bmod N\rangle|y\rangle \rightarrow|C y \bmod N\rangle|0\rangle\]</div>
+<p>  整个过程：</p>
+<div class="math notranslate nohighlight">
+\[|y\rangle|0\rangle \rightarrow|C y \bmod N\rangle|0\rangle\]</div>
+<p>  如图4.7.48：</p>
+<a class="reference internal image-reference" href="../_images/4.7.48.png"><img alt="../_images/4.7.48.png" class="align-center" src="../_images/4.7.48.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.48 整个过程</strong></p><p><strong>常数模加</strong></p>
+<a class="reference internal image-reference" href="../_images/4.7.49.png"><img alt="../_images/4.7.49.png" class="align-center" src="../_images/4.7.49.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.49 常数模加</strong></p><p>  常数模加输入的比特： <span class="math notranslate nohighlight">\(2N+2\)</span> 个量子比特；其中底部两个辅助比特，分别是：初始进位辅助比特；进位判断辅助比特。</p>
+<p><strong>内部结构分析</strong></p>
+<a class="reference internal image-reference" href="../_images/4.7.50.png"><img alt="../_images/4.7.50.png" class="align-center" src="../_images/4.7.50.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图4.7.50 内部结构分析</strong></p><p>  常数模加内部包含的三个模块，分别是绑定数据 <span class="math notranslate nohighlight">\(\left(\mathrm{B}\left(2^{n}-N+C\right)\right)\)</span> ；进位器（Carrier）；加法器（Adder）。</p>
+<p>  1、绑定数据，将  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 个初始化为 0 的输入比特绑定为 <span class="math notranslate nohighlight">\(|a\rangle\)</span> , 绑定关系为  <span class="math notranslate nohighlight">\(\left(\mathrm{B}\left(2^{n}-N+C\right)\right)\)</span> ， 其中  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 是分解数，  <span class="math notranslate nohighlight">\(\mathrm{C}\)</span> 是常数，  <span class="math notranslate nohighlight">\(2^{n}\)</span> 是按分解数所需的量子比特数。如图4.7.52：</p>
+<a class="reference internal image-reference" href="../_images/4.7.51.png"><img alt="../_images/4.7.51.png" class="align-center" src="../_images/4.7.51.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.51 绑定数据</strong></p><p>  2、进位器（Carrier）如图4.7.53：</p>
+<a class="reference internal image-reference" href="../_images/4.7.52.png"><img alt="../_images/4.7.52.png" class="align-center" src="../_images/4.7.52.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.52 进位器（Carrier）</strong></p><a class="reference internal image-reference" href="../_images/4.7.53.png"><img alt="../_images/4.7.53.png" class="align-center" src="../_images/4.7.53.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.53 翻转操作CNOT门</strong></p><p>  3、加法器（Adder）由MAJ和UMA模块组成。如图4.7.54：</p>
+<a class="reference internal image-reference" href="../_images/4.7.54.png"><img alt="../_images/4.7.54.png" class="align-center" src="../_images/4.7.54.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>图4.7.54 加法器（Adder）</strong></p><p><strong>常数模加的工作机制：</strong></p>
+<p>  1. 先进行数据绑定。</p>
+<p>  2. 开始先用进位器来判断，是否有进位，如果有，执行第一个模块，带常数的加法器，反之，只是常数绑定的加法器。最后，为了不浪费量子比特，需要比特置零，方便反复使用。</p>
+<p>  3. 绿色辅助比特加常数，判断是否大于N.如果大于N，问题就转化为绿色线（定义为a） <span class="math notranslate nohighlight">\(a+c\ mod\ N\)</span> 的问题，就可以导出模加。</p>
+<p>  态的演化</p>
+<a class="reference internal image-reference" href="../_images/4.7.55.png"><img alt="../_images/4.7.55.png" class="align-center" src="../_images/4.7.55.png" style="width: 650px;" /></a>
+<p class="centered">
+<strong>图4.7.55 态的演化</strong></p><p>  首先，给定  <span class="math notranslate nohighlight">\(Q=2^{t}, t=2 n\)</span>  (量子比特数), <span class="math notranslate nohighlight">\(f(x)=\mathrm{a}^{x} \bmod N\)</span> ， 周期为  <span class="math notranslate nohighlight">\(\mathrm{r}\)</span> 。</p>
+<p>  初态为:  <span class="math notranslate nohighlight">\(|\varphi\rangle=\frac{1}{\sqrt{Q}} \sum_{i=0}^{Q-1}|i\rangle|1\rangle\)</span> , 经过  <span class="math notranslate nohighlight">\(\mathrm{H}\)</span> 门操作后，态就变成了叠加态;再和辅助比特作用;  <span class="math notranslate nohighlight">\(|1\rangle\)</span>  是十进制的  <span class="math notranslate nohighlight">\(1\)</span> ; 初始化为  <span class="math notranslate nohighlight">\(0,0,0,0,1\)</span> 。</p>
+<p>  之后，经过模指线路后：</p>
+<div class="math notranslate nohighlight">
+\[|\varphi\rangle=\frac{1}{\sqrt{Q}}(|0\rangle|f(0)\rangle+|r\rangle|f(0)\rangle+\ldots+|m r\rangle|f(0)\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[+|1\rangle|f(1)\rangle+|1+r\rangle|f(1)\rangle+\ldots+|1+m r\rangle|f(1)\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[+|2\rangle|f(2)\rangle+|2+r\rangle|f(2)\rangle+\ldots+|2+m r\rangle|f(2)\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[\ldots \ +|r-1\rangle|f(r-1)\rangle+|r-1+r\rangle|f(r-1)\rangle+\ldots+|r-1+m r\rangle|f(r-1)\rangle)\]</div>
+<div class="math notranslate nohighlight">
+\[=\frac{1}{\sqrt{Q}} \sum_{i=0}^{r-1} \sum_{j=0}^{m}|i+j r\rangle|f(i)\rangle\]</div>
+<p>  假设定义 <span class="math notranslate nohighlight">\(\mathrm{r} \times \mathrm{m} \approx \mathrm{Q}\)</span> ，M则可能是一个大的值；由上述演化可得出，经过模指线路，态呈现一种周期性的规律。</p>
+<p>  上半部分做 <span class="math notranslate nohighlight">\(Q F T^{-1}\)</span> 后：</p>
+<div class="math notranslate nohighlight">
+\[\begin{array}{c} |i+j r\rangle \rightarrow \frac{1}{\sqrt{Q}} \sum_{k=0}^{Q-1} w^{k(i+j r)}|k\rangle \ w=e^{\frac{-2 \pi{i}}{Q}} \ |\varphi\rangle=\frac{1}{Q} \sum_{i=0}^{r-1} \sum_{j=0}^{m} \sum_{k=0}^{Q-1} w^{k(i+j r)}|k\rangle|f(i)\rangle \end{array}\]</div>
+<p>  得出共  <span class="math notranslate nohighlight">\(r \times Q\)</span> 个态。</p>
+<p>  此时  <span class="math notranslate nohighlight">\(|k\rangle|f(i)\rangle\)</span> 的复振幅:</p>
+<div class="math notranslate nohighlight">
+\[F_{k}=\frac{1}{Q} \sum_{j=0}^{m} w^{k(i+j r)}=\frac{1}{Q} w^{k i} \frac{1-w^{m k r}}{1-w^{k r}}\]</div>
+<p>  此时测量  <span class="math notranslate nohighlight">\(|\mathrm{k}\rangle\)</span> 态的概率为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c} P_{k}=\sum_{i=0}^{r-1}\left|F_{k}\right|^{2}=\frac{r}{Q^{2}} \times\left|\frac{1-w^{m k r}}{1-w^{k r}}\right|^{2} \\ w=e^{\frac{-2 \pi i}{Q}} \\ \left|\frac{1-w^{m k r}}{1-w^{k r}}\right|^{2}=\frac{1-\cos (m \theta)}{1-\cos (\theta)} \\ \theta=\frac{k \times r}{Q} \times 2 \pi \\ P_{k}=\frac{r}{Q^{2}} \times \frac{1-\cos (m \theta)}{1-\cos (\theta)} \\ \quad \theta=2 \pi \times s \end{array}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\mathrm{S}\)</span> 为整数时， <span class="math notranslate nohighlight">\(\mathrm{P}_{\mathrm{k}}\)</span> 取最大值</p>
+<div class="math notranslate nohighlight">
+\[P_{k \max }=\frac{r}{Q^{2}} \times m^{2} \approx \frac{1}{r}, m \times r \approx Q\]</div>
+<p>  由此可知，可以通过测量概率找到  <span class="math notranslate nohighlight">\(\mathrm{r}\)</span> 的关系。</p>
+<p>  最后测量的 <span class="math notranslate nohighlight">\(|k\rangle\)</span> ,测量结果满足  <span class="math notranslate nohighlight">\(\theta=\frac{k \times r}{Q}\)</span> 为整数或接近整数，根据  <span class="math notranslate nohighlight">\(\frac{k}{Q} \sim \sim \frac{s}{r}\)</span> 对  <span class="math notranslate nohighlight">\(\frac{k}{Q}\)</span> 做连分数分解，得到  <span class="math notranslate nohighlight">\(r\)</span> 的周期。通过模拟，假设  <span class="math notranslate nohighlight">\(\mathrm{m}=50\)</span> ， <span class="math notranslate nohighlight">\(\frac{1-\cos (m \times \theta)}{1-\cos (\theta)}\)</span> 的演算如图 4.7.57:</p>
+<a class="reference internal image-reference" href="../_images/4.7.56.png"><img alt="../_images/4.7.56.png" class="align-center" src="../_images/4.7.56.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图4.7.56  <span class="math notranslate nohighlight">\(\mathrm{m}=50\)</span> ，  <span class="math notranslate nohighlight">\(\frac{1-\cos (m \times \theta)}{1-\cos (\theta)}\)</span> 的演算</strong></p><p>  由上图可知，它已经有了相应的值，那这些值就是最终要选取的值。</p>
+<p><strong>确认周期</strong></p>
+<p>  连分数的分解,采用层层分解的形式，如图4.7.57：</p>
+<a class="reference internal image-reference" href="../_images/4.7.57.png"><img alt="../_images/4.7.57.png" class="align-center" src="../_images/4.7.57.png" style="width: 350px;" /></a>
+<p class="centered">
+<strong>图4.7.57 层层分解</strong></p><p><span class="math notranslate nohighlight">\(\frac{k}{Q}\)</span> 是  <span class="math notranslate nohighlight">\(\frac{c}{r}\)</span> 的近似，将  <span class="math notranslate nohighlight">\(\frac{k}{Q}\)</span> 通过连分数方法发现  <span class="math notranslate nohighlight">\(\mathrm{r}\)</span> 。例，假设 <span class="math notranslate nohighlight">\(\mathrm{N}=77\)</span> ，求  <span class="math notranslate nohighlight">\(\mathrm{r}\)</span> 的值。</p>
+<div class="math notranslate nohighlight">
+\[N=11 \times 7 \text {,取 } f(x)=3^{x} \bmod 77, r=30\]</div>
+<p>  Shor 算法中上部分取 14 (即  <span class="math notranslate nohighlight">\(2 \times 7=14\)</span> ) 个量子比特;</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c} Q=2^{14}, \text { 最后经过 } \mathrm{QFT} \text { 后有 } \\ p_{k}=\frac{1}{Q \times m} \times \frac{1-\cos (m \theta)}{1-\cos (\theta)} \\ \theta=\exp \left(\frac{2 \pi \times k r}{Q}\right), m \times r \sim Q, p_{k \max }=\frac{1}{m} \\ \frac{k}{Q} \rightarrow \frac{0}{r}, \frac{1}{r}, \frac{2}{r} \ldots \frac{r-1}{r} \end{array}\end{split}\]</div>
+<p>  上述可知，由连分数的分解，最终得到 <span class="math notranslate nohighlight">\(\frac{r-1}{r}\)</span> , 可以确定  <span class="math notranslate nohighlight">\(\mathrm{r}\)</span> 的值。</p>
+<a class="reference internal image-reference" href="../_images/4.7.58.png"><img alt="../_images/4.7.58.png" class="align-center" src="../_images/4.7.58.png" style="width: 650px;" /></a>
+<p class="centered">
+<strong>图4.7.58 连分数逼近</strong></p><p>   如图4.7.58可知，K值是预计测量的值，通过计算，再使用连分数的逼近关系，可以得出的结果是 <span class="math notranslate nohighlight">\(r=30\)</span> ，满足我们的条件。</p>
+</section>
+<section id="pyqpanda">
+<h2>4.7.5 pyQPanda中的示例<a class="headerlink" href="#pyqpanda" title="Permalink to this heading">¶</a></h2>
+<p>  导入依赖的库</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#绘图</span>
+<span class="mf">3.</span><span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">m</span> <span class="c1">#数学</span>
+</pre></div>
+</div>
+<p>  绘制柱状图</p>
+<p>  绘制数据图所需，直接复制使用即可：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># 绘制柱状图</span>
+<span class="mf">2.</span><span class="k">def</span> <span class="nf">plotBar</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">):</span>
+<span class="mf">3.</span>    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="mf">4.</span>    <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">5.</span>    <span class="n">fig</span><span class="o">.</span><span class="n">set_dpi</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="mf">6.</span>
+<span class="mf">7.</span>    <span class="n">rects</span> <span class="o">=</span>  <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="k">for</span> <span class="n">rect</span> <span class="ow">in</span> <span class="n">rects</span><span class="p">:</span>
+<span class="mf">10.</span>        <span class="n">height</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+<span class="mf">11.</span>        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">height</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">)</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Arial&#39;</span><span class="p">]</span>
+<span class="mf">14.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Origin Q&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="mf">15.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Times&#39;</span><span class="p">)</span>
+<span class="mf">16.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;States&#39;</span><span class="p">)</span>
+<span class="mf">17.</span>
+<span class="mf">18.</span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>  重新组织数据quick_measure的数据</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">reorganizeData</span><span class="p">(</span><span class="n">measure_qubits</span><span class="p">,</span> <span class="n">quick_meausre_result</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">xdata</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">3.</span>    <span class="n">ydata</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">4.</span>
+<span class="mf">5.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">quick_meausre_result</span><span class="p">:</span>
+<span class="mf">6.</span>        <span class="n">xdata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="mf">7.</span>        <span class="n">ydata</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quick_meausre_result</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="k">return</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span>
+</pre></div>
+</div>
+<p>  用辗转相除法求最大公约数</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
+<span class="mf">3.</span>        <span class="k">return</span> <span class="n">m</span>
+<span class="mf">4.</span>    <span class="k">else</span><span class="p">:</span>
+<span class="mf">5.</span>        <span class="k">return</span> <span class="n">gcd</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">%</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>  量子加法器MAJ模块</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># a,b,c是单个量子比特, 其中a是辅助比特</span>
+<span class="mf">2.</span><span class="c1">#</span>
+<span class="mf">3.</span><span class="c1"># a ------o---x----- c xor a</span>
+<span class="mf">4.</span><span class="c1"># b --o---\---x----- c xor b</span>
+<span class="mf">5.</span><span class="c1"># c --x---x---o----- ((c xor a) and (c xor b)) xor c = R</span>
+<span class="mf">6.</span><span class="c1">#</span>
+<span class="mf">7.</span><span class="k">def</span> <span class="nf">MAJ</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="mf">8.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">9.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="mf">10.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
+<span class="mf">11.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Toffoli</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  量子加法器UMA模块</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># a,b,c是单个量子比特</span>
+<span class="mf">2.</span><span class="c1">#</span>
+<span class="mf">3.</span><span class="c1"># a --x---o---x----- ((a and b) xor c) xor a</span>
+<span class="mf">4.</span><span class="c1"># b --x---\---o----- (((a and b) xor c) xor a) xor b</span>
+<span class="mf">5.</span><span class="c1"># c --o---x--------- (a and b) xor c</span>
+<span class="mf">6.</span><span class="c1">#</span>
+<span class="mf">7.</span><span class="c1"># 以MAJ模块的输出作为输入的话，MAJ中辅助比特a保持不变，</span>
+<span class="mf">8.</span><span class="c1"># MAJ中的加项c比特保持不变，MAJ中的加项b比特保存的是b+c的结果</span>
+<span class="mf">9.</span><span class="c1">#</span>
+<span class="mf">10.</span><span class="c1"># c xor a --x---o---x----- a</span>
+<span class="mf">11.</span><span class="c1"># c xor b --x---\---o----- c xor b xor a</span>
+<span class="mf">12.</span><span class="c1"># R       --o---x--------- c</span>
+<span class="mf">13.</span><span class="k">def</span> <span class="nf">UMA</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="mf">14.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">15.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Toffoli</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+<span class="mf">16.</span>
+<span class="mf">17.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  量子加法器UMA模块</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># a 和 b 是一组量子比特表示特定的数，这里我们假设 a 和 b 的长度相同</span>
+<span class="mf">2.</span><span class="c1"># c 是一个辅助比特</span>
+<span class="mf">3.</span><span class="k">def</span> <span class="nf">MAJ2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="mf">4.</span>    <span class="k">if</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)))):</span>
+<span class="mf">5.</span>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;a and b must be equal, but not equal to 0!&#39;</span><span class="p">)</span>
+<span class="mf">6.</span>
+<span class="mf">7.</span>    <span class="n">nbit</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="mf">8.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">9.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">MAJ</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nbit</span><span class="p">):</span>
+<span class="mf">12.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">MAJ</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">13.</span>
+<span class="mf">14.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  量子加法器 由MAJ和UMA模块组成，不考虑进位项</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># a 和 b 是一组量子比特表示特定的数，这里我们假设 a 和 b 的长度相同</span>
+<span class="mf">2.</span><span class="c1"># c 是一个辅助比特</span>
+<span class="mf">3.</span><span class="c1"># 注意：a 中保存的是 a+b 的结果, b 保持不变</span>
+<span class="mf">4.</span><span class="k">def</span> <span class="nf">Adder</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="mf">5.</span>    <span class="k">if</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)))):</span>
+<span class="mf">6.</span>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;a and b must be equal, but not equal to 0!&#39;</span><span class="p">)</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="n">nbit</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="mf">9.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">10.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">MAJ</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">11.</span>
+<span class="mf">12.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nbit</span><span class="p">):</span>
+<span class="mf">13.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">MAJ</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbit</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="mf">16.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">UMA</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">17.</span>
+<span class="mf">18.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">UMA</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">19.</span>
+<span class="mf">20.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  判断是否有进位</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># a 和 b 是一组量子比特表示特定的数，这里我们假设 a 和 b 的长度相同</span>
+<span class="mf">2.</span><span class="c1"># c 是一个辅助比特</span>
+<span class="mf">3.</span><span class="c1"># carry 是一个用来保存进位项的辅助比特</span>
+<span class="mf">4.</span><span class="c1"># 注：经过该模块后 a, b, c 对应的比特都保持不变，只有进位比特 carry 有可能会被改变</span>
+<span class="mf">5.</span><span class="k">def</span> <span class="nf">isCarry</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">carry</span><span class="p">):</span>
+<span class="mf">6.</span>    <span class="k">if</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)))):</span>
+<span class="mf">7.</span>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;a and b must be equal, but not equal to 0!&#39;</span><span class="p">)</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">MAJ2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+<span class="mf">12.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">carry</span><span class="p">))</span>
+<span class="mf">13.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">MAJ2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">dagger</span><span class="p">())</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  用量子比特来绑定经典数据</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># 这里假定所有的比特都初始化为0态</span>
+<span class="mf">2.</span><span class="k">def</span> <span class="nf">bindData</span><span class="p">(</span><span class="n">qlist</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="mf">3.</span>    <span class="n">check_value</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">qlist</span><span class="p">)</span>
+<span class="mf">4.</span>    <span class="k">if</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;=</span> <span class="n">check_value</span><span class="p">):</span>
+<span class="mf">5.</span>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;data &gt;= check_value&#39;</span><span class="p">)</span>
+<span class="mf">6.</span>
+<span class="mf">7.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">8.</span>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">9.</span>    <span class="k">while</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">10.</span>        <span class="k">if</span> <span class="p">(</span><span class="n">data</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="mf">11.</span>            <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+<span class="mf">14.</span>        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+<span class="mf">15.</span>
+<span class="mf">16.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  常数模加</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># qa 是一组绑定经典数据的比特，并返回计算的结果</span>
+<span class="mf">2.</span><span class="c1"># C 表示待加的常数</span>
+<span class="mf">3.</span><span class="c1"># M 表示模数</span>
+<span class="mf">4.</span><span class="c1"># qb 表示一组辅助比特</span>
+<span class="mf">5.</span><span class="c1"># qs1 表示两个辅助比特，其中 qs1[0] 表示进位辅助比特， qs1[1] 表示MAJ模块用到的辅助比特</span>
+<span class="mf">6.</span><span class="c1"># 注：该模块会将所有使用到的辅助比特进行还原</span>
+<span class="mf">7.</span><span class="k">def</span> <span class="nf">constModAdd</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">qb</span><span class="p">,</span> <span class="n">qs1</span><span class="p">):</span>
+<span class="mf">8.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="n">q_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qa</span><span class="p">)</span>
+<span class="mf">11.</span>
+<span class="mf">12.</span>    <span class="n">tmp_value</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">q_num</span><span class="p">)</span> <span class="o">-</span> <span class="n">M</span> <span class="o">+</span> <span class="n">C</span>
+<span class="mf">13.</span>
+<span class="mf">14.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bindData</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">tmp_value</span><span class="p">))</span>
+<span class="mf">15.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">isCarry</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">qb</span><span class="p">,</span> <span class="n">qs1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qs1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">16.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bindData</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">tmp_value</span><span class="p">))</span>
+<span class="mf">17.</span>
+<span class="mf">18.</span>    <span class="n">tmp_circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">19.</span>    <span class="n">tmp_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bindData</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">tmp_value</span><span class="p">))</span>
+<span class="mf">20.</span>    <span class="n">tmp_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Adder</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">qb</span><span class="p">,</span> <span class="n">qs1</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="mf">21.</span>    <span class="n">tmp_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bindData</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">tmp_value</span><span class="p">))</span>
+<span class="mf">22.</span>    <span class="n">tmp_circ</span> <span class="o">=</span> <span class="n">tmp_circ</span><span class="o">.</span><span class="n">control</span><span class="p">([</span><span class="n">qs1</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="mf">23.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tmp_circ</span><span class="p">)</span>
+<span class="mf">24.</span>
+<span class="mf">25.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">qs1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">26.</span>
+<span class="mf">27.</span>    <span class="n">tmp2_circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">28.</span>    <span class="n">tmp2_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bindData</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">C</span><span class="p">))</span>
+<span class="mf">29.</span>    <span class="n">tmp2_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">Adder</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">qb</span><span class="p">,</span> <span class="n">qs1</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="mf">30.</span>    <span class="n">tmp2_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bindData</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">C</span><span class="p">))</span>
+<span class="mf">31.</span>    <span class="n">tmp2_circ</span> <span class="o">=</span> <span class="n">tmp2_circ</span><span class="o">.</span><span class="n">control</span><span class="p">([</span><span class="n">qs1</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="mf">32.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tmp2_circ</span><span class="p">)</span>
+<span class="mf">33.</span>
+<span class="mf">34.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">qs1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">35.</span>
+<span class="mf">36.</span>    <span class="n">tmp_value</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">q_num</span><span class="p">)</span> <span class="o">-</span> <span class="n">C</span>
+<span class="mf">37.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bindData</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">tmp_value</span><span class="p">))</span>
+<span class="mf">38.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">isCarry</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">qb</span><span class="p">,</span> <span class="n">qs1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qs1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">39.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bindData</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">tmp_value</span><span class="p">))</span>
+<span class="mf">40.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">qs1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">41.</span>
+<span class="mf">42.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  辗转相除法求模逆</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">modreverse</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+<span class="mf">3.</span>        <span class="k">raise</span> <span class="ne">RecursionError</span><span class="p">(</span><span class="s1">&#39;c is zero!&#39;</span><span class="p">)</span>
+<span class="mf">4.</span>
+<span class="mf">5.</span>    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">6.</span>        <span class="k">return</span> <span class="mi">1</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="n">m1</span> <span class="o">=</span> <span class="n">m</span>
+<span class="mf">9.</span>    <span class="n">quotient</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="mf">10.</span>    <span class="n">quo</span> <span class="o">=</span> <span class="n">m</span> <span class="o">//</span> <span class="n">c</span>
+<span class="mf">11.</span>    <span class="n">remainder</span> <span class="o">=</span> <span class="n">m</span> <span class="o">%</span> <span class="n">c</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="n">quotient</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quo</span><span class="p">)</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="k">while</span> <span class="p">(</span><span class="n">remainder</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">16.</span>        <span class="n">m</span> <span class="o">=</span> <span class="n">c</span>
+<span class="mf">17.</span>        <span class="n">c</span> <span class="o">=</span> <span class="n">remainder</span>
+<span class="mf">18.</span>        <span class="n">quo</span> <span class="o">=</span> <span class="n">m</span> <span class="o">//</span> <span class="n">c</span>
+<span class="mf">19.</span>        <span class="n">remainder</span> <span class="o">=</span> <span class="n">m</span> <span class="o">%</span> <span class="n">c</span>
+<span class="mf">20.</span>        <span class="n">quotient</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quo</span><span class="p">)</span>
+<span class="mf">21.</span>
+<span class="mf">22.</span>    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">quotient</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">23.</span>        <span class="k">return</span> <span class="n">m</span> <span class="o">-</span> <span class="n">quo</span>
+<span class="mf">24.</span>
+<span class="mf">25.</span>    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">quotient</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+<span class="mf">26.</span>        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">quotient</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">quotient</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="mf">27.</span>
+<span class="mf">28.</span>    <span class="n">rev1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="mf">29.</span>    <span class="n">rev2</span> <span class="o">=</span> <span class="n">quotient</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="mf">30.</span>    <span class="n">reverse_list</span> <span class="o">=</span> <span class="n">quotient</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="mf">31.</span>    <span class="n">reverse_list</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="mf">32.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">reverse_list</span><span class="p">:</span>
+<span class="mf">33.</span>        <span class="n">rev1</span> <span class="o">=</span> <span class="n">rev1</span> <span class="o">+</span> <span class="n">rev2</span> <span class="o">*</span> <span class="n">i</span>
+<span class="mf">34.</span>        <span class="n">temp</span> <span class="o">=</span> <span class="n">rev1</span>
+<span class="mf">35.</span>        <span class="n">rev1</span> <span class="o">=</span> <span class="n">rev2</span>
+<span class="mf">36.</span>        <span class="n">rev2</span> <span class="o">=</span> <span class="n">temp</span>
+<span class="mf">37.</span>
+<span class="mf">38.</span>    <span class="k">if</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">quotient</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+<span class="mf">39.</span>        <span class="k">return</span> <span class="n">rev2</span>
+<span class="mf">40.</span>
+<span class="mf">41.</span>    <span class="k">return</span> <span class="n">m1</span> <span class="o">-</span> <span class="n">rev2</span>
+</pre></div>
+</div>
+<p>  常数模乘</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># qa 是一组绑定经典数据的比特，并返回计算的结果</span>
+<span class="mf">2.</span><span class="c1"># const_num 表示待乘的常数</span>
+<span class="mf">3.</span><span class="c1"># M 表示模数</span>
+<span class="mf">4.</span><span class="c1"># qs1常数模乘使用的辅助比特</span>
+<span class="mf">5.</span><span class="c1"># qs2常数模加使用的辅助比特</span>
+<span class="mf">6.</span><span class="c1"># qs3 表示两个辅助比特，其中 qs1[0] 表示进位辅助比特， qs1[1] 表示MAJ模块用到的辅助比特</span>
+<span class="mf">7.</span><span class="c1"># 注：该模块会将所有使用到的辅助比特进行还原</span>
+<span class="mf">8.</span><span class="k">def</span> <span class="nf">constModMul</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">const_num</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">qs1</span><span class="p">,</span> <span class="n">qs2</span><span class="p">,</span> <span class="n">qs3</span><span class="p">):</span>
+<span class="mf">9.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="n">q_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qa</span><span class="p">)</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">q_num</span><span class="p">):</span>
+<span class="mf">14.</span>        <span class="n">tmp_circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">15.</span>        <span class="n">tmp</span> <span class="o">=</span> <span class="n">const_num</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">%</span><span class="n">M</span>
+<span class="mf">16.</span>        <span class="n">tmp_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">constModAdd</span><span class="p">(</span><span class="n">qs1</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">qs2</span><span class="p">,</span> <span class="n">qs3</span><span class="p">))</span>
+<span class="mf">17.</span>        <span class="n">tmp_circ</span> <span class="o">=</span> <span class="n">tmp_circ</span><span class="o">.</span><span class="n">control</span><span class="p">([</span><span class="n">qa</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+<span class="mf">18.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tmp_circ</span><span class="p">)</span>
+<span class="mf">19.</span>
+<span class="mf">20.</span>    <span class="c1">#state swap</span>
+<span class="mf">21.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">q_num</span><span class="p">):</span>
+<span class="mf">22.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">qa</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qs1</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">23.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">qs1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qa</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">24.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">qa</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qs1</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">25.</span>
+<span class="mf">26.</span>    <span class="n">Crev</span> <span class="o">=</span> <span class="n">modreverse</span><span class="p">(</span><span class="n">const_num</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+<span class="mf">27.</span>
+<span class="mf">28.</span>    <span class="n">tmp2_circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">29.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">q_num</span><span class="p">):</span>
+<span class="mf">30.</span>        <span class="n">tmp</span> <span class="o">=</span> <span class="n">Crev</span><span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="mf">31.</span>        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">%</span> <span class="n">M</span>
+<span class="mf">32.</span>        <span class="n">tmp_circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">33.</span>        <span class="n">tmp_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">constModAdd</span><span class="p">(</span><span class="n">qs1</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">qs2</span><span class="p">,</span> <span class="n">qs3</span><span class="p">))</span>
+<span class="mf">34.</span>        <span class="n">tmp_circ</span> <span class="o">=</span> <span class="n">tmp_circ</span><span class="o">.</span><span class="n">control</span><span class="p">([</span><span class="n">qa</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+<span class="mf">35.</span>        <span class="n">tmp2_circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tmp_circ</span><span class="p">)</span>
+<span class="mf">36.</span>
+<span class="mf">37.</span>    <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tmp2_circ</span><span class="o">.</span><span class="n">dagger</span><span class="p">())</span>
+<span class="mf">38.</span>
+<span class="mf">39.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  常数模指</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># qa 是一组控制比特</span>
+<span class="mf">2.</span><span class="c1"># qb 保存计算结果</span>
+<span class="mf">3.</span><span class="c1"># base 表示指数基底</span>
+<span class="mf">4.</span><span class="c1"># M 表示模数</span>
+<span class="mf">5.</span><span class="c1"># qs1常数模乘使用的辅助比特</span>
+<span class="mf">6.</span><span class="c1"># qs2常数模加使用的辅助比特</span>
+<span class="mf">7.</span><span class="c1"># qs3 表示两个辅助比特，其中 qs1[0] 表示进位辅助比特， qs1[1] 表示MAJ模块用到的辅助比特</span>
+<span class="mf">8.</span><span class="k">def</span> <span class="nf">constModExp</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">qb</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">qs1</span><span class="p">,</span> <span class="n">qs2</span><span class="p">,</span> <span class="n">qs3</span><span class="p">):</span>
+<span class="mf">9.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="n">cqnum</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qa</span><span class="p">)</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="n">temp</span> <span class="o">=</span> <span class="n">base</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cqnum</span><span class="p">):</span>
+<span class="mf">16.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">constModMul</span><span class="p">(</span><span class="n">qb</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">qs1</span><span class="p">,</span> <span class="n">qs2</span><span class="p">,</span> <span class="n">qs3</span><span class="p">)</span><span class="o">.</span><span class="n">control</span><span class="p">([</span><span class="n">qa</span><span class="p">[</span><span class="n">i</span><span class="p">]]))</span>
+<span class="mf">17.</span>        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">*</span> <span class="n">temp</span>
+<span class="mf">18.</span>        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">%</span> <span class="n">M</span>
+<span class="mf">19.</span>
+<span class="mf">20.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  量子傅利叶变换</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">def</span> <span class="nf">qft</span><span class="p">(</span><span class="n">qlist</span><span class="p">):</span>
+<span class="mf">2.</span>    <span class="n">circ</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">()</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span>    <span class="n">qnum</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qlist</span><span class="p">)</span>
+<span class="mf">5.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">qnum</span><span class="p">):</span>
+<span class="mf">6.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">H</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="n">qnum</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">7.</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">qnum</span><span class="p">):</span>
+<span class="mf">8.</span>            <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CR</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="n">qnum</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">j</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="n">qnum</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">],</span> <span class="n">m</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">i</span><span class="p">))))</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">qnum</span><span class="o">//</span><span class="mi">2</span><span class="p">):</span>
+<span class="mf">11.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="n">qnum</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">12.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="n">qnum</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">13.</span>        <span class="n">circ</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">CNOT</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="n">qnum</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">]))</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="k">return</span> <span class="n">circ</span>
+</pre></div>
+</div>
+<p>  Shor算法主体代码</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1"># base 表示指数基底</span>
+<span class="mf">2.</span><span class="c1"># M 表示待分解的数</span>
+<span class="mf">3.</span><span class="k">def</span> <span class="nf">shorAlg</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+<span class="mf">4.</span>    <span class="k">if</span> <span class="p">((</span><span class="n">base</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">base</span> <span class="o">&gt;</span> <span class="n">M</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)):</span>
+<span class="mf">5.</span>        <span class="k">raise</span><span class="p">(</span><span class="s1">&#39;Invalid base!&#39;</span><span class="p">)</span>
+<span class="mf">6.</span>
+<span class="mf">7.</span>    <span class="k">if</span> <span class="p">(</span><span class="n">gcd</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="mf">8.</span>        <span class="k">raise</span><span class="p">(</span><span class="s1">&#39;Invalid base! base and M must be mutually prime&#39;</span><span class="p">)</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="n">binary_len</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="mf">11.</span>    <span class="k">while</span> <span class="n">M</span> <span class="o">&gt;&gt;</span> <span class="n">binary_len</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">:</span>
+<span class="mf">12.</span>        <span class="n">binary_len</span> <span class="o">=</span> <span class="n">binary_len</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mf">13.</span>
+<span class="mf">14.</span>    <span class="n">machine</span> <span class="o">=</span> <span class="n">init_quantum_machine</span><span class="p">(</span><span class="n">QMachineType</span><span class="o">.</span><span class="n">CPU_SINGLE_THREAD</span><span class="p">)</span>
+<span class="mf">15.</span>
+<span class="mf">16.</span>    <span class="n">qa</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">qAlloc_many</span><span class="p">(</span><span class="n">binary_len</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="mf">17.</span>    <span class="n">qb</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">qAlloc_many</span><span class="p">(</span><span class="n">binary_len</span><span class="p">)</span>
+<span class="mf">18.</span>
+<span class="mf">19.</span>    <span class="n">qs1</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">qAlloc_many</span><span class="p">(</span><span class="n">binary_len</span><span class="p">)</span> <span class="c1"># 常数模乘使用的辅助比特</span>
+<span class="mf">20.</span>    <span class="n">qs2</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">qAlloc_many</span><span class="p">(</span><span class="n">binary_len</span><span class="p">)</span> <span class="c1"># 常数模加使用的辅助比特</span>
+<span class="mf">21.</span>    <span class="n">qs3</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">qAlloc_many</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 模加进位需要使用到的辅助比特</span>
+<span class="mf">22.</span>
+<span class="mf">23.</span>    <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">()</span>
+<span class="mf">24.</span>
+<span class="mf">25.</span>    <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">qb</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="mf">26.</span>    <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">single_gate_apply_to_all</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">qa</span><span class="p">))</span> <span class="c1">#第一个QFT</span>
+<span class="mf">27.</span>    <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">constModExp</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">qb</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">qs1</span><span class="p">,</span> <span class="n">qs2</span><span class="p">,</span> <span class="n">qs3</span><span class="p">))</span>
+<span class="mf">28.</span>    <span class="n">prog</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">qft</span><span class="p">(</span><span class="n">qa</span><span class="p">)</span><span class="o">.</span><span class="n">dagger</span><span class="p">())</span>
+<span class="mf">29.</span>
+<span class="mf">30.</span>    <span class="n">directly_run</span><span class="p">(</span><span class="n">prog</span><span class="p">)</span>
+<span class="mf">31.</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">quick_measure</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="mf">32.</span>
+<span class="mf">33.</span>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="mf">34.</span>
+<span class="mf">35.</span>    <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="n">reorganizeData</span><span class="p">(</span><span class="n">qa</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<span class="mf">36.</span>    <span class="n">plotBar</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">)</span>
+<span class="mf">37.</span>
+<span class="mf">38.</span>    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>  主程序</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">2.</span>    <span class="n">base</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="mf">3.</span>    <span class="n">N</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="mf">4.</span>    <span class="n">shorAlg</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/4.7.59.png"><img alt="../_images/4.7.59.png" class="align-center" src="../_images/4.7.59.png" style="width: 450px;" /></a>
+<p class="centered">
+<strong>图4.7.59 运行结果</strong></p></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4.6VQE%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-left" title="4.6 VQE算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html" class="btn btn-neutral float-right" title="5.1 利用QPanda测试量子系统噪声" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.3 使用单振幅和部分振幅量子虚拟机 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.4 将量子程序编译到不同的量子芯片上" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html" />
+    <link rel="prev" title="5.2 量子机器学习" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.3 使用单振幅和部分振幅量子虚拟机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.3.1 单振幅量子虚拟机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">5.3.2 部分振幅量子虚拟机</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>5.3 使用单振幅和部分振幅量子虚拟机</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/5.3使用单振幅和部分振幅量子虚拟机.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>5.3 使用单振幅和部分振幅量子虚拟机<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>5.3.1 单振幅量子虚拟机<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>  目前可以通过量子计算的相关理论，用经典计算机实现模拟量子虚拟机。 量子虚拟机的模拟主要有全振幅与单振幅两种解决方案，其主要区别在于，全振幅一次模拟计算就能算出量子态的所有振幅，单振幅一次模拟计算只能计算出 <span class="math notranslate nohighlight">\(2^N\)</span> 个振幅中的一个。</p>
+<p>  然而全振幅模拟量子计算时间较长，计算量随量子比特数指数增长，在现有硬件下，无法模拟超过49量子比特。通过单振幅量子虚拟机技术可以模拟超过49比特，同时模拟速度有较大提升，且算法的计算量不随量子比特数指数提升。</p>
+<p><strong>使用介绍</strong></p>
+<p>  QPanda2中设计了 SingleAmplitudeQVM 类用于运行单振幅模拟量子计算，同时提供了相关接口，它的使用也很简单。</p>
+<p>  首先构建一个单振幅量子虚拟机：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">machine</span> <span class="o">=</span> <span class="n">new</span> <span class="n">SingleAmplitudeQVM</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>  然后必须使用 SingleAmplitudeQVM::init() 初始化量子虚拟机环境：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">machine</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>  接着进行量子程序的构建、装载工作：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>
+<span class="mf">2.</span><span class="n">auto</span> <span class="n">qlist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="mf">3.</span><span class="n">auto</span> <span class="n">clist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="mf">4.</span>
+<span class="mf">5.</span><span class="n">for_each</span><span class="p">(</span><span class="n">qlist</span><span class="o">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">qlist</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Qubit</span> <span class="o">*</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">val</span><span class="p">);</span> <span class="p">});</span>
+<span class="mf">6.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+<span class="mf">7.</span><span class="o">...</span>
+<span class="mf">8.</span><span class="n">machine</span><span class="o">-&gt;</span><span class="n">directlyRun</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  最后调用计算接口，设计多种返回值的接口用于满足不同的计算需求，具体见示例所述：</p>
+<p><strong>实例</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;QPanda.h&quot;</span>
+<span class="mf">2.</span><span class="n">USING_QPANDA</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span><span class="n">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="mf">5.</span><span class="p">{</span>
+<span class="mf">6.</span>    <span class="n">auto</span> <span class="n">machine</span>  <span class="o">=</span> <span class="n">new</span> <span class="n">SingleAmplitudeQVM</span><span class="p">();</span>
+<span class="mf">7.</span>    <span class="n">machine</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="n">auto</span> <span class="n">prog</span>  <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>
+<span class="mf">10.</span>    <span class="n">auto</span> <span class="n">qlist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="mf">11.</span>    <span class="n">auto</span> <span class="n">clist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">qlist</span><span class="o">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">qlist</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Qubit</span> <span class="o">*</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">prog</span>  <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">val</span><span class="p">);</span> <span class="p">});</span>
+<span class="mf">14.</span>    <span class="n">prog</span>  <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="mf">15.</span>        <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="mf">16.</span>        <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="mf">17.</span>        <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+<span class="mf">18.</span>        <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="mf">19.</span>        <span class="o">&lt;&lt;</span> <span class="n">RY</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">20.</span>        <span class="o">&lt;&lt;</span> <span class="n">RX</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">21.</span>        <span class="o">&lt;&lt;</span> <span class="n">RX</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">22.</span>        <span class="o">&lt;&lt;</span> <span class="n">CR</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">PI</span><span class="p">)</span>
+<span class="mf">23.</span>        <span class="o">&lt;&lt;</span> <span class="n">CR</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">PI</span><span class="p">)</span>
+<span class="mf">24.</span>        <span class="o">&lt;&lt;</span> <span class="n">RY</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">25.</span>        <span class="o">&lt;&lt;</span> <span class="n">RZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">26.</span>        <span class="o">&lt;&lt;</span> <span class="n">RX</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">27.</span>        <span class="o">&lt;&lt;</span> <span class="n">RZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">28.</span>        <span class="o">&lt;&lt;</span> <span class="n">CR</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">PI</span><span class="p">)</span>
+<span class="mf">29.</span>        <span class="o">&lt;&lt;</span> <span class="n">CR</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">PI</span><span class="p">)</span>
+<span class="mf">30.</span>        <span class="o">&lt;&lt;</span> <span class="n">RY</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">31.</span>        <span class="o">&lt;&lt;</span> <span class="n">RX</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">32.</span>        <span class="o">&lt;&lt;</span> <span class="n">RX</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">33.</span>        <span class="o">&lt;&lt;</span> <span class="n">CR</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">PI</span><span class="p">)</span>
+<span class="mf">34.</span>        <span class="o">&lt;&lt;</span> <span class="n">RY</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">35.</span>        <span class="o">&lt;&lt;</span> <span class="n">RY</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">36.</span>        <span class="o">&lt;&lt;</span> <span class="n">RZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">PI</span>  <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">37.</span>        <span class="o">&lt;&lt;</span> <span class="n">CR</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">PI</span><span class="p">);</span>
+<span class="mf">38.</span>
+<span class="mf">39.</span>    <span class="n">machine</span><span class="o">-&gt;</span><span class="n">directlyRun</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+<span class="mf">40.</span>    <span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">getProbDict</span><span class="p">(</span><span class="n">qlist</span><span class="p">);</span>
+<span class="mf">41.</span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;0000000000&quot;</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">42.</span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;0000000001&quot;</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">43.</span>    <span class="n">delete</span><span class="p">(</span><span class="n">machine</span><span class="p">);</span>
+<span class="mf">44.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">45.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  getProbDict()接口表示输出计算后的量子态概率，输出结果用map容器保存，key为量子态对应的字符串，value为对应的概率，上述程序的计算结果如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0.00166709</span>
+<span class="mf">2.0.00166709</span>
+</pre></div>
+</div>
+<p>  若使用其他接口：</p>
+<p>  · getProbDict(qvec,std::string) ,使用示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">QVec</span> <span class="n">qvec</span><span class="p">;</span>
+<span class="mf">2.</span><span class="n">for_each</span><span class="p">(</span><span class="n">qlist</span><span class="o">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">qlist</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Qubit</span> <span class="o">*</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">qvec</span><span class="o">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">val</span><span class="p">);</span> <span class="p">});</span>
+<span class="mf">3.</span><span class="n">machine</span><span class="o">-&gt;</span><span class="n">directlyRun</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+<span class="mf">4.</span><span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">getProbDict</span><span class="p">(</span><span class="n">qlist</span><span class="p">);</span>
+<span class="mf">5.</span><span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="n">val</span> <span class="p">:</span> <span class="n">res</span><span class="p">)</span>
+<span class="mf">6.</span><span class="p">{</span>
+<span class="mf">7.</span><span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="o">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="o">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">8.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  结果输出如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0000000000</span> <span class="p">:</span> <span class="mf">0.0016671</span>
+<span class="mf">2.0000000001</span> <span class="p">:</span> <span class="mf">0.0016671</span>
+<span class="mf">3.0000000010</span> <span class="p">:</span> <span class="mf">0.000286029</span>
+<span class="mf">4.0000000011</span> <span class="p">:</span> <span class="mf">0.000286029</span>
+<span class="mf">5.0000000100</span> <span class="p">:</span> <span class="mf">0.000286029</span>
+<span class="mf">6.0000000101</span> <span class="p">:</span> <span class="mf">0.000286029</span>
+<span class="mf">7.</span><span class="o">......</span>
+</pre></div>
+</div>
+<p> · pMeasureBinindex(std::string) ,使用示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">pMeasureBinindex</span><span class="p">(</span><span class="s2">&quot;0000000001&quot;</span><span class="p">);</span>
+<span class="mf">2.</span><span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>  通过二进制形式下标测量指定振幅，结果输出如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="p">(</span><span class="mf">0.0408301</span><span class="p">,</span><span class="o">-</span><span class="mf">7.80626e-18</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>  · pMeasureDecindex(std::string) ,使用示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">PMeasure_bin_index</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">);</span>
+<span class="mf">2.</span><span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>  通过十进制形式下标测量指定振幅，结果输出如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0.00166709</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>5.3.2 部分振幅量子虚拟机<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>  目前用经典计算机模拟量子虚拟机的主流解决方案有全振幅与单振幅两种。除此之外，还有部分振幅量子虚拟机，该方案能在更低的硬件条件下，实现更高的模拟效率。 部分振幅算法的基本思想是将大比特的量子计算线路图拆分成若干个小比特线路图，具体数量视线路扶持情况而定。</p>
+<p><strong>使用介绍</strong></p>
+<p>  QPanda2中设计了 PartialAmplitudeQVM 类用于运行部分振幅模拟量子计算，同时提供了相关接口，它的使用很简单。</p>
+<p>  首先构建一个部分振幅量子虚拟机:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">machine</span> <span class="o">=</span> <span class="n">new</span> <span class="n">PartialAmplitudeQVM</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>  然后必须使用 PartialAmplitudeQVM::init() 初始化量子虚拟机环境:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">machine</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>  接着进行量子程序的构建、装载工作:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>
+<span class="mf">2.</span><span class="n">auto</span> <span class="n">qlist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="mf">3.</span><span class="n">auto</span> <span class="n">clist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="mf">4.</span>
+<span class="mf">5.</span><span class="n">for_each</span><span class="p">(</span><span class="n">qlist</span><span class="o">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">qlist</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Qubit</span> <span class="o">*</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">val</span><span class="p">);</span> <span class="p">});</span>
+<span class="mf">6.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+<span class="mf">7.</span><span class="o">...</span>
+<span class="mf">8.</span><span class="n">machine</span><span class="o">-&gt;</span><span class="n">directlyRun</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  最后调用计算接口，设计多种返回值的接口用于满足不同的计算需求，具体见示例所述：</p>
+<p><strong>实例</strong></p>
+<p>  以下示例展示了部分振幅量子虚拟机接口的使用方式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;QPanda.h&quot;</span>
+<span class="mf">2.</span><span class="n">USING_QPANDA</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span><span class="n">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="mf">5.</span><span class="p">{</span>
+<span class="mf">6.</span>    <span class="n">auto</span> <span class="n">machine</span> <span class="o">=</span> <span class="n">new</span> <span class="n">PartialAmplitudeQVM</span><span class="p">();</span>
+<span class="mf">7.</span>    <span class="n">machine</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>
+<span class="mf">10.</span>    <span class="n">auto</span> <span class="n">qlist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="mf">11.</span>    <span class="n">auto</span> <span class="n">clist</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>
+<span class="mf">14.</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">qlist</span><span class="o">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">qlist</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Qubit</span> <span class="o">*</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">val</span><span class="p">);</span> <span class="p">});</span>
+<span class="mf">15.</span>    <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="mf">16.</span>         <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+<span class="mf">17.</span>         <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="mf">18.</span>         <span class="o">&lt;&lt;</span> <span class="n">RZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">19.</span>         <span class="o">&lt;&lt;</span> <span class="n">RX</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">20.</span>         <span class="o">&lt;&lt;</span> <span class="n">RX</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">21.</span>         <span class="o">&lt;&lt;</span> <span class="n">RY</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">22.</span>         <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+<span class="mf">23.</span>         <span class="o">&lt;&lt;</span> <span class="n">RZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">24.</span>         <span class="o">&lt;&lt;</span> <span class="n">RZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">25.</span>         <span class="o">&lt;&lt;</span> <span class="n">CZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="mf">26.</span>         <span class="o">&lt;&lt;</span> <span class="n">RY</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">27.</span>         <span class="o">&lt;&lt;</span> <span class="n">RZ</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mf">28.</span>         <span class="o">&lt;&lt;</span> <span class="n">CR</span><span class="p">(</span><span class="n">qlist</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">qlist</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+<span class="mf">29.</span>
+<span class="mf">30.</span>    <span class="n">machine</span><span class="o">-&gt;</span><span class="n">directlyRun</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+<span class="mf">31.</span>    <span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">getProbDict</span><span class="p">(</span><span class="n">qlist</span><span class="p">);</span>
+<span class="mf">32.</span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;0000000000&quot;</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">33.</span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;0000000001&quot;</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">34.</span>    <span class="n">delete</span><span class="p">(</span><span class="n">machine</span><span class="p">);</span>
+<span class="mf">35.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">36.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  上述程序的计算结果如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="mf">0.0016671</span>
+<span class="mf">2.</span> <span class="mf">0.0016671</span>
+</pre></div>
+</div>
+<p>  若使用其他接口：</p>
+<p>  · PMeasure_bin_index(std::string) ,使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">PMeasure</span><span class="p">(</span><span class="s2">&quot;6&quot;</span><span class="p">);</span>
+<span class="mf">2.</span><span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="n">val</span> <span class="p">:</span><span class="n">res</span><span class="p">)</span>
+<span class="mf">3.</span><span class="p">{</span>
+<span class="mf">4.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="o">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="o">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">5.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  结果输出如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="mf">0.00166709</span>
+</pre></div>
+</div>
+<p>  · getProbDict(qvec,std::string) ,使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">QVec</span> <span class="n">qvec</span><span class="p">;</span>
+<span class="mf">2.</span><span class="n">for_each</span><span class="p">(</span><span class="n">qlist</span><span class="o">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">qlist</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Qubit</span> <span class="o">*</span><span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">qvec</span><span class="o">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">val</span><span class="p">);</span> <span class="p">});</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span><span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">getProbDict</span><span class="p">(</span><span class="n">qlist</span><span class="p">);</span>
+<span class="mf">5.</span><span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="n">val</span> <span class="p">:</span> <span class="n">res</span><span class="p">)</span>
+<span class="mf">6.</span><span class="p">{</span>
+<span class="mf">7.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="o">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="o">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">8.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  结果输出如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0000000000</span> <span class="p">:</span> <span class="mf">0.0016671</span>
+<span class="mf">2.0000000001</span> <span class="p">:</span> <span class="mf">0.0016671</span>
+<span class="mf">3.0000000010</span> <span class="p">:</span> <span class="mf">0.000286029</span>
+<span class="mf">4.0000000011</span> <span class="p">:</span> <span class="mf">0.000286029</span>
+<span class="mf">5.0000000100</span> <span class="p">:</span> <span class="mf">0.000286029</span>
+<span class="mf">6.0000000101</span> <span class="p">:</span> <span class="mf">0.000286029</span>
+</pre></div>
+</div>
+<p>  · pmeasure_bin_index(std::string) ,使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">pmeasure_bin_index</span><span class="p">(</span><span class="s2">&quot;0000000001&quot;</span><span class="p">);</span>
+<span class="mf">2.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>  通过二进制形式下标测量指定振幅，结果输出如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="p">(</span><span class="mf">0.0408301</span><span class="p">,</span><span class="o">-</span><span class="mf">7.80626e-18</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>  · pmeasure_dec_index(std::string) ,使用示例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="n">machine</span><span class="o">-&gt;</span><span class="n">pmeasure_dec_index</span><span class="p">(</span><span class="s2">&quot;6&quot;</span><span class="p">);</span>
+<span class="mf">2.</span><span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>  通过十进制形式下标测量指定振幅，结果输出如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="p">(</span><span class="o">-</span><span class="mf">4.33681e-18</span><span class="p">,</span><span class="o">-</span><span class="mf">0.0408301</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html" class="btn btn-neutral float-left" title="5.2 量子机器学习" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html" class="btn btn-neutral float-right" title="5.4 将量子程序编译到不同的量子芯片上" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

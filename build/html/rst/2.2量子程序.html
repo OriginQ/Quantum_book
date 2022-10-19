@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.2 量子程序 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.1 量子芯片" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html" />
+    <link rel="prev" title="2.1 量子力学基础理论" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.2 量子程序</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.2.1 量子计算原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#if-while">2.2.2 量子计算的 if 和 while</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>2.2 量子程序</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/2.2量子程序.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>2.2 量子程序<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>2.2.1 量子计算原理<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>  经典计算中，最基本的单元是比特，而最基本的控制模式是逻辑门，可以通过逻辑门的组合来达到控制电路的目的。类似地，处理量子比特的方式就是量子逻辑门，使用量子逻辑门，有意识的使量子态发生演化，所以量子逻辑门是构成量子算法的基础。</p>
+<p><strong>酉变换</strong></p>
+<p>  酉变换是一种矩阵，也是一种操作，它作用在量子态上得到的是一个新的量子态。使用  <span class="math notranslate nohighlight">\(U\)</span> 来表达酉矩阵,  <span class="math notranslate nohighlight">\(U^{\dagger}\)</span> 表示酉矩阵的转置复共轭矩阵，二者满足运算关系  <span class="math notranslate nohighlight">\(UU^{\dagger}=I\)</span> ，所以酉矩阵的转置复共轭矩阵也是一个酉矩阵，说明酉变换是一种可逆变换。</p>
+<p>  一般酉变换在量子态上的作用是变换矩阵左乘以右矢进行计算的。例如一开始有一个量子态  <span class="math notranslate nohighlight">\(|\psi_{0}\rangle\)</span> , 经过酉变换  <span class="math notranslate nohighlight">\(U\)</span> 之后得到  <span class="math notranslate nohighlight">\(|\psi\rangle=U\left|\psi_{0}\right\rangle\)</span></p>
+<p>  或者也可以写为</p>
+<div class="math notranslate nohighlight">
+\[\langle\psi|=\left\langle\psi_{0}\right| U^{\dagger}\]</div>
+<p>  由此可见，两个矢量的内积经过同一个酉变换之后保持不变。</p>
+<div class="math notranslate nohighlight">
+\[\langle\varphi \mid \psi\rangle=\langle\varphi|U^{\dagger}U| \psi\rangle\]</div>
+<p>  类似地，也可以通过酉变换表示密度矩阵的演化；</p>
+<div class="math notranslate nohighlight">
+\[\rho=U{\rho_{0}} U^{\dagger}\]</div>
+<p>  这样就连混合态的演化也包含在内了。</p>
+<p><strong>矩阵的指数函数</strong></p>
+<p>  一旦定义了矩阵乘法, 就可以利用函数的幂级数来定义矩阵的函数，这其中就包含矩阵的指数函数。如果 <span class="math notranslate nohighlight">\(A\)</span> 是一个矩阵，那么 <span class="math notranslate nohighlight">\(\exp (A)=1+A+\frac{A^{2}}{2 !}+\frac{A^{3}}{3 !}+\ldots\)</span> . 就为矩阵  <span class="math notranslate nohighlight">\(A\)</span> 的指数函数形式。</p>
+<p>  如果 <span class="math notranslate nohighlight">\(A\)</span> 是一个对角矩阵，即  <span class="math notranslate nohighlight">\(A=\text{diag}\left(A_{11} A_{22} A_{33} \ldots . .\right)\)</span> , 则由此验证</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{A}^{n}=\text{diag}\left(A_{11}^{n}, A_{22}^{n}, A_{33}^{n} \cdots\right)\]</div>
+<p>  从而得到</p>
+<div class="math notranslate nohighlight">
+\[\exp (A)=\text{diag}\left(e^{A_{11}} ,\mathrm{e}^{A_{22}}, \mathrm{e}^{A_{33}} \ldots\right)\]</div>
+<p>  如果 <span class="math notranslate nohighlight">\(A\)</span> 不是一个对角矩阵，则利用酉变换可以将它对角化， <span class="math notranslate nohighlight">\(D=U D U^{\dagger}\)</span> ，从而有</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{A}^{n}=U ^{\dagger} {\mathrm{D}^{n} \mathrm U}\]</div>
+<p>  那么，类似地</p>
+<div class="math notranslate nohighlight">
+\[\exp (\mathrm{A})=U ^{\dagger}\exp (\mathrm{D}) U\]</div>
+<p>  必须要引起注意的是</p>
+<div class="math notranslate nohighlight">
+\[\exp (A+B) \neq \exp (A) \exp (B) \neq \exp (B) \exp (A)\]</div>
+<p>  当 <span class="math notranslate nohighlight">\(A\)</span> 是表示数的时候等号是成立的，那么，当 <span class="math notranslate nohighlight">\(A\)</span> 表示是矩阵时，等式成立要满足什么条件？</p>
+<p>  通常，下面这种表达形式被称之为以 <span class="math notranslate nohighlight">\(A\)</span> 为生成元生成的酉变换；</p>
+<div class="math notranslate nohighlight">
+\[U(\theta)=\exp (-\mathrm{i} \theta A)\]</div>
+<p>  这种矩阵的指数运算可以利用数值计算软件Matlab中的expm，或者Mathematica中的MatrixExp命令进行方便地计算。</p>
+<p><strong>单位矩阵</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}I=\left[\begin{array}{ll} 1 &amp; 0 \\ 0 &amp; 1 \end{array}\right]\end{split}\]</div>
+<p>  以单位矩阵为生成元，可以构建一种特殊的酉变换。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cc} u(\theta)=\exp (-i \theta I)=\left(\begin{array}{cc} e^{-i \theta} &amp; 0 \\ 0 &amp; e^{-i \theta} \end{array}\right)=\exp (-i \theta) I \end{array}\end{split}\]</div>
+<p>  它作用在态矢上面，相当于对于态矢整体（或者说每个分量同时）乘以一个系数。如果将这种态矢带入到密度矩阵的表达式中，会发现这一项系数会被消去。</p>
+<p>  这项系数称为量子态的整体相位。因为任何操作和测量都无法分辨两个相同的密度矩阵，所以量子态的整体相位一般情况下是不会对系统产生任何影响的。</p>
+<p><strong>单量子比特逻辑门</strong></p>
+<p>  在经典计算机中，单比特逻辑门只有一种——非门（NOT gate），但是在量子计算机中，量子比特情况相对复杂，存在叠加态、相位，所以单量子比特逻辑门会有更加丰富的种类。</p>
+<p><strong>泡利矩阵</strong></p>
+<p>  泡利矩阵（Pauli matrices）有时也被称作自旋矩阵（spin matrices）。有以下三种形式，分别是</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left.\sigma_{x}=\left(\begin{array}{rr} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right) \quad \sigma_{y}=\left(\begin{array}{cc} 0 &amp; -i \\ i &amp; 0 \end{array}\right) \quad \sigma_{z}=\left(\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right)\right.\end{split}\]</div>
+<p>  三个泡利矩阵所表示的泡利算符代表着对量子态矢量最基本的操作。如将  <span class="math notranslate nohighlight">\(\sigma_{x}\)</span> 作用到 <span class="math notranslate nohighlight">\(|0\rangle\)</span> 态上， 经过矩阵运算，得到的末态为  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 态。 泡利矩阵的线性组合是完备的二维酉变换生成元，即所有满足  <span class="math notranslate nohighlight">\(U U ^{\dagger}=I\)</span> 的  <span class="math notranslate nohighlight">\(U\)</span> 都能通过下面这种方式得到</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{U}=\mathrm{e}^{-i \theta\left(a \sigma_{x}+b \sigma_{y}+c \sigma_{z}\right)}\]</div>
+<p>  介绍单量子逻辑门时，会使用图2.2.1来表示。</p>
+<a class="reference internal image-reference" href="../_images/2.2.1.png"><img alt="../_images/2.2.1.png" class="align-center" src="../_images/2.2.1.png" style="width: 300px;" /></a>
+<p class="centered">
+<strong>图2.2.1 单量子逻辑门</strong></p><p>  横线表示一个量子比特从左到右按照时序演化的路线，方框表示量子逻辑门， 这个图标表示一个名为 <span class="math notranslate nohighlight">\(U\)</span> 的逻辑门作用在这条路线所代表的量子比特上。对于一个处 于  <span class="math notranslate nohighlight">\(\left|\psi_{0}\right\rangle\)</span> 的量子态，将这个量子逻辑门作用在上面时，相当于将这个量子逻辑门代表的酉矩阵左乘这个量子态的矢量，然后得到下一个时刻的量子态  <span class="math notranslate nohighlight">\(\left|\psi_{1}\right\rangle\)</span> 。</p>
+<p>  即:  <span class="math notranslate nohighlight">\(\left|\psi_{1}\right\rangle=U\left|\psi_{0}\right\rangle\)</span></p>
+<p>  这个表达式对于所有的单比特门或者多比特门都是适用的。对于一个有 <span class="math notranslate nohighlight">\({n}\)</span> 个量子比特的量子系统，它的演化是通过一个  <span class="math notranslate nohighlight">\(2^{n} \times 2^{n}\)</span> 的酉矩阵来表达。</p>
+<p><strong>常见逻辑门以及含义</strong></p>
+<p><strong>1）Hadamard (H) 门</strong></p>
+<p>  Hadamard 门是一种可将基态变为叠加态的量子逻辑门，有时简称为H门。Hadamard 门作用在单比特上，它将基态 <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 变成 <span class="math notranslate nohighlight">\((|0\rangle +|1\rangle)/\sqrt{2}\)</span> ，将基态 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 变成 <span class="math notranslate nohighlight">\((|0\rangle -|1\rangle)/\sqrt{2}\)</span> 。</p>
+<p>  Hadamard门矩阵形式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H=\frac{1}{\sqrt{2}}\left[\begin{array}{cc} 1 &amp; 1 \\ 1 &amp; -1 \end{array}\right]\end{split}\]</div>
+<p>  其在线路上显示如图2.2.2所示：</p>
+<img alt="../_images/2.2.2.png" class="align-center" src="../_images/2.2.2.png" />
+<p class="centered">
+<strong>图2.2.2 Hadamard 门</strong></p><p> 假设， <span class="math notranslate nohighlight">\(H\)</span> 门作用在任意量子态 <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> 上面, 得到新的量子态为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime}\right\rangle=\mathrm{H}|\psi\rangle=\frac{1}{\sqrt{2}}\left[\begin{array}{cc} 1 &amp; 1 \\ 1 &amp; -1 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\frac{1}{\sqrt{2}}\left[\begin{array}{c} \alpha+\beta \\ \alpha-\beta \end{array}\right]=\frac{\alpha+\beta}{\sqrt{2}}|0\rangle+\frac{\alpha-\beta}{\sqrt{2}}|1\rangle\end{split}\]</div>
+<p><strong>2）Pauli-X门</strong></p>
+<p>  Pauli-X门作用在单量子比特上，它是经典计算机 <span class="math notranslate nohighlight">\(NOT\)</span> 门的量子等价，将量子态进行翻转，量子态变化方式为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;|0\rangle \rightarrow|1\rangle \\ &amp;|1\rangle \rightarrow|0\rangle \end{aligned}\end{split}\]</div>
+<p>  Pauli-X门矩阵形式为泡利矩阵 <span class="math notranslate nohighlight">\(\sigma_{x}\)</span> ​，即：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{X}=\sigma_{\mathrm{x}}=\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  Pauli-X门矩阵又称 <span class="math notranslate nohighlight">\(NOT\)</span> 门；其在线路上显示如图2.2.3所示：</p>
+<img alt="../_images/2.2.3.png" class="align-center" src="../_images/2.2.3.png" />
+<p class="centered">
+<strong>图2.2.3 Pauli-X门</strong></p><p>  假设，NOT门作用在任意量子态 <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> 上面, 得到新的量子态为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime}\right\rangle=\mathrm{X}|\psi\rangle=\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{l} \beta \\ \alpha \end{array}\right]=\beta|0\rangle+\alpha|1\rangle\end{split}\]</div>
+<p><strong>3）Pauli-Y门</strong></p>
+<p>  Pauli-Y门作用在单量子比特上，作用效果为绕Bloch球 <span class="math notranslate nohighlight">\(Y\)</span> 轴旋转角度 <span class="math notranslate nohighlight">\(\pi\)</span> ，Pauli-Y门的矩阵形式为泡利矩阵 <span class="math notranslate nohighlight">\(\sigma_{y}\)</span> ，即：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{Y}=\sigma_{\mathrm{y}}=\left[\begin{array}{cc} 0 &amp; -\ i \\ \ i &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  其在线路上显示如图2.2.4所示：</p>
+<img alt="../_images/2.2.4.png" class="align-center" src="../_images/2.2.4.png" />
+<p class="centered">
+<strong>图2.2.4 Pauli-Y门</strong></p><p>  假设，Pauli-Y门作用在任意量子态 <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> 上面, 得到新的量子态为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime}\right\rangle=\mathrm{Y}|\psi\rangle=\left[\begin{array}{cc} 0 &amp; -i \\ \ i &amp; 0 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{c} -i \beta \\ i \alpha \end{array}\right]=-i \beta|0\rangle+i \alpha|1\rangle\end{split}\]</div>
+<p><strong>4）Pauli-Z门</strong></p>
+<p>  Pauli-Z 门作用在单量子比特上，作用效果是绕Bloch球 <span class="math notranslate nohighlight">\(Z\)</span> 轴旋转角度 <span class="math notranslate nohighlight">\(\pi\)</span> ，Pauli-Z门矩阵形式为泡利矩阵  <span class="math notranslate nohighlight">\(\sigma_{z}\)</span>  ，即：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Z=\sigma_{z}=\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right]\end{split}\]</div>
+<p>  其在线路上显示如图2.2.5所示：</p>
+<img alt="../_images/2.2.5.png" class="align-center" src="../_images/2.2.5.png" />
+<p class="centered">
+<strong>图2.2.5 Pauli-Z 门</strong></p><p>  假设，Pauli-Z门作用在任意量子态 <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle + \beta|1\rangle\)</span> 上面, 得到新的量子态为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime}\right\rangle=\mathrm{Z}|\psi\rangle=\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{c} \alpha \\ -\beta \end{array}\right]=\alpha|0\rangle-\beta|1\rangle\end{split}\]</div>
+<p><strong>5）旋转门（rotation operators）</strong></p>
+<p>  分别用不同的泡利矩阵作为生成元是构成 <span class="math notranslate nohighlight">\(RX\)</span> , <span class="math notranslate nohighlight">\(RY\)</span> , <span class="math notranslate nohighlight">\(RZ\)</span> 的方法。</p>
+<p><strong>（1）RX(θ) 门</strong></p>
+<p>  RX门由Pauli-X矩阵作为生成元生成，其矩阵形式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}RX(\theta) \equiv e^{-i \theta X / 2}=\cos \left(\frac{\theta}{2}\right) I-i \sin \left(\frac{\theta}{2}\right) X=\left[\begin{array}{cc} \cos \left(\frac{\theta}{2}\right) &amp; -i \sin \left(\frac{\theta}{2}\right) \\ -i \sin \left(\frac{\theta}{2}\right) &amp; \cos \left(\frac{\theta}{2}\right) \end{array}\right]\end{split}\]</div>
+<p>  其在线路上显示如图2.2.6所示：</p>
+<img alt="../_images/2.2.6.png" class="align-center" src="../_images/2.2.6.png" />
+<p class="centered">
+<strong>图2.2.6 RX(θ) 门</strong></p><p>  假设,  <span class="math notranslate nohighlight">\(\mathrm{RX}(\pi / 2)\)</span> 门作用在任意量子态  <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> 上面, 得到新的量子态为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime}\right\rangle=\mathrm{RX}(\pi / 2)|\psi\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{rr} 1 &amp; -\mathrm{i} \\ -\mathrm{i} &amp; 1 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\frac{\sqrt{2}}{2}\left[\begin{array}{l} \alpha-i \beta \\ \beta-i \alpha \end{array}\right]=\frac{\sqrt{2}(\alpha-i \beta)}{2}|0\rangle+\frac{\sqrt{2}(\beta-i \alpha)}{2}|1\rangle\end{split}\]</div>
+<p><strong>（2）RY(θ) 门</strong></p>
+<p>  RY门由Pauli-Y矩阵作为生成元生成，其矩阵形式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}RY(\theta) \equiv e^{-i \theta Y / 2}=\cos \left(\frac{\theta}{2}\right) I-i \sin \left(\frac{\theta}{2}\right) Y=\left[\begin{array}{cc} \cos \left(\frac{\theta}{2}\right) &amp; -\sin \left(\frac{\theta}{2}\right) \\ \sin \left(\frac{\theta}{2}\right) &amp; \cos \left(\frac{\theta}{2}\right) \end{array}\right]\end{split}\]</div>
+<p>其在线路上显示如图2.2.7所示：</p>
+<img alt="../_images/2.2.7.png" class="align-center" src="../_images/2.2.7.png" />
+<p class="centered">
+<strong>图2.2.7 RY(θ) 门</strong></p><p>  假设， <span class="math notranslate nohighlight">\(RY(\pi / 2)\)</span> 门作用在任意量子态  <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> 上面, 得到新的量子态为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\left|\psi^{\prime}\right\rangle=\text{RY}\left(\frac{\pi}{2}\right)|\psi\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{cc} 1 &amp; -1 \\ 1 &amp; 1 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\frac{\sqrt{2}}{2}\left[\begin{array}{l} \alpha-\beta \\ \alpha+\beta \end{array}\right]=\frac{\sqrt{2}(\alpha-\beta)}{2}|0\rangle+\frac{\sqrt{2}(\alpha+\beta)}{2}|1\rangle \\ \end{aligned}\end{split}\]</div>
+<p><strong>（3）RZ(θ) 门</strong></p>
+<p>  RZ又称相位转化门（phase-shift gate），由Pauli-Z矩阵作为生成元生成，其矩阵形式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}RZ(\theta) \equiv e^{-i \theta Z / 2}=\cos \left(\frac{\theta}{2}\right) I-i \sin \left(\frac{\theta}{2}\right) Z=\left[\begin{array}{cc} e^{-i \theta / 2} &amp; 0 \\ 0 &amp; e^{i \theta / 2} \end{array}\right]\end{split}\]</div>
+<p>  上式还可以写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}RZ(\theta)=\left[\begin{array}{cc} e^{-i \theta / 2} &amp; \\ &amp; e^{i \theta / 2} \end{array}\right]=e^{-i \theta / 2}\left[\begin{array}{ll} 1 &amp; \\ &amp; e^{i \theta} \end{array}\right]\end{split}\]</div>
+<p>  由于矩阵</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{array}{ll} e^{-i \theta / 2} &amp; \\ &amp; e^{i \theta / 2} \end{array}\right] \text { 和 }\left[\begin{array}{ll} 1 &amp; \\ &amp; e^{i \theta} \end{array}\right]\end{split}\]</div>
+<p>  只差一个整体相位 (global phases)  <span class="math notranslate nohighlight">\(e^{-i \theta / 2}\)</span> ，只考虑单门的话，两个矩阵做成的量子逻辑门是等价的，即有时 <span class="math notranslate nohighlight">\(RZ\)</span> 门的矩阵形式写作</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}RZ(\theta)=\left[\begin{array}{ll} 1 &amp; 0 \\ 0 &amp; e^{i \theta} \end{array}\right]\end{split}\]</div>
+<p>   <span class="math notranslate nohighlight">\(RZ\)</span> 量子逻辑门作用在基态上的效果为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}RZ|0\rangle=\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; e^{i \theta} \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \end{array}\right]=\left[\begin{array}{c} 1 \\ 0 \end{array}\right]=|0\rangle\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}RZ|1\rangle=\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; e^{i \theta} \end{array}\right]\left[\begin{array}{l} 0 \\ 1 \end{array}\right]=\left[\begin{array}{c} 0 \\ e^{i \theta} \end{array}\right]=e^{i \theta}|1\rangle\end{split}\]</div>
+<p>  由于全局相位没有物理意义，并没有对计算基  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 做任何的改变，而是在原来的态上绕Z轴逆时针旋转 <span class="math notranslate nohighlight">\(\theta\)</span> 角。</p>
+<p>  其在线路上显示如图2.2.8所示：</p>
+<img alt="../_images/2.2.8.png" class="align-center" src="../_images/2.2.8.png" />
+<p class="centered">
+<strong>图2.2.8 RZ(θ) 门</strong></p><p>  假设,  <span class="math notranslate nohighlight">\(\mathrm{RZ}(\pi / 2)\)</span> 门作用在任意量子态  <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> 上面, 得到新的量子态为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime}\right\rangle=R Z\left(\frac{\pi}{2}\right)|\psi\rangle=\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; \frac{\sqrt{2}(1+i)}{2} \end{array}\right]\left[\begin{array}{c} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{c} \alpha \\ \frac{\sqrt{2}(1+\mathrm{i})}{2} \beta \end{array}\right]=\alpha|0\rangle+\frac{\sqrt{2}(1+\mathrm{i})}{2} \beta|1\rangle\end{split}\]</div>
+<p>   <span class="math notranslate nohighlight">\(RX\)</span> , <span class="math notranslate nohighlight">\(RY\)</span> , <span class="math notranslate nohighlight">\(RZ\)</span> 意味着将量子态在布洛赫球上分别绕着 <span class="math notranslate nohighlight">\(X\)</span> , <span class="math notranslate nohighlight">\(Y\)</span> , <span class="math notranslate nohighlight">\(Z\)</span> 轴旋转 <span class="math notranslate nohighlight">\(\theta\)</span> 角度，所以 <span class="math notranslate nohighlight">\(RX\)</span> ， <span class="math notranslate nohighlight">\(RY\)</span> 能带来概率幅的变化，而 <span class="math notranslate nohighlight">\(RZ\)</span> 只有相位的变化。那么，共同使用这三种操作能使量子态在整个布洛赫球上自由移动。</p>
+<p><strong>多量子比特逻辑门</strong></p>
+<p>  不论是在经典计算还是量子计算中，两量子比特门无疑是建立量子比特之间联系的最重要桥梁。不同于经典计算中的与或非门及它们的组合，量子逻辑门要求所有的逻辑操作必须是酉变换，所以输入和输出的比特数量是相等的。</p>
+<p>  在描述两量子比特门之前，必须要将之前对于单量子比特的表示方式扩展一下。联立两个量子比特或者两个以上的量子比特时，就用到复合系统中量子态演化的假设。</p>
+<p>  对于一个 <span class="math notranslate nohighlight">\(n\)</span> 量子比特 <span class="math notranslate nohighlight">\(\left|x_{n-1} \cdots x_{0}\right\rangle\)</span> , <span class="math notranslate nohighlight">\(n\)</span> 量子比特系统的计算基就有 <span class="math notranslate nohighlight">\(2^{n}\)</span> 单位正交矢量组成，借助于经典比特的进位方式对量子比特进行标记，从左到右依次是二进制中的从高位到低位，也就是说 <span class="math notranslate nohighlight">\(\left|x_{n-1} \cdots x_{0}\right\rangle\)</span> 中  <span class="math notranslate nohighlight">\(x_{n-1}\)</span> 为高位， <span class="math notranslate nohighlight">\(x_{0}\)</span> 为低位。</p>
+<p>  比如对于一个2量子比特的系统，其计算基分别记做</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{ll} |00\rangle=\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right], &amp; |01\rangle=\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right], \\ |10\rangle=\left[\begin{array}{l} 0 \\ 0 \\ 1 \\ 0 \end{array}\right], &amp; |11\rangle=\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right] \end{array}\end{split}\]</div>
+<p>  在基态 <span class="math notranslate nohighlight">\(|01 \rangle\)</span> 中，左侧的0对应的位为高位，1对应的位为低位。</p>
+<p>  在介绍2比特量子逻辑门时，会使用如图2.2.9的图标：</p>
+<a class="reference internal image-reference" href="../_images/2.2.9.png"><img alt="../_images/2.2.9.png" class="align-center" src="../_images/2.2.9.png" style="width: 300px;" /></a>
+<p class="centered">
+<strong>图2.2.9 2比特量子逻辑门</strong></p><p>  每根线表示一个量子比特演化的路线，这和单比特门中的横线是类似的，不一样的是这两根线有位次之分，从上到下依次分别表示从低位到高位的量子比特演化的路线。这个图标横跨两个量子比特，它代表将一个两比特门作用在这两个量子比特上，这个图标代表的是 <span class="math notranslate nohighlight">\(CNOT\)</span> 门。</p>
+<p><strong>CNOT 门</strong></p>
+<p>  控制非门(Control-NOT)，通常用 <span class="math notranslate nohighlight">\(CNOT\)</span> 进行表示，是一种普遍使用的两量子比特门。</p>
+<p>  若低位为控制比特，那么它具有如下的矩阵形式:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C N O T=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  对应的 <span class="math notranslate nohighlight">\(CNOT\)</span> 门在线路中显示如图2.2.10：</p>
+<a class="reference internal image-reference" href="../_images/2.2.10.png"><img alt="../_images/2.2.10.png" class="align-center" src="../_images/2.2.10.png" style="width: 300px;" /></a>
+<p class="centered">
+<strong>图2.2.10 CNOT门</strong></p><p>  含实点的路线对应的量子比特称为控制比特（control qubit），含+号的路线对应的量子比特为目标比特（target qubit）。</p>
+<p>  假设， <span class="math notranslate nohighlight">\(CNOT\)</span> 门作用分别作用在基态 <span class="math notranslate nohighlight">\(|\psi\rangle=|00\rangle\)</span> , <span class="math notranslate nohighlight">\(|01\rangle\)</span> , <span class="math notranslate nohighlight">\(|10\rangle\)</span> , <span class="math notranslate nohighlight">\(|11\rangle\)</span> 上面, 得到新的量子态为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\left|\psi^{\prime}\right\rangle=\mathrm{CNOT}|00\rangle=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right]=\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right]=|00\rangle \\ &amp;\left|\psi^{\prime}\right\rangle=\mathrm{CNOT}|01\rangle=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right]\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right]=\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right]=|11\rangle \\ &amp;\left|\psi^{\prime}\right\rangle=\mathrm{CNOT}|10\rangle=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right]\left[\begin{array}{l} 0 \\ 0 \\ 1 \\ 0 \end{array}\right]=\left[\begin{array}{l} 0 \\ 0 \\ 1 \\ 0 \end{array}\right]=|10\rangle \\ &amp;\left|\psi^{\prime}\right\rangle=\text {CNOT}|11\rangle=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right]\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right]=\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right]=|01\rangle \end{aligned}\end{split}\]</div>
+<p>  由于低位比特为控制比特，高位比特为目标比特，所以当低位比特位置对应为1时，高位比特就会被取反；当低位比特位置为0时，不对高位比特做任何操作。</p>
+<p>  若高位比特为控制比特，那么它具有如下的矩阵形式:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{CNOT}=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(CNOT\)</span> 门在线路中显示如图2.2.11：</p>
+<a class="reference internal image-reference" href="../_images/2.2.11.png"><img alt="../_images/2.2.11.png" class="align-center" src="../_images/2.2.11.png" style="width: 300px;" /></a>
+<p class="centered">
+<strong>图2.2.11 CNOT门</strong></p><p>  假设，高位为控制比特， <span class="math notranslate nohighlight">\(CNOT\)</span> 门分别作用在基态  <span class="math notranslate nohighlight">\(|\psi\rangle=|00\rangle\)</span> , <span class="math notranslate nohighlight">\(|01\rangle\)</span> , <span class="math notranslate nohighlight">\(|10\rangle\)</span> , <span class="math notranslate nohighlight">\(|11\rangle\)</span> 上，那么，可以计算四个两量子比特的计算基经 <span class="math notranslate nohighlight">\(CNOT\)</span> 门的演化结果如图2.2.12所示：</p>
+<a class="reference internal image-reference" href="../_images/2.2.12.png"><img alt="../_images/2.2.12.png" class="align-center" src="../_images/2.2.12.png" style="width: 500px;" /></a>
+<p class="centered">
+<strong>图2.2.12 演化结果</strong></p><p>  从上例可以看出 <span class="math notranslate nohighlight">\(CNOT\)</span> 门的含义是当控制比特为 <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 态时，目标比特不发生改变；当控制比特为 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 态时，对目标比特执行 <span class="math notranslate nohighlight">\(X\)</span> 门(量子非门)操作。要注意的是控制比特和目标比特的地位是不能交换的。</p>
+<p><strong>CR 门</strong></p>
+<p>  控制相位门（Controlled phase gate）和控制非门类似，通常记为 <span class="math notranslate nohighlight">\(CR\)</span> (CPhase)，其矩阵形式如下</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{CR}(\theta)=\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; \mathrm{e}^{\mathrm{i} \theta} \end{array}\right]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(CR\)</span> 门在线路中显示如图2.2.13：</p>
+<img alt="../_images/2.2.13.png" class="align-center" src="../_images/2.2.13.png" />
+<p class="centered">
+<strong>图2.2.13 CR门</strong></p><p>  在 <span class="math notranslate nohighlight">\(CR\)</span> 门的图标中，含实点的路线对应的量子比特称为控制比特（control qubit），含CR字母的路线对应量子比特为目标比特（target qubit）。</p>
+<p>  当控制比特为 <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 态时，目标比特不发生改变；当控制比特为 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 态时，对目标比特执行相转变门（phase-shift gate），其特殊的是，控制相位门里交换控制比特和目标比特的角色，矩阵形式不会发生任何改变。</p>
+<p><strong>iSWAP 门</strong></p>
+<p>  <span class="math notranslate nohighlight">\(\text{iSWAP}\)</span> 门的主要作用是交换两个比特的状态，并且赋予其 <span class="math notranslate nohighlight">\(\pi /2\)</span> 相位；经典电路中也有SWAP门，但是 <span class="math notranslate nohighlight">\(\text{iSWAP}\)</span> 是量子计算中特有的。 <span class="math notranslate nohighlight">\(\text{iSWAP}\)</span> 门在某些体系中是较容易实现的两比特逻辑门，它是由  <span class="math notranslate nohighlight">\(\sigma_{x} \otimes \sigma_{x}+\sigma_{y} \otimes \sigma_{y}\)</span> 作为生成元生成，需要将矩阵 <span class="math notranslate nohighlight">\(\sigma_{x} \otimes \sigma_{x}+\sigma_{y} \otimes \sigma_{y}\)</span> 对角化， <span class="math notranslate nohighlight">\(\text{iSWAP}\)</span> 门的矩阵表示如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{iSWAP}(\theta)=\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; \cos (\theta) &amp; -i \sin (\theta) &amp; 0 \\ 0 &amp; -i \sin (\theta) &amp; \cos (\theta) &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array}\right]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\text{iSWAP}\)</span> 门在线路中显示如图2.2.14：</p>
+<img alt="../_images/2.2.14.png" class="align-center" src="../_images/2.2.14.png" />
+<p class="centered">
+<strong>图2.2.14 iSWAP门</strong></p><p>  通常会用一个完整的翻转，即 <span class="math notranslate nohighlight">\(\theta=\pi/2\)</span> 的情况来指代 <span class="math notranslate nohighlight">\(\text{iSWAP}\)</span> 。当角度为 <span class="math notranslate nohighlight">\(\text{iSWAP}\)</span> 的一半时，即 <span class="math notranslate nohighlight">\(\theta=\pi/4\)</span> ，称之为 <span class="math notranslate nohighlight">\(\sqrt{i}SWAP\)</span> 。对于  <span class="math notranslate nohighlight">\(\text{iSWAP}\)</span> 门而言，两个比特之间地位是对等的，不存在控制和受控的关系。</p>
+<p><strong>量子线路与测量操作</strong></p>
+<p>  量子线路是由代表量子比特演化的路线和作用在量子比特上的量子逻辑门组成的。量子线路产生的效果，等同于每一个量子逻辑门依次作用在量子比特上。在真实的量子计算机上，最后要对量子系统末态进行测量操作，才能得到末态的信息，因此也把测量操作作为量子线路的一部分，测量操作有时也称为测量门。测量背后的原理就是之前讲到的投影测量。</p>
+<p>  测量操作在线路上的显示如图2.2.15：</p>
+<img alt="../_images/2.2.15.png" class="align-center" src="../_images/2.2.15.png" />
+<p class="centered">
+<strong>图2.2.15 测量操作</strong></p><p>它表示对该量子路线代表的量子比特进行测量操作。</p>
+<p>  在计算 <span class="math notranslate nohighlight">\(|0\rangle\)</span> , <span class="math notranslate nohighlight">\(|1\rangle\)</span> 下，测量操作对应的矩阵形式为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}M_{0}=|0\rangle \langle 0|=\left[\begin{array}{ll} 1 &amp; 0 \\ 0 &amp; 0 \end{array}\right] \quad M_{1}=| 1\ \rangle\langle 1|=\left[\begin{array}{ll} 0 &amp; 0 \\ 0 &amp; 1 \end{array}\right]\end{split}\]</div>
+<p>  如图2.2.16所示，是一个简单的单量子比特的量子线路。</p>
+<img alt="../_images/2.2.16.png" class="align-center" src="../_images/2.2.16.png" />
+<p class="centered">
+<strong>图2.2.16 一个简单的单量子比特的量子线路</strong></p><p>  初始态为 <span class="math notranslate nohighlight">\(|0\rangle\)</span> , 首先经过一个 <span class="math notranslate nohighlight">\(H\)</span> 门，演化得到末态</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime}\right\rangle=H|0\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{cc} 1 &amp; 1 \\ 1 &amp; -1 \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \end{array}\right]=\frac{\sqrt{2}}{2}\left[\begin{array}{l} 1 \\ 1 \end{array}\right]=\frac{\sqrt{2}}{2}|0\rangle+\frac{\sqrt{2}}{2}|1\rangle\end{split}\]</div>
+<p>  接着就对其进行测量操作，得到投影到计算基 <span class="math notranslate nohighlight">\(|0\rangle\)</span> 下的概率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\quad P(0)=\left\langle\psi^{\prime}\left|M_{0}^{\dagger} M_{0}\right| \psi^{\prime}\right\rangle \\ &amp;=\left\langle\psi^{\prime}\left|M_{0}\right| \psi^{\prime}\right\rangle \\ &amp;=\left[\begin{array}{ll} \sqrt{2} / 2 &amp; \sqrt{2} / 2 \end{array}\right]\left[\begin{array}{ll} 1 &amp; 0 \\ 0 &amp; 0 \end{array}\right]\left[\begin{array}{l} \sqrt{2} / 2 \\ \sqrt{2} / 2 \end{array}\right] \\ &amp;=\frac{1}{2} \end{aligned}\end{split}\]</div>
+<p>  根据测量假设，测量过后末态  <span class="math notranslate nohighlight">\(\left|\psi^{\prime}\right\rangle\)</span> 变为新的量子态</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime \prime}\right\rangle=\frac{M_{0}\left|\psi^{\prime}\right\rangle}{\sqrt{P(0)}}=\left[\begin{array}{l} 1 \\ 0 \end{array}\right]=|0\rangle\end{split}\]</div>
+<p>  投影到计算基 <span class="math notranslate nohighlight">\(|1\rangle\)</span> 下的概率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp; P(1)=\left\langle\psi^{\prime}\left|M_{1}^{\dagger} M_{1}\right| \psi^{\prime}\right\rangle. \\ &amp;=\left\langle\psi^{\prime}\left|M_{1}\right| \psi^{\prime}\right\rangle \\ &amp;=[\sqrt{2} / 2 \quad \sqrt{2} / 2]\left[\begin{array}{ll} 0 &amp; 0 \\ 0 &amp; 1 \end{array}\right]\left[\begin{array}{c} \sqrt{2} / 2 \\ \sqrt{2} / 2 \end{array}\right] \\ &amp;=\frac{1}{2} . \end{aligned}\end{split}\]</div>
+<p>  测量过后末态 <span class="math notranslate nohighlight">\(\left|\psi^{\prime}\right\rangle\)</span> 变为新的量子态</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi^{\prime \prime}\right\rangle=\frac{M_{1}\left|\psi^{\prime}\right\rangle}{\sqrt{P(1)}}=\left[\begin{array}{l} 0 \\ 1 \end{array}\right]=|1\rangle\end{split}\]</div>
+<p>  由于在真实的量子计算机上面, 测量会对量子态有影响，所以只能够通过新制备初始量子态，让它重新演化，再进行测量，从而得到末量子态在计算基下的频率, 用频率来近似概率，并且每次测量只能够用测量操作  <span class="math notranslate nohighlight">\(M_{0}\)</span> 与   <span class="math notranslate nohighlight">\(M_{1}\)</span> 中的一个进行测量。</p>
+<p>​  图2.2.17，表示的是两量子比特的量子线路：</p>
+<img alt="../_images/2.2.17.png" class="align-center" src="../_images/2.2.17.png" />
+<p class="centered">
+<strong>图2.2.17 两量子比特的量子线路</strong></p><p>  在该量子线路中，初始态q[1]、q[0]代表量子比特的初始态均为  <span class="math notranslate nohighlight">\(|0\rangle\)</span> ，因此该系统的复合量子态为  <span class="math notranslate nohighlight">\(|00\rangle\)</span> , 这里复合量子态 <span class="math notranslate nohighlight">\(|00\rangle\)</span> 的从左到右依次对应高位比特到低位比特。首先该复合的量子比特在时刻 <span class="math notranslate nohighlight">\(1\)</span> 同时经过 <span class="math notranslate nohighlight">\(H\)</span> 门 和 <span class="math notranslate nohighlight">\(X\)</span> 门，接着在时刻 <span class="math notranslate nohighlight">\(2\)</span> 经过 <span class="math notranslate nohighlight">\(CNOT\)</span> 门，最后在时刻 <span class="math notranslate nohighlight">\(3\)</span> 进行整体测量操作。下面用数学的语言进行描述，在初始时刻系统处在初始态  <span class="math notranslate nohighlight">\(\left|\psi_{0}\right\rangle=|00\rangle\)</span> ，其中左边的 0 为高位 <span class="math notranslate nohighlight">\(q[1]\)</span> , 右边的 0 为低位 <span class="math notranslate nohighlight">\(q[0]\)</span> , 经过时刻 <span class="math notranslate nohighlight">\(1\)</span> 的门以后量子态变为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi_{1}\right\rangle=[H \otimes X]|00\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{cc} X &amp; X \\ X &amp; -X \end{array}\right]|00\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{cccc} 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; -1 \\ 1 &amp; 0 &amp; -1 &amp; 0 \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right]=\frac{\sqrt{2}}{2}\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 1 \end{array}\right]\end{split}\]</div>
+<p>  接着在时刻 <span class="math notranslate nohighlight">\(2\)</span> 经历 <span class="math notranslate nohighlight">\(CNOT\)</span> 门后，演化为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi_{2}\right\rangle=\mathrm{CNOT}\left|\psi_{1}\right\rangle=\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=\frac{\sqrt{2}}{2}|01\rangle+\frac{\sqrt{2}}{2}|11\rangle\end{split}\]</div>
+<p>  最后，到时刻 <span class="math notranslate nohighlight">\(3\)</span> 进行测量操作，若用测量操作 <span class="math notranslate nohighlight">\(M_{00} \equiv|00\rangle\langle 00|\)</span> ，则得到投影到计算基 <span class="math notranslate nohighlight">\(|00\rangle\)</span> 下的概率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}&amp;P(00)=\left\langle\psi_{2}\left|M_{00}^{\dagger} M_{00}\right| \psi_{2}\right\rangle \\&amp;=\left\langle\psi_{2}\left|M_{00}\right| \psi_{2}\right\rangle \\&amp;=\left\langle\psi_{2}|[|00\rangle\langle 00|]| \psi_{2}\right\rangle\\&amp;=\left[\begin{array}{llll}0 &amp; \frac{\sqrt{2}}{2} &amp; 0 &amp; \frac{\sqrt{2}}{2}\end{array}\right]\left[\begin{array}{llll}1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0\end{array}\right]\left[\begin{array}{c}0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2\end{array}\right]\\&amp;=0\end{aligned}\end{split}\]</div>
+<p>  根据测量假设，由于 <span class="math notranslate nohighlight">\(P(00)=0\)</span> ，因此测量过后，量子态  <span class="math notranslate nohighlight">\(\left|\psi_{2}\right\rangle\)</span> 不可能坍缩在基态 <span class="math notranslate nohighlight">\(|00\rangle\)</span> 上面。</p>
+<p>  若用测量操作 <span class="math notranslate nohighlight">\(M_{01} \equiv|01\rangle\langle 01|\)</span> ，则得到投影到计算基 <span class="math notranslate nohighlight">\(|01\rangle\)</span> 下的概率为</p>
+<div class="math notranslate nohighlight">
+\[P(01)=\left\langle\psi_{2}\left|M_{01}^{\dagger} M_{01}\right| \psi_{2}\right\rangle=\left\langle\psi_{2}\left|M_{01}\right| \psi_{2}\right\rangle=\frac{1}{2}\]</div>
+<p>  对量子态 <span class="math notranslate nohighlight">\(\left|\psi_{2}\right\rangle\)</span> 测量后, 得到新的量子态为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi_{3}\right\rangle=\frac{M_{01}\left|\psi_{2}\right\rangle}{\sqrt{P(01)}}=\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right]=|01\rangle\end{split}\]</div>
+<p>  若用测量操作 <span class="math notranslate nohighlight">\(M_{10} \equiv|10\rangle\langle 10|\)</span> ，则得到投影到计算基 <span class="math notranslate nohighlight">\(|10\rangle\)</span> 下的概率为</p>
+<div class="math notranslate nohighlight">
+\[P(10)=\left\langle\psi_{2}\left|M_{10}^{\dagger} M_{10}\right| \psi_{2}\right\rangle=\left\langle\psi_{2}\left|M_{10}\right| \psi_{2}\right\rangle=0\]</div>
+<p>  所以测量过后, 量子态 <span class="math notranslate nohighlight">\(\left|\psi_{2}\right\rangle\)</span> 不可能坍缩在基态 <span class="math notranslate nohighlight">\(|10\rangle\)</span> 上面。</p>
+<p>  若用测量操作 <span class="math notranslate nohighlight">\(M_{11} \equiv|11\rangle\langle 11|\)</span> ，则得到投影到计算基 <span class="math notranslate nohighlight">\(|11\rangle\)</span> 下的概率为</p>
+<div class="math notranslate nohighlight">
+\[P(11)=\left\langle\psi_{2}\left|M_{11}^{\dagger} M_{11}\right| \psi_{2}\right\rangle=\left\langle\psi_{2}\left|M_{11}\right| \psi_{2}\right\rangle=\frac{1}{2}\]</div>
+<p>  对量子态 <span class="math notranslate nohighlight">\(\left|\psi_{2}\right\rangle\)</span> 测量后, 得到新的量子态为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left|\psi_{3}\right\rangle=\frac{M_{11}\left|\psi_{2}\right\rangle}{\sqrt{P(11)}}=\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right]=|11\rangle\end{split}\]</div>
+<p>  有时可能关心线路中某些位量子比特的演化结果，那么就把测量放在某些量子比特对应的路线上面。如图2.2.18所示，将测量操作放在高位比特所对应路线上面。</p>
+<img alt="../_images/2.2.18.png" class="align-center" src="../_images/2.2.18.png" />
+<p class="centered">
+<strong>图2.2.18 测量操作放在高位比特所对应路线上面</strong></p><p>此时测量对应的矩阵形式为</p>
+<div class="math notranslate nohighlight">
+\[M_{0}^{1}=\sum_{i \in\{0,1\}}|0 i\rangle\langle 0 i| \text { 和 } M_{1}^{1}=\sum_{i \in\{0,1\}}|1 i\rangle\langle 1 i|\]</div>
+<p>  因此通过测量，得到测量结果0和1发生的概率分别为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;P_{1}(0)=\left\langle\psi_{2}\left|M_{1}^{0}\right| \psi_{2}\right\rangle=\left[\begin{array}{cccc} 0 &amp; \frac{\sqrt{2}}{2} &amp; 0 &amp; \frac{\sqrt{2}}{2} \end{array}\right]\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=\frac{1}{2} \\ &amp;P_{1}(1)=\left\langle\psi_{2}\left|M_{1}^{1}\right| \psi_{2}\right\rangle=\left[\begin{array}{cccc} 0 &amp; \frac{\sqrt{2}}{2} &amp; 0 &amp; \frac{\sqrt{2}}{2} \end{array}\right]\left[\begin{array}{cccc} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=\frac{1}{2} \end{aligned}\end{split}\]</div>
+<p>  测量后，量子系统的状态分别变为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\left|\psi_{3}\right\rangle=\frac{M_{1}^{0}\left|\psi_{2}\right\rangle}{\sqrt{P_{1}(0)}}=|01\rangle \\ &amp;\left|\psi_{3}\right\rangle=\frac{M_{1}^{1}\left|\psi_{2}\right\rangle}{\sqrt{P_{1}(1)}}=|11\rangle \end{aligned}\end{split}\]</div>
+<p>  同理，对低位比特q[0]进行单独测量时,线路图如图2.2.19所示：</p>
+<img alt="../_images/2.2.19.png" class="align-center" src="../_images/2.2.19.png" />
+<p class="centered">
+<strong>图2.2.19 对低位比特q[0]进行单独测量时的线路图</strong></p><p>此时测量操作对应的矩阵形式为</p>
+<div class="math notranslate nohighlight">
+\[M_{0}^{0}=\sum_{i \in\{0,1\}}|i 0\rangle\langle i 0| \text { 和 } M_{1}^{0}=\sum_{i \in\{0,1\}}|i 1\rangle\langle i 1|\]</div>
+<p>  通过测量，得到测量结果0发生的概率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_{0}(0)=\left\langle\psi_{2}\left|M_{0}^{0}\right| \psi_{2}\right\rangle=\left[\begin{array}{llll} 0 &amp; \frac{\sqrt{2}}{2} &amp; 0 &amp; \frac{\sqrt{2}}{2} \end{array}\right]\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=0\end{split}\]</div>
+<p>  得到测量结果1发生的概率为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_{0}(1)=\left\langle\psi_{2}\left|M_{0}^{1}\right| \psi_{2}\right\rangle=\left[\begin{array}{llll} 0 &amp; \frac{\sqrt{2}}{2} &amp; 0 &amp; \frac{\sqrt{2}}{2} \end{array}\right]\left[\begin{array}{cccc} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=1\end{split}\]</div>
+<p>  测量后，系统由原来的量子态 <span class="math notranslate nohighlight">\(\left|\psi_{2}\right\rangle\)</span> 演化为量子状态</p>
+<div class="math notranslate nohighlight">
+\[\left|\psi_{3}\right\rangle=\frac{M_{0}^{1}\left|\psi_{2}\right\rangle}{\sqrt{P_{0}(1)}}=\frac{\sqrt{2}}{2}|01\rangle+\frac{\sqrt{2}}{2}|11\rangle\]</div>
+</section>
+<section id="if-while">
+<h2>2.2.2 量子计算的 if 和 while<a class="headerlink" href="#if-while" title="Permalink to this heading">¶</a></h2>
+<p>  所谓量子线路，从本质上是一个量子逻辑门的执行序列，它是从左至右依次执行的。即使介绍了函数调用的思想，也可以理解为这是一种简单地内联展开，即把函数中的所有逻辑门插入到调用处，自然地，可能会考虑在量子计算机的层面是否存在类似于经典计算机中的循环和分支语句。因此，就有了QIF和QWHILE。</p>
+<p><strong>l 基于测量的跳转</strong></p>
+<p>  作为QIF和QWHILE的判断条件的对象，并不是量子比特，而是一个经典的信息，往往，这个经典的信息是基于测量的。在量子程序执行时，测量语句会对量子比特施加一个测量操作，之后将这个比特的测量结果保存到经典寄存器中，最后，可以根据这个经典寄存器的值，选择接下来要进行的操作。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>  <span class="n">H</span> <span class="o">-&gt;</span> <span class="n">q</span>
+<span class="mf">2.</span>  <span class="n">Meas</span> <span class="n">q</span> <span class="o">-&gt;</span> <span class="n">c</span>
+<span class="mf">3.</span>  <span class="n">Qif</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">Zero</span><span class="p">)</span> <span class="n">H</span><span class="o">-&gt;</span><span class="n">q</span>
+</pre></div>
+</div>
+<p>  这样的量子程序表示的是对q进行Hadamard门操作之后，测量它；如果测量的结果是0，则再做一个Hadamard门。从这个例子可以继续延伸到Qif可以包裹的一系列语句，而不仅仅是一个，比如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.  Qif (c == Zero)
+2.  {
+3.          H-&gt;q
+4.          CNOT(q0, q1)
+5.          ……
+6.  }
+</pre></div>
+</div>
+<p>  或者也可以设置Qelse语句，它表示如果判断条件为非，则要执行的语句。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>  <span class="n">Qif</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">Zero</span><span class="p">)</span> <span class="n">CNOT</span><span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">)</span>
+<span class="mf">2.</span>  <span class="n">Qelse</span> <span class="n">CNOT</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span><span class="n">q0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>  再或许可以综合两个、多个量子比特的测量结果，对它们进行布尔代数运算，进行判断。另一种情况是将N个量子比特的测量结果理解为一个N-bit整数，之后再与其他整数进行比较。</p>
+<p>  例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.  Qif (c1 == Zero &amp;&amp; c2 == One)
+2.  {
+3.          H-&gt;q
+4.          CNOT(q0, q1)
+5.          ……
+6.  }
+</pre></div>
+</div>
+<p>  上述规则对于QWhile来说也是一样，比如一个随机计数的代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>  <span class="n">c</span> <span class="o">=</span> <span class="n">One</span>
+<span class="mf">2.</span>  <span class="n">n</span> <span class="o">=</span> <span class="n">Zero</span>
+<span class="mf">3.</span>  <span class="n">QWhile</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="mf">4.</span>  <span class="p">{</span>
+<span class="mf">5.</span>          <span class="n">H</span> <span class="o">-&gt;</span> <span class="n">q</span>
+<span class="mf">6.</span>          <span class="n">Meas</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">c</span>
+<span class="mf">7.</span>      <span class="n">n</span> <span class="o">++</span>
+<span class="mf">8.</span>  <span class="p">}</span>
+</pre></div>
+</div>
+<p>  这个程序的含义是每次对qubit执行Hadamard门并测量，如果测量结果为1则继续该过程，测量结果为0则退出循环。这表明测量得到1的次数，每次都有1/2的概率，给定计数器n+1，最终可以取得n的值。重复这个实验，可以拟合出一个负指数分布。</p>
+<p>  另外，QIf和QWhile是可以相互嵌套的，形成多层的控制流。</p>
+<p><strong>l 基于量子信息的IF和WHILE</strong></p>
+<p>  上述的是“量子信息，经典控制”，那么有没有“量子信息，量子控制”呢？对于IF而言，答案是有的。</p>
+<p>  定义“量子信息，量子控制”过程是一组量子比特的操作，是由另一组比特的值决定的。一个最简单的例子就是 <span class="math notranslate nohighlight">\(CNOT\)</span> 门，对于 <span class="math notranslate nohighlight">\(CNOT(q0,q1)\)</span> 而言，q1是否执行NOT门是由q0的值决定的。基于量子信息的IF的性质如下：</p>
+<p>  第一，这种控制可以叠加。如果判断变量本身处于叠加态，那么操作的比特也会出现执行/不执行逻辑门的两种分支，由此，判断变量和操作比特之间会形成纠缠态。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span>  <span class="n">H</span> <span class="o">-&gt;</span> <span class="n">q1</span>
+<span class="mf">2.</span>  <span class="n">CNOT</span> <span class="n">q1</span> <span class="o">-&gt;</span> <span class="n">q2</span>
+</pre></div>
+</div>
+<p>  此时得到的量子态是 <span class="math notranslate nohighlight">\(|00\rangle+|11\rangle\)</span> ，这样在 <span class="math notranslate nohighlight">\(CNOT\)</span> 后，就把q1这个判断变量和q2这个操作比特纠缠了起来。</p>
+<p>  第二，控制变量和操作比特之间不能共享比特。即， <span class="math notranslate nohighlight">\(CNOT(q0,q1)\)</span> 中控制位和目标位一定不能为相同的量子比特。</p>
+<p>  基于量子信息的IF在实际的量子算法中使用得比较少，因此大部分量子软件开发包都没有加入这个功能。在Shor算法和其他基于布尔运算的线路中会使用这个思想，比如对是否求模的判断，但实际中，一般是利用 <span class="math notranslate nohighlight">\(CNOT\)</span> 门的组合来实现的。</p>
+<p>  对于WHILE而言，目前还没有找到一个合适的定义，因为量子信息不确定，那么很有可能会在WHILE中产生无法停机的分支。以经典控制的QWhile作为例子，如果控制变量c是一个量子比特，那么每次都会有一个概率使得这个循环继续下去。因此，为了执行这个序列，就需要无限长的操作序列，这导致从物理上无法定义这种操作。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html" class="btn btn-neutral float-left" title="2.1 量子力学基础理论" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html" class="btn btn-neutral float-right" title="3.1 量子芯片" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

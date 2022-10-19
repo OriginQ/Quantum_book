@@ -1,0 +1,514 @@
+4.1 量子软件开发环境
+==================================
+
+4.1.1 QPanda
+----------------------------------
+  QPanda (Quantum Programming Architecture for NISQ Device Applications)是一个高效、便捷的量子计算开发工具库，为了让用户更容易的使用QPanda，更便捷的进行量子编程，它屏蔽了复杂的C++语法结构，甚至用户不需要了解所谓的面向对象，只需要学会如何把量子编程中用到的接口调用一遍就可以进行量子计算。
+
+  例：如何构造一个量子程序，并在量子虚拟机中运行它。
+
+  首先假设有一台量子计算机，它有2个量子比特： :math:`Q_1` 、 :math:`Q_2` ，接着对其中一个量子比特（ :math:`Q_1` ）进行 :math:`H` 门操作，构造了一个量子叠加态；并对 :math:`Q_1` 和 :math:`Q_2` 做 :math:`CNOT` 门操作， :math:`Q_1` 为控制量子比特， :math:`Q_2` 为目标量子比特，最后对所有的量子比特进行测量操作。此时，将有50%的概率得到00或者11的测量结果。代码示例如下：
+
+.. code-block::
+
+   1.#include "QPanda.h"      
+   2.using namespace QPanda;    
+   3.int main()    
+   4.{    
+   5.    auto qvm = CPUQVM();              /* 创建一个类型CPU计算的量子虚拟机*/
+   6.    qvm.init();                       /* 为该虚拟机进行初始化*/
+   7.    auto prog = QProg();              /* 构造一个量子程序*/
+   8.    auto q = qvm.qAllocMany(2);       /* 申请两个量子比特*/
+   9.    auto c = qvm.cAllocMany(2);       /* 申请两个经典比特*/
+   10.    
+   11.    /* 向量子程序中插入H门、CNOT门和Measure*/
+   12.    prog << H(q[0])
+   13.		<< CNOT(q[0],q[1])
+   14.		<< MeasureAll(q, c);
+   15.    
+   16.    /* 让量子程序在量子虚拟机中跑1000次*/
+   17.    auto results = qvm.runWithConfiguration(prog, c, 1000);     
+   18.    for (auto result : results)
+   19.    {      
+   20.       /* 循环输出结果*/    
+   21.       std::cout << "result.first" << ", " << "result.second" << std::endl;    
+   22.    }    
+   23.    return 0;  
+   24.}     
+
+
+  这是个简单却能体现出量子计算特点的例子，它即体现了量子态叠加，又体现量子比特纠缠。从上例可以看到，用户实质上只需要关注如何使用QPanda构建量子程序，其他的细节操作完全不需要用户操心。
+
+  再例如，在很多量子算法如QAOA算法中，都需要构造一组量子比特的叠加态，那么完全可以把这种操作抽象成一种生成量子线路的函数，输入是一组量子比特，输出是一个量子线路。代码示例如下：
+
+.. code-block::
+
+   1.#include "QPanda.h"    
+   2.using namespace QPanda;  
+   3.  
+   4.QCircuit HadamardCircuit(QVec & qvec)  
+   5.{  
+   6.    auto qcircuit = QCircuit();           /* 构造一个量子线路*/  
+   7.  
+   8.    for (auto aiter : qvec)               /* 对传入的量子比特做H门操作*/  
+   9.    {  
+   10.        qcircuit<<H(aiter);               /* 把H门插入的量子线路中*/  
+   11.    }  
+   12.  
+   13.    return qcircuit;                      /* 返回量子线路*/  
+   14.}  
+   15.  
+   16.int main()  
+   17.{  
+   18.    auto qvm = CPUQVM();         /* 创建一个类型未CPU计算的量子虚拟机*/  
+   19.    qvm.init();                  /* 为该虚拟机进行初始化*/
+   20.    auto prog = QProg();         /* 构造一个量子程序*/  
+   21.    auto q = qvm.qAllocMany(2);  /* 申请两个量子比特*/  
+   22.    auto c = qvm.cAllocMany(2);  /* 申请两个经典比特*/ 
+   23.    
+   24.    /* 调用HadamardCircuit函数*/ 
+   25.    prog << HandmadeCircuit(q) << MeasureAll(q,c);
+   26.    
+   27.    /* 让量子程序在量子虚拟机中跑1000次*/
+   28.    auto results = qvm.runWithConfiguration(prog, c, 1000);
+   29.    for (auto result : results)
+   30.    {  
+   31.        /* 循环输出结果*/
+   32.        std::cout << "result.first" << ", " << "result.second" << std::endl;   
+   33.    }
+   34.    return 0;
+   35.}
+
+  也可使用新的接口来一次性插入多个逻辑门：
+
+.. code-block::
+
+   1.#include "QPanda.h"    
+   2.using namespace QPanda;
+   3.int main()  
+   4.{ 
+   5.    auto qvm = CPUQVM();             /* 创建一个CPU计算的量子虚拟机*/  
+   6.    qvm.init();                      /* 为该虚拟机进行初始化*/
+   7.    auto prog = QProg();             /* 构造一个量子程序*/  
+   8.    auto q = qvm.qAllocMany(2);      /* 申请两个量子比特*/  
+   9.    auto c = qvm.cAllocMany(2);      /* 申请两个经典比特*/ 
+   10.    prog << H(q) << MeasureAll(q,c)  /* 将2个H门插入到每个比特上*/ 
+   11.    
+   12.    /* 让量子程序在量子虚拟机中跑1000次*/
+   13.    auto results = qvm.runWithConfiguration(prog, c, 1000);    
+   14.    for (auto result : results)
+   15.    {    
+   16.        /* 循环输出结果*/  
+   17.        std::cout << "result.first" << ", " << "result.second" << std::endl;   
+   18.    }  
+   19.    return 0;
+   20.}
+
+  从上述三例可以知道，用户只需要关注量子程序的构建，其他的部分，如量子虚拟机的构建、初始化、申请量子比特、执行量子程序和获取结果，都是一个固定的流程，只需要调用函数接口即可。
+
+  深入了解QPanda的使用，就必须要了解一下QPanda中与量子计算相关的数据类型：QGate（量子逻辑门），Measure（测量）、ClassicalProg（经典程序）、QCircuit（量子线路）、Qif（量子条件判断程序）、QWhile（量子循环程序）、QProg（量子程序）；
+
+  QGate：量子逻辑门是量子计算的基本单位，任何一个量子程序都是由QGate组合而成，如果说量子程序或量子算法是一套拳法，那么QGate就是一个个被拆解出来的动作，几个QGate的固定组合就是一个招式，它们的最终目的就是把这套拳法打出来。目前QPanda的量子逻辑门大致分为单门、双门、三门、自定义门，其中每个类又分为带角度和不带角度两类。
+
+  常见的单门有：
+
+​   不含角度的单门有：I、H、T、X、S、X、Y、Z、X1、Y1、Z1。
+
+​   带有一个旋转角度的逻辑门：RX、RY、RZ、U1、P。
+
+  此外还支持U2、U3、U4。
+
+​   双门不含角度的逻辑门：CNOT、CZ、iSWAP、SWAP、SqiSWAP。
+
+​   双门含旋转角度的逻辑门：CR、CU、CP。
+
+  三量子逻辑门 ：Toffoli。
+
+  QPanda 2把所有的量子逻辑门封装为API向用户提供使用，并可获得QGate类型的返回值。例如，如果想使用Hadamard门，就可以通过如下方式获得：
+
+
+.. code-block::
+
+   1.QGate h = H(qubit);  
+
+
+  可以看到，H函数只接收一个qubit，qubit如何申请请参考
+
+  https://QPanda2.readthedocs.io/zh_CN/latest/TotalAmplitude.html#quantummachine
+
+  QPanda2还支持对量子逻辑门做转置共轭操作：
+
+.. code-block::
+
+   1.auto gate = H(qubit);
+   2./* setDagger有一个布尔类型参数，用来设置当前逻辑门是否需要转置共轭操作*/
+   3.gate.setDagger(true); 
+   4.
+   5./* dagger的作用是复制一份当前的量子逻辑门，并更新复制的量子逻辑门的dagger标记*/
+   6.QGate H_dagger = H(qubit).dagger(); 
+    
+
+  setDagger有一个布尔类型参数，用来设置当前逻辑门是否需要转置共轭操作。
+
+  除了转置共轭操作，也可以为量子逻辑门添加控制比特：
+
+.. code-block::
+
+   1.auto gate = H(qubit)
+   2./* setControl的作用是给当前的量子逻辑门添加控制比特*/
+   3.gate.setControl(qvec);
+   4.
+   5./* control的作用是复制当前的量子逻辑门，并给复制的量子逻辑门添加控制比特*/
+   6.QGate H_control = H(qubit).control(qvec); 
+
+
+  setControl、control都需要接收一个参数，参数类型为QVec，QVec是qubit的vector
+
+  再例如，想要使用RX门，可以通过如下方式获得：
+
+.. code-block::
+
+   1.QGate rx = RX(qubit，PI);  
+
+  如上所示，RX门接收两个参数，第一个是目标量子比特，第二个偏转角度，也可以通过相同的方式使用RY，RZ门。
+
+  两比特量子逻辑门的使用和单比特量子逻辑门的用法相似，只不过是输入的参数不同，举个使用CNOT的例子：
+
+.. code-block::
+
+   1.QGate cnot = CNOT(control_qubit，target_qubit);  
+
+  CNOT门接收两个参数，第一个是控制比特，第二个是目标比特。
+
+  此外我们还有一个可以自行填充矩阵和比特的QOracle门，具体使用方法请看下面的例子：
+
+.. code-block::
+
+   1.#include "QPanda.h"
+   2.USING_QPANDA
+   3.using namespace std;
+   4.int main()
+   5.{
+   6.    auto qvm = new CPUQVM();
+   7.    qvm->init();
+   8.    auto q = qvm->qAllocMany(2);
+   9.    auto c = qvm->cAllocMany(2);
+   10.    auto prog = QProg();
+   11.
+   12.    QStat source_matrix =
+   13.    {
+   14.        qcomplex_t(0.6477054522122977, 0.1195417767870219),          
+   15.        qcomplex_t(-0.16162176706189357, -0.4020495632468249),
+   16.        qcomplex_t(-0.19991615329121998, -0.3764618308248643),
+   17.        qcomplex_t(-0.2599957197928922, -0.35935248873007863),
+   18.        qcomplex_t(-0.16162176706189363, -0.40204956324682495),
+   19.        qcomplex_t(0.7303014482204584, -0.4215172444390785),
+   20.        qcomplex_t(-0.15199187936216693, 0.09733585496768032),
+   21.        qcomplex_t(-0.22248203136345918, -0.1383600597660744),
+   22.        qcomplex_t(-0.19991615329122003 , -0.3764618308248644),
+   23.        qcomplex_t(-0.15199187936216688, 0.09733585496768032),
+   24.        qcomplex_t(0.6826630277354306, -0.37517063774206166),
+   25.        qcomplex_t(-0.3078966462928956, -0.2900897445133085),
+   26.        qcomplex_t(-0.2599957197928923, -0.3593524887300787),
+   27.        qcomplex_t(-0.22248203136345912, -0.1383600597660744),
+   28.        qcomplex_t(-0.30789664629289554, -0.2900897445133085),
+   29.        qcomplex_t(0.6640994547408099, -0.338593803336005)
+   30.    };
+   31.
+   32.    prog << QOracle(q, source_matrix) << MeasureAll(q,c);
+   33.    auto result = qvm->runWithConfiguration(prog, c, 1000);
+   34.    for (auto res : result)
+   35.    {
+   36.        std::cout << res.first << " : " << res.second << std::endl;
+   37.    }
+   38.
+   39.    return 0;   
+   40.}  
+
+  运行结果如下：
+
+.. code-block::
+
+   1.00 : 433
+   2.01 : 182
+   3.10 : 180
+   4.11 : 205
+
+
+  Measure：它的的作用是对量子比特进行测量操作。
+
+  在量子程序中需要对某个量子比特做测量操作，并把测量结果存储到经典寄存器上，可以通过下面的方式获得一个测量对象：
+
+
+.. code-block::
+
+   1.auto measure = Measure(qubit, cbit);    
+
+  可以看到Measure接两个参数， 第一个是测量比特，第二个是经典寄存器。
+
+  如果想测量所有的量子比特并将其存储到对应的经典寄存器上，可以如下操作：
+
+.. code-block::
+
+   1.# MeasureAll 的返回值类型是 QProg 
+   2.auto measure_all = MeasureAll(qubits， cbits);  
+
+
+  其中qubits的类型是 QVec ， cbits的类型是 vector。
+
+  在得到含有量子测量的程序后，可以调用 directlyRun 或 runWithConfiguration 来得到量子程序的测量结果。
+
+  directlyRun 的功能是运行量子程序并返回运行的结果， 使用方法如下：
+
+.. code-block::
+
+   1.QProg prog;  
+   2.prog << H(qubits[0])  
+   3.    << CNOT(qubits[0], qubits[1])  
+   4.    << CNOT(qubits[1], qubits[2])  
+   5.    << CNOT(qubits[2], qubits[3])  
+   6.    << Measure(qubits[0], cbits[0]);  // 测量单个量子比特 
+   7.  
+   8.auto result = directlyRun(prog);  
+
+  runWithConfiguration 的功能是末态目标量子比特序列在量子程序多次运行结果中出现的次数， 使用方法如下：
+
+.. code-block::
+
+   1.QProg prog;  
+   2.prog << H(qubits[0])  
+   3.    << H(qubits[1])  
+   4.    << H(qubits[2])  
+   5.    << H(qubits[3])  
+   6.    << MeasureAll(qubits, cbits); // 测量所有的量子比特  
+   7.  
+   8.auto result = runWithConfiguration(prog, cbits, 1000);     
+
+  其中第一个参数是量子程序，第二个参数是经典寄存器， 第三个参数是运行的次数。
+
+  getCircuitMatrix 的功能是获取线路中的矩阵，方法如下：
+
+.. code-block::
+
+   1.auto qvm = CPUQVM();
+   2.qvm.init();
+   3.auto qubits = qvm.qAllocMany(2);
+   4.auto cbits  = qvm.cAllocMany(2);
+   5.QProg prog;
+   6.prog << H(qubits[0])
+   7.     << H(qubits[1]);
+   8.auto matrix = getCircuitMatrix(prog);
+   9.
+   10.std::cout << matrix << std::endl;   
+
+
+.. code-block::
+
+   1. (0.499999999999996, 0)   (0.499999999999996, 0)  (0.499999999999996, 0)   (0.499999999999996, 0)
+   2. (0.499999999999996, 0)  (-0.499999999999996, 0)  (0.499999999999996, 0)  (-0.499999999999996, 0)
+   3. (0.499999999999996, 0)   (0.499999999999996, 0)  (-0.499999999999996, 0)  (-0.499999999999996, 0)
+   4. (0.499999999999996, 0)  (-0.499999999999996, 0)  (-0.499999999999996, 0)  (0.499999999999996, -0)  
+
+  实例：
+
+.. code-block::
+
+   1.#include <QPanda.h>  
+   2.USING_QPANDA  
+   3.  
+   4.int main(void)  
+   5.{  
+   6.    auto qvm = CPUQVM();
+   7.    qvm.init();
+   8.    auto qubits = qvm.qAllocMany(4);  
+   9.    auto cbits  = qvm.cAllocMany(4);  
+   10.    QProg prog;    
+   11.    prog << H(qubits[0])  
+   12.        << H(qubits[1])  
+   13.        << H(qubits[2])  
+   14.        << H(qubits[3])  
+   15.        << MeasureAll(qubits, cbits);  
+   16.  
+   17.    auto result = qvm.runWithConfiguration(prog, cbits, 1000); 
+   18.    for (auto &val: result)  
+   19.    {  
+   20.        std::cout << val.first << ", " << val.second << std::endl;  
+   21.    }  
+   22.  
+   23.  
+   24.    return 0;  
+   25.}     
+
+  运行结果：
+
+.. code-block::
+
+   1.0000, 47  
+   2.0001, 59  
+   3.0010, 74  
+   4.0011, 66  
+   5.0100, 48  
+   6.0101, 62  
+   7.0110, 71  
+   8.0111, 61  
+   9.1000, 70  
+   10.1001, 57  
+   11.1010, 68  
+   12.1011, 63  
+   13.1100, 65  
+   14.1101, 73  
+   15.1110, 55  
+   16.1111, 61  
+
+
+  ClassicalProg：经典程序也可以被插入到量子程序中，它使得量子程序也可以进行逻辑判断和简单的经典计算，使得量子程序更灵活。打个比方，就像是向一套拳法中加入了步法，使得这套拳法可以辗转腾挪。
+
+  QCircuit：量子线路是由多个量子逻辑门组成的，或者说量子线路是一个大型的量子逻辑门，也就是说QCircuit中可以插入QGate和ClassicalProg。如果映射到功夫中，QCircuit就是拳法中拆解出来的套路。此外QCircuit也可以设置dagger和control,请看下面的例子：
+
+
+.. code-block::
+
+   1./* setDagger的作用是根据输入参数更新当前量子线路的dagger标记*/
+   2.QCircuit cir;
+   3.cir.setDagger(true);
+   4.
+   5./* dagger的作用是复制一份当前的量子线路，并更新复制的量子线路的dagger标记*/
+   6.QCircuit cir1;
+   7.QCircuit cir_dagger = cir1.dagger(); 
+   8.
+   9./* setControl的作用是给当前的量子线路添加控制比特*/
+   10.QCircuit cir2;
+   11.cir1.setControl(qvec); 
+   12.
+   13./* control的作用是复制当前的量子线路，并给复制的量子线路添加控制比特*/
+   14.QCircuit cir3;
+   15.QCircuit cir_control = cir.control(qvec);    
+
+
+  Qif：量子条件判断程序，顾名思义，它可以让量子程序进行逻辑判断，即针对不同的对手拳法的套路也是可变的。
+
+  QWhile：量子循环判断程序，即根据循环判断条件把一个量子程序或量子线路多次运行。
+
+  QProg：它是一个容器，可以容纳所有量子计算相关的数据类型，在构造量子程序时，用户可以把QGate、QCircuit、Qif、QWhile、QProg、ClassicalProg类型插入到QProg中。
+
+  QPanda的特点不仅仅体现着它的易用性，还包括它的高效，如图4.1.1，在同等硬件配置下，QPanda的量子虚拟机运行量子程序的速度，相对其他工具有着巨大优势。
+
+  QPanda的量子比特池，QPanda不仅可以使用qAllocMany() 来直接申请比特，还可以调用量子比特池来获取量子比特，请看示例：
+
+.. code-block::
+
+   1.#include "QPanda.h"
+   2.USING_QPANDA
+   3.using namespace std;
+   4.int main()
+   5.{
+   6.    /*量子比特可以和虚拟机 脱离关系，获取对应池的单例 */ 
+   7.    auto qpool = OriginQubitPool::get_instance();
+   8.    auto cmem = OriginCMem::get_instance();
+   9.
+   10.    /* 获取容器大小*/
+   11.    cout << "set qubit pool capacity  before: "<< qpool->get_capacity() << endl;
+   12.    /* 设置最大容器*/ 
+   13.    qpool->set_capacity(20);
+   14.    cout << "set qubit pool capacity  after: " << qpool->get_capacity() << endl;
+   15.
+   16.    /* 通过比特池申请比特，由于是单例模式，要保证申请的比特数量不超过最大容量*/ 
+   17.    auto qv = qpool->qAllocMany(6);
+   18.    auto cv = cmem->cAllocMany(6);
+   19.
+   20.    /* 获取被申请的量子比特*/ 
+   21.    QVec used_qv;
+   22.    auto used_qv_size = qpool->get_allocate_qubits(used_qv);
+   23.    cout << "allocate qubits number: " << used_qv_size << endl;
+   24.
+   25.    /* 构建虚拟机*/ 
+   26.    auto qvm = new CPUQVM();
+   27.    qvm->init();
+   28.    auto prog = QProg();
+   29.    /*直接使用物理地址作为量子比特信息入参 */ 
+   30.    prog << H(0) << H(1)
+   31.        << H(2)
+   32.        << H(4)
+   33.        << X(5)
+   34.        << X1(2)
+   35.        << CZ(2, 3)
+   36.        << RX(3, PI / 4)
+   37.        << CR(4, 5, PI / 2)
+   38.        << SWAP(3, 5)
+   39.        << CU(1, 3, PI / 2, PI / 3, PI / 4, PI / 5)
+   40.        << U4(4, 2.1, 2.2, 2.3, 2.4)
+   41.        << BARRIER({0, 1,2,3,4,5});
+   42.
+   43.    /* 测量方法也可以使用比特物理地址*/ 
+   44.    auto res_0 = qvm->probRunDict(prog, { 0,1,2,3,4,5 });
+   45.
+   46.    /* 同样经典比特地址也可以作为经典比特信息入参*/ 
+   47.    prog << Measure(0, 0)
+   48.        << Measure(1, 1)
+   49.        << Measure(2, 2)
+   50.        << Measure(3, 3)
+   51.        << Measure(4, 4)
+   52.        << Measure(5, 5);
+   53.
+   54.    /* 使用经典比特地址入参*/ 
+   55.    vector<int> cbit_addrs = { 0,1,2,3,4,5 };
+   56.    auto res_2 = qvm->runWithConfiguration(prog, cbit_addrs, 5000);
+   57.    delete(qvm);
+   58.    /* 同时我们还可以再次利用这里申请的qv，避免多次使用虚拟机多次申请比特的问题发生*/ 
+   59.    auto qvm_noise = new NoiseQVM();
+   60.    qvm_noise->init();
+   61.    auto res_4 = qvm_noise->runWithConfiguration(prog, cbit_addrs, 5000);
+   62.    delete(qvm_noise);
+   63.    
+   64.    return 0;
+   65.}
+
+
+.. image:: ./images/4.1.1.png
+   :align: center
+.. centered:: 图4.1.1 量子虚拟机性能图
+
+  除此之外，QPanda还集成了量子程序优化器、量子程序调试工具，量子程序编译器。
+
+  1、 量子程序优化器：QPanda的优化器通过特有的算法对量子程序的优化，可最大限度的减少计算时间。
+
+  2、 量子程序调试工具：QPanda的调试工具解决的量子算法工程师长期以来的困扰，里程碑的实现类量子程序的调试功能。
+
+  3、 量子程序编译器：不仅把量子程序转换为多种量子汇编语言，更可以生成量子程序可执行文件。
+
+
+4.1.2 QRunes
+----------------------------------
+  QRunes是一种基于语句的量子编程式语言，它的出现是为了实现量子计算和经典计算的混合，从而让量子计算有更好的应用场景。QRunes根据量子计算的经典与量子混合(Quantum-Classical Hybrid)特性，在程序编译之后可以操作经典计算机与量子芯片来实现量子计算。
+
+  QRunes通过提供高级语言的形式来实现量子算法和程序的逻辑控制。其丰富的类型系统(Quatum Type, Classical Type)可以实现量子计算中数据对象的绑定和行为控制，可以满足开发人员的各类量子算法的实现需求。
+
+  QRunes由量子程序和量子线路组成的量子部分和经典函数组成的经典部分构成。量子部分定义了对量子比特的操作和行为控制。经典部分用于主程序的实现和控制量子程序的运行。
+
+
+4.1.3 本源量子云平台
+----------------------------------
+  本源量子云平台是国内首家基于模拟器研发且能在传统计算机上模拟32位量子芯片进行量子计算和量子算法编程的系统，目前该系统主要服务于各大科研院所、高校及相关企业，旨在为专业人员提供基于量子模拟器的开发平台。
+
+  本源量子云平台提供了两种虚拟机供用户选择，其中32位量子虚拟机免费使用、64位需付费申请，虚拟机采用可视化编程模式图例+量子语言，用户可轻松拖动、放置图例进行量子算法模拟，并可将设计的运算转化为量子语言模式深入学习。量子云平台是连接用户和量子计算设备之间的桥梁，当前量子系统运作结构通常是经典计算向量子系统发起计算任务请求，待量子系统完成计算任务后再以经典信息的方式返回给用户，整个过程都需要量子云平台在中间协调。
+
+  本源量子计算云平台的工作结构可以划分为四个部分：后端系统、控制指令、量子云端、以及用户端；其中后端系统包括了量子虚拟机，以及不同组织机构开发的量子芯片；控制指令则是通过其他编程语言或底层语言构建的能被量子系统识别的指令；量子云即是可视化编程、数据中转、用户数据存储交流等云服务；用户端，包括问题的设计、算法规则构造、可视化结果等。
+
+  目前，本源量子计算系统包括了三种构造控制指令的方法，如图4.1.2所示，分别为可视化线路的设计、量子语言和量子软件开发套件QPanda，其中可视化编程和量子语言依托在量子云平台上，用户在进行量子程序设计的时候可以相互转化；对于功能完整的QPanda，则使用c++为宿主语言开发的SDK，用户可以使用c++直接开发量子程序。当然QPanda也开发了支持Python的库，也就是说可以使用Python来开发量子程序。使用QPadna编写的量子程序，可以很方便地转化为量子语言或者可视化的量子线路，在量子云平台上可以可视化的进行基础的算法设计、云平台的操作，通过拖动量子逻辑门来构建控制序列，添加测量指令，即可运行得出结果。通常用户会通过云平台构建简单的量子算法，之后待量子线路图转化为虚拟机或量子系统识别的指令，并将数据送入虚拟机或者量子系统，完成计算之后，回传结果，此时用户就能收到最终的计算结果。
+
+.. image:: ./images/4.1.2.png
+   :align: center
+.. centered:: 图4.1.2 本源量子云平台工作原理
+
+
+
+
+
+
+
+
+
+
+
+
+

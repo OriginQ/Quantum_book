@@ -1,0 +1,297 @@
+5.4 将量子程序编译到不同的量子芯片上
+======================================
+  任何的量子程序，最终是要放到量子计算机中去运行的。和量子虚拟机相比，在量子计算机中运行有几个重要的区别：
+
+**支持的逻辑门**
+
+  量子芯片中往往不一定允许执行所有的酉变换，对于单比特门来说，通常只支持一个子集。由于这个定理: 任何的两个不同方向的旋转 :math:`{U}{\bar{x}}(\theta)=e^{i \vec{\sigma x} \theta}` 和  :math:`\mathrm{U}{\bar{y}}(\theta)=e^{i \vec{\sigma} \bar{y} \theta}` ， 一定能通过依次施加不同角度的旋转操作，构成任何的单比特上的酉变换。因此，量子计算机中若支持两个方向的旋转操作， 即可实现任意的单门。
+
+  QPanda中提供了一个配置量子计算机中支持逻辑门的方式。通过配置，可以将任意的量子程序编译到支持的量子逻辑门中。
+
+
+**量子芯片拓扑结构**
+
+  编写量子程序，或者设计量子算法时，往往在任意两个比特之间都有可能出现逻辑门的连接。然而，对于实际的量子芯片，有可能这种连接关系是受限的。例如量子比特在芯片上以网格式排列，只有最近邻（nearest neighbor）的量子比特之间才允许进行操作。那么，对于原有的量子程序，我们必须将所有不支持操作的量子逻辑门进行变换，或者对量子比特进行重新映射。
+
+  QPanda中提供了一个配置量子芯片拓扑结构的方式。
+
+  指令集
+
+  量子指令集是由各公司定义的量子计算机控制指令集，它适配于量子软件开发包，一般可以用于直接控制该公司的量子计算机。QPanda中通用的量子程序表示方式是QProg类，它提供的是一种对量子程序的抽象通用表述形式。QPanda提供一系列函数，将QProg类映射到不同的量子指令集上，包括QRunes，QASM，Quil……
+
+  配置支持的逻辑门
+
+.. code-block::
+
+    1.<QGate>  
+    2.    <SingleGate>  
+    3.        <Gate  time = "2">rx</Gate>  
+    4.        <Gate  time = "2">Ry</Gate>  
+    5.        <Gate  time = "2">RZ</Gate>  
+    6.        <Gate  time = "2">S</Gate>  
+    7.        <Gate  time = "2">H</Gate>  
+    8.        <Gate  time = "2">X1</Gate>  
+    9.     </SingleGate>  
+    10.     <DoubleGate>  
+    11.        <Gate  time = "5">CNOT</Gate>  
+    12.        <Gate  time = "5">CZ/Gate>  
+    13.        <Gate  time = "5">ISWAP</Gate>  
+    14.     </DoubleGate>  
+    15.</QGate>      
+
+
+  在QPanda中，指令集的配置是通过QPandaConfig.xml中QGate元素来配置的。
+
+  QGate中的元素介绍：
+
+  SingleGate: 单量子逻辑门配置，是QGate的子元素
+
+  DoubleGate: 双量子逻辑门配置， 是QGate的子元素
+
+  Gate: 内容配置支持的量子逻辑门，属性time配置量子逻辑门的时钟周期，是DoubleGate和SingleGate的子元素。
+
+  示例：一个量子芯片支持单门RX、RY和双门CNOT，RX、RY的时钟周期均为2，CNOT的时钟周期为5。下面我们就配置这个量子芯片支持的逻辑门。
+
+  首先，打开QPandaConfig.xml文件，找到QGate元素，可以看到QGate元素的子元素SingleGate和DoubleGate，并删除SingleGate和DoubleGate元素中所有的内容。
+
+
+.. code-block::
+
+    1.<QGate>  
+    2.        <SingleGate>  
+    3.</SingleGate>  
+    4.        <DoubleGate>  
+    5.        </DoubleGate>  
+    6. </QGate>      
+
+  然后，分别向SingleGate和DoubleGate 元素中添加Gate元素（Gate元素的内容为量子逻辑门，属性值time为逻辑门的时钟周期）。在SingleGate元素中添加两个Gate子元素，属性time均为2，内容分别为RX、RY。在DoubleGate元素中添加一个Gate子元素，属性time为5，内容为CNOT。
+
+.. code-block::
+
+    1.<QGate>  
+    2.        <SingleGate>  
+    3.        <Gate time = "2">RX</Gate>  
+    4.            <Gate time = "2">RY</Gate>  
+    5.</SingleGate>  
+    6.        <DoubleGate>  
+    7.            <Gate time = "5">CNOT</Gate>  
+    8.        </DoubleGate>  
+    9. </QGate> 
+
+  配置量子芯片拓扑结构
+
+.. code-block::
+
+    1.<Metadata>  
+    2.      <QubitCount>8</QubitCount>  
+    3.          <QubitMatrix>  
+    4.              <Qubit QubitNum = "1">  
+    5.                  <AdjacentQubit QubitNum = "2">1</AdjacentQubit>  
+    6.                  <AdjacentQubit QubitNum = "8">1</AdjacentQubit>  
+    7.               </Qubit>  
+    8.               <Qubit QubitNum = "2">  
+    9.                  <AdjacentQubit QubitNum = "1">1</AdjacentQubit>  
+    10.                  <AdjacentQubit QubitNum = "3">1</AdjacentQubit>  
+    11.                  <AdjacentQubit QubitNum = "7">1</AdjacentQubit>  
+    12.                </Qubit>  
+    13.                <Qubit QubitNum = "3">  
+    14.                  <AdjacentQubit QubitNum = "2">1</AdjacentQubit>  
+    15.                  <AdjacentQubit QubitNum = "4">1</AdjacentQubit>  
+    16.                  <AdjacentQubit QubitNum = "6">1</AdjacentQubit>  
+    17.                </Qubit>  
+    18.                <Qubit QubitNum = "4">  
+    19.                  <AdjacentQubit QubitNum = "3">1</AdjacentQubit>  
+    20.                  <AdjacentQubit QubitNum = "5">1</AdjacentQubit>  
+    21.                </Qubit>  
+    22.                <Qubit QubitNum = "5">  
+    23.                  <AdjacentQubit QubitNum = "4">1</AdjacentQubit>  
+    24.                  <AdjacentQubit QubitNum = "6">1</AdjacentQubit>  
+    25.                </Qubit>  
+    26.                <Qubit QubitNum = "6">  
+    27.                  <AdjacentQubit QubitNum = "3">1</AdjacentQubit>  
+    28.                  <AdjacentQubit QubitNum = "5">1</AdjacentQubit>  
+    29.                  <AdjacentQubit QubitNum = "7">1</AdjacentQubit>  
+    30.                </Qubit>  
+    31.                <Qubit QubitNum = "7">  
+    32.                  <AdjacentQubit QubitNum = "2">1</AdjacentQubit>  
+    33.                  <AdjacentQubit QubitNum = "6">1</AdjacentQubit>  
+    34.                  <AdjacentQubit QubitNum = "8">1</AdjacentQubit>  
+    35.                </Qubit>  
+    36.                <Qubit QubitNum = "8">  
+    37.                  <AdjacentQubit QubitNum = "7">1</AdjacentQubit>  
+    38.                  <AdjacentQubit QubitNum = "1">1</AdjacentQubit>  
+    39.                </Qubit>  
+    40.          </QubitMatrix>  
+    41.</Metadata>  
+
+
+  在QPanda中，量子芯片拓扑结构是通过QPandaConfig.xml中Metadata元素来配置的。
+
+
+**Metadata中的元素介绍**
+
+  QubitCount：量子比特的个数，是metadata的子元素。
+
+  QubitMatrix：量子比特拓扑图，是metadata的子元素。
+
+  Qubit：量子比特配置，属性QubitNum表示量子比特序号，是QubitMatrix的子元素。
+
+  AdjacentQubit：内容是边的权重，属性QubitNum是指与其父元素Qubit连接的量子比特序号。
+
+  例如图5.4.1，将下面的量子拓扑结构配置到QPandaConfig.xml中，圆圈表示量子比特，圆圈里的值表示量子比特序号，线条表示是否连接，线条上数值的值表示权重。
+
+.. image:: ./images/5.4.1.png
+   :align: center
+.. centered:: 图5.4.1 将量子拓扑结构配置到QPandaConfig.xml中
+
+  首先，找到Metadata元素，并删除其QubitMatrix中的所有内容：
+
+.. code-block::
+
+    1.<Metadata>  
+    2.    <QubitCount>8</QubitCount>  
+    3.<QubitMatrix>  
+    4.</QubitMatrix>  
+    5.</Metadata>      
+
+  然后， 根据拓扑图向QPandaConfig.xml中添加配置。先配置量子比特的个数。例子中的量子比特个数为4个：
+
+.. code-block::
+
+    1.<Metadata>  
+    2.    <QubitCount>4</QubitCount>  
+    3.<QubitMatrix>  
+    4.</QubitMatrix>  
+    5.</Metadata> 
+
+  再配置拓扑结构，添加第一个量子比特的拓扑配置，在QubitMatrix下添加Qubit子元素，其属性QubitNum的值为1，第一个量子比特与第二个量子比特和第三个量子比特连接，其权重都是1，所以Qubit会有两个AdjacentQubit子元素，第一个AdjacentQubit元素的属性QubitNum的值是2，第二个AdjacentQubit元素的属性QubitNum的值是3，其内容都是1，将第一个量子比特的拓扑配置添加到配置中：
+
+.. code-block::
+
+    1.<Metadata>  
+    2.    <QubitCount>4</QubitCount>  
+    3.<QubitMatrix>  
+    4.    <Qubit QubitNum = 1>  
+    5.        <AdjacentQubit QubitNum = 2>1</AdjacentQubit>  
+    6.        <AdjacentQubit QubitNum = 3>1</AdjacentQubit>  
+    7.</Qubit>  
+    8.</QubitMatrix>  
+    9.</Metadata>  
+
+  以此类推，将后面的几个量子比特拓扑结构添加到配置中：
+
+.. code-block::
+
+    1.<Metadata>  
+    2.    <QubitCount>4</QubitCount>  
+    3.<QubitMatrix>  
+    4.     <Qubit QubitNum = 1>  
+    5.        <AdjacentQubit QubitNum = 2>1</AdjacentQubit>  
+    6.        <AdjacentQubit QubitNum = 3>1</AdjacentQubit>  
+    7.</Qubit>  
+    8.<Qubit QubitNum = 2>  
+    9.        <AdjacentQubit QubitNum = 1>1</AdjacentQubit>  
+    10.        <AdjacentQubit QubitNum = 4>1</AdjacentQubit>  
+    11.</Qubit>  
+    12.<Qubit QubitNum = 3>  
+    13.        <AdjacentQubit QubitNum = 1>1</AdjacentQubit>  
+    14.        <AdjacentQubit QubitNum = 4>1</AdjacentQubit>  
+    15.</Qubit>  
+    16.<Qubit QubitNum = 4>  
+    17.        <AdjacentQubit QubitNum = 2>1</AdjacentQubit>  
+    18.        <AdjacentQubit QubitNum = 3>1</AdjacentQubit>  
+    19.</Qubit>  
+    20.</QubitMatrix>  
+    21.</Metadata>  
+
+
+
+**转换到不同的指令集**
+
+  将量子程序编译到不同的量子芯片实际上就是可以将量子程序编译成的量子芯片对应的指令集，QPanda2当前支持将量子程序编译成QUIL指令集、IBM的QASM指令集、本源量子的QRunes指令集。
+
+  QUIL指令集是采用“指令+参数列表的设计方法”，一个简单的例子如下：
+
+.. code-block::
+
+    1.X 0  
+    2.Y 1  
+    3.CNOT 0 1  
+    4.H 0  
+    5.RX(-3.141593) 0  
+    6.MEASURE 1 [0]  
+
+  QASM具有C和汇编语言的元素，语句用分号分隔，忽略空格，同时语言是区分大小写的。注释以一对前斜线开始，并以新的行结束。一个简单的QASM指令集如下：
+
+.. code-block::
+
+    1.OPENQASM 2.0;  
+    2.include "qelib1.inc";  
+    3.qreg q[10];  
+    4.creg c[10];  
+    5.  
+    6.x q[0];  
+    7.h q[1];  
+    8.tdg q[2];  
+    9.sdg q[2];  
+    10.cx q[0],q[2];  
+    11.cx q[1],q[4];  
+    12.u1(pi) q[0];  
+    13.u2(pi,pi) q[1];  
+    14.u3(pi,pi,pi) q[2];  
+    15.cz q[2],q[5];  
+    16.ccx q[3],q[4],q[6];  
+    17.cu3(pi,pi,pi) q[0],q[1];  
+    18.measure q[2] -> c[2];  
+    19.measure q[0] -> c[0]; 
+
+  如何利用QPanda2将量子程序转化为想要的指令集呢？可以使用下面的方法，首先利用QPanda2构建一个量子程序：
+
+.. code-block::
+
+    1.QProg prog;  
+    2.auto qubits = qvm->qAllocMany(4);  
+    3.auto cbits  = qvm->cAllocMany(4);  
+    4.  
+    5.prog << X(qubits[0])  
+    6.    << Y(qubits[1])  
+    7.    << H(qubits[2])  
+    8.    << RX(qubits[3], 3.14)  
+    9.    << Measure(qubits[0], cbits[0]);
+
+  然后调用QPanda2的工具接口，完成转换，比如转化为QUIL指令集可以调用下面的接口：
+
+.. code-block::
+
+    1.std::string instructions = convert_qprog_to_quil(prog, qvm);  
+
+  得到转化后的QUIL指令集：
+
+.. code-block::
+
+    1.X 0  
+    2.Y 1  
+    3.H 2  
+    4.RX(3.140000) 3  
+    5.MEASURE 0 [0] 
+
+  转化为QASM指令集与转化为QUIL指令集的方法类似，可以调用下面的接口：
+
+.. code-block::
+    
+    1.std::string instructions = convert_qprog_to_qasm(prog, qvm);  
+
+  得到转化后的QASM指令集：
+
+.. code-block::
+
+    1.openqasm 2.0;  
+    2.qreg  q[4];  
+    3.creg c[4];  
+    4.x q[0];  
+    5.y q[1];  
+    6.h q[2];  
+    7.rx(3.140000)  q[3];  
+    8.measure q[0] -> c[0];  
+
+

@@ -1,0 +1,635 @@
+2.2 量子程序
+==================================
+
+2.2.1 量子计算原理
+----------------------------------
+  经典计算中，最基本的单元是比特，而最基本的控制模式是逻辑门，可以通过逻辑门的组合来达到控制电路的目的。类似地，处理量子比特的方式就是量子逻辑门，使用量子逻辑门，有意识的使量子态发生演化，所以量子逻辑门是构成量子算法的基础。
+
+**酉变换**
+
+  酉变换是一种矩阵，也是一种操作，它作用在量子态上得到的是一个新的量子态。使用  :math:`U` 来表达酉矩阵,  :math:`U^{\dagger}` 表示酉矩阵的转置复共轭矩阵，二者满足运算关系  :math:`UU^{\dagger}=I` ，所以酉矩阵的转置复共轭矩阵也是一个酉矩阵，说明酉变换是一种可逆变换。
+
+  一般酉变换在量子态上的作用是变换矩阵左乘以右矢进行计算的。例如一开始有一个量子态  :math:`|\psi_{0}\rangle` , 经过酉变换  :math:`U` 之后得到  :math:`|\psi\rangle=U\left|\psi_{0}\right\rangle``
+
+  或者也可以写为
+
+.. math::
+    \langle\psi|=\left\langle\psi_{0}\right| U^{\dagger} 
+
+  由此可见，两个矢量的内积经过同一个酉变换之后保持不变。
+
+.. math::
+    \langle\varphi \mid \psi\rangle=\langle\varphi|U^{\dagger}U| \psi\rangle
+
+  类似地，也可以通过酉变换表示密度矩阵的演化；
+
+.. math::
+     \rho=U{\rho_{0}} U^{\dagger}
+
+  这样就连混合态的演化也包含在内了。
+
+
+**矩阵的指数函数**
+
+  一旦定义了矩阵乘法, 就可以利用函数的幂级数来定义矩阵的函数，这其中就包含矩阵的指数函数。如果 :math:`A` 是一个矩阵，那么 :math:`\exp (A)=1+A+\frac{A^{2}}{2 !}+\frac{A^{3}}{3 !}+\ldots` . 就为矩阵  :math:`A` 的指数函数形式。
+
+  如果 :math:`A` 是一个对角矩阵，即  :math:`A=\text{diag}\left(A_{11} A_{22} A_{33} \ldots . .\right)` , 则由此验证
+
+.. math::
+    \mathrm{A}^{n}=\text{diag}\left(A_{11}^{n}, A_{22}^{n}, A_{33}^{n} \cdots\right)
+
+  从而得到
+
+.. math::
+    \exp (A)=\text{diag}\left(e^{A_{11}} ,\mathrm{e}^{A_{22}}, \mathrm{e}^{A_{33}} \ldots\right)
+
+  如果 :math:`A` 不是一个对角矩阵，则利用酉变换可以将它对角化， :math:`D=U D U^{\dagger}` ，从而有
+
+.. math::
+    \mathrm{A}^{n}=U ^{\dagger} {\mathrm{D}^{n} \mathrm U}
+
+  那么，类似地
+
+.. math::
+     \exp (\mathrm{A})=U ^{\dagger}\exp (\mathrm{D}) U
+
+  必须要引起注意的是
+
+.. math::
+    \exp (A+B) \neq \exp (A) \exp (B) \neq \exp (B) \exp (A)
+
+  当 :math:`A` 是表示数的时候等号是成立的，那么，当 :math:`A` 表示是矩阵时，等式成立要满足什么条件？
+
+  通常，下面这种表达形式被称之为以 :math:`A` 为生成元生成的酉变换；
+
+.. math::
+    U(\theta)=\exp (-\mathrm{i} \theta A)
+
+  这种矩阵的指数运算可以利用数值计算软件Matlab中的expm，或者Mathematica中的MatrixExp命令进行方便地计算。
+
+
+**单位矩阵**
+
+.. math::
+    I=\left[\begin{array}{ll} 1 & 0 \\ 0 & 1 \end{array}\right]
+
+  以单位矩阵为生成元，可以构建一种特殊的酉变换。
+
+.. math::
+    \begin{array}{cc} u(\theta)=\exp (-i \theta I)=\left(\begin{array}{cc} e^{-i \theta} & 0 \\ 0 & e^{-i \theta} \end{array}\right)=\exp (-i \theta) I \end{array}
+
+  它作用在态矢上面，相当于对于态矢整体（或者说每个分量同时）乘以一个系数。如果将这种态矢带入到密度矩阵的表达式中，会发现这一项系数会被消去。
+
+  这项系数称为量子态的整体相位。因为任何操作和测量都无法分辨两个相同的密度矩阵，所以量子态的整体相位一般情况下是不会对系统产生任何影响的。
+
+
+**单量子比特逻辑门**
+
+  在经典计算机中，单比特逻辑门只有一种——非门（NOT gate），但是在量子计算机中，量子比特情况相对复杂，存在叠加态、相位，所以单量子比特逻辑门会有更加丰富的种类。
+
+
+**泡利矩阵**
+
+  泡利矩阵（Pauli matrices）有时也被称作自旋矩阵（spin matrices）。有以下三种形式，分别是
+
+.. math::
+    \left.\sigma_{x}=\left(\begin{array}{rr} 0 & 1 \\ 1 & 0 \end{array}\right) \quad \sigma_{y}=\left(\begin{array}{cc} 0 & -i \\ i & 0 \end{array}\right) \quad \sigma_{z}=\left(\begin{array}{cc} 1 & 0 \\ 0 & -1 \end{array}\right)\right. 
+
+  三个泡利矩阵所表示的泡利算符代表着对量子态矢量最基本的操作。如将  :math:`\sigma_{x}` 作用到 :math:`|0\rangle` 态上， 经过矩阵运算，得到的末态为  :math:`|1\rangle` 态。 泡利矩阵的线性组合是完备的二维酉变换生成元，即所有满足  :math:`U U ^{\dagger}=I` 的  :math:`U` 都能通过下面这种方式得到
+
+.. math::
+    \mathrm{U}=\mathrm{e}^{-i \theta\left(a \sigma_{x}+b \sigma_{y}+c \sigma_{z}\right)}
+
+  介绍单量子逻辑门时，会使用图2.2.1来表示。
+
+.. image:: ./images/2.2.1.png
+   :align: center
+   :width: 300 px
+.. centered:: 图2.2.1 单量子逻辑门
+
+  横线表示一个量子比特从左到右按照时序演化的路线，方框表示量子逻辑门， 这个图标表示一个名为 :math:`U` 的逻辑门作用在这条路线所代表的量子比特上。对于一个处 于  :math:`\left|\psi_{0}\right\rangle` 的量子态，将这个量子逻辑门作用在上面时，相当于将这个量子逻辑门代表的酉矩阵左乘这个量子态的矢量，然后得到下一个时刻的量子态  :math:`\left|\psi_{1}\right\rangle` 。
+
+  即:  :math:`\left|\psi_{1}\right\rangle=U\left|\psi_{0}\right\rangle`
+
+  这个表达式对于所有的单比特门或者多比特门都是适用的。对于一个有 :math:`{n}` 个量子比特的量子系统，它的演化是通过一个  :math:`2^{n} \times 2^{n}` 的酉矩阵来表达。
+
+
+**常见逻辑门以及含义**
+
+
+**1）Hadamard (H) 门**
+
+  Hadamard 门是一种可将基态变为叠加态的量子逻辑门，有时简称为H门。Hadamard 门作用在单比特上，它将基态 :math:`|0 \rangle` 变成 :math:`(|0\rangle +|1\rangle)/\sqrt{2}` ，将基态 :math:`|1 \rangle` 变成 :math:`(|0\rangle -|1\rangle)/\sqrt{2}` 。
+
+  Hadamard门矩阵形式为
+
+.. math::
+    H=\frac{1}{\sqrt{2}}\left[\begin{array}{cc} 1 & 1 \\ 1 & -1 \end{array}\right]
+
+  其在线路上显示如图2.2.2所示：
+
+.. image:: ./images/2.2.2.png
+   :align: center
+.. centered:: 图2.2.2 Hadamard 门
+
+ 假设， :math:`H` 门作用在任意量子态 :math:`|\psi\rangle=\alpha|0\rangle+\beta|1\rangle` 上面, 得到新的量子态为：
+
+.. math::
+    \left|\psi^{\prime}\right\rangle=\mathrm{H}|\psi\rangle=\frac{1}{\sqrt{2}}\left[\begin{array}{cc} 1 & 1 \\ 1 & -1 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\frac{1}{\sqrt{2}}\left[\begin{array}{c} \alpha+\beta \\ \alpha-\beta \end{array}\right]=\frac{\alpha+\beta}{\sqrt{2}}|0\rangle+\frac{\alpha-\beta}{\sqrt{2}}|1\rangle
+
+
+**2）Pauli-X门**
+
+  Pauli-X门作用在单量子比特上，它是经典计算机 :math:`NOT` 门的量子等价，将量子态进行翻转，量子态变化方式为：
+
+.. math::
+    \begin{aligned} &|0\rangle \rightarrow|1\rangle \\ &|1\rangle \rightarrow|0\rangle \end{aligned}
+
+  Pauli-X门矩阵形式为泡利矩阵 :math:`\sigma_{x}` ​，即：
+
+.. math::
+    \mathrm{X}=\sigma_{\mathrm{x}}=\left[\begin{array}{ll} 0 & 1 \\ 1 & 0 \end{array}\right]
+
+  Pauli-X门矩阵又称 :math:`NOT` 门；其在线路上显示如图2.2.3所示：
+
+.. image:: ./images/2.2.3.png
+   :align: center
+.. centered:: 图2.2.3 Pauli-X门
+
+  假设，NOT门作用在任意量子态 :math:`|\psi\rangle=\alpha|0\rangle+\beta|1\rangle` 上面, 得到新的量子态为：
+
+.. math::
+     \left|\psi^{\prime}\right\rangle=\mathrm{X}|\psi\rangle=\left[\begin{array}{ll} 0 & 1 \\ 1 & 0 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{l} \beta \\ \alpha \end{array}\right]=\beta|0\rangle+\alpha|1\rangle 
+
+
+**3）Pauli-Y门**
+
+  Pauli-Y门作用在单量子比特上，作用效果为绕Bloch球 :math:`Y` 轴旋转角度 :math:`\pi` ，Pauli-Y门的矩阵形式为泡利矩阵 :math:`\sigma_{y}` ，即：
+
+.. math::
+    \mathrm{Y}=\sigma_{\mathrm{y}}=\left[\begin{array}{cc} 0 & -\ i \\ \ i & 0 \end{array}\right] 
+
+  其在线路上显示如图2.2.4所示：
+
+.. image:: ./images/2.2.4.png
+   :align: center
+.. centered:: 图2.2.4 Pauli-Y门
+
+  假设，Pauli-Y门作用在任意量子态 :math:`|\psi\rangle=\alpha|0\rangle+\beta|1\rangle` 上面, 得到新的量子态为:
+
+.. math::
+    \left|\psi^{\prime}\right\rangle=\mathrm{Y}|\psi\rangle=\left[\begin{array}{cc} 0 & -i \\ \ i & 0 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{c} -i \beta \\ i \alpha \end{array}\right]=-i \beta|0\rangle+i \alpha|1\rangle
+
+
+**4）Pauli-Z门**
+
+  Pauli-Z 门作用在单量子比特上，作用效果是绕Bloch球 :math:`Z` 轴旋转角度 :math:`\pi` ，Pauli-Z门矩阵形式为泡利矩阵  :math:`\sigma_{z}`  ，即：
+
+.. math::
+    Z=\sigma_{z}=\left[\begin{array}{cc} 1 & 0 \\ 0 & -1 \end{array}\right]
+
+  其在线路上显示如图2.2.5所示：
+
+.. image:: ./images/2.2.5.png
+   :align: center
+.. centered:: 图2.2.5 Pauli-Z 门
+
+  假设，Pauli-Z门作用在任意量子态 :math:`|\psi\rangle=\alpha|0\rangle + \beta|1\rangle` 上面, 得到新的量子态为：
+
+.. math::
+    \left|\psi^{\prime}\right\rangle=\mathrm{Z}|\psi\rangle=\left[\begin{array}{cc} 1 & 0 \\ 0 & -1 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{c} \alpha \\ -\beta \end{array}\right]=\alpha|0\rangle-\beta|1\rangle
+
+
+
+**5）旋转门（rotation operators）**
+
+  分别用不同的泡利矩阵作为生成元是构成 :math:`RX` , :math:`RY` , :math:`RZ` 的方法。
+
+
+**（1）RX(θ) 门**
+
+  RX门由Pauli-X矩阵作为生成元生成，其矩阵形式为
+
+.. math::
+    RX(\theta) \equiv e^{-i \theta X / 2}=\cos \left(\frac{\theta}{2}\right) I-i \sin \left(\frac{\theta}{2}\right) X=\left[\begin{array}{cc} \cos \left(\frac{\theta}{2}\right) & -i \sin \left(\frac{\theta}{2}\right) \\ -i \sin \left(\frac{\theta}{2}\right) & \cos \left(\frac{\theta}{2}\right) \end{array}\right] 
+
+  其在线路上显示如图2.2.6所示：
+
+.. image:: ./images/2.2.6.png
+   :align: center
+.. centered:: 图2.2.6 RX(θ) 门
+
+  假设,  :math:`\mathrm{RX}(\pi / 2)` 门作用在任意量子态  :math:`|\psi\rangle=\alpha|0\rangle+\beta|1\rangle` 上面, 得到新的量子态为：
+
+.. math::
+    \left|\psi^{\prime}\right\rangle=\mathrm{RX}(\pi / 2)|\psi\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{rr} 1 & -\mathrm{i} \\ -\mathrm{i} & 1 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\frac{\sqrt{2}}{2}\left[\begin{array}{l} \alpha-i \beta \\ \beta-i \alpha \end{array}\right]=\frac{\sqrt{2}(\alpha-i \beta)}{2}|0\rangle+\frac{\sqrt{2}(\beta-i \alpha)}{2}|1\rangle
+
+
+**（2）RY(θ) 门**
+
+  RY门由Pauli-Y矩阵作为生成元生成，其矩阵形式为
+
+.. math::
+    RY(\theta) \equiv e^{-i \theta Y / 2}=\cos \left(\frac{\theta}{2}\right) I-i \sin \left(\frac{\theta}{2}\right) Y=\left[\begin{array}{cc} \cos \left(\frac{\theta}{2}\right) & -\sin \left(\frac{\theta}{2}\right) \\ \sin \left(\frac{\theta}{2}\right) & \cos \left(\frac{\theta}{2}\right) \end{array}\right]
+
+其在线路上显示如图2.2.7所示：
+
+.. image:: ./images/2.2.7.png
+   :align: center
+.. centered:: 图2.2.7 RY(θ) 门
+
+  假设， :math:`RY(\pi / 2)` 门作用在任意量子态  :math:`|\psi\rangle=\alpha|0\rangle+\beta|1\rangle` 上面, 得到新的量子态为：
+
+.. math::
+    \begin{aligned} &\left|\psi^{\prime}\right\rangle=\text{RY}\left(\frac{\pi}{2}\right)|\psi\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{cc} 1 & -1 \\ 1 & 1 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\frac{\sqrt{2}}{2}\left[\begin{array}{l} \alpha-\beta \\ \alpha+\beta \end{array}\right]=\frac{\sqrt{2}(\alpha-\beta)}{2}|0\rangle+\frac{\sqrt{2}(\alpha+\beta)}{2}|1\rangle \\ \end{aligned}
+
+
+**（3）RZ(θ) 门**
+
+  RZ又称相位转化门（phase-shift gate），由Pauli-Z矩阵作为生成元生成，其矩阵形式为
+
+.. math::
+    RZ(\theta) \equiv e^{-i \theta Z / 2}=\cos \left(\frac{\theta}{2}\right) I-i \sin \left(\frac{\theta}{2}\right) Z=\left[\begin{array}{cc} e^{-i \theta / 2} & 0 \\ 0 & e^{i \theta / 2} \end{array}\right]
+
+  上式还可以写为
+
+.. math::
+    RZ(\theta)=\left[\begin{array}{cc} e^{-i \theta / 2} & \\ & e^{i \theta / 2} \end{array}\right]=e^{-i \theta / 2}\left[\begin{array}{ll} 1 & \\ & e^{i \theta} \end{array}\right]
+
+  由于矩阵
+
+.. math::
+    \left[\begin{array}{ll} e^{-i \theta / 2} & \\ & e^{i \theta / 2} \end{array}\right] \text { 和 }\left[\begin{array}{ll} 1 & \\ & e^{i \theta} \end{array}\right]
+
+  只差一个整体相位 (global phases)  :math:`e^{-i \theta / 2}` ，只考虑单门的话，两个矩阵做成的量子逻辑门是等价的，即有时 :math:`RZ` 门的矩阵形式写作
+
+.. math::
+    RZ(\theta)=\left[\begin{array}{ll} 1 & 0 \\ 0 & e^{i \theta} \end{array}\right]
+
+   :math:`RZ` 量子逻辑门作用在基态上的效果为
+
+.. math::
+    RZ|0\rangle=\left[\begin{array}{cc} 1 & 0 \\ 0 & e^{i \theta} \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \end{array}\right]=\left[\begin{array}{c} 1 \\ 0 \end{array}\right]=|0\rangle
+
+.. math::
+    RZ|1\rangle=\left[\begin{array}{cc} 1 & 0 \\ 0 & e^{i \theta} \end{array}\right]\left[\begin{array}{l} 0 \\ 1 \end{array}\right]=\left[\begin{array}{c} 0 \\ e^{i \theta} \end{array}\right]=e^{i \theta}|1\rangle
+
+  由于全局相位没有物理意义，并没有对计算基  :math:`|0\rangle` 和  :math:`|1\rangle` 做任何的改变，而是在原来的态上绕Z轴逆时针旋转 :math:`\theta` 角。
+
+  其在线路上显示如图2.2.8所示：
+
+.. image:: ./images/2.2.8.png
+   :align: center
+.. centered:: 图2.2.8 RZ(θ) 门
+
+  假设,  :math:`\mathrm{RZ}(\pi / 2)` 门作用在任意量子态  :math:`|\psi\rangle=\alpha|0\rangle+\beta|1\rangle` 上面, 得到新的量子态为:
+
+.. math::
+    \left|\psi^{\prime}\right\rangle=R Z\left(\frac{\pi}{2}\right)|\psi\rangle=\left[\begin{array}{cc} 1 & 0 \\ 0 & \frac{\sqrt{2}(1+i)}{2} \end{array}\right]\left[\begin{array}{c} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{c} \alpha \\ \frac{\sqrt{2}(1+\mathrm{i})}{2} \beta \end{array}\right]=\alpha|0\rangle+\frac{\sqrt{2}(1+\mathrm{i})}{2} \beta|1\rangle
+
+
+   :math:`RX` , :math:`RY` , :math:`RZ` 意味着将量子态在布洛赫球上分别绕着 :math:`X` , :math:`Y` , :math:`Z` 轴旋转 :math:`\theta` 角度，所以 :math:`RX` ， :math:`RY` 能带来概率幅的变化，而 :math:`RZ` 只有相位的变化。那么，共同使用这三种操作能使量子态在整个布洛赫球上自由移动。
+
+
+
+**多量子比特逻辑门**
+
+  不论是在经典计算还是量子计算中，两量子比特门无疑是建立量子比特之间联系的最重要桥梁。不同于经典计算中的与或非门及它们的组合，量子逻辑门要求所有的逻辑操作必须是酉变换，所以输入和输出的比特数量是相等的。
+
+  在描述两量子比特门之前，必须要将之前对于单量子比特的表示方式扩展一下。联立两个量子比特或者两个以上的量子比特时，就用到复合系统中量子态演化的假设。
+
+  对于一个 :math:`n` 量子比特 :math:`\left|x_{n-1} \cdots x_{0}\right\rangle` , :math:`n` 量子比特系统的计算基就有 :math:`2^{n}` 单位正交矢量组成，借助于经典比特的进位方式对量子比特进行标记，从左到右依次是二进制中的从高位到低位，也就是说 :math:`\left|x_{n-1} \cdots x_{0}\right\rangle` 中  :math:`x_{n-1}` 为高位， :math:`x_{0}` 为低位。
+
+  比如对于一个2量子比特的系统，其计算基分别记做
+
+.. math::
+    \begin{array}{ll} |00\rangle=\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right], & |01\rangle=\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right], \\ |10\rangle=\left[\begin{array}{l} 0 \\ 0 \\ 1 \\ 0 \end{array}\right], & |11\rangle=\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right] \end{array} 
+
+  在基态 :math:`|01 \rangle` 中，左侧的0对应的位为高位，1对应的位为低位。
+
+  在介绍2比特量子逻辑门时，会使用如图2.2.9的图标：
+
+.. image:: ./images/2.2.9.png
+   :align: center
+   :width: 300 px
+.. centered:: 图2.2.9 2比特量子逻辑门
+
+  每根线表示一个量子比特演化的路线，这和单比特门中的横线是类似的，不一样的是这两根线有位次之分，从上到下依次分别表示从低位到高位的量子比特演化的路线。这个图标横跨两个量子比特，它代表将一个两比特门作用在这两个量子比特上，这个图标代表的是 :math:`CNOT` 门。
+
+
+**CNOT 门**
+
+  控制非门(Control-NOT)，通常用 :math:`CNOT` 进行表示，是一种普遍使用的两量子比特门。
+
+  若低位为控制比特，那么它具有如下的矩阵形式:
+
+.. math::
+     C N O T=\left[\begin{array}{llll} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{array}\right] 
+
+  对应的 :math:`CNOT` 门在线路中显示如图2.2.10：
+
+.. image:: ./images/2.2.10.png
+   :align: center
+   :width: 300 px
+.. centered:: 图2.2.10 CNOT门
+
+  含实点的路线对应的量子比特称为控制比特（control qubit），含+号的路线对应的量子比特为目标比特（target qubit）。
+
+  假设， :math:`CNOT` 门作用分别作用在基态 :math:`|\psi\rangle=|00\rangle` , :math:`|01\rangle` , :math:`|10\rangle` , :math:`|11\rangle` 上面, 得到新的量子态为：
+
+.. math::
+    \begin{aligned} &\left|\psi^{\prime}\right\rangle=\mathrm{CNOT}|00\rangle=\left[\begin{array}{llll} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right]=\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right]=|00\rangle \\ &\left|\psi^{\prime}\right\rangle=\mathrm{CNOT}|01\rangle=\left[\begin{array}{llll} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{array}\right]\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right]=\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right]=|11\rangle \\ &\left|\psi^{\prime}\right\rangle=\mathrm{CNOT}|10\rangle=\left[\begin{array}{llll} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{array}\right]\left[\begin{array}{l} 0 \\ 0 \\ 1 \\ 0 \end{array}\right]=\left[\begin{array}{l} 0 \\ 0 \\ 1 \\ 0 \end{array}\right]=|10\rangle \\ &\left|\psi^{\prime}\right\rangle=\text {CNOT}|11\rangle=\left[\begin{array}{llll} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{array}\right]\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right]=\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right]=|01\rangle \end{aligned}
+
+  由于低位比特为控制比特，高位比特为目标比特，所以当低位比特位置对应为1时，高位比特就会被取反；当低位比特位置为0时，不对高位比特做任何操作。
+
+  若高位比特为控制比特，那么它具有如下的矩阵形式:
+
+.. math::
+    \mathrm{CNOT}=\left[\begin{array}{llll} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{array}\right] 
+
+
+:math:`CNOT` 门在线路中显示如图2.2.11：
+
+
+.. image:: ./images/2.2.11.png
+   :align: center
+   :width: 300 px
+.. centered:: 图2.2.11 CNOT门
+
+  假设，高位为控制比特， :math:`CNOT` 门分别作用在基态  :math:`|\psi\rangle=|00\rangle` , :math:`|01\rangle` , :math:`|10\rangle` , :math:`|11\rangle` 上，那么，可以计算四个两量子比特的计算基经 :math:`CNOT` 门的演化结果如图2.2.12所示：
+
+.. image:: ./images/2.2.12.png
+   :align: center
+   :width: 500 px
+.. centered:: 图2.2.12 演化结果
+
+  从上例可以看出 :math:`CNOT` 门的含义是当控制比特为 :math:`|0 \rangle` 态时，目标比特不发生改变；当控制比特为 :math:`|1 \rangle` 态时，对目标比特执行 :math:`X` 门(量子非门)操作。要注意的是控制比特和目标比特的地位是不能交换的。
+
+
+**CR 门**
+
+  控制相位门（Controlled phase gate）和控制非门类似，通常记为 :math:`CR` (CPhase)，其矩阵形式如下
+
+.. math::
+    \text{CR}(\theta)=\left[\begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & \mathrm{e}^{\mathrm{i} \theta} \end{array}\right] 
+
+
+:math:`CR` 门在线路中显示如图2.2.13：
+
+.. image:: ./images/2.2.13.png
+   :align: center
+.. centered:: 图2.2.13 CR门
+
+  在 :math:`CR` 门的图标中，含实点的路线对应的量子比特称为控制比特（control qubit），含CR字母的路线对应量子比特为目标比特（target qubit）。
+
+  当控制比特为 :math:`|0 \rangle` 态时，目标比特不发生改变；当控制比特为 :math:`|1 \rangle` 态时，对目标比特执行相转变门（phase-shift gate），其特殊的是，控制相位门里交换控制比特和目标比特的角色，矩阵形式不会发生任何改变。
+
+
+**iSWAP 门**
+
+  :math:`\text{iSWAP}` 门的主要作用是交换两个比特的状态，并且赋予其 :math:`\pi /2` 相位；经典电路中也有SWAP门，但是 :math:`\text{iSWAP}` 是量子计算中特有的。 :math:`\text{iSWAP}` 门在某些体系中是较容易实现的两比特逻辑门，它是由  :math:`\sigma_{x} \otimes \sigma_{x}+\sigma_{y} \otimes \sigma_{y}` 作为生成元生成，需要将矩阵 :math:`\sigma_{x} \otimes \sigma_{x}+\sigma_{y} \otimes \sigma_{y}` 对角化， :math:`\text{iSWAP}` 门的矩阵表示如下：
+
+.. math::
+    \text{iSWAP}(\theta)=\left[\begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & \cos (\theta) & -i \sin (\theta) & 0 \\ 0 & -i \sin (\theta) & \cos (\theta) & 0 \\ 0 & 0 & 0 & 1 \end{array}\right]
+
+
+:math:`\text{iSWAP}` 门在线路中显示如图2.2.14：
+
+.. image:: ./images/2.2.14.png
+   :align: center
+.. centered:: 图2.2.14 iSWAP门
+
+  通常会用一个完整的翻转，即 :math:`\theta=\pi/2` 的情况来指代 :math:`\text{iSWAP}` 。当角度为 :math:`\text{iSWAP}` 的一半时，即 :math:`\theta=\pi/4` ，称之为 :math:`\sqrt{i}SWAP` 。对于  :math:`\text{iSWAP}` 门而言，两个比特之间地位是对等的，不存在控制和受控的关系。
+
+
+**量子线路与测量操作**
+
+  量子线路是由代表量子比特演化的路线和作用在量子比特上的量子逻辑门组成的。量子线路产生的效果，等同于每一个量子逻辑门依次作用在量子比特上。在真实的量子计算机上，最后要对量子系统末态进行测量操作，才能得到末态的信息，因此也把测量操作作为量子线路的一部分，测量操作有时也称为测量门。测量背后的原理就是之前讲到的投影测量。
+
+  测量操作在线路上的显示如图2.2.15：
+
+.. image:: ./images/2.2.15.png
+   :align: center
+.. centered:: 图2.2.15 测量操作
+
+它表示对该量子路线代表的量子比特进行测量操作。
+
+  在计算 :math:`|0\rangle` , :math:`|1\rangle` 下，测量操作对应的矩阵形式为
+
+.. math::
+    M_{0}=|0\rangle \langle 0|=\left[\begin{array}{ll} 1 & 0 \\ 0 & 0 \end{array}\right] \quad M_{1}=| 1\ \rangle\langle 1|=\left[\begin{array}{ll} 0 & 0 \\ 0 & 1 \end{array}\right] 
+
+  如图2.2.16所示，是一个简单的单量子比特的量子线路。
+
+.. image:: ./images/2.2.16.png
+   :align: center
+.. centered:: 图2.2.16 一个简单的单量子比特的量子线路
+
+  初始态为 :math:`|0\rangle` , 首先经过一个 :math:`H` 门，演化得到末态
+
+.. math::
+    \left|\psi^{\prime}\right\rangle=H|0\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{cc} 1 & 1 \\ 1 & -1 \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \end{array}\right]=\frac{\sqrt{2}}{2}\left[\begin{array}{l} 1 \\ 1 \end{array}\right]=\frac{\sqrt{2}}{2}|0\rangle+\frac{\sqrt{2}}{2}|1\rangle 
+
+  接着就对其进行测量操作，得到投影到计算基 :math:`|0\rangle` 下的概率为
+
+.. math::
+    \begin{aligned} &\quad P(0)=\left\langle\psi^{\prime}\left|M_{0}^{\dagger} M_{0}\right| \psi^{\prime}\right\rangle \\ &=\left\langle\psi^{\prime}\left|M_{0}\right| \psi^{\prime}\right\rangle \\ &=\left[\begin{array}{ll} \sqrt{2} / 2 & \sqrt{2} / 2 \end{array}\right]\left[\begin{array}{ll} 1 & 0 \\ 0 & 0 \end{array}\right]\left[\begin{array}{l} \sqrt{2} / 2 \\ \sqrt{2} / 2 \end{array}\right] \\ &=\frac{1}{2} \end{aligned} 
+
+  根据测量假设，测量过后末态  :math:`\left|\psi^{\prime}\right\rangle` 变为新的量子态
+
+.. math::
+     \left|\psi^{\prime \prime}\right\rangle=\frac{M_{0}\left|\psi^{\prime}\right\rangle}{\sqrt{P(0)}}=\left[\begin{array}{l} 1 \\ 0 \end{array}\right]=|0\rangle 
+
+  投影到计算基 :math:`|1\rangle` 下的概率为
+
+.. math::
+     \begin{aligned} & P(1)=\left\langle\psi^{\prime}\left|M_{1}^{\dagger} M_{1}\right| \psi^{\prime}\right\rangle. \\ &=\left\langle\psi^{\prime}\left|M_{1}\right| \psi^{\prime}\right\rangle \\ &=[\sqrt{2} / 2 \quad \sqrt{2} / 2]\left[\begin{array}{ll} 0 & 0 \\ 0 & 1 \end{array}\right]\left[\begin{array}{c} \sqrt{2} / 2 \\ \sqrt{2} / 2 \end{array}\right] \\ &=\frac{1}{2} . \end{aligned} 
+
+  测量过后末态 :math:`\left|\psi^{\prime}\right\rangle` 变为新的量子态
+
+.. math::
+     \left|\psi^{\prime \prime}\right\rangle=\frac{M_{1}\left|\psi^{\prime}\right\rangle}{\sqrt{P(1)}}=\left[\begin{array}{l} 0 \\ 1 \end{array}\right]=|1\rangle 
+
+  由于在真实的量子计算机上面, 测量会对量子态有影响，所以只能够通过新制备初始量子态，让它重新演化，再进行测量，从而得到末量子态在计算基下的频率, 用频率来近似概率，并且每次测量只能够用测量操作  :math:`M_{0}` 与   :math:`M_{1}` 中的一个进行测量。
+
+​  图2.2.17，表示的是两量子比特的量子线路：
+
+.. image:: ./images/2.2.17.png
+   :align: center
+.. centered:: 图2.2.17 两量子比特的量子线路
+
+  在该量子线路中，初始态q[1]、q[0]代表量子比特的初始态均为  :math:`|0\rangle` ，因此该系统的复合量子态为  :math:`|00\rangle` , 这里复合量子态 :math:`|00\rangle` 的从左到右依次对应高位比特到低位比特。首先该复合的量子比特在时刻 :math:`1` 同时经过 :math:`H` 门 和 :math:`X` 门，接着在时刻 :math:`2` 经过 :math:`CNOT` 门，最后在时刻 :math:`3` 进行整体测量操作。下面用数学的语言进行描述，在初始时刻系统处在初始态  :math:`\left|\psi_{0}\right\rangle=|00\rangle` ，其中左边的 0 为高位 :math:`q[1]` , 右边的 0 为低位 :math:`q[0]` , 经过时刻 :math:`1` 的门以后量子态变为
+
+.. math::
+    \left|\psi_{1}\right\rangle=[H \otimes X]|00\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{cc} X & X \\ X & -X \end{array}\right]|00\rangle=\frac{\sqrt{2}}{2}\left[\begin{array}{cccc} 0 & 1 & 0 & 1 \\ 1 & 0 & 1 & 0 \\ 0 & 1 & 0 & -1 \\ 1 & 0 & -1 & 0 \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right]=\frac{\sqrt{2}}{2}\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 1 \end{array}\right] 
+
+  接着在时刻 :math:`2` 经历 :math:`CNOT` 门后，演化为
+
+.. math::
+    \left|\psi_{2}\right\rangle=\mathrm{CNOT}\left|\psi_{1}\right\rangle=\left[\begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=\frac{\sqrt{2}}{2}|01\rangle+\frac{\sqrt{2}}{2}|11\rangle 
+
+  最后，到时刻 :math:`3` 进行测量操作，若用测量操作 :math:`M_{00} \equiv|00\rangle\langle 00|` ，则得到投影到计算基 :math:`|00\rangle` 下的概率为
+
+.. math::
+    \begin{aligned}&P(00)=\left\langle\psi_{2}\left|M_{00}^{\dagger} M_{00}\right| \psi_{2}\right\rangle \\&=\left\langle\psi_{2}\left|M_{00}\right| \psi_{2}\right\rangle \\&=\left\langle\psi_{2}|[|00\rangle\langle 00|]| \psi_{2}\right\rangle\\&=\left[\begin{array}{llll}0 & \frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2}\end{array}\right]\left[\begin{array}{llll}1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0\end{array}\right]\left[\begin{array}{c}0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2\end{array}\right]\\&=0\end{aligned} 
+
+  根据测量假设，由于 :math:`P(00)=0` ，因此测量过后，量子态  :math:`\left|\psi_{2}\right\rangle` 不可能坍缩在基态 :math:`|00\rangle` 上面。
+
+  若用测量操作 :math:`M_{01} \equiv|01\rangle\langle 01|` ，则得到投影到计算基 :math:`|01\rangle` 下的概率为
+
+.. math::
+    P(01)=\left\langle\psi_{2}\left|M_{01}^{\dagger} M_{01}\right| \psi_{2}\right\rangle=\left\langle\psi_{2}\left|M_{01}\right| \psi_{2}\right\rangle=\frac{1}{2} 
+
+  对量子态 :math:`\left|\psi_{2}\right\rangle` 测量后, 得到新的量子态为
+
+.. math::
+     \left|\psi_{3}\right\rangle=\frac{M_{01}\left|\psi_{2}\right\rangle}{\sqrt{P(01)}}=\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right]=|01\rangle 
+
+  若用测量操作 :math:`M_{10} \equiv|10\rangle\langle 10|` ，则得到投影到计算基 :math:`|10\rangle` 下的概率为
+
+.. math::
+     P(10)=\left\langle\psi_{2}\left|M_{10}^{\dagger} M_{10}\right| \psi_{2}\right\rangle=\left\langle\psi_{2}\left|M_{10}\right| \psi_{2}\right\rangle=0 
+
+  所以测量过后, 量子态 :math:`\left|\psi_{2}\right\rangle` 不可能坍缩在基态 :math:`|10\rangle` 上面。
+
+  若用测量操作 :math:`M_{11} \equiv|11\rangle\langle 11|` ，则得到投影到计算基 :math:`|11\rangle` 下的概率为
+
+.. math::
+    P(11)=\left\langle\psi_{2}\left|M_{11}^{\dagger} M_{11}\right| \psi_{2}\right\rangle=\left\langle\psi_{2}\left|M_{11}\right| \psi_{2}\right\rangle=\frac{1}{2} 
+
+  对量子态 :math:`\left|\psi_{2}\right\rangle` 测量后, 得到新的量子态为
+
+.. math::
+    \left|\psi_{3}\right\rangle=\frac{M_{11}\left|\psi_{2}\right\rangle}{\sqrt{P(11)}}=\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right]=|11\rangle 
+
+  有时可能关心线路中某些位量子比特的演化结果，那么就把测量放在某些量子比特对应的路线上面。如图2.2.18所示，将测量操作放在高位比特所对应路线上面。
+
+.. image:: ./images/2.2.18.png
+   :align: center
+.. centered:: 图2.2.18 测量操作放在高位比特所对应路线上面
+
+此时测量对应的矩阵形式为
+
+.. math::
+     M_{0}^{1}=\sum_{i \in\{0,1\}}|0 i\rangle\langle 0 i| \text { 和 } M_{1}^{1}=\sum_{i \in\{0,1\}}|1 i\rangle\langle 1 i| 
+
+  因此通过测量，得到测量结果0和1发生的概率分别为
+
+.. math::
+    \begin{aligned} &P_{1}(0)=\left\langle\psi_{2}\left|M_{1}^{0}\right| \psi_{2}\right\rangle=\left[\begin{array}{cccc} 0 & \frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2} \end{array}\right]\left[\begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=\frac{1}{2} \\ &P_{1}(1)=\left\langle\psi_{2}\left|M_{1}^{1}\right| \psi_{2}\right\rangle=\left[\begin{array}{cccc} 0 & \frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2} \end{array}\right]\left[\begin{array}{cccc} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=\frac{1}{2} \end{aligned} 
+
+  测量后，量子系统的状态分别变为
+
+.. math::
+    \begin{aligned} &\left|\psi_{3}\right\rangle=\frac{M_{1}^{0}\left|\psi_{2}\right\rangle}{\sqrt{P_{1}(0)}}=|01\rangle \\ &\left|\psi_{3}\right\rangle=\frac{M_{1}^{1}\left|\psi_{2}\right\rangle}{\sqrt{P_{1}(1)}}=|11\rangle \end{aligned} 
+
+  同理，对低位比特q[0]进行单独测量时,线路图如图2.2.19所示：
+
+.. image:: ./images/2.2.19.png
+   :align: center
+.. centered:: 图2.2.19 对低位比特q[0]进行单独测量时的线路图
+
+此时测量操作对应的矩阵形式为
+
+.. math::
+    M_{0}^{0}=\sum_{i \in\{0,1\}}|i 0\rangle\langle i 0| \text { 和 } M_{1}^{0}=\sum_{i \in\{0,1\}}|i 1\rangle\langle i 1| 
+
+  通过测量，得到测量结果0发生的概率为
+
+.. math::
+     P_{0}(0)=\left\langle\psi_{2}\left|M_{0}^{0}\right| \psi_{2}\right\rangle=\left[\begin{array}{llll} 0 & \frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2} \end{array}\right]\left[\begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=0 
+
+  得到测量结果1发生的概率为
+
+.. math::
+    P_{0}(1)=\left\langle\psi_{2}\left|M_{0}^{1}\right| \psi_{2}\right\rangle=\left[\begin{array}{llll} 0 & \frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2} \end{array}\right]\left[\begin{array}{cccc} 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right]\left[\begin{array}{c} 0 \\ \sqrt{2} / 2 \\ 0 \\ \sqrt{2} / 2 \end{array}\right]=1 
+
+  测量后，系统由原来的量子态 :math:`\left|\psi_{2}\right\rangle` 演化为量子状态
+
+.. math::
+    \left|\psi_{3}\right\rangle=\frac{M_{0}^{1}\left|\psi_{2}\right\rangle}{\sqrt{P_{0}(1)}}=\frac{\sqrt{2}}{2}|01\rangle+\frac{\sqrt{2}}{2}|11\rangle 
+
+
+2.2.2 量子计算的 if 和 while
+----------------------------------
+  所谓量子线路，从本质上是一个量子逻辑门的执行序列，它是从左至右依次执行的。即使介绍了函数调用的思想，也可以理解为这是一种简单地内联展开，即把函数中的所有逻辑门插入到调用处，自然地，可能会考虑在量子计算机的层面是否存在类似于经典计算机中的循环和分支语句。因此，就有了QIF和QWHILE。
+
+**l 基于测量的跳转**
+
+  作为QIF和QWHILE的判断条件的对象，并不是量子比特，而是一个经典的信息，往往，这个经典的信息是基于测量的。在量子程序执行时，测量语句会对量子比特施加一个测量操作，之后将这个比特的测量结果保存到经典寄存器中，最后，可以根据这个经典寄存器的值，选择接下来要进行的操作。例如：
+
+.. code-block::
+
+    1.	H -> q  
+    2.	Meas q -> c  
+    3.	Qif (c == Zero) H->q  
+
+  这样的量子程序表示的是对q进行Hadamard门操作之后，测量它；如果测量的结果是0，则再做一个Hadamard门。从这个例子可以继续延伸到Qif可以包裹的一系列语句，而不仅仅是一个，比如：
+
+.. code-block::
+
+    1.	Qif (c == Zero)   
+    2.	{  
+    3.		H->q  
+    4.		CNOT(q0, q1)  
+    5.		……  
+    6.	}  
+
+  或者也可以设置Qelse语句，它表示如果判断条件为非，则要执行的语句。例如：
+
+.. code-block::
+
+    1.	Qif (c == Zero) CNOT(q0, q1)
+    2.	Qelse CNOT(q1,q0)    
+
+  再或许可以综合两个、多个量子比特的测量结果，对它们进行布尔代数运算，进行判断。另一种情况是将N个量子比特的测量结果理解为一个N-bit整数，之后再与其他整数进行比较。
+
+  例如：
+
+.. code-block::
+
+    1.	Qif (c1 == Zero && c2 == One) 
+    2.	{
+    3.		H->q
+    4.		CNOT(q0, q1)
+    5.		……
+    6.	}    
+
+  上述规则对于QWhile来说也是一样，比如一个随机计数的代码：
+
+.. code-block::
+
+    1.	c = One
+    2.	n = Zero
+    3.	QWhile(c) 
+    4.	{
+    5.		H -> q
+    6.		Meas q->c
+    7.      n ++
+    8.	}    
+
+  这个程序的含义是每次对qubit执行Hadamard门并测量，如果测量结果为1则继续该过程，测量结果为0则退出循环。这表明测量得到1的次数，每次都有1/2的概率，给定计数器n+1，最终可以取得n的值。重复这个实验，可以拟合出一个负指数分布。
+
+  另外，QIf和QWhile是可以相互嵌套的，形成多层的控制流。
+
+
+**l 基于量子信息的IF和WHILE**
+
+  上述的是“量子信息，经典控制”，那么有没有“量子信息，量子控制”呢？对于IF而言，答案是有的。
+
+  定义“量子信息，量子控制”过程是一组量子比特的操作，是由另一组比特的值决定的。一个最简单的例子就是 :math:`CNOT` 门，对于 :math:`CNOT(q0,q1)` 而言，q1是否执行NOT门是由q0的值决定的。基于量子信息的IF的性质如下：
+
+  第一，这种控制可以叠加。如果判断变量本身处于叠加态，那么操作的比特也会出现执行/不执行逻辑门的两种分支，由此，判断变量和操作比特之间会形成纠缠态。例如：
+
+.. code-block::
+
+    1.	H -> q1
+    2.	CNOT q1 -> q2
+
+  此时得到的量子态是 :math:`|00\rangle+|11\rangle` ，这样在 :math:`CNOT` 后，就把q1这个判断变量和q2这个操作比特纠缠了起来。
+
+  第二，控制变量和操作比特之间不能共享比特。即， :math:`CNOT(q0,q1)` 中控制位和目标位一定不能为相同的量子比特。
+
+  基于量子信息的IF在实际的量子算法中使用得比较少，因此大部分量子软件开发包都没有加入这个功能。在Shor算法和其他基于布尔运算的线路中会使用这个思想，比如对是否求模的判断，但实际中，一般是利用 :math:`CNOT` 门的组合来实现的。
+
+  对于WHILE而言，目前还没有找到一个合适的定义，因为量子信息不确定，那么很有可能会在WHILE中产生无法停机的分支。以经典控制的QWhile作为例子，如果控制变量c是一个量子比特，那么每次都会有一个概率使得这个循环继续下去。因此，为了执行这个序列，就需要无限长的操作序列，这导致从物理上无法定义这种操作。

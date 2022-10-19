@@ -1,0 +1,146 @@
+1.4 矩阵与矩阵的运算
+==================================
+​  事实上，当提到矩阵时，并不陌生，只是在平时不把它叫做矩阵而已，而通常称作表。比如，一个班级有35名同学，这学期要修6门课程，在本学期期末考试后，为了便于管理和分析，老师将每位同学的各科成绩放在一起，做成一个35行，6列的表。在日常生活或在其他学科中有很多类似的表，将它们的特点进行提取，进而形成数学上的矩阵这样的抽象概念。其实这样的抽象过程也并不陌生，比如自然数的发明就是这样的一个过程。
+
+1.4.1 矩阵的概念
+----------------------------------
+​  定义 :math:`1.4.1`  由  :math:`m \cdot n` 个数排成  :math:`m` 行、  :math:`n` 列的一张表称为一个  :math:`m \times n` 矩阵[3]，其中的每一个数称为这个矩阵的一个元素，第  :math:`i` 行与第  :math:`j` 列交叉位置的元素称 为矩阵的  :math:`(i, j)` 元。 
+
+​  如  :math:`\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}\quad` 或   :math:`\left(\begin{array}{lll}1 & 2 & 3 \\ 4 & 5 & 6\end{array}\right)` 都是一个矩阵。 矩阵通常用大写英文字母  :math:`A` , :math:`B` , :math:`C` , :math:`\ldots` 表示。一个  :math:`m \times n` 矩阵可以简单地记作  :math:`A_{m m}` ，它的  :math:`(i, j)` 元记作  :math:`A(i, j)` 。如果矩阵  :math:`A` 的  :math:`(i, j)` 元是  :math:`a_{i j}` ，那么可以记作 :math:`A=\left[a_{i j}\right]` 或  :math:`A=\left(a_{i j}\right)` 。 如果某个矩阵  :math:`A` 的行数与列数相等, 则称之为方阵。  :math:`m` 行  :math:`m` 列的方阵也称为  :math:`m` 级矩阵。 元素全为 0 的矩阵称为零矩阵，简记作  :math:`0` 。 :math:`m` 行  :math:`n` 列的零矩阵可以记成  :math:`0_{n \times n}` 。 数域  :math:`G` 上两个矩阵称为相等，如果它们的行数相等，列数也相等，并且它们所有元素对应相等（即第一个矩阵的  :math:`(i, j)` 元等于第二个矩阵的  :math:`(i, j)` 元） 。 
+
+​  定义 :math:`1.4.2`  设矩阵  :math:`A=\left(a_{i j}\right){m \times n}` , 若矩阵  :math:`B=\left(b{i j}\right){n \times m}` 满足  :math:`a{i j}=b_{j i}` ，则称矩阵  :math:`B` 为矩阵  :math:`A` 的转置，将其记作  :math:`A^{T}` 或  :math:`A^{\prime}` 。一个矩阵  :math:`A` 如果满足  :math:`A=A^{T}` , 那么称  :math:`A` 是对称矩阵。 
+
+​  定义 :math:`1.4.3`  设  :math:`{n}` 级矩阵  :math:`A=\left(a_{i j}\right){n \times n}` ，称  :math:`T=\sum{i=1}^{n} a_{i i}` 为矩阵  :math:`A` 的迹，记作  :math:`\text{tr}(A)` 。 可以验证矩阵的迹有如下性质:
+
+.. math::
+    \begin{aligned}&1_{\circ} \text{tr}(A B)=\text{tr}(B A) \\&2_{\circ} \text{tr}(A+B)=\text{tr}(A)+\text{tr}(B)\end{aligned}
+
+​  由矩阵  :math:`A` 的若干行、若干列的交叉位置元素按原来顺序排列成的矩阵称为  :math:`A` 的一个子矩阵。
+
+​  定义 :math:`1.4.4`   把一个矩阵  :math:`A` 的行分成若干组, 列也分成若干组，从而  :math:`A` 被分成若干个子矩阵，把  :math:`A` 看成是由 这些子矩阵组成的，这称为矩阵的分块，这种由子矩阵组成的矩阵称为分块矩阵。 例如矩阵  :math:`A` 可写成分块矩阵的形式:
+
+.. math::
+    A=\left[\begin{array}{ll} A_{1} & A_{2} \\ A_{3} & A_{4} \end{array}\right]
+
+​  从而
+
+.. math::
+    A^{T}=\left[\begin{array}{cc} A_{1}^{T} & A_{3}^{T} \\ A_{2}^{T} & A_{4}^{T} \end{array}\right]
+
+
+
+1.4.2 矩阵的加法与乘法
+----------------------------------
+​  定义 :math:`1.4.5`   设  :math:`A=\left(a_{i j}\right), B=\left(b_{i j}\right)` 都是数域 :math:`G` 上 :math:`m \times n` 矩阵，令
+
+.. math::
+    C=\left(a_{i j}+b_{i j}\right)_{m n}
+
+​  则称矩阵  :math:`C` 是矩阵  :math:`A` 与  :math:`B` 的和，记作  :math:`C=A+B` 。
+
+​  定义 :math:`1.4.6`  设  :math:`A=\left(a_{ij}\right)` 是数域 :math:`G` 上 :math:`m \times n` 矩阵,  :math:`k \in G`  ，令
+
+.. math::
+    M=\left(k a_{i j}\right)_{m \times n}
+    
+​  则称矩阵  :math:`M` 是 :math:`k`  与矩阵  :math:`A`  的数量乘积，记作  :math:`M=k A`  。 8条运算法则：设  :math:`A` , :math:`B` , :math:`C` , 都是  :math:`G`  上  :math:`m \times n` 矩阵 :math:`k, l \in G` , 有:  
+
+.. math::
+    \begin{aligned}& 1^{\circ} A+B=B+A ; \\&
+    2^{\circ}(A+B)+C=A+(B+C) ;\\&
+    3^{\circ} A+0=0+A=A ;\\&
+    4^{\circ} A+(-A)=(-A)+A=0 ;  \\&
+    5^{\circ} 1 A=A ;\\&
+    6^{\circ}(k l) A=k(l A) ;\\&
+    7^{\circ}(k+l) A=k A+l A ; \\&
+    8^{\circ} k(A+B)=k A+k B .\end{aligned}
+    
+​  利用负矩阵的概念，可以定义矩阵的减法如下：设  :math:`A` 、 :math:`B`  都是  :math:`m \times n` 矩阵，则  :math:`A-B:=A+(-B)` 
+
+​  定义 :math:`1.4.7`   设  :math:`A=\left(a_{i j}\right)_{m \times n}` ，  :math:`B=\left(b_{i j}\right)_{n \times s}` ，令
+
+.. math::
+    C=\left(c_{i j}\right)_{m \times s} 
+    
+​  其中
+
+.. math::
+    c_{i j}=a_{11} b_{1 j}+a_{12} b_{2 j}+\ldots+a_{i n} b_{n j}=\sum_{k=1}^{n} a_{ik} b_{kj} 
+    
+
+:math:`i=1,2, \ldots, m ; j=1,2, \ldots, s` 。则矩阵  :math:`C`  称为矩阵  :math:`A`  与  :math:`B`  的乘积, 记作  :math:`C=A B` 。
+
+​  矩阵乘法需要注意以下两点: 
+
+​  ​  (1) 只有左矩阵的列数与右矩阵的行数相同的两个矩阵才能相乘;
+
+​  ​  (2) 乘积矩阵的行数等于左矩阵的行数, 乘积矩阵的列数等于右矩阵的列数。
+
+​  例如设：
+
+.. math::
+    A=\left(\begin{array}{ll} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{array}\right), B=\left(\begin{array}{cc} 7 & 8 \\ 9 & 10 \end{array}\right) 
+    
+​  则:
+
+.. math::
+    A B=\left(\begin{array}{cc}25 & 28 \\57 & 64 \\89 & 100\end{array}\right)
+    
+​  矩阵的乘法有下面两条性质：
+
+   :math:`1^{\circ}`  矩阵的乘法适合结合律，但一般不适合交换律:
+
+  设  :math:`A=\left(a_{ij}\right)_{m \times n}, B=\left(b_{i j}\right)_{n \times s}, C=\left(c_{i j}\right)_{s \times m}` , 则  :math:`(A B) C=A(B C)` 。 一般对矩阵  :math:`A, B`  不成立  :math:`A B=B A`  如
+
+.. math::
+    A=\left(\begin{array}{ll} 1 & 1 \end{array}\right), B=\left(\begin{array}{l} 1 \\ 1 \end{array}\right), A B=(2), B A=\left(\begin{array}{ll} 1 & 1 \\ 1 & 1 \end{array}\right), A B \neq B A 
+    
+​  若对矩阵  :math:`A` , :math:`B`  成立  :math:`A B=B A`  则称  :math:`A`  与  :math:`B`  可交换。 
+
+   :math:`2^{\circ}`  矩阵的乘法适合左分配律，也适合右分配律:
+
+.. math::
+    A(B+C)=A B+A C,(B+C) D=B D+C D 
+    
+:math:`n` 级矩阵 :math:`A=\left(a_{i j}\right)` 中的元素 :math:`a_{i i}(i=1,\ldots, n)` 称为主对角线上元素。主对角线上元素都是  :math:`1` ， 其余元素都是 0 的  :math:`n` 级矩阵称为 :math:`n`  级单位阵，记作  :math:`I_{n}`  ，或简记作  :math:`I`  。容易直接计算得：
+
+.. math::
+    I_{ n} A_{n \times m }=A_{n \times m}, A_{n \times m} I_{m}=A_{n m} 
+    
+​  特别的，如果  :math:`A`  是  :math:`n`  阶矩阵，则
+
+.. math::
+    I A=A I=A 
+    
+​  矩阵的乘法与数量乘法满足下述关系式:
+
+.. math::
+    k(A B)=(k A) B=A(k B) 
+    
+​  矩阵的加法、数量乘法、乘法与矩阵的转置有如下关系:
+
+.. math::
+    (A+B)^{\prime}=A^{\prime}+B^{\prime} ;(k A)^{\prime}=k A^{\prime} ;(A B)^{\prime}=B^{\prime} A^{\prime}
+    
+​  定义 :math:`1.4.8`   主对角线以外的元素全为 0 的方阵称为对角矩阵，简记作
+
+.. math::
+    \text{diag}\left\{d_{1}, d_{2}, \ldots, d_{n}\right\}
+    
+1.4.3 可逆矩阵和矩阵相似 
+----------------------------------
+
+​  定义 :math:`1.4.9`   对于数域  :math:`G`  上的矩阵  :math:`A`  ，如果存在数域  :math:`G`  上的矩阵  :math:`B`  ，使得
+
+.. math::
+    A B=B A=I
+    
+那么称  :math:`A`  是可逆矩阵 (或非奇异矩阵) ; 称  :math:`B`  为  :math:`A`  的逆矩阵，记作  :math:`A^{-1}`  。 
+
+​  定义 :math:`1.4.10`   设  :math:`A`  与  :math:`B`  都是数域  :math:`G`  上的  :math:`n`  级矩阵，如果存在数域  :math:`G`  上的一个  :math:`n`  级可逆矩阵  :math:`P`  ，使得  :math:`P^{-1} A P=B`  那么称  :math:`A`  与  :math:`B`  是相似的。
+
+
+
+
+
+

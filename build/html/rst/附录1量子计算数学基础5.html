@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.6 矩阵的函数 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.1 QPanda" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html" />
+    <link rel="prev" title="1.5 矩阵的特征及矩阵" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">1.7 线性算子与矩阵表示</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.7.1 线性算子</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">1.7.2 矩阵表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">1.7.3 向量外积</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">1.7.4 对角表示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">1.7.5 影算子</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>1.6 矩阵的函数</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/附录1量子计算数学基础5.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>1.6 矩阵的函数<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<p>​  类似于实数的函数，可以定义矩阵的函数。例如在实数的多项式函数中只用到了加法和幂运算，也可以类似地定义矩阵的多项式函数，这里的矩阵一般为方阵，因为需要用到幂运算。下面主要介绍矩阵（方阵）的指数函数。</p>
+<p>​  定义 <span class="math notranslate nohighlight">\(1.6.1\)</span>  <span class="math notranslate nohighlight">\(e^{A}={I+A+\frac{A^{2}}{2!}+\frac{A^{3}}{3!}+\frac{A^{4}}{4!}+ \cdots}\)</span></p>
+<p>​  这个定义相当于把 <span class="math notranslate nohighlight">\(f(x)=e^{x}\)</span> 在原点泰勒展开（关于泰勒展开可见于微积分书中内容），然后把矩阵 <span class="math notranslate nohighlight">\(A\)</span> 带入泰勒展开式进行运算。</p>
+<p>​  如果  <span class="math notranslate nohighlight">\(A=diag\left\{A_{11}, A_{22} ,\cdots,A_{nn}\right\}\)</span> ，其中 <span class="math notranslate nohighlight">\(A_{ii}\)</span>  是子矩阵，容易验证：</p>
+<div class="math notranslate nohighlight">
+\[e^{A}=diag\left\{A_{11}, A_{22} ,\cdots,A_{nn}\right\}\]</div>
+<p>​  如果 <span class="math notranslate nohighlight">\(A\)</span> 不是一个对角阵，可以运用线性代数中的酉变换，找到一个酉矩阵 <span class="math notranslate nohighlight">\(U\)</span>  使得对角矩阵  <span class="math notranslate nohighlight">\(D=diag\left\{D_{11}, D_{22} ,\cdots,D_{nn}\right\}\)</span>  满足 <span class="math notranslate nohighlight">\(D=U A U^{\dagger}\)</span>  ，易知 <span class="math notranslate nohighlight">\(A^{n}=U^{\dagger} D^{n} U\)</span> ，从而</p>
+<div class="math notranslate nohighlight">
+\[e^{A}=U^{\dagger} e^{D} U = U^{\dagger}diag\left\{e^{D_{11}}, e^{D_{22}} ,\cdots,e^{D_{nn}}\right\}U\]</div>
+<p>​  类似于矩阵指数函数的定义，可以定义矩阵的其它函数。把矩阵代入其它函数的泰勒展开式即可。如矩阵的正弦函数可定义为：</p>
+<div class="math notranslate nohighlight">
+\[sin(A)={A-\frac{A^{3}}{3!}+\frac{A^{5}}{5!}-\cdots}\]</div>
+<p>​  矩阵的余弦函数可定义为：</p>
+<div class="math notranslate nohighlight">
+\[cos(A)={1-\frac{A^{2}}{2!}+\frac{A^{4}}{4!}-\cdots+(-1)^{n}\frac{A^{2n}}{(2n)!}+\cdots}\]</div>
+<p>​  下面介绍一个很重要的欧拉公式</p>
+<div class="math notranslate nohighlight">
+\[e^{i \theta} =cos(\theta)+isin(\theta)\]</div>
+<p>​  这个公式其实是说等式两边的泰勒展式是相等的，下面来验证一下。先给出一些泰勒展式：</p>
+<div class="math notranslate nohighlight">
+\[e^{i \theta} = 1 +\theta + \frac{\theta^{2}}{2!}+ \frac{\theta^{3}}{3!}+\cdots+ \frac{\theta^{n}}{n!}+\cdots\]</div>
+<div class="math notranslate nohighlight">
+\[sin(\theta) =  1 - \frac{\theta^{2}}{2!}+ \frac{\theta^{4}}{4!} - \cdots+ (-1)^{n}\frac{\theta^{2n}}{2n!}+\cdots\]</div>
+<div class="math notranslate nohighlight">
+\[cos(\theta) =  \theta - \frac{\theta^{3}}{3!}+ \frac{\theta^{5}}{5!} - \cdots+ (-1)^{n}\frac{\theta^{2n+1}}{(2n+1)!}+\cdots\]</div>
+<p>​  将以上三式代入欧拉公式等式两端，不难验证两端相等。</p>
+</section>
+<section id="id2">
+<h1>1.7 线性算子与矩阵表示<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h1>
+<section id="id3">
+<h2>1.7.1 线性算子<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>​  正比例函数  <span class="math notranslate nohighlight">\(y=k x(k \neq 0)\)</span>  ，即  <span class="math notranslate nohighlight">\(f(x)=k x\)</span>  。比如，在日常生活中，一斤米 <span class="math notranslate nohighlight">\(k\)</span> 元，买了 <span class="math notranslate nohighlight">\(x\)</span> 斤，就要付给商家  <span class="math notranslate nohighlight">\({kx}\)</span>  元钱。正比例函数对任意的实数  <span class="math notranslate nohighlight">\(x_{1}\)</span> , <span class="math notranslate nohighlight">\(x_{2}\)</span>  ，  <span class="math notranslate nohighlight">\(f\left(x_{1}+x_{2}\right)=k\left(x_{1}+x_{2}\right)=k x_{1}+k x_{2}=f\left(x_{1}\right)+f\left(x_{2}\right)\)</span> ; 对 任意的  <span class="math notranslate nohighlight">\(x\)</span> , <span class="math notranslate nohighlight">\(a\)</span> ,有  <span class="math notranslate nohighlight">\(f(a x)=k(a x)=a(k x)=a f(x)\)</span>  。这说明正比例函数保持加法运算与数乘运算  <span class="math notranslate nohighlight">\([4]\)</span>  。受这类事例启发，给出线性算子的概念。 如果数域K上的向量空间  <span class="math notranslate nohighlight">\(V \equiv K^{m}\)</span>  到向量空间  <span class="math notranslate nohighlight">\(W \equiv K^{n}\)</span>  的一个映射  <span class="math notranslate nohighlight">\(\sigma\)</span> 保持加法和数乘运算，即  <span class="math notranslate nohighlight">\(\forall|u\rangle\)</span> , <span class="math notranslate nohighlight">\(| {v}\rangle \in V\)</span> , <span class="math notranslate nohighlight">\(k \in K\)</span> , 有</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\sigma(|u\rangle+|v\rangle)=\sigma(|u\rangle)+\sigma|v\rangle \\ &amp;\sigma(k|u\rangle)=k \sigma(|u\rangle) \end{aligned}\end{split}\]</div>
+<p>​  那么称  <span class="math notranslate nohighlight">\(\sigma\)</span> 为  <span class="math notranslate nohighlight">\(V\)</span> 到 <span class="math notranslate nohighlight">\(W\)</span> 的一个线性算子。 根据线性算子的定义可以验证以下性质:</p>
+<div class="math notranslate nohighlight">
+\[\sigma\left(\sum_{i} a_{i}\left|v_{i}\right\rangle\right)=\sum_{i} a_{i} \sigma\left(\left|v_{i}\right\rangle\right)\]</div>
+<p>​  通常  <span class="math notranslate nohighlight">\(\sigma(|v\rangle)\)</span> 简记为 <span class="math notranslate nohighlight">\(\sigma|v\rangle\)</span>  。当定义在向量空间  <span class="math notranslate nohighlight">\(V\)</span>  上的线性算子  <span class="math notranslate nohighlight">\(\sigma\)</span> 时， 意味着 <span class="math notranslate nohighlight">\(\sigma\)</span> 是从 <span class="math notranslate nohighlight">\(V\)</span>  到  <span class="math notranslate nohighlight">\(V\)</span>  的一个线性算子。</p>
+<p>​  一个重要的线性算子是向量空间  <span class="math notranslate nohighlight">\(V\)</span>  上的单位算子  <span class="math notranslate nohighlight">\(I_{v}\)</span>  (identity operator)，它将  <span class="math notranslate nohighlight">\(V\)</span>  中任意向量对应到自身 即</p>
+<div class="math notranslate nohighlight">
+\[I_{v}|v\rangle \equiv|v\rangle, \forall|v\rangle \in V\]</div>
+<p>​  另一个重要的线性算子是向量空间  <span class="math notranslate nohighlight">\(V\)</span> 上的零算子0 (zero operator)，它将  <span class="math notranslate nohighlight">\(V\)</span>  中任意向量对应到V中零向量  <span class="math notranslate nohighlight">\(|\hat{0}\rangle\)</span>  , 即</p>
+<div class="math notranslate nohighlight">
+\[0|v\rangle \equiv|\hat{0}\rangle, \forall|v\rangle \in V\]</div>
+<p>​  由于线性算子是映射的一种特殊情况，因此线性算子也可以做映射的合成，并满足合成的结合律。</p>
+</section>
+<section id="id4">
+<h2>1.7.2 矩阵表示<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>​  最直观的理解线性算子的方式就是通过线性算子的矩阵表示 (matrix representations)，因为矩阵能有一个直观的认识  <span class="math notranslate nohighlight">\([3,4,6,7]\)</span> 。</p>
+<p>​  设  <span class="math notranslate nohighlight">\(\sigma: \mathrm{V} \rightarrow \mathrm{W}\)</span> 是向量空间  <span class="math notranslate nohighlight">\(V\)</span> 到向量空间W的线性算子，选定向量组  <span class="math notranslate nohighlight">\(\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{n}\rangle\}\)</span>  为向量空间  <span class="math notranslate nohighlight">\(V\)</span> 的一 个基，向量组  <span class="math notranslate nohighlight">\(\{|w_{1}\rangle,|w_{2}\rangle, \cdots,|w_{m}\rangle\}\)</span>  为向量空间  <span class="math notranslate nohighlight">\(W\)</span>  的一个基，由于向量空间 <span class="math notranslate nohighlight">\(V\)</span> 中的任意向量  <span class="math notranslate nohighlight">\(|v\rangle\)</span>  都可以由基  <span class="math notranslate nohighlight">\(\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{n}\rangle\}\)</span> 线性表示, 根据线性算子的保持加法和数乘的性质，只要确定 <span class="math notranslate nohighlight">\(\sigma\)</span> 作用在基 <span class="math notranslate nohighlight">\(\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{n}\rangle\}\)</span> 上的像，从而也就确定了线性算子 <span class="math notranslate nohighlight">\(\sigma\)</span> 作用在任意向量  <span class="math notranslate nohighlight">\(| {v}\rangle\)</span> 上的像。</p>
+<p>​  根据线性算子的定义可知，线性算子本质上是两个向量空间之间的映射，而映射表示一种对应关系。如果确 定空间V中每一个  <span class="math notranslate nohighlight">\(|v\rangle\)</span> 在映射作用到向量空间 <span class="math notranslate nohighlight">\(W\)</span> 中的像，也就确定从向量空间 <span class="math notranslate nohighlight">\(V\)</span> 到向量空间 <span class="math notranslate nohighlight">\(W\)</span> 的对应关系，即 线性算子  <span class="math notranslate nohighlight">\(\sigma: V \rightarrow W\)</span> 也就被确定。</p>
+<p>​  而 <span class="math notranslate nohighlight">\(V\)</span> 中的每个元素都能被 <span class="math notranslate nohighlight">\(V\)</span> 中的基线性表示，因此将线性算子  <span class="math notranslate nohighlight">\(\sigma\)</span> 作用在基的每一个元素上面，得到 <span class="math notranslate nohighlight">\(W\)</span> 中的像  <span class="math notranslate nohighlight">\(\sigma|v_{1}\rangle, \sigma|v_{2}\rangle, \cdots, \sigma|v_{n}\rangle\)</span> 都确定，从而基的线性表示的像也被确定，那么线性算子也就被确定。 由于  <span class="math notranslate nohighlight">\(\sigma|v_{j}\rangle, j=1,2, \cdots, n\)</span> 是 <span class="math notranslate nohighlight">\(W\)</span> 中的元素，因此可以由 <span class="math notranslate nohighlight">\(W\)</span> 中的基  <span class="math notranslate nohighlight">\(\{\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \cdots,\left|w_{m}\right\rangle\}\)</span> 来线性表示， 即</p>
+<div class="math notranslate nohighlight">
+\[\sigma|v_{j}\rangle=a_{1 j}|w_{1}\rangle+a_{2 j}|w_{2}\rangle+\cdots+a_{m j}|w_{m}\rangle=\sum_{i=1}^{m} a_{i j}|w_{i}\rangle\]</div>
+<p>​  写成矩阵的形式</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\sigma\left|v_{1}\right\rangle, \sigma\left|v_{2}\right\rangle, \cdots, \sigma\left|v_{n}\right\rangle\right]=\left[\left|w_{1}\right\rangle, \quad\left|w_{2}\right\rangle, \quad \cdots \quad,\left|w_{m}\right\rangle\right]\left[\begin{array}{cccc} a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1 n} \\ a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2 n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{m 1} &amp; a_{m 2} &amp; \ldots &amp; a_{m n} \end{array}\right]\end{split}\]</div>
+<p>​  把上式右端的  <span class="math notranslate nohighlight">\(m \times n\)</span> 矩阵记作 <span class="math notranslate nohighlight">\(A\)</span> ， 称  <span class="math notranslate nohighlight">\(A\)</span>  是线性算子  <span class="math notranslate nohighlight">\(\sigma\)</span> 在 <span class="math notranslate nohighlight">\(V\)</span> 的基 <span class="math notranslate nohighlight">\(\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle\)</span> 和 <span class="math notranslate nohighlight">\(W\)</span> 的基  <span class="math notranslate nohighlight">\(\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \cdots,\left|w_{m}\right\rangle\)</span> 下的矩阵表示(matrix representation) 。</p>
+<p>​  因此，对于给定基下的线性算子都可以找到与之对应的矩阵。并且这种矩阵表示方式是唯一的。</p>
+<p>​  根据矩阵的运算法则以及线性算子的定义，也可以验证矩阵是一个线性算子。因此，在给定向量空间的基 下，线性算子与矩阵作用在同一向量空间上是等价的。 设  <span class="math notranslate nohighlight">\(\sigma\)</span> 是域  <span class="math notranslate nohighlight">\(G\)</span> 上 <span class="math notranslate nohighlight">\(n\)</span>  维线性空间  <span class="math notranslate nohighlight">\(V\)</span>  到  <span class="math notranslate nohighlight">\(m\)</span> 维线性空间 <span class="math notranslate nohighlight">\(W\)</span>  的一个线性算子，它在  <span class="math notranslate nohighlight">\(V\)</span>  下的一个基  <span class="math notranslate nohighlight">\(\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle\)</span> 和 <span class="math notranslate nohighlight">\(W\)</span> 的一个基  <span class="math notranslate nohighlight">\(\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \cdots,\left|w_{m}\right\rangle\)</span> 下的矩阵为 <span class="math notranslate nohighlight">\(A\)</span> ,  <span class="math notranslate nohighlight">\(V\)</span> 中向量 <span class="math notranslate nohighlight">\(|v\rangle\)</span> 在基  <span class="math notranslate nohighlight">\(\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle\)</span> 下的坐标为  <span class="math notranslate nohighlight">\(X\)</span>  ，则有：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\sigma|v\rangle=\sigma\left[\left(\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle\right) X\right]\\ &amp; =\left[\sigma\left(\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle\right)\right] X \\ &amp;=\left[\left(\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \ldots,\left|w_{m}\right\rangle\right) A\right] X \\ &amp;{=}\left(\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \ldots,\left|w_{m}\right\rangle\right)(A X) \end{aligned}\end{split}\]</div>
+<p>​  因此  <span class="math notranslate nohighlight">\(\sigma|v\rangle\)</span> 在 <span class="math notranslate nohighlight">\(W\)</span> 的一个基  <span class="math notranslate nohighlight">\(\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \cdots,\left|w_{m}\right\rangle\)</span> 下的坐标为  <span class="math notranslate nohighlight">\(A X\)</span> 。 线性算子作用于向量空间中的元素所得到的新元素的坐标，实际上就是矩阵乘以向量空间中的元素的坐标。 因此前文矩阵的性质也对应于线性算子的性质。</p>
+<p>​  根据线性算子的定义，可以将向量空间V中，两向量  <span class="math notranslate nohighlight">\(| {u}\rangle\)</span> 和 <span class="math notranslate nohighlight">\(| {v}\rangle\)</span> 的内积中的对偶  <span class="math notranslate nohighlight">\(\left\langle {u} \right|\)</span> 也可以看作从向量空间  <span class="math notranslate nohighlight">\(V\)</span> 到复数域 <span class="math notranslate nohighlight">\(C\)</span> 的线性算子，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\langle u|(|v\rangle)=\langle u \mid v\rangle=(|u\rangle,|v\rangle)=\sum_{i=1}^{n} u_{i}^{*} v_{i}=\left[\begin{array}{lll} u_{1}^{*} &amp; \cdots &amp; u_{n}^{*} \end{array}\right]\left[\begin{array}{c} v_{1} \\ \vdots \\ v_{n} \end{array}\right]\end{split}\]</div>
+<p>​  而线性算子  <span class="math notranslate nohighlight">\(\left\langle u\right|\)</span> 在向量空间V中标准正交基下的矩阵表示为1乘n的矩阵  <span class="math notranslate nohighlight">\(\left[\begin{array}{lll}u_{1}^{*} &amp; \cdots &amp; u_{n}^{*}\end{array}\right]\)</span>  。</p>
+</section>
+<section id="id5">
+<h2>1.7.3 向量外积<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>​  一个n维向量可以看作一个1乘n或n乘1的矩阵，反过来，m乘n的矩阵可不可以看作一个向量呢? 本质上向量 和矩阵是一样的，只不过人们在不同的情况下，运用不同的表示方式。类比向量，矩阵的基又是什么呢? 矩 阵是一个线性映射，在给定基下，线性算子与矩阵等价，向量空间中的基与矩阵表示又有什么关系呢?</p>
+<p>​  基于以上的疑问，下面引进向量外积的概念[6]。假设  <span class="math notranslate nohighlight">\(| {v}\rangle | {w}\rangle \)</span>  中的向量，定义  <span class="math notranslate nohighlight">\(| {v}\rangle\left\langle {w}\right|\)</span> 是从 <span class="math notranslate nohighlight">\(V\)</span> 到 <span class="math notranslate nohighlight">\(W\)</span> 的线性算子，并且满足运算规则。</p>
+<div class="math notranslate nohighlight">
+\[(|w\rangle\langle v|)(|\tilde{v}\rangle):=|w\rangle(\langle v \mid \tilde{v}\rangle)=\langle v \mid \tilde{v}\rangle|w\rangle\]</div>
+<p>​  这里借助于内积的运算定义了外积。 设在给定标准正价基下，向量  <span class="math notranslate nohighlight">\(|v\rangle,|w\rangle\)</span> 的坐标表示分别为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|v\rangle=\left[\begin{array}{c} v_{1} \\ v_{2} \\ \vdots \\ v_{n} \end{array}\right],|w\rangle=\left[\begin{array}{c} w_{1} \\ w_{2} \\ \vdots \\ w_{m} \end{array}\right]\end{split}\]</div>
+<p>​  从而线性算子  <span class="math notranslate nohighlight">\(| {w}\rangle\left\langle\left. {v}\right|\right.\)</span> 的矩阵表示为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|w\rangle\langle v|=\left[\begin{array}{c}w_{1} \\w_{2} \\\vdots \\w_{m}\end{array}\right]\left[\begin{array}{llll}v_{1}^{*} &amp; v_{2}^{*} &amp; \cdots &amp; v_{n}^{*}\end{array}\right]=\left[\begin{array}{cccc}w_{1} v_{1}^{*} &amp; w_{1} v_{2}^{*} &amp; \cdots &amp; w_{1} v_{n}^{*} \\w_{2} v_{1}^{*} &amp; w_{2} v_{2}^{*} &amp; \cdots &amp; w_{2} v_{n}^{*} \\\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\w_{m} v_{1}^{*} &amp; w_{m} v_{2}^{*} &amp; \cdots &amp; w_{m} v_{n}^{*}\end{array}\right] \text {. }\end{split}\]</div>
+<p>​  可以看出，在给定标准正交基下，线性算子  <span class="math notranslate nohighlight">\(|w\rangle\left\langle\left. v\right| \right.\)</span> 的矩阵表示为向量 <span class="math notranslate nohighlight">\(\mid {w}\rangle\)</span> 的坐标表示与  <span class="math notranslate nohighlight">\(| {v}\rangle\)</span> 的对偶向量的坐标表示的矩阵乘法得到。</p>
+</section>
+<section id="id6">
+<h2>1.7.4 对角表示<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>​  向量空间V上的线性算子A的对角表示 (diagonal representation)  <span class="math notranslate nohighlight">\([4,6]\)</span>  是指 <span class="math notranslate nohighlight">\(A\)</span> 可以表示成</p>
+<div class="math notranslate nohighlight">
+\[A=\sum_{i} \lambda_{\rho}|i\rangle\langle i|\]</div>
+<p>​  其中向量  <span class="math notranslate nohighlight">\(|i\rangle\)</span>  为线性算子 <span class="math notranslate nohighlight">\(A\)</span> 的属于特征值 <span class="math notranslate nohighlight">\(\lambda_{i}\)</span>  的标准正交化的特征向量。 若一个线性算子有对角表示，则该线性算子一定可对角化的 (diagonalizable)。 比如，Pauli Z矩阵有对角表示</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Z=\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right]=1 \cdot|0\rangle\langle 0|+(-1) \cdot| 1\rangle\langle 1|\end{split}\]</div>
+<p>​  而线性算子可对角化，不一定有对角表示。 比如，矩阵</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{array}{ll} 1 &amp; -2 \\ 0 &amp; -1 \end{array}\right]\end{split}\]</div>
+<p>​  特征值1对应的特征向量为  <span class="math notranslate nohighlight">\(k_{1}\left[\begin{array}{cc}1 &amp; 0\end{array}\right]^{T}\)</span>  ，特征值-1对应的特征向量为  <span class="math notranslate nohighlight">\(k_{2}\left[\begin{array}{cc}1 &amp; 1\end{array}\right]^{T}\)</span>  ，这两个特征向量并不正交， 因此不可以对角表示。 而矩阵</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{array}{ll} 1 &amp; 0 \\ 1 &amp; 1 \end{array}\right]\end{split}\]</div>
+<p>​  是不可对角化的。</p>
+<p>​  <strong>定理</strong> 向量空间V上任意线性算子A是正规算子的充要条件是在  <span class="math notranslate nohighlight">\(V\)</span>  的某个标准正交基下， 线性算子A有对角表示。</p>
+</section>
+<section id="id7">
+<h2>1.7.5 影算子<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p>​  假设  <span class="math notranslate nohighlight">\(U\)</span>  是  <span class="math notranslate nohighlight">\(n\)</span>  维向量空间  <span class="math notranslate nohighlight">\(V\)</span>  的k维子空间，可以从V标准正交基中找到  <span class="math notranslate nohighlight">\(k\)</span>  维子空间  <span class="math notranslate nohighlight">\(U\)</span>  的标准正交基并标记为  <span class="math notranslate nohighlight">\(|1\rangle, \cdots|k\rangle\)</span>  ，定义</p>
+<div class="math notranslate nohighlight">
+\[P:=\sum_{i=1}^{k}|i\rangle\langle i|\]</div>
+<p>​  为子空间 <span class="math notranslate nohighlight">\(W\)</span> 上的投影算子 (projector) [6]。定义</p>
+<div class="math notranslate nohighlight">
+\[Q:=\sum_{i=k+1}^{n}|i\rangle\langle i|\]</div>
+<p>​  为投影算子 <span class="math notranslate nohighlight">\(P\)</span> 的正交补 (orthogonal complement )。可以验证</p>
+<div class="math notranslate nohighlight">
+\[P+Q=I\]</div>
+<p>​  <strong>定理</strong> 对于任意投影  <span class="math notranslate nohighlight">\(P\)</span>  ，满足  <span class="math notranslate nohighlight">\(P^{2}=P\)</span>  。</p>
+<div class="math notranslate nohighlight">
+\[P^{2}=\left(\sum_{i=1}^{k}|i\rangle\langle i|\right)^{2}=\sum_{i, j=1}^{k}|i\rangle\langle i \mid j\rangle\langle j|\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\langle i \mid j\right\rangle=\delta_{i j} \begin{cases}1, &amp; (i=j) \\ 0, &amp; (i \neq j)\end{cases}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\sum_{ i, j=1}^{k}|i\rangle\langle i \mid j\rangle  \langle j |=\sum_{i=1}^{k} \ | i\rangle \langle i|=P\]</div>
+<p>即  <span class="math notranslate nohighlight">\(P^{2}=P\)</span>  。证毕。</p>
+<p><strong>参考文献</strong></p>
+<p>[1] 同济大学数学系.高等数学-上册（第六版）[M].高等教育出版社，2007年4月.</p>
+<p>[2] 同济大学数学系.高等数学-下册（第六版）[M].高等教育出版社，2007年6月.</p>
+<p>[3] 丘维声. 高等代数-上册 [M].清华大学出版社，2010年6月.</p>
+<p>[4] 丘维声. 高等代数-下册 [M].清华大学出版社，2010年10月.</p>
+<p>[5] James Stewart. Calculus(Eight Edition)[M]. CENGAGE Learning, 2016.</p>
+<p>[6] Michael A. Nielsen and Isaac L. Chuang. Quantum Computation and Quantum Information[M]. Cambridge University Press, 2010.</p>
+<p>[7] Giuliano Benenti, Giulio Casati and Giuliano Strini. Principles of Quantum Computation and Information(Volume I: Basic Concepts)[M]. World Scientific, 2004.</p>
+<p>[8] Mikio Nakahara and Tetsuo Ohmi . Quantum Computing-From Linear Algebra to Physical Realizations[M]. CRC Press, 2004.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html" class="btn btn-neutral float-left" title="1.5 矩阵的特征及矩阵" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="btn btn-neutral float-right" title="2.1 QPanda" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

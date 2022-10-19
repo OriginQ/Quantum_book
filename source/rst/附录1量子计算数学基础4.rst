@@ -1,0 +1,96 @@
+1.5 矩阵的特征及矩阵
+==================================
+
+1.5.1 矩阵的特征值与特征向量
+----------------------------------
+
+​  定义  :math:`1.5.1`  设 :math:`A` 是数域  :math:`G` 上的  :math:`n` 级矩阵，如果  :math:`G^n` 中有非零列向量 :math:`| {v}\rangle` ，使得
+
+.. math::
+    A|v\rangle=v|v\rangle\text{且}v \in G
+
+那么称 :math:`v` 是 :math:`A` 的一个特征值，称 :math:`| {v}\rangle` 是 :math:`A` 的属于特征值 :math:`v` 的一个特征向量。
+
+注意这里数值 :math:`v` 和列向量 :math:`| {v}\rangle` 是两个不同的概念，只不过为了突出它们之间的关系，都采用了 :math:`v` 这个记号。
+
+由线性代数中行列式及线性方程组的知识可知：
+
+ :math:`v` 是 :math:`A` 的一个特征值， :math:`| {v}\rangle` 是 :math:`A` 的属于特征值 :math:`v` 的一个特征向量
+
+.. math::
+    \begin{aligned} &\Leftrightarrow A|v\rangle=v|v\rangle,|v\rangle \neq 0, v \in G \\ &\Leftrightarrow(v I-A)|v\rangle=0,|v\rangle \neq 0, v \in G \\ &\Leftrightarrow|v I-A|=0 , |v\rangle \text {是} (v I-A)|v\rangle=0 \text {的一个非零解} v \in G \\ &\Leftrightarrow v \text {是多项式} |\lambda I-A| \text {在} G \text{中的一个根}|v\rangle \text{是} (v I-A)|x\rangle=0 \text{的一个非零解}& \end{aligned}
+
+:math:`|\lambda I-A|` 称为  :math:`A` 的特征多项式。 设  :math:`{v}` 是  :math:`A` 的一个特征值，把齐次线性方程组  :math:`(v I-A)|x\rangle=0` 的解空间称为  :math:`A` 的属于  :math:`v` 的特征子空间，其中的全部非零向量就是  :math:`A` 的属于  :math:`v` 的全部特征向量。 
+
+​  定义  :math:`1.5.2`  如果  :math:`n`级矩阵  :math:`A`  能够相似于一个对角矩阵，那么称  :math:`A`  可对角化。 
+
+​  定理 :math:`1.5.1`  数域  :math:`G`  上  :math:`n`  级矩阵  :math:`A`  可对角化的充分必要条件是，  :math:`G^{n}`  中有  :math:`n`  个线性无关的列向量  :math:`\left|x_{1}\right\rangle,\left|x_{2}\right\rangle, \ldots,\left|x_{n}\right\rangle` , 以及  :math:`G`  中有  :math:`n`  个数  :math:`x_{1}, x_{2}, \ldots, x_{n}`  (它们之中有些可能相等)，使得
+
+.. math::
+    A\left|x_{i}\right\rangle=x_{i}\left|x_{i}\right\rangle, i=1,2, \ldots, n
+    
+这时, 令  :math:`P=\left(\left|x_{1}\right\rangle,\left|x_{2}\right\rangle, \ldots,\left|x_{n}\right\rangle\right)`  ，则
+
+.. math::
+    P^{-1} A P=\text{diag}\left\{x_{1}, x_{2}, \ldots, x_{n}\right\}
+    
+证明 设  :math:`A`  与对角矩阵  :math:`D=\text{diag}\{x_{1}, x_{2}, \ldots, x_{n}\}`  相似，其中  :math:`x_{i} \in G, i=1,2,\ldots,n`  。这等价于存在  :math:`G`  上  :math:`n`  级可逆矩阵  :math:`P=(|x_{1}\rangle,|x_{2}\rangle,\ldots,|x_{n}\rangle)`, 使得  :math:`P^{-1} A P=D`  即  :math:`A P=P D ` ， 即  :math:`A(|x_{1}\rangle , |x_{2}\rangle, \ldots, |x_{n}\rangle)=(|x_{1}\rangle, |x_{2}\rangle,  \ldots, |x_{n}\rangle) D ` ， 即  :math:`(A|x_{1}\rangle, A|x_{2}\rangle ,\ldots, A|x_{n}\rangle)=(x_{1}|x_{1}\rangle, x_{2}|x_{2}\rangle , \ldots, x_{n}|x_{n}\rangle)`  这等价于  :math:`G^{n}`  中有  :math:`n`  个线性无关的列向量  :math:`|x_{1}\rangle` , :math:`|x_{2}\rangle, \ldots,|x_{n}\rangle` , 使得
+
+.. math::
+    A\left|x_{i}\right\rangle=x_{i}\left|x_{i}\right\rangle, i=1,2, \ldots, n 
+    
+证毕。
+
+
+1.5.2 Hermite矩阵
+----------------------------------
+​  定义  :math:`1.5.3`   若矩阵  :math:`B`  中的每个元素都是矩阵  :math:`A`  中相应元素的共轭，则称矩阵  :math:`B`  是矩阵  :math:`A`  的共轭矩阵，将  :math:`B`  记作  :math:`A^{*}`  。 
+
+​  定义  :math:`1.5.4`   若矩阵  :math:`B`  满足  :math:`B=\left(A^{*}\right)^{\prime}`  ，则把  :math:`B`  记作  :math:`A^{\dagger}`  。若  :math:`A=A^{\dagger}`  ，则称  :math:`A`  为Hermite矩阵。如果  :math:`| {v}\rangle_{\text {是 }}`  向量, 那么也记  :math:`\left(|v\rangle^{*}\right)^{\prime}=|v\rangle^{+}:=\langle v|`  。 易验证Hermite矩阵有如下性质:  :math:`1^{\circ}`  对于任意的向量  :math:`|v\rangle,|w\rangle` 及矩阵 :math:`A`  ，存在唯一的矩阵  :math:`A^{\dagger}`  ，使得
+
+.. math::
+    (|v\rangle, A|w\rangle)=\left(A^{\dagger}|v\rangle,|w\rangle\right) 
+
+.. math:: 
+    2^{\circ}(A B)^{\dagger}=B^{\dagger} A^{\dagger} :math:`,` (A|v\rangle)^{\dagger}=\langle v| A^{\dagger} :math:`,` \left(A^{\dagger}\right)^{\dagger}=A
+
+​  定义  :math:`1.5.5`   矩阵  :math:`A`  称为正规的 (normal)，如果  :math:`A A^{\dagger}=A^{\dagger} A`  。 
+
+​  定义  :math:`1.5.6`   矩阵  :math:`U` 称为是酉的 (unitary)，如果  :math:`U^{\dagger}`   :math:`U=I` 。 易看出酉矩阵有如下性质:
+
+.. math::
+    (U|v\rangle, U|w\rangle)=\left\langle v\left|U^{\dagger} U\right| w\right\rangle=\langle v \mid w\rangle 
+
+​  定理 :math:`1.5.2`  酉矩阵的所有特征值的模都是 1 。 证明 设  :math:`U` 是酉矩阵，  :math:`v` 是 :math:`U` 的一个特征值，  :math:`|v \rangle` 是矩阵 :math:`U`  的属于特征值  :math:`v` 的特征向量, 那么有
+
+.. math::
+    0 \neq\langle v \mid v\rangle=\left\langle v\left|U^{\dagger} U\right| v\right\rangle=(U|v\rangle)^{\dagger}(U|v\rangle)=(v|v\rangle)^{\dagger}(v|v\rangle)=v^{*} v\langle v \mid v\rangle
+
+所以 :math:`v^*v=1` ，即 :math:`v` 的模为1。
+
+证毕。
+
+
+1.5.3 对易式与反对易式
+----------------------------------
+​  定义  :math:`1.5.7`  [6]  设有两个矩阵  :math:`A, B`  ，称
+ 
+.. math::
+    [A, B]:=A B-B A
+
+为  :math:`A`  与  :math:`B`  之间的对易式 (commutator)，若  :math:`[A, B]=0`  ，即  :math:`A B=B A`  ，则称  :math:`A`  和  :math:`B`  是对易的。类似 的，两个矩阵的反对易式 (anti-commutator) 定义为
+
+.. math::
+    \{A, B\}:=A B+B A
+
+如果  :math:`{A, B}=0`  ，即  :math:`A`  与  :math:`B`  反对易。 下面几条性质的证明比较简单，请读者自己思考。
+
+   :math:`1^{\circ}`  若  :math:`[A, B]=0,{A, B}=0`  ，且  :math:`A`  可逆，则  :math:`B`  必为 0 。
+
+.. math::
+    2^{\circ}[A, B]^{\dagger}=\left[B^{\dagger}, A^{\dagger}\right],[A, B]=-[B, A]
+
+   :math:`3^{\circ}`  设  :math:`A` 和 :math:`B`  都是Hermite的，则  :math:`i[A, B]`  是Hermite的。
+
+下面不加证明地给出同时对角化定理。里面用到了一些线性代数的概念。 定理 1.5.3 (同时对角化定理) 设  :math:`A`  和  :math:`B`  是Hermite矩阵,  :math:`[A, B]=0`  当且仅当存在一组标准正交基，使  :math:`A` 和 :math:`B`  在这组基下是同时对角的。在这种情况下  :math:`A` 和 :math:`B`  称为可同时对角化。
+

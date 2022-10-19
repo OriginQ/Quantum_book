@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.1 量子软件开发环境 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.2 量子算法简介" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html" />
+    <link rel="prev" title="3.3 量子计算机" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.1 量子软件开发环境</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#qpanda">4.1.1 QPanda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qrunes">4.1.2 QRunes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.1.3 本源量子云平台</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>4.1 量子软件开发环境</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/4.1量子软件开发环境.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>4.1 量子软件开发环境<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="qpanda">
+<h2>4.1.1 QPanda<a class="headerlink" href="#qpanda" title="Permalink to this heading">¶</a></h2>
+<p>  QPanda (Quantum Programming Architecture for NISQ Device Applications)是一个高效、便捷的量子计算开发工具库，为了让用户更容易的使用QPanda，更便捷的进行量子编程，它屏蔽了复杂的C++语法结构，甚至用户不需要了解所谓的面向对象，只需要学会如何把量子编程中用到的接口调用一遍就可以进行量子计算。</p>
+<p>  例：如何构造一个量子程序，并在量子虚拟机中运行它。</p>
+<p>  首先假设有一台量子计算机，它有2个量子比特： <span class="math notranslate nohighlight">\(Q_1\)</span> 、 <span class="math notranslate nohighlight">\(Q_2\)</span> ，接着对其中一个量子比特（ <span class="math notranslate nohighlight">\(Q_1\)</span> ）进行 <span class="math notranslate nohighlight">\(H\)</span> 门操作，构造了一个量子叠加态；并对 <span class="math notranslate nohighlight">\(Q_1\)</span> 和 <span class="math notranslate nohighlight">\(Q_2\)</span> 做 <span class="math notranslate nohighlight">\(CNOT\)</span> 门操作， <span class="math notranslate nohighlight">\(Q_1\)</span> 为控制量子比特， <span class="math notranslate nohighlight">\(Q_2\)</span> 为目标量子比特，最后对所有的量子比特进行测量操作。此时，将有50%的概率得到00或者11的测量结果。代码示例如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.#include &quot;QPanda.h&quot;
+2.using namespace QPanda;
+3.int main()
+4.{
+5.    auto qvm = CPUQVM();              /* 创建一个类型CPU计算的量子虚拟机*/
+6.    qvm.init();                       /* 为该虚拟机进行初始化*/
+7.    auto prog = QProg();              /* 构造一个量子程序*/
+8.    auto q = qvm.qAllocMany(2);       /* 申请两个量子比特*/
+9.    auto c = qvm.cAllocMany(2);       /* 申请两个经典比特*/
+10.
+11.    /* 向量子程序中插入H门、CNOT门和Measure*/
+12.    prog &lt;&lt; H(q[0])
+13.          &lt;&lt; CNOT(q[0],q[1])
+14.          &lt;&lt; MeasureAll(q, c);
+15.
+16.    /* 让量子程序在量子虚拟机中跑1000次*/
+17.    auto results = qvm.runWithConfiguration(prog, c, 1000);
+18.    for (auto result : results)
+19.    {
+20.       /* 循环输出结果*/
+21.       std::cout &lt;&lt; &quot;result.first&quot; &lt;&lt; &quot;, &quot; &lt;&lt; &quot;result.second&quot; &lt;&lt; std::endl;
+22.    }
+23.    return 0;
+24.}
+</pre></div>
+</div>
+<p>  这是个简单却能体现出量子计算特点的例子，它即体现了量子态叠加，又体现量子比特纠缠。从上例可以看到，用户实质上只需要关注如何使用QPanda构建量子程序，其他的细节操作完全不需要用户操心。</p>
+<p>  再例如，在很多量子算法如QAOA算法中，都需要构造一组量子比特的叠加态，那么完全可以把这种操作抽象成一种生成量子线路的函数，输入是一组量子比特，输出是一个量子线路。代码示例如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;QPanda.h&quot;</span>
+<span class="mf">2.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">QPanda</span><span class="p">;</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span><span class="n">QCircuit</span> <span class="n">HadamardCircuit</span><span class="p">(</span><span class="n">QVec</span> <span class="o">&amp;</span> <span class="n">qvec</span><span class="p">)</span>
+<span class="mf">5.</span><span class="p">{</span>
+<span class="mf">6.</span>    <span class="n">auto</span> <span class="n">qcircuit</span> <span class="o">=</span> <span class="n">QCircuit</span><span class="p">();</span>           <span class="o">/*</span> <span class="n">构造一个量子线路</span><span class="o">*/</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="n">aiter</span> <span class="p">:</span> <span class="n">qvec</span><span class="p">)</span>               <span class="o">/*</span> <span class="n">对传入的量子比特做H门操作</span><span class="o">*/</span>
+<span class="mf">9.</span>    <span class="p">{</span>
+<span class="mf">10.</span>        <span class="n">qcircuit</span><span class="o">&lt;&lt;</span><span class="n">H</span><span class="p">(</span><span class="n">aiter</span><span class="p">);</span>               <span class="o">/*</span> <span class="n">把H门插入的量子线路中</span><span class="o">*/</span>
+<span class="mf">11.</span>    <span class="p">}</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="k">return</span> <span class="n">qcircuit</span><span class="p">;</span>                      <span class="o">/*</span> <span class="n">返回量子线路</span><span class="o">*/</span>
+<span class="mf">14.</span><span class="p">}</span>
+<span class="mf">15.</span>
+<span class="mf">16.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">17.</span><span class="p">{</span>
+<span class="mf">18.</span>    <span class="n">auto</span> <span class="n">qvm</span> <span class="o">=</span> <span class="n">CPUQVM</span><span class="p">();</span>         <span class="o">/*</span> <span class="n">创建一个类型未CPU计算的量子虚拟机</span><span class="o">*/</span>
+<span class="mf">19.</span>    <span class="n">qvm</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>                  <span class="o">/*</span> <span class="n">为该虚拟机进行初始化</span><span class="o">*/</span>
+<span class="mf">20.</span>    <span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>         <span class="o">/*</span> <span class="n">构造一个量子程序</span><span class="o">*/</span>
+<span class="mf">21.</span>    <span class="n">auto</span> <span class="n">q</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="o">/*</span> <span class="n">申请两个量子比特</span><span class="o">*/</span>
+<span class="mf">22.</span>    <span class="n">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="o">/*</span> <span class="n">申请两个经典比特</span><span class="o">*/</span>
+<span class="mf">23.</span>
+<span class="mf">24.</span>    <span class="o">/*</span> <span class="n">调用HadamardCircuit函数</span><span class="o">*/</span>
+<span class="mf">25.</span>    <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">HandmadeCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">MeasureAll</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+<span class="mf">26.</span>
+<span class="mf">27.</span>    <span class="o">/*</span> <span class="n">让量子程序在量子虚拟机中跑1000次</span><span class="o">*/</span>
+<span class="mf">28.</span>    <span class="n">auto</span> <span class="n">results</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">runWithConfiguration</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="mf">29.</span>    <span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="n">result</span> <span class="p">:</span> <span class="n">results</span><span class="p">)</span>
+<span class="mf">30.</span>    <span class="p">{</span>
+<span class="mf">31.</span>        <span class="o">/*</span> <span class="n">循环输出结果</span><span class="o">*/</span>
+<span class="mf">32.</span>        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;result.first&quot;</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;result.second&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">33.</span>    <span class="p">}</span>
+<span class="mf">34.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">35.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  也可使用新的接口来一次性插入多个逻辑门：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;QPanda.h&quot;</span>
+<span class="mf">2.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">QPanda</span><span class="p">;</span>
+<span class="mf">3.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">4.</span><span class="p">{</span>
+<span class="mf">5.</span>    <span class="n">auto</span> <span class="n">qvm</span> <span class="o">=</span> <span class="n">CPUQVM</span><span class="p">();</span>             <span class="o">/*</span> <span class="n">创建一个CPU计算的量子虚拟机</span><span class="o">*/</span>
+<span class="mf">6.</span>    <span class="n">qvm</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>                      <span class="o">/*</span> <span class="n">为该虚拟机进行初始化</span><span class="o">*/</span>
+<span class="mf">7.</span>    <span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>             <span class="o">/*</span> <span class="n">构造一个量子程序</span><span class="o">*/</span>
+<span class="mf">8.</span>    <span class="n">auto</span> <span class="n">q</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>      <span class="o">/*</span> <span class="n">申请两个量子比特</span><span class="o">*/</span>
+<span class="mf">9.</span>    <span class="n">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>      <span class="o">/*</span> <span class="n">申请两个经典比特</span><span class="o">*/</span>
+<span class="mf">10.</span>    <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">MeasureAll</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>  <span class="o">/*</span> <span class="n">将2个H门插入到每个比特上</span><span class="o">*/</span>
+<span class="mf">11.</span>
+<span class="mf">12.</span>    <span class="o">/*</span> <span class="n">让量子程序在量子虚拟机中跑1000次</span><span class="o">*/</span>
+<span class="mf">13.</span>    <span class="n">auto</span> <span class="n">results</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">runWithConfiguration</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="mf">14.</span>    <span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="n">result</span> <span class="p">:</span> <span class="n">results</span><span class="p">)</span>
+<span class="mf">15.</span>    <span class="p">{</span>
+<span class="mf">16.</span>        <span class="o">/*</span> <span class="n">循环输出结果</span><span class="o">*/</span>
+<span class="mf">17.</span>        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;result.first&quot;</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;result.second&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">18.</span>    <span class="p">}</span>
+<span class="mf">19.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">20.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  从上述三例可以知道，用户只需要关注量子程序的构建，其他的部分，如量子虚拟机的构建、初始化、申请量子比特、执行量子程序和获取结果，都是一个固定的流程，只需要调用函数接口即可。</p>
+<p>  深入了解QPanda的使用，就必须要了解一下QPanda中与量子计算相关的数据类型：QGate（量子逻辑门），Measure（测量）、ClassicalProg（经典程序）、QCircuit（量子线路）、Qif（量子条件判断程序）、QWhile（量子循环程序）、QProg（量子程序）；</p>
+<p>  QGate：量子逻辑门是量子计算的基本单位，任何一个量子程序都是由QGate组合而成，如果说量子程序或量子算法是一套拳法，那么QGate就是一个个被拆解出来的动作，几个QGate的固定组合就是一个招式，它们的最终目的就是把这套拳法打出来。目前QPanda的量子逻辑门大致分为单门、双门、三门、自定义门，其中每个类又分为带角度和不带角度两类。</p>
+<p>  常见的单门有：</p>
+<p>​   不含角度的单门有：I、H、T、X、S、X、Y、Z、X1、Y1、Z1。</p>
+<p>​   带有一个旋转角度的逻辑门：RX、RY、RZ、U1、P。</p>
+<p>  此外还支持U2、U3、U4。</p>
+<p>​   双门不含角度的逻辑门：CNOT、CZ、iSWAP、SWAP、SqiSWAP。</p>
+<p>​   双门含旋转角度的逻辑门：CR、CU、CP。</p>
+<p>  三量子逻辑门 ：Toffoli。</p>
+<p>  QPanda 2把所有的量子逻辑门封装为API向用户提供使用，并可获得QGate类型的返回值。例如，如果想使用Hadamard门，就可以通过如下方式获得：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">QGate</span> <span class="n">h</span> <span class="o">=</span> <span class="n">H</span><span class="p">(</span><span class="n">qubit</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  可以看到，H函数只接收一个qubit，qubit如何申请请参考</p>
+<p>  <a class="reference external" href="https://QPanda2.readthedocs.io/zh_CN/latest/TotalAmplitude.html#quantummachine">https://QPanda2.readthedocs.io/zh_CN/latest/TotalAmplitude.html#quantummachine</a></p>
+<p>  QPanda2还支持对量子逻辑门做转置共轭操作：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.auto gate = H(qubit);
+2./* setDagger有一个布尔类型参数，用来设置当前逻辑门是否需要转置共轭操作*/
+3.gate.setDagger(true);
+4.
+5./* dagger的作用是复制一份当前的量子逻辑门，并更新复制的量子逻辑门的dagger标记*/
+6.QGate H_dagger = H(qubit).dagger();
+</pre></div>
+</div>
+<p>  setDagger有一个布尔类型参数，用来设置当前逻辑门是否需要转置共轭操作。</p>
+<p>  除了转置共轭操作，也可以为量子逻辑门添加控制比特：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.auto gate = H(qubit)
+2./* setControl的作用是给当前的量子逻辑门添加控制比特*/
+3.gate.setControl(qvec);
+4.
+5./* control的作用是复制当前的量子逻辑门，并给复制的量子逻辑门添加控制比特*/
+6.QGate H_control = H(qubit).control(qvec);
+</pre></div>
+</div>
+<p>  setControl、control都需要接收一个参数，参数类型为QVec，QVec是qubit的vector</p>
+<p>  再例如，想要使用RX门，可以通过如下方式获得：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.QGate rx = RX(qubit，PI);
+</pre></div>
+</div>
+<p>  如上所示，RX门接收两个参数，第一个是目标量子比特，第二个偏转角度，也可以通过相同的方式使用RY，RZ门。</p>
+<p>  两比特量子逻辑门的使用和单比特量子逻辑门的用法相似，只不过是输入的参数不同，举个使用CNOT的例子：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.QGate cnot = CNOT(control_qubit，target_qubit);
+</pre></div>
+</div>
+<p>  CNOT门接收两个参数，第一个是控制比特，第二个是目标比特。</p>
+<p>  此外我们还有一个可以自行填充矩阵和比特的QOracle门，具体使用方法请看下面的例子：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;QPanda.h&quot;</span>
+<span class="mf">2.</span><span class="n">USING_QPANDA</span>
+<span class="mf">3.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="mf">4.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">5.</span><span class="p">{</span>
+<span class="mf">6.</span>    <span class="n">auto</span> <span class="n">qvm</span> <span class="o">=</span> <span class="n">new</span> <span class="n">CPUQVM</span><span class="p">();</span>
+<span class="mf">7.</span>    <span class="n">qvm</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+<span class="mf">8.</span>    <span class="n">auto</span> <span class="n">q</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">-&gt;</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="mf">9.</span>    <span class="n">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">-&gt;</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="mf">10.</span>    <span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>
+<span class="mf">11.</span>
+<span class="mf">12.</span>    <span class="n">QStat</span> <span class="n">source_matrix</span> <span class="o">=</span>
+<span class="mf">13.</span>    <span class="p">{</span>
+<span class="mf">14.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="mf">0.6477054522122977</span><span class="p">,</span> <span class="mf">0.1195417767870219</span><span class="p">),</span>
+<span class="mf">15.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.16162176706189357</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4020495632468249</span><span class="p">),</span>
+<span class="mf">16.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.19991615329121998</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3764618308248643</span><span class="p">),</span>
+<span class="mf">17.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2599957197928922</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.35935248873007863</span><span class="p">),</span>
+<span class="mf">18.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.16162176706189363</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.40204956324682495</span><span class="p">),</span>
+<span class="mf">19.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="mf">0.7303014482204584</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.4215172444390785</span><span class="p">),</span>
+<span class="mf">20.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.15199187936216693</span><span class="p">,</span> <span class="mf">0.09733585496768032</span><span class="p">),</span>
+<span class="mf">21.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.22248203136345918</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1383600597660744</span><span class="p">),</span>
+<span class="mf">22.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.19991615329122003</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.3764618308248644</span><span class="p">),</span>
+<span class="mf">23.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.15199187936216688</span><span class="p">,</span> <span class="mf">0.09733585496768032</span><span class="p">),</span>
+<span class="mf">24.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="mf">0.6826630277354306</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.37517063774206166</span><span class="p">),</span>
+<span class="mf">25.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3078966462928956</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2900897445133085</span><span class="p">),</span>
+<span class="mf">26.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2599957197928923</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3593524887300787</span><span class="p">),</span>
+<span class="mf">27.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.22248203136345912</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1383600597660744</span><span class="p">),</span>
+<span class="mf">28.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="o">-</span><span class="mf">0.30789664629289554</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2900897445133085</span><span class="p">),</span>
+<span class="mf">29.</span>        <span class="n">qcomplex_t</span><span class="p">(</span><span class="mf">0.6640994547408099</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.338593803336005</span><span class="p">)</span>
+<span class="mf">30.</span>    <span class="p">};</span>
+<span class="mf">31.</span>
+<span class="mf">32.</span>    <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">QOracle</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">source_matrix</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">MeasureAll</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+<span class="mf">33.</span>    <span class="n">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">-&gt;</span><span class="n">runWithConfiguration</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="mf">34.</span>    <span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="n">res</span> <span class="p">:</span> <span class="n">result</span><span class="p">)</span>
+<span class="mf">35.</span>    <span class="p">{</span>
+<span class="mf">36.</span>        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">res</span><span class="o">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">res</span><span class="o">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">37.</span>    <span class="p">}</span>
+<span class="mf">38.</span>
+<span class="mf">39.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">40.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  运行结果如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.00</span> <span class="p">:</span> <span class="mi">433</span>
+<span class="mf">2.01</span> <span class="p">:</span> <span class="mi">182</span>
+<span class="mf">3.10</span> <span class="p">:</span> <span class="mi">180</span>
+<span class="mf">4.11</span> <span class="p">:</span> <span class="mi">205</span>
+</pre></div>
+</div>
+<p>  Measure：它的的作用是对量子比特进行测量操作。</p>
+<p>  在量子程序中需要对某个量子比特做测量操作，并把测量结果存储到经典寄存器上，可以通过下面的方式获得一个测量对象：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">measure</span> <span class="o">=</span> <span class="n">Measure</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">cbit</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  可以看到Measure接两个参数， 第一个是测量比特，第二个是经典寄存器。</p>
+<p>  如果想测量所有的量子比特并将其存储到对应的经典寄存器上，可以如下操作：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.# MeasureAll 的返回值类型是 QProg
+2.auto measure_all = MeasureAll(qubits， cbits);
+</pre></div>
+</div>
+<p>  其中qubits的类型是 QVec ， cbits的类型是 vector。</p>
+<p>  在得到含有量子测量的程序后，可以调用 directlyRun 或 runWithConfiguration 来得到量子程序的测量结果。</p>
+<p>  directlyRun 的功能是运行量子程序并返回运行的结果， 使用方法如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">QProg</span> <span class="n">prog</span><span class="p">;</span>
+<span class="mf">2.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">3.</span>    <span class="o">&lt;&lt;</span> <span class="n">CNOT</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="mf">4.</span>    <span class="o">&lt;&lt;</span> <span class="n">CNOT</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qubits</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="mf">5.</span>    <span class="o">&lt;&lt;</span> <span class="n">CNOT</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">qubits</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="mf">6.</span>    <span class="o">&lt;&lt;</span> <span class="n">Measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cbits</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>  <span class="o">//</span> <span class="n">测量单个量子比特</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span><span class="n">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">directlyRun</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  runWithConfiguration 的功能是末态目标量子比特序列在量子程序多次运行结果中出现的次数， 使用方法如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">QProg</span> <span class="n">prog</span><span class="p">;</span>
+<span class="mf">2.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">3.</span>    <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="mf">4.</span>    <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="mf">5.</span>    <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="mf">6.</span>    <span class="o">&lt;&lt;</span> <span class="n">MeasureAll</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">cbits</span><span class="p">);</span> <span class="o">//</span> <span class="n">测量所有的量子比特</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span><span class="n">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">runWithConfiguration</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">cbits</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  其中第一个参数是量子程序，第二个参数是经典寄存器， 第三个参数是运行的次数。</p>
+<p>  getCircuitMatrix 的功能是获取线路中的矩阵，方法如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">qvm</span> <span class="o">=</span> <span class="n">CPUQVM</span><span class="p">();</span>
+<span class="mf">2.</span><span class="n">qvm</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>
+<span class="mf">3.</span><span class="n">auto</span> <span class="n">qubits</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="mf">4.</span><span class="n">auto</span> <span class="n">cbits</span>  <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="mf">5.</span><span class="n">QProg</span> <span class="n">prog</span><span class="p">;</span>
+<span class="mf">6.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">7.</span>     <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="mf">8.</span><span class="n">auto</span> <span class="n">matrix</span> <span class="o">=</span> <span class="n">getCircuitMatrix</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span><span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">matrix</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="o">-</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="o">-</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mf">3.</span> <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="o">-</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="o">-</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mf">4.</span> <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="o">-</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="o">-</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">(</span><span class="mf">0.499999999999996</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>  实例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &lt;QPanda.h&gt;</span>
+<span class="mf">2.</span><span class="n">USING_QPANDA</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span><span class="n">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="mf">5.</span><span class="p">{</span>
+<span class="mf">6.</span>    <span class="n">auto</span> <span class="n">qvm</span> <span class="o">=</span> <span class="n">CPUQVM</span><span class="p">();</span>
+<span class="mf">7.</span>    <span class="n">qvm</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>
+<span class="mf">8.</span>    <span class="n">auto</span> <span class="n">qubits</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="mf">9.</span>    <span class="n">auto</span> <span class="n">cbits</span>  <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="mf">10.</span>    <span class="n">QProg</span> <span class="n">prog</span><span class="p">;</span>
+<span class="mf">11.</span>    <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">12.</span>        <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="mf">13.</span>        <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="mf">14.</span>        <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="mf">15.</span>        <span class="o">&lt;&lt;</span> <span class="n">MeasureAll</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">cbits</span><span class="p">);</span>
+<span class="mf">16.</span>
+<span class="mf">17.</span>    <span class="n">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">runWithConfiguration</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">cbits</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="mf">18.</span>    <span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">:</span> <span class="n">result</span><span class="p">)</span>
+<span class="mf">19.</span>    <span class="p">{</span>
+<span class="mf">20.</span>        <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="o">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;, &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="o">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">21.</span>    <span class="p">}</span>
+<span class="mf">22.</span>
+<span class="mf">23.</span>
+<span class="mf">24.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">25.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  运行结果：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.0000</span><span class="p">,</span> <span class="mi">47</span>
+<span class="mf">2.0001</span><span class="p">,</span> <span class="mi">59</span>
+<span class="mf">3.0010</span><span class="p">,</span> <span class="mi">74</span>
+<span class="mf">4.0011</span><span class="p">,</span> <span class="mi">66</span>
+<span class="mf">5.0100</span><span class="p">,</span> <span class="mi">48</span>
+<span class="mf">6.0101</span><span class="p">,</span> <span class="mi">62</span>
+<span class="mf">7.0110</span><span class="p">,</span> <span class="mi">71</span>
+<span class="mf">8.0111</span><span class="p">,</span> <span class="mi">61</span>
+<span class="mf">9.1000</span><span class="p">,</span> <span class="mi">70</span>
+<span class="mf">10.1001</span><span class="p">,</span> <span class="mi">57</span>
+<span class="mf">11.1010</span><span class="p">,</span> <span class="mi">68</span>
+<span class="mf">12.1011</span><span class="p">,</span> <span class="mi">63</span>
+<span class="mf">13.1100</span><span class="p">,</span> <span class="mi">65</span>
+<span class="mf">14.1101</span><span class="p">,</span> <span class="mi">73</span>
+<span class="mf">15.1110</span><span class="p">,</span> <span class="mi">55</span>
+<span class="mf">16.1111</span><span class="p">,</span> <span class="mi">61</span>
+</pre></div>
+</div>
+<p>  ClassicalProg：经典程序也可以被插入到量子程序中，它使得量子程序也可以进行逻辑判断和简单的经典计算，使得量子程序更灵活。打个比方，就像是向一套拳法中加入了步法，使得这套拳法可以辗转腾挪。</p>
+<p>  QCircuit：量子线路是由多个量子逻辑门组成的，或者说量子线路是一个大型的量子逻辑门，也就是说QCircuit中可以插入QGate和ClassicalProg。如果映射到功夫中，QCircuit就是拳法中拆解出来的套路。此外QCircuit也可以设置dagger和control,请看下面的例子：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1./* setDagger的作用是根据输入参数更新当前量子线路的dagger标记*/
+2.QCircuit cir;
+3.cir.setDagger(true);
+4.
+5./* dagger的作用是复制一份当前的量子线路，并更新复制的量子线路的dagger标记*/
+6.QCircuit cir1;
+7.QCircuit cir_dagger = cir1.dagger();
+8.
+9./* setControl的作用是给当前的量子线路添加控制比特*/
+10.QCircuit cir2;
+11.cir1.setControl(qvec);
+12.
+13./* control的作用是复制当前的量子线路，并给复制的量子线路添加控制比特*/
+14.QCircuit cir3;
+15.QCircuit cir_control = cir.control(qvec);
+</pre></div>
+</div>
+<p>  Qif：量子条件判断程序，顾名思义，它可以让量子程序进行逻辑判断，即针对不同的对手拳法的套路也是可变的。</p>
+<p>  QWhile：量子循环判断程序，即根据循环判断条件把一个量子程序或量子线路多次运行。</p>
+<p>  QProg：它是一个容器，可以容纳所有量子计算相关的数据类型，在构造量子程序时，用户可以把QGate、QCircuit、Qif、QWhile、QProg、ClassicalProg类型插入到QProg中。</p>
+<p>  QPanda的特点不仅仅体现着它的易用性，还包括它的高效，如图4.1.1，在同等硬件配置下，QPanda的量子虚拟机运行量子程序的速度，相对其他工具有着巨大优势。</p>
+<p>  QPanda的量子比特池，QPanda不仅可以使用qAllocMany() 来直接申请比特，还可以调用量子比特池来获取量子比特，请看示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.#include &quot;QPanda.h&quot;
+2.USING_QPANDA
+3.using namespace std;
+4.int main()
+5.{
+6.    /*量子比特可以和虚拟机 脱离关系，获取对应池的单例 */
+7.    auto qpool = OriginQubitPool::get_instance();
+8.    auto cmem = OriginCMem::get_instance();
+9.
+10.    /* 获取容器大小*/
+11.    cout &lt;&lt; &quot;set qubit pool capacity  before: &quot;&lt;&lt; qpool-&gt;get_capacity() &lt;&lt; endl;
+12.    /* 设置最大容器*/
+13.    qpool-&gt;set_capacity(20);
+14.    cout &lt;&lt; &quot;set qubit pool capacity  after: &quot; &lt;&lt; qpool-&gt;get_capacity() &lt;&lt; endl;
+15.
+16.    /* 通过比特池申请比特，由于是单例模式，要保证申请的比特数量不超过最大容量*/
+17.    auto qv = qpool-&gt;qAllocMany(6);
+18.    auto cv = cmem-&gt;cAllocMany(6);
+19.
+20.    /* 获取被申请的量子比特*/
+21.    QVec used_qv;
+22.    auto used_qv_size = qpool-&gt;get_allocate_qubits(used_qv);
+23.    cout &lt;&lt; &quot;allocate qubits number: &quot; &lt;&lt; used_qv_size &lt;&lt; endl;
+24.
+25.    /* 构建虚拟机*/
+26.    auto qvm = new CPUQVM();
+27.    qvm-&gt;init();
+28.    auto prog = QProg();
+29.    /*直接使用物理地址作为量子比特信息入参 */
+30.    prog &lt;&lt; H(0) &lt;&lt; H(1)
+31.        &lt;&lt; H(2)
+32.        &lt;&lt; H(4)
+33.        &lt;&lt; X(5)
+34.        &lt;&lt; X1(2)
+35.        &lt;&lt; CZ(2, 3)
+36.        &lt;&lt; RX(3, PI / 4)
+37.        &lt;&lt; CR(4, 5, PI / 2)
+38.        &lt;&lt; SWAP(3, 5)
+39.        &lt;&lt; CU(1, 3, PI / 2, PI / 3, PI / 4, PI / 5)
+40.        &lt;&lt; U4(4, 2.1, 2.2, 2.3, 2.4)
+41.        &lt;&lt; BARRIER({0, 1,2,3,4,5});
+42.
+43.    /* 测量方法也可以使用比特物理地址*/
+44.    auto res_0 = qvm-&gt;probRunDict(prog, { 0,1,2,3,4,5 });
+45.
+46.    /* 同样经典比特地址也可以作为经典比特信息入参*/
+47.    prog &lt;&lt; Measure(0, 0)
+48.        &lt;&lt; Measure(1, 1)
+49.        &lt;&lt; Measure(2, 2)
+50.        &lt;&lt; Measure(3, 3)
+51.        &lt;&lt; Measure(4, 4)
+52.        &lt;&lt; Measure(5, 5);
+53.
+54.    /* 使用经典比特地址入参*/
+55.    vector&lt;int&gt; cbit_addrs = { 0,1,2,3,4,5 };
+56.    auto res_2 = qvm-&gt;runWithConfiguration(prog, cbit_addrs, 5000);
+57.    delete(qvm);
+58.    /* 同时我们还可以再次利用这里申请的qv，避免多次使用虚拟机多次申请比特的问题发生*/
+59.    auto qvm_noise = new NoiseQVM();
+60.    qvm_noise-&gt;init();
+61.    auto res_4 = qvm_noise-&gt;runWithConfiguration(prog, cbit_addrs, 5000);
+62.    delete(qvm_noise);
+63.
+64.    return 0;
+65.}
+</pre></div>
+</div>
+<img alt="../_images/4.1.1.png" class="align-center" src="../_images/4.1.1.png" />
+<p class="centered">
+<strong>图4.1.1 量子虚拟机性能图</strong></p><p>  除此之外，QPanda还集成了量子程序优化器、量子程序调试工具，量子程序编译器。</p>
+<p>  1、 量子程序优化器：QPanda的优化器通过特有的算法对量子程序的优化，可最大限度的减少计算时间。</p>
+<p>  2、 量子程序调试工具：QPanda的调试工具解决的量子算法工程师长期以来的困扰，里程碑的实现类量子程序的调试功能。</p>
+<p>  3、 量子程序编译器：不仅把量子程序转换为多种量子汇编语言，更可以生成量子程序可执行文件。</p>
+</section>
+<section id="qrunes">
+<h2>4.1.2 QRunes<a class="headerlink" href="#qrunes" title="Permalink to this heading">¶</a></h2>
+<p>  QRunes是一种基于语句的量子编程式语言，它的出现是为了实现量子计算和经典计算的混合，从而让量子计算有更好的应用场景。QRunes根据量子计算的经典与量子混合(Quantum-Classical Hybrid)特性，在程序编译之后可以操作经典计算机与量子芯片来实现量子计算。</p>
+<p>  QRunes通过提供高级语言的形式来实现量子算法和程序的逻辑控制。其丰富的类型系统(Quatum Type, Classical Type)可以实现量子计算中数据对象的绑定和行为控制，可以满足开发人员的各类量子算法的实现需求。</p>
+<p>  QRunes由量子程序和量子线路组成的量子部分和经典函数组成的经典部分构成。量子部分定义了对量子比特的操作和行为控制。经典部分用于主程序的实现和控制量子程序的运行。</p>
+</section>
+<section id="id2">
+<h2>4.1.3 本源量子云平台<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>  本源量子云平台是国内首家基于模拟器研发且能在传统计算机上模拟32位量子芯片进行量子计算和量子算法编程的系统，目前该系统主要服务于各大科研院所、高校及相关企业，旨在为专业人员提供基于量子模拟器的开发平台。</p>
+<p>  本源量子云平台提供了两种虚拟机供用户选择，其中32位量子虚拟机免费使用、64位需付费申请，虚拟机采用可视化编程模式图例+量子语言，用户可轻松拖动、放置图例进行量子算法模拟，并可将设计的运算转化为量子语言模式深入学习。量子云平台是连接用户和量子计算设备之间的桥梁，当前量子系统运作结构通常是经典计算向量子系统发起计算任务请求，待量子系统完成计算任务后再以经典信息的方式返回给用户，整个过程都需要量子云平台在中间协调。</p>
+<p>  本源量子计算云平台的工作结构可以划分为四个部分：后端系统、控制指令、量子云端、以及用户端；其中后端系统包括了量子虚拟机，以及不同组织机构开发的量子芯片；控制指令则是通过其他编程语言或底层语言构建的能被量子系统识别的指令；量子云即是可视化编程、数据中转、用户数据存储交流等云服务；用户端，包括问题的设计、算法规则构造、可视化结果等。</p>
+<p>  目前，本源量子计算系统包括了三种构造控制指令的方法，如图4.1.2所示，分别为可视化线路的设计、量子语言和量子软件开发套件QPanda，其中可视化编程和量子语言依托在量子云平台上，用户在进行量子程序设计的时候可以相互转化；对于功能完整的QPanda，则使用c++为宿主语言开发的SDK，用户可以使用c++直接开发量子程序。当然QPanda也开发了支持Python的库，也就是说可以使用Python来开发量子程序。使用QPadna编写的量子程序，可以很方便地转化为量子语言或者可视化的量子线路，在量子云平台上可以可视化的进行基础的算法设计、云平台的操作，通过拖动量子逻辑门来构建控制序列，添加测量指令，即可运行得出结果。通常用户会通过云平台构建简单的量子算法，之后待量子线路图转化为虚拟机或量子系统识别的指令，并将数据送入虚拟机或者量子系统，完成计算之后，回传结果，此时用户就能收到最终的计算结果。</p>
+<img alt="../_images/4.1.2.png" class="align-center" src="../_images/4.1.2.png" />
+<p class="centered">
+<strong>图4.1.2 本源量子云平台工作原理</strong></p></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html" class="btn btn-neutral float-left" title="3.3 量子计算机" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html" class="btn btn-neutral float-right" title="4.2 量子算法简介" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

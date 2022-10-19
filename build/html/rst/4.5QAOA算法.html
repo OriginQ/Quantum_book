@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.5 QAOA算法 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.6 VQE算法" href="4.6VQE%E7%AE%97%E6%B3%95.html" />
+    <link rel="prev" title="4.4 Grover算法" href="4.4Grover%E7%AE%97%E6%B3%95.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.5 QAOA算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">4.5.1 最大切割问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.5.2 布尔可满足性问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.5.3 组合最优化问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">4.5.4 近似优化算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">4.5.5 泡利算符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">4.5.6 哈密顿量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">4.5.7 算法原理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>4.5 QAOA算法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/4.5QAOA算法.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qaoa">
+<h1>4.5 QAOA算法<a class="headerlink" href="#qaoa" title="Permalink to this heading">¶</a></h1>
+<p>  QAOA算法（Quantum Approximate Optimization Algorithm），又名量子近似优化算法，是由Edward Farhi, Jeffrey Goldstone和Sam Gutmann开发的一个多项式时间算法，用于寻找“最优化问题的一种‘好’的解决方案” 。</p>
+<p>  Farhi, Goldstone和Gutmann都是现今量子计算领域有名的教授，其中Edward Farhi和Jeffrey Goldstone是麻省理工学院的名誉教授。他们在2000年一起发表了绝热演化量子计算算法，2014年在此基础上他们又共同发表了量子近似优化算法（QAOA）。</p>
+<p>  这个名字是什么意思呢？对于给定的NP-Hard问题，近似算法是一种多项式时间算法，该算法以期望的一些质量保证来解决每个问题实例，其中品质因数是多项式时间解的质量与真实解的质量之间的比率。QAOA算法很有意思的一个原因是它具有展示量子霸权的潜力。</p>
+<section id="id1">
+<h2>4.5.1 最大切割问题<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>  最大切割问题（MAXCUT）是原始量子近似优化算法论文中描述的第一个应用。此问题类似于图形着色，对于给定节点和边的图形，并给每个边分配一个分值，接着将每个节点着色为黑色或白色，然后计算不同颜色节点边的分值之和，目的是找到一组得分最高的着色方式；更正式地表述是将图的节点划分为两组，使得连接相对组中的节点的边的数量最大化。例如图4.5.1的杠铃图:</p>
+<a class="reference internal image-reference" href="../_images/4.5.1.png"><img alt="../_images/4.5.1.png" class="align-center" src="../_images/4.5.1.png" style="width: 350px;" /></a>
+<p class="centered">
+<strong>图4.5.1 杠铃图</strong></p><p>  有4种方式将节点分为两组：</p>
+<img alt="../_images/4.5.2.png" class="align-center" src="../_images/4.5.2.png" />
+<p class="centered">
+<strong>图4.5.2 四个分组</strong></p><p>  图4.5.2中仅对连接不同集合中的节点时才会绘制边，带有剪刀符号的线条表示需要计算的切割边。对于杠铃图，有两个相等的权重分组对应于最大切割（如上图中间两个分组），将杠铃切成两半。可以将“组0”或“组1”中的节点表示为 0 或 1，组成一个长度为N的比特串 。上图的四个分组可以表示为</p>
+<div class="math notranslate nohighlight">
+\[\{00,01,10,11\}\]</div>
+<p>  其中最左边的比特对应节点 A，最右边的比特对应节点 B。 用比特串来表示使得表示图的特定分组变得很容易，每个比特串具有相关联的切割权重。</p>
+<p>  对任意一个图，最大切割所使用的比特串长度是  <span class="math notranslate nohighlight">\(N\)</span> ，可分割的情况总数是 <span class="math notranslate nohighlight">\(2^N\)</span> 。例如，方形环图4.5.3：</p>
+<a class="reference internal image-reference" href="../_images/4.5.3.png"><img alt="../_images/4.5.3.png" class="align-center" src="../_images/4.5.3.png" style="width: 350px;" /></a>
+<p class="centered">
+<strong>图4.5.3 方形环图</strong></p><p>  有16个可能的分组 ( <span class="math notranslate nohighlight">\(2^4\)</span> )。图4.5.4是四种可能的节点分组方式：</p>
+<img alt="../_images/4.5.4.png" class="align-center" src="../_images/4.5.4.png" />
+<p class="centered">
+<strong>图4.5.4 四种可能的节点分布</strong></p><p>  与每个分组相关联的比特串如上图所示，其中最右边的比特对应节点 A，最左边的比特对应节点 D。绘制出切割边，这样就可以很清楚的看到不同分组对应的边的切割情况。</p>
+<p>  假设令方形图切割边的值都为1，可以将方形图中的切割方案全部枚举出来，如表4.5.1所示</p>
+<p class="centered">
+<strong>表4.5.1 切割方案及切割值</strong></p><table class="docutils align-center">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>切割方案</p></td>
+<td><p>切割值</p></td>
+<td><p>切割方案</p></td>
+<td><p>切割值</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(|0000\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|1000\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(|0001\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|1001\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(|0010\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|1010\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(|0011\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|1011\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(|0100\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|1100\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(|0101\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|1101\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(|0110\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|1110\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(|0111\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(|1111\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>  通过查表很容易可以找到最优的切割方案。</p>
+<p>  从前面对杠铃图和方形图的示例介绍，知道可以通过枚举的方式找到最优的切割方案，并且枚举的数量跟节点个数有关，如果有N个节点，则枚举的数量是 <span class="math notranslate nohighlight">\(2^N\)</span> 。对于最大切割问题，在节点数较少的情况下，可以通过枚举的方式找到最优方案。但是，随着节点数的增加其计算时间复杂度也成指数级的增加。</p>
+<p>  当遇到1000个，10000个或者更多的节点时，还能通过枚举的方式来解决这个问题吗？</p>
+<p>  答案是不能的，对于10000个节点来说，就算把全球的计算资源都加起来也要计算很长的时间，那是否有其他的解决方案呢？答案是有的，QAOA其实就是最大切割的一种解决方案。</p>
+</section>
+<section id="id2">
+<h2>4.5.2 布尔可满足性问题<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>  布尔可满足性问题（有时称为命题可满足性问题，缩写为SATISFIABILITY或SAT），就是确定是否存在满足给定布尔公式的解释的问题。</p>
+<p>  布尔表达式是由布尔变量和逻辑运算符（NOT , AND ,OR）所构成的表达式。其中NOT又称逻辑非 <span class="math notranslate nohighlight">\((\neg)\)</span> ，AND又称逻辑与 <span class="math notranslate nohighlight">\((\wedge)\)</span> ，OR又称逻辑或 <span class="math notranslate nohighlight">\((\vee)\)</span> 。</p>
+<p>例如：</p>
+<p class="centered">
+<strong><span class="math notranslate nohighlight">\(x\)</span> and  <span class="math notranslate nohighlight">\(y \equiv x \wedge y\)</span></strong></p><p class="centered">
+<strong><span class="math notranslate nohighlight">\(x\)</span> or  <span class="math notranslate nohighlight">\(y \quad \equiv \quad x \vee y\)</span></strong></p><p class="centered">
+<strong><span class="math notranslate nohighlight">\(x\)</span> and  <span class="math notranslate nohighlight">\(y \text{or}(\text{ not } z) \equiv x \wedge y \vee(\neg z)\)</span></strong></p><p>  布尔可满足性问题就是对于布尔表达式中的变量使用true或者false进行赋值，使得该布尔表达式的值为true，则该布尔表达式是可满足的。</p>
+<p>例如：</p>
+<div class="math notranslate nohighlight">
+\[A=x \wedge y\]</div>
+<p>当  <span class="math notranslate nohighlight">\(x=\)</span> true, <span class="math notranslate nohighlight">\(y=\)</span> true , 则  <span class="math notranslate nohighlight">\(A=\)</span> true ，所以布尔表达式 <span class="math notranslate nohighlight">\(A\)</span> 是可满足的。</p>
+<div class="math notranslate nohighlight">
+\[B=x \vee y\]</div>
+<p>当  <span class="math notranslate nohighlight">\(x=\)</span> true 或  <span class="math notranslate nohighlight">\(y=\)</span> true, 则  <span class="math notranslate nohighlight">\(B=\)</span> true ，所以布尔表达式B是可满足的</p>
+<div class="math notranslate nohighlight">
+\[C=x \wedge y \vee(\neg z)\]</div>
+<p>当  <span class="math notranslate nohighlight">\(x=\)</span> true, <span class="math notranslate nohighlight">\(y=\)</span> true 或  <span class="math notranslate nohighlight">\(z=\)</span>  false, 则  <span class="math notranslate nohighlight">\(C=\)</span> true ，所以布尔表达式C也是可满足的。</p>
+<p>  那有没有不可满足的例子呢？</p>
+<div class="math notranslate nohighlight">
+\[D=x \wedge(\neg x)\]</div>
+<p>  无论  <span class="math notranslate nohighlight">\(x=\)</span> true 或  <span class="math notranslate nohighlight">\(x=\)</span> ` false 则  <span class="math notranslate nohighlight">\(D=\)</span> false ，所以表达式D是不可满足的。</p>
+<p>  已知的NP-完全问题有很多，但作为这些问题的“祖先”，历史上第一个被证明的NP-完全问题就是来自于布尔可满足性问题。</p>
+<p>  SAT问题是逻辑学的一个基本问题，也是当今计算机科学和人工智能研究的核心问题。工程技术、军事、工商管理、交通运输及自然科学研究中的许多重要问题，如程控电话的自动交换、大型数据库的维护、大规模集成电路的自动布线、软件自动开发、机器人动作规划等，都可转化成SAT问题。因此致力于寻找求解SAT问题的快速而有效的算法，不仅在理论研究上而且在许多应用领域都具有极其重要的意义。</p>
+<p>  SAT的问题被证明是NP难解的问题。目前解决该问题的方法主要有完备的方法和不完备的方法两大类。完备的方法优点是保证能正确地判断SAT问题的可满足性，但其计算效率很低，平均的计算时间为多项式阶，最差的情况计算时间为指数阶，不适用于求解大规模的SAT问题。不完备的方法的优点是求解的时间比完备的方法快得多，但在很少数的情况下不能正确地判断SAT问题的可满足性。</p>
+<p>  传统的方法有：枚举法、局部搜索法和贪婪算法等，但由于搜索空间大，问题一般难以求解。对于像SAT一类的NP难解问题，采用一些现代启发式方法如演化算法往往较为有效。</p>
+</section>
+<section id="id3">
+<h2>4.5.3 组合最优化问题<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>  组合最优化是指通过对数学方法的研究去寻找处理离散事件的最优编排、分组、次序或筛选等问题的优化方法。实际上就是从有限个离散状态中选取最好的状态。</p>
+<p>  组合最优化的模型如下</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\min f(x) \\ &amp;s.t. g(x) \geq 0 \\ &amp;x \in D \end{aligned}\end{split}\]</div>
+<p>其中，f(x)为目标函数，g(x)为约束条件，x为决策变量，D表示有限个点组成的集合。</p>
+<p>  从模型可看出组合最优化问题是一个规划问题（在一定条件下，求解目标函数的最大值或最小值，这类问题叫做数学规划，它是运筹学里的重要内容）。</p>
+<p>  组合最优化的特点就是定义域集合为有限点集。由直观可知，只要将定义域D中的有限个点逐一判别是否满足约束，并比较目标函数的大小，就可以得到该问题的最优解，这就是枚举法。对于某些优化问题可以通过枚举法得到最优解，这在问题规模较小时是十分有效的，考虑的点也是非常全面的。每一个组合最优化问题都可以通过枚举的方法求得最优解，然而枚举是以时间为代价的，有的枚举时间还可以接受，有的则不可能接受。</p>
+<p>  例如背包问题，旅行商问题，以及最大切割问题都是组合最优化问题。那么，有哪些方法解决这类问题呢？如表4.5.2所示：</p>
+<p class="centered">
+<strong>表4.5.2 如何求解组合最优化问题</strong></p><img alt="../_images/表4.5.2.png" class="align-center" src="../_images/表4.5.2.png" />
+<p>  最优化问题，它一般分为两大类：一类是具有连续型的变量，另一类是具有离散型的变量，后一类被称为组合最优化问题。在应用方面，可以将连续优化问题通过设定步长转换为离散优化问题，这样就可以使用组合优化问题的方法求解了。</p>
+</section>
+<section id="id4">
+<h2>4.5.4 近似优化算法<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>  很多实际应用问题都是NP-完全问题，这类问题很可能不存在多项式时间算法。一般而言NP-完全问题可采用以下三种方式处理。如果问题的输入规模较小，则可以利用搜索策略在指数时间内求解问题；如果输入规模较大，既可以利用随机算法在多项式时间内“高概率”地精确求解问题；也可以考虑在多项式时间内求得问题的一个“近似解”。</p>
+<p>  近似优化算法就是是指这种能够在多项式时间内给出优化问题的近似优化解的算法。近似算法不仅可用于近似求解NP-完全问题，也可用于近似求解复杂度较高的NP问题。</p>
+<p>  通常在生活中，有些问题没有必要找到最完美的解，常常是找到一个可以满足期望的解就可以了。比如赛车比赛，赛道上其实有很多路线可以到达终点，车手只需要找到一种可以赢得比赛的路线就可以了。</p>
+</section>
+<section id="id5">
+<h2>4.5.5 泡利算符<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<p>  泡利算符是一组三个2×2的幺正厄米复矩阵，一般都以希腊字母  <span class="math notranslate nohighlight">\(\sigma\)</span> （西格玛）来表示，读作泡利  <span class="math notranslate nohighlight">\(x\)</span> ，泡利  <span class="math notranslate nohighlight">\(y\)</span> ，泡利  <span class="math notranslate nohighlight">\(z\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_{\mathrm{x}}=\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right] \quad \sigma_{\mathrm{y}}=\left[\begin{array}{cc} 0 &amp; -\mathrm{i} \\ \mathrm{i} &amp; 0 \end{array}\right] \quad \sigma_{\mathrm{z}}=\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right]\end{split}\]</div>
+<p>  每个泡利矩阵有两个特征值，+1和−1，其对应的归一化特征向量为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\Psi_{\mathrm{x}+}=\frac{1}{\sqrt{2}}\left[\begin{array}{l} 1 \\ 1 \end{array}\right] \quad \Psi_{\mathrm{y}+}=\frac{1}{\sqrt{2}}\left[\begin{array}{l} 1 \\ \mathrm{i} \end{array}\right] \quad \Psi_{\mathrm{z}+}=\left[\begin{array}{l} 1 \\ 0 \end{array}\right] \\ &amp;\Psi_{\mathrm{x}-}=\frac{1}{\sqrt{2}}\left[\begin{array}{c} 1 \\ -1 \end{array}\right] \quad \Psi_{\mathrm{y}-}=\frac{1}{\sqrt{2}}\left[\begin{array}{c} 1 \\ \mathrm{i} \end{array}\right] \quad \Psi_{\mathrm{z}-}=\left[\begin{array}{l} 0 \\ 1 \end{array}\right] \end{aligned}\end{split}\]</div>
+<p>  通常，用  <span class="math notranslate nohighlight">\(|+\rangle\)</span>  表示  <span class="math notranslate nohighlight">\(\Psi_{\mathrm{x}+}\)</span> , 用  <span class="math notranslate nohighlight">\(|-\rangle\)</span> 表示  <span class="math notranslate nohighlight">\(\Psi_{\mathrm{x}-}\)</span> ，用  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 表示  <span class="math notranslate nohighlight">\(\Psi_{\mathrm{z}+}\)</span> , 用  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 表示  <span class="math notranslate nohighlight">\(\Psi_{\mathrm{z}-}\)</span> 。 泡利算符对应的运算规则如下，同一泡利算符相乘会得到单位矩阵。泡利 <span class="math notranslate nohighlight">\(x\)</span> 乘以泡利 <span class="math notranslate nohighlight">\(y\)</span> 等于  <span class="math notranslate nohighlight">\(i\)</span> 倍的泡利  <span class="math notranslate nohighlight">\(z_{0}\)</span> 泡利  <span class="math notranslate nohighlight">\(y\)</span> 乘以泡利  <span class="math notranslate nohighlight">\(x\)</span> 等于  <span class="math notranslate nohighlight">\(-i\)</span> 倍的泡利  <span class="math notranslate nohighlight">\(z_{0}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\sigma_{\mathrm{x}} \mathrm{I}=\mathrm{I} \sigma_{\mathrm{x}}=\sigma_{\mathrm{x}} \quad \sigma_{\mathrm{y}} \mathrm{I}=\mathrm{I} \sigma_{\mathrm{y}}=\sigma_{\mathrm{y}} \quad \sigma_{\mathrm{z}} \mathrm{I}=\mathrm{I} \sigma_{\mathrm{z}}=\sigma_{\mathrm{z}}\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma_{\mathrm{x}} \sigma_{\mathrm{x}}=\sigma_{\mathrm{y}} \sigma_{\mathrm{y}}=\sigma_{\mathrm{z}} \sigma_{\mathrm{z}}=\mathrm{I}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_{\mathrm{x}} \sigma_{\mathrm{y}}=\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right]\left[\begin{array}{cc} 0 &amp; -\mathrm{i} \\ \mathrm{i} &amp; 0 \end{array}\right]=\mathrm{i}\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right]=\mathrm{i} \sigma_{\mathrm{z}}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_{\mathrm{y}} \sigma_{\mathrm{x}}=\left[\begin{array}{cc} 0 &amp; -\mathrm{i} \\ \mathrm{i} &amp; 0 \end{array}\right]\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right]=-\mathrm{i}\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right]=-\mathrm{i} \sigma_{\mathrm{z}}\end{split}\]</div>
+<p>  同理，也可以得到其它泡利矩阵相乘的表达式结果：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} \sigma_{\mathrm{y}} \sigma_{\mathrm{z}}=\mathrm{i} \sigma_{\mathrm{x}}\qquad \sigma_{\mathrm{z}} \sigma_{\mathrm{x}}=\mathrm{i} \sigma_{\mathrm{y}} \\ \sigma_{\mathrm{z}} \sigma_{\mathrm{y}}=-\mathrm{i} \sigma_{\mathrm{x}} \quad \sigma_{\mathrm{x}} \sigma_{\mathrm{z}}=-\mathrm{i} \sigma_{\mathrm{y}} \end{aligned}\end{split}\]</div>
+<p>  由此发现，顺序相乘的两个泡利矩阵跟未参与计算的泡利矩阵是 <span class="math notranslate nohighlight">\(\mathrm{i}\)</span> 倍关系，逆序相乘的泡利矩阵跟未参与计算的泡利矩阵是-i倍的关系。</p>
+<p>  在QPanda中，实现了泡利算符类，定义了以下规则：</p>
+<p>  用大写字母 <span class="math notranslate nohighlight">\(X\)</span> 表示泡利 <span class="math notranslate nohighlight">\(x\)</span> 算符，又称为 <span class="math notranslate nohighlight">\(X\)</span> 门；用大写字母 <span class="math notranslate nohighlight">\(Y\)</span> 表示泡利 <span class="math notranslate nohighlight">\(y\)</span> 算符，又称为 <span class="math notranslate nohighlight">\(Y\)</span> 门；用大写字母 <span class="math notranslate nohighlight">\(Z\)</span> 表示泡利 <span class="math notranslate nohighlight">\(z\)</span> 算符，又称为 <span class="math notranslate nohighlight">\(Z\)</span> 门。</p>
+<p>  另外，定义形式如</p>
+<div class="math notranslate nohighlight">
+\[\left \{ ^{\prime \prime}\mathrm{X} 0^{\prime \prime}, 2\right \} \equiv 2 \sigma_{\mathrm{x}}^{0}\]</div>
+<p>  表示在0号量子比特上作用了一个 <span class="math notranslate nohighlight">\(X\)</span> 门，其系数为2。</p>
+<div class="math notranslate nohighlight">
+\[\{ ^{\prime \prime} \text { Z0 Z1}^{\prime \prime} \text{} ,3\} \equiv 3 \sigma_{z}^{0} \otimes \sigma_{z}^{1}\]</div>
+<p>  表示在0号和1号量子比特上作用了 <span class="math notranslate nohighlight">\(Z\)</span> 门，其系数为3。</p>
+<div class="math notranslate nohighlight">
+\[\{^{\prime \prime}\mathrm{X} 0 \ \mathrm{Y} 1\ \mathrm{Z} 2\ \mathrm{Z} 3^{\prime \prime},4\} \equiv 4 \sigma_{\mathrm{x}}^{0} \otimes \sigma_{\mathrm{y}}^{1} \otimes \sigma_{\mathrm{z}}^{2} \otimes \sigma_{\mathrm{z}}^{3}\]</div>
+<p>  表示在0号量子比特作用 <span class="math notranslate nohighlight">\(X\)</span> 门，在1号量子比特作用 <span class="math notranslate nohighlight">\(Y\)</span> 门，在2号和3号量子比特上作用了 <span class="math notranslate nohighlight">\(Z\)</span> 门，其系数为4。</p>
+<div class="math notranslate nohighlight">
+\[\{^{\prime \prime}\ ^{\prime \prime}, 2\} \equiv 2 \mathrm{I}\]</div>
+<p>  表示的是单位矩阵，其系数为2。</p>
+<p>  最终表示的矩阵形式是作用在不同比特上的泡利门的张乘,这里提到的系数可以是实数也可以是复数。</p>
+<p>  在QPanda中，可以通过如下示例代码构建泡利运算符类。</p>
+<p>  使用C++构建方式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;Operator/PauliOperator.h&quot;</span>
+<span class="mf">2.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">QPanda</span><span class="p">;</span>
+<span class="mf">3.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">4.</span><span class="p">{</span>
+<span class="mf">5.</span>    <span class="n">PauliOperator</span> <span class="n">p1</span><span class="p">;</span>
+<span class="mf">6.</span>    <span class="n">PauliOperator</span> <span class="n">p2</span><span class="p">({</span> <span class="p">{</span><span class="s2">&quot;Z0 Z1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">},{</span><span class="s2">&quot;X1 Y2&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="p">});</span>
+<span class="mf">7.</span>    <span class="n">PauliOperator</span> <span class="n">p3</span><span class="p">(</span><span class="s2">&quot;Z0 Z1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="mf">8.</span>    <span class="n">PauliOperator</span> <span class="n">p4</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="o">//</span> <span class="n">PauliOperator</span> <span class="n">p4</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="mf">9.</span>    <span class="n">PauliOperator</span> <span class="n">p5</span><span class="p">(</span><span class="n">p2</span><span class="p">);</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">12.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  python构建方式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span>    <span class="n">p1</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">()</span>
+<span class="mf">5.</span>    <span class="n">p2</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">({</span><span class="s1">&#39;Z0 Z1&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;X1 Y2&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="mf">6.</span>    <span class="n">p3</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;Z0 Z1&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">7.</span>    <span class="n">p4</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="mf">8.</span>    <span class="n">p5</span> <span class="o">=</span> <span class="n">p2</span>
+</pre></div>
+</div>
+<p>  构造一个空的泡利算符类P1，里面不包含任何泡利算符及单位矩阵；可以以字典序的形式构建多个表达式，例如P2；也可以构建单项，例如P3；还可以只构造一个单位矩阵，例如P4；也可以通过已经构造好的泡利运算符来构造它的一份副本例如P5。</p>
+<p>  泡利算符类支持常规的加、减、乘等运算操作，计算返回结果还是一个泡利算符类。例如：定义a和b两个泡利算符类，让泡利算符类之间进行加操作，减操作和乘操作。</p>
+<p>  C++示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;Operator/PauliOperator.h&quot;</span>
+<span class="mf">2.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">QPanda</span><span class="p">;</span>
+<span class="mf">3.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">4.</span><span class="p">{</span>
+<span class="mf">5.</span>    <span class="n">PauliOperator</span> <span class="n">a</span><span class="p">(</span><span class="s2">&quot;Z0 Z1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="mf">6.</span>    <span class="n">PauliOperator</span> <span class="n">b</span><span class="p">(</span><span class="s2">&quot;X5 Y6&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="mf">7.</span>    <span class="n">auto</span> <span class="n">plus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="mf">8.</span>    <span class="n">auto</span> <span class="n">minus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+<span class="mf">9.</span>    <span class="n">auto</span> <span class="n">muliply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">12.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  python示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>
+<span class="mf">4.</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;Z0 Z1&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">5.</span>    <span class="n">b</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;X5 X6&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">6.</span>    <span class="n">plus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="mf">7.</span>    <span class="n">minus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="mf">8.</span>    <span class="n">muliply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>  泡利算符类还支持打印功能，可以直接将泡利算符类打印输出到屏幕上。如示例代码示，将a+b，a-b和a*b的值打印输出到屏幕上来查看计算结果。</p>
+<p>  C++示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;Operator/PauliOperator.h&quot;</span>
+<span class="mf">2.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">QPanda</span><span class="p">;</span>
+<span class="mf">3.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">4.</span><span class="p">{</span>
+<span class="mf">5.</span>    <span class="n">PauliOperator</span> <span class="n">a</span><span class="p">(</span><span class="s2">&quot;Z0 Z1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="mf">6.</span>    <span class="n">PauliOperator</span> <span class="n">b</span><span class="p">(</span><span class="s2">&quot;X5 Y6&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="mf">7.</span>    <span class="n">auto</span> <span class="n">plus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="mf">8.</span>    <span class="n">auto</span> <span class="n">minus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+<span class="mf">9.</span>    <span class="n">auto</span> <span class="n">multiply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a + b = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">plus</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">12.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a - b = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">minus</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">13.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a * b = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">multiply</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">16.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  python示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;Z0 Z1&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">4.</span>    <span class="n">b</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;X5 X6&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">5.</span>    <span class="n">plus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="mf">6.</span>    <span class="n">minus</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="mf">7.</span>    <span class="n">multiply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a + b = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plus</span><span class="p">))</span>
+<span class="mf">10.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a - b = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minus</span><span class="p">))</span>
+<span class="mf">11.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a * b = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">multiply</span><span class="p">))</span>
+<span class="mf">12.</span>
+</pre></div>
+</div>
+<p>  上述示例的输出结果如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">=</span>
+<span class="mf">2.</span><span class="p">{</span>
+<span class="mf">3.</span>    <span class="s2">&quot;X5 X6&quot;</span> <span class="p">:</span> <span class="mf">3.000000</span>
+<span class="mf">4.</span>    <span class="s2">&quot;Z0 Z1&quot;</span> <span class="p">:</span> <span class="mf">2.000000</span>
+<span class="mf">5.</span><span class="p">}</span>
+<span class="mf">6.</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">=</span>
+<span class="mf">7.</span><span class="p">{</span>
+<span class="mf">8.</span>    <span class="s2">&quot;X5 X6&quot;</span> <span class="p">:</span> <span class="o">-</span><span class="mf">3.000000</span>
+<span class="mf">9.</span>    <span class="s2">&quot;Z0 Z1&quot;</span> <span class="p">:</span> <span class="mf">2.000000</span>
+<span class="mf">10.</span><span class="p">}</span>
+<span class="mf">11.</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">=</span>
+<span class="mf">12.</span><span class="p">{</span>
+<span class="mf">13.</span> <span class="s2">&quot;Z0 Z1 X5 X6&quot;</span> <span class="p">:</span> <span class="mf">6.000000</span>
+<span class="mf">14.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  还可以通过getMaxIndex接口返回泡利算符类需要操作的比特个数。如果是空的泡利算符类则返回0，否则返回最大下标索引值加1的结果。</p>
+<p>  C++示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;Operator/PauliOperator.h&quot;</span>
+<span class="mf">2.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">QPanda</span><span class="p">;</span>
+<span class="mf">3.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">4.</span><span class="p">{</span>
+<span class="mf">5.</span>    <span class="n">PauliOperator</span> <span class="n">a</span><span class="p">(</span><span class="s2">&quot;Z0 Z1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="mf">6.</span>    <span class="n">PauliOperator</span> <span class="n">b</span><span class="p">(</span><span class="s2">&quot;X5 Y6&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="n">auto</span> <span class="n">muliply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a * b = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">muliply</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">11.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Index : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">muliply</span><span class="o">.</span><span class="n">getMaxIndex</span><span class="p">();</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">14.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  python示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;Z0 Z1&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">4.</span>    <span class="n">b</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;X5 X6&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">5.</span>    <span class="n">muliply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+<span class="mf">6.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a * b = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">muliply</span><span class="p">))</span>
+<span class="mf">7.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Index : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">muliply</span><span class="o">.</span><span class="n">getMaxIndex</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>  在示例代码中，a*b的结果是Z0 Z1 X5 X6，则这个泡利算符类需要使用到的比特数，通过调用getMaxIndex接口得到7。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">2.</span><span class="s2">&quot;Z0 Z1 X5 X6&quot;</span> <span class="p">:</span> <span class="mf">6.000000</span>
+<span class="mf">3.</span><span class="p">}</span>
+<span class="mf">4.</span><span class="n">Index</span> <span class="p">:</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<p>  另外一个跟泡利算符类下标有关的接口remapQubitIndex，它的功能是对泡利算符类中的索引从0比特开始分配映射，并返回新的泡利算符。</p>
+<p>  使用C++方式构建：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;Operator/PauliOperator.h&quot;</span>
+<span class="mf">2.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">QPanda</span><span class="p">;</span>
+<span class="mf">3.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">4.</span><span class="p">{</span>
+<span class="mf">5.</span>    <span class="n">PauliOperator</span> <span class="n">a</span><span class="p">(</span><span class="s2">&quot;Z0 Z1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="mf">6.</span>    <span class="n">PauliOperator</span> <span class="n">b</span><span class="p">(</span><span class="s2">&quot;X5 Y6&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="mf">7.</span>
+<span class="mf">8.</span>    <span class="n">auto</span> <span class="n">muliply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span>    <span class="n">std</span><span class="p">::</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">size_t</span><span class="p">,</span> <span class="n">size_t</span><span class="o">&gt;</span> <span class="n">index_map</span><span class="p">;</span>
+<span class="mf">11.</span>    <span class="n">auto</span> <span class="n">remap_pauli</span> <span class="o">=</span> <span class="n">muliply</span><span class="o">.</span><span class="n">remapQubitIndex</span><span class="p">(</span><span class="n">index_map</span><span class="p">);</span>
+<span class="mf">12.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;remap_pauli : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">remap_pauli</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="mf">13.</span>    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Index : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">remap_pauli</span><span class="o">.</span><span class="n">getMaxIndex</span><span class="p">();</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">16.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  使用python方式构建：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="kn">from</span> <span class="nn">pyqpanda</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="mf">3.</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;Z0 Z1&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">4.</span>    <span class="n">b</span> <span class="o">=</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="s1">&#39;X5 X6&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mf">5.</span>    <span class="n">muliply</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+<span class="mf">6.</span>    <span class="n">index_map</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="mf">7.</span>    <span class="n">remap_pauli</span> <span class="o">=</span> <span class="n">muliply</span><span class="o">.</span><span class="n">remapQubitIndex</span><span class="p">(</span><span class="n">index_map</span><span class="p">)</span>
+<span class="mf">8.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;remap_pauli = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">remap_pauli</span><span class="p">))</span>
+<span class="mf">9.</span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Index : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">remap_pauli</span><span class="o">.</span><span class="n">getMaxIndex</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>  index_map里面是前后映射关系，以a*b为例，如果直接调用getMaxIndex接口返回的结果是7，说明这个泡利算符类需要操作7个量子比特，其实2号，3号和4号比特并未被使用；如果使用remapQubitIndex接口，即可用4个量子比特来进行计算操作。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">remap_pauli</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mf">2.</span><span class="s2">&quot;Z0 Z1 X2 X3&quot;</span> <span class="p">:</span> <span class="mf">6.000000</span>
+<span class="mf">3.</span><span class="p">}</span>
+<span class="mf">4.</span><span class="n">Index</span> <span class="p">:</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>  泡利算符类提供了其它一些常用功能，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.isEmpyt()          // 判空
+2.dagger()           // 返回共轭泡利算符
+3.isAllPauliZorI()   // 判断是否全为泡利“Z”或“I”
+4.toString()         // 返回字符串形式
+5.data()             // 返回泡利运算符内部维护的数据结构
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>4.5.6 哈密顿量<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<p>  对于一个物理系统，可以用哈密顿量来描述，其实哈密顿量在数学表示上就是一个矩阵，只不过这个矩阵有点特殊，它的本征值都是实数。</p>
+<p>  哈密顿量的本征向量描述对应的物理系统所处的各个本征态，本征值就是物理系统所处的本征态对应的能量。</p>
+<p>  对于一个问题，如果找到了它的哈密顿量，根据这个哈密顿量就可以求得它的本征态和本征能量，得到了本征态和本征能量就相当于解决了问题。</p>
+<p>  例如图4.5.5，对于这个由三个台阶和一个小球组成的系统，它可以存在三种不同的状态，将小球放在不同的台阶上，可以看到每个台阶的高度不同，小球的重力势能是不相等的，所以这个系统有三种不同的能量状态。</p>
+<img alt="../_images/4.5.5.png" class="align-center" src="../_images/4.5.5.png" />
+<p class="centered">
+<strong>图4.5.5 三种不同状态</strong></p><p>  假设每个状态对应的能量分别是 <span class="math notranslate nohighlight">\(\mathrm{E1}\)</span> ， <span class="math notranslate nohighlight">\(\mathrm{E2}\)</span> 和  <span class="math notranslate nohighlight">\(\mathrm{E3}\)</span> 。</p>
+<p>  用1，0，0来表示第一个状态，用0，1，0来表示第二个状态；用0，0，1来表示第三个状态。</p>
+<p>  那这个系统的哈密顿量可以表示成这样的矩阵形式：</p>
+<p>  对于对角矩阵，它对角线上的每个元素都是该矩阵的本征值。其中1，0，0；0，1，0和0，0，1就是该对角矩阵的本征向量。</p>
+<p>  对于布尔变量a来说，它有两个状态a和非a，如果a表示真的话，那非a就表示假，假设用数字1来表示真，用数字0来表示假。则如表4.5.3：</p>
+<p class="centered">
+<strong>表4.5.3 布尔变量的状态及值</strong></p><img alt="../_images/表4.5.3.png" class="align-center" src="../_images/表4.5.3.png" />
+<p>  它有两个本征态 <span class="math notranslate nohighlight">\(|0\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|1\rangle\)</span> ，这两个本征态对应的本征值为1和-1。如果用1表示布尔变量为真状态时的能量，-1表示布尔变量为假状态时的能量，那么泡利  <span class="math notranslate nohighlight">\(z\)</span> 就是布尔变量这个简单物理系统的哈密顿量形式。</p>
+<p><strong>逻辑表达式a∧b的哈密顿量</strong></p>
+<p>  逻辑与也叫做逻辑乘，逻辑与对应的哈密顿量可以表示成两个逻辑变量的哈密顿量之间的乘积。</p>
+<p>  假设给出a与b的真值表，如表4.5.4。当逻辑变量a和逻辑变量b都为true时，逻辑表达式a与b值为1，其它情况值都为0。</p>
+<p class="centered">
+<strong>表4.5.4 a与b的真值表</strong></p><img alt="../_images/表4.5.4.png" class="align-center" src="../_images/表4.5.4.png" />
+<p>  哈密顿量的本征向量可以描述对应物理系统所处的各个本征态，哈密度量的本征值可以描述物理系统所处的本征态对应的能量。</p>
+<p>  对于逻辑表达式a与b这个简单系统来说，它有4个状态，第一个状态能量值为1，其它状态能量值为0；那么逻辑表达式a与b的哈密顿量，有4个本征态，本征态对应的能量分别为1,0,0,0。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a} \land \mathrm{b}}=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  逻辑与也叫做逻辑乘，逻辑与对应的哈密顿量可以表示成两个逻辑变量的哈密顿量之间的乘积。如果用 <span class="math notranslate nohighlight">\(|0\rangle\)</span> 态来表示a状态和b状态，用 <span class="math notranslate nohighlight">\(|1\rangle\)</span> 态来表示非a状态和非b状态。令状态a和状态b的值为真。则逻辑表达式a与b的真值表如表4.5.5所示：</p>
+<p class="centered">
+<strong>表4.5.5 逻辑表达式a与b的真值表</strong></p><img alt="../_images/表4.5.5.png" class="align-center" src="../_images/表4.5.5.png" />
+<p><span class="math notranslate nohighlight">\(|0\rangle\)</span> 态对应的哈密顿量为 <span class="math notranslate nohighlight">\(\frac{I+\sigma^{2}}{2}\)</span> ，将变量a和b用其哈密顿量来替换，逻辑与用矩阵乘来替换，则逻辑表达式a与b的哈密顿量可以这样推导，对于a和b各用1个比特来表示，用索引值为0的比特来表示a，索引值为1的比特来表示b，表达式为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a} \land \mathrm{b}}=\frac{\mathrm{I}+\sigma_{0}^{z}}{2} \cdot \frac{\mathrm{I}+\sigma_{1}^{z}}{2}=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  同理，如果用 <span class="math notranslate nohighlight">\(|1\rangle\)</span> 态来表示a状态和b状态，用 <span class="math notranslate nohighlight">\(|0\rangle\)</span> 态来表示非a状态和非b状态。则逻辑表达式a与b的真值表可以如表4.5.6所示：</p>
+<p class="centered">
+<strong>表4.5.6 逻辑表达式a与b的真值表</strong></p><img alt="../_images/表4.6.6.png" class="align-center" src="../_images/表4.6.6.png" />
+<p><span class="math notranslate nohighlight">\(|1 \rangle\)</span> 态对应的哈密顿量为 <span class="math notranslate nohighlight">\(\frac{I-\sigma^{2}}{2}\)</span> ，将变量a和b用哈密顿量来替换，逻辑与用矩阵乘来替换，则逻辑表达式a与b的哈密顿量推导形式为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a} \land \mathrm{b}}=\frac{\mathrm{I}-\sigma_{0}^{z}}{2} \cdot \frac{\mathrm{I}-\sigma_{1}^{z}}{2}=\left[\begin{array}{llll} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array}\right]\end{split}\]</div>
+<p><strong>逻辑表达式的a∨b哈密顿量</strong></p>
+<p>  所有的逻辑表达式都可以用逻辑与和逻辑非来表示。那么逻辑表达式a或b，可以表示为非a与非b的非。</p>
+<p>  假设给出逻辑表达式a或b的真值表，如表4.5.7。当逻辑变量a和b都为false的时候，逻辑表达式a或b值为0。其它情况值都为1。</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{a} \lor \mathrm{b}=\neg(\neg \mathrm{a} \wedge \neg \mathrm{b})\]</div>
+<p class="centered">
+<strong>表4.5.7 逻辑表达式a或b的真值表</strong></p><img alt="../_images/表4.5.7.png" class="align-center" src="../_images/表4.5.7.png" />
+<p>  根据状态和对应的能量，写出逻辑表达式a或b的哈密顿量，这个哈密顿量也有4个本征态，本征态对应的能量分别为1,1,1,0。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a}{\mathrm{\lor} b}}=\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  同样假设用 <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 态来表示a状态和b状态，用 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 态来表示非a状态和非b状态，令状态a和状态b的值为真。则逻辑表达式a或b的真值表如表4.5.8所示:</p>
+<p class="centered">
+<strong>表4.5.8 逻辑表达式a与b的真值表</strong></p><img alt="../_images/表4.5.8.png" class="align-center" src="../_images/表4.5.8.png" />
+<p><span class="math notranslate nohighlight">\(|1 \rangle\)</span> 态对应的哈密顿量为  <span class="math notranslate nohighlight">\(\frac{I-\sigma^{2}}{2}\)</span> ，将非a状态和非b状态用对应 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 的哈密顿量来替换，逻辑与用矩阵乘来替换，再取非就相当于用单位向量做减法，则逻辑表达式a或b的哈密顿量推导形式为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a} \lor \mathrm{~b}}=\mathrm{I}-\frac{\mathrm{I}-\sigma_{0}^{2}}{2} \cdot \frac{\mathrm{I}-\sigma_{1}^{2}}{2}=\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  从上述表达式不难发现，它与用状态及其能量写出来的哈密顿量形式一样。</p>
+<p>  同理，如果用 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 态来表示a状态和b状态，用 <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 态来表示非a状态和非b状态。则逻辑表达式a或b的真值表如表4.5.9所示：</p>
+<p class="centered">
+<strong>表4.5.9 逻辑表达式a或b的真值表</strong></p><img alt="../_images/表4.5.9.png" class="align-center" src="../_images/表4.5.9.png" />
+<p><span class="math notranslate nohighlight">\(|0 \rangle\)</span> 态对应的哈密顿量为  <span class="math notranslate nohighlight">\(\frac{1+\sigma^{\pi}}{2}\)</span> , 同时将非a状态和非b状态用  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 态对应的哈密顿量来替换，逻辑与用矩阵乘来替换，非操作相当于用单位向量进行减法操作，则逻辑 表达式a或b的哈密顿量形式也可以推导为:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a \lor b}}=\mathrm{I}-\frac{\mathrm{I}+\sigma_{0}^{2}}{2} \cdot \frac{\mathrm{I}+\sigma_{1}^{2}}{2}=\left[\begin{array}{llll} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{array}\right]\end{split}\]</div>
+<p><strong>逻辑表达式的a+b哈密顿量</strong></p>
+<p>  加法对应的哈密顿量可以表示为变量对应的哈密顿量进行加操作，所以a加b的哈密顿量等于变量a和变量b取值对应的哈密顿量之和。</p>
+<p>  假设a,b只能在0和1中进行取值，可以看到总共存在4种情况，当a取0，b取0的时候值为0，a取0，b取1的时候值为1，a取1，b取0的时候值为1，a取1，b取1的时候值为2，如表4.5.10所示：</p>
+<p class="centered">
+<strong>表4.5.10 4种情况</strong></p><img alt="../_images/表4.5.10.png" class="align-center" src="../_images/表4.5.10.png" />
+<p>  根据状态及其对应能量，对于这种状态比较少的情况，直接将它对应的哈密顿量写出，这个哈密顿量也有4个本征态，本征态对应的能量分别为0，1，1，2。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a}+\mathrm{b}}=\left[\begin{array}{llll} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 \end{array}\right]\end{split}\]</div>
+<p>同样，可以各用 1 个比特来表示a和b的取值范围，如果用  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 态来表示a和b取值为 1 时的状态，用  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 态表示  <span class="math notranslate nohighlight">\(a\)</span> 和b取值为 0 时的状态，列出所有情况如表 4.5.11 所示:</p>
+<p class="centered">
+<strong>表4.5.11 所有情况</strong></p><img alt="../_images/表4.5.11.png" class="align-center" src="../_images/表4.5.11.png" />
+<p>  那么，逻辑表达式a+b的哈密顿量形式为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a}+\mathrm{b}}=\frac{\mathrm{I}+\sigma_{0}^{2}}{2}+\frac{\mathrm{I}+\sigma_{1}^{z}}{2}=\left[\begin{array}{llll} 2 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  同理，用  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 态来表示a和b取值为 1 时的状态，用  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 态表示a和b，取值为0时的状态，如表4.5.12所示：</p>
+<p class="centered">
+<strong>表4.5.12 所有情况</strong></p><img alt="../_images/表4.5.12.png" class="align-center" src="../_images/表4.5.12.png" />
+<p>  那么，逻辑表达式a+b的哈密顿量形式为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{H}_{\mathrm{a}+\mathrm{b}}=\frac{\mathrm{I}-\sigma_{0}^{z}}{2}+\frac{\mathrm{I}-\sigma_{1}^{z}}{2}=\left[\begin{array}{llll} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 2 \end{array}\right]\end{split}\]</div>
+<p><strong>逻辑表达式的a+b哈密顿量</strong></p>
+<a class="reference internal image-reference" href="../_images/4.5.6.png"><img alt="../_images/4.5.6.png" class="align-center" src="../_images/4.5.6.png" style="width: 360px;" /></a>
+<p class="centered">
+<strong>图4.5.6 杠铃图</strong></p><p>  对杠铃图AB这条边，如果顶点A和顶点B分配到相同组，例如“0组”或“1组”，则AB这条边将不会被切割，对总的切割贡献为0；相反，如果将顶点A和B分配到不同组，假设将A分配到“0组”，将B分配到“1组”，或对调分配，则AB这条边将会被切割，对总的切割贡献为这条边的权重(例如AB这条边权重为1，则贡献为1）。</p>
+<p>  那么，如果将对应于最大切割的比特串（或比特串组），视为是使用哈密顿量编码的代价函数的基态。这个哈密顿量的形式，可以通过构造经典函数返回值来决定，如果被切割边所对应的两个节点跨越不同组，则返回1（或边的权重），否则返回0。哈密顿量的形式为：</p>
+<div class="math notranslate nohighlight">
+\[C_{i j}=\frac{1}{2}\left(1-Z_{i} Z_{j}\right)\]</div>
+<img alt="../_images/4.5.7.png" class="align-center" src="../_images/4.5.7.png" />
+<p class="centered">
+<strong>图4.5.7 分组情况</strong></p><p>  如果顶点 <span class="math notranslate nohighlight">\(Z_{i}\)</span> 或  <span class="math notranslate nohighlight">\(Z_{j}\)</span> 属于“ <span class="math notranslate nohighlight">\(0\)</span> 组”，则  <span class="math notranslate nohighlight">\(Z_{i}\)</span> 或  <span class="math notranslate nohighlight">\(Z_{j}\)</span> 的值为 <span class="math notranslate nohighlight">\(+1\)</span> ，如果顶点 <span class="math notranslate nohighlight">\(Z_{i}\)</span> 或  <span class="math notranslate nohighlight">\(Z_{j}\)</span> 属于“ <span class="math notranslate nohighlight">\(1\)</span> 组”，则  <span class="math notranslate nohighlight">\(Z_{i}\)</span> 或  <span class="math notranslate nohighlight">\(Z_{j}\)</span> 的值为  <span class="math notranslate nohighlight">\(-1\)</span> 。那么，可以用公式来表示图4.5.7的分组情况:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{C}_{\mathrm{ij}}=\frac{1}{2}\left(1-\mathrm{Z}_{\mathrm{i}} \mathrm{Z}_{\mathrm{j}}\right) \text { 其中 }\left\{\begin{array}{l} \mathrm{Z}_{\mathrm{i}}, \mathrm{Z}_{\mathrm{j}} \in 0 \text { 组, } \mathrm{Z}_{\mathrm{i}}, \mathrm{Z}_{\mathrm{i}}=1 \\ \mathrm{Z}_{\mathrm{i}}, \mathrm{Z}_{\mathrm{j}} \in 1 \text { 组, } \mathrm{Z}_{\mathrm{i}}, \mathrm{Z}_{\mathrm{j}}=-1 \end{array}\right.\end{split}\]</div>
+<p>  对于更复杂的图来说，最大切割值等于每条边切割贡献的总和：</p>
+<div class="math notranslate nohighlight">
+\[\text { MaxCut }=\sum_{i j} C_{i j}\]</div>
+<p>  对于杠铃图来说，它有 4 个分组，如果将它看作一个系统的话，表示这个系统有 4 个状态，并且每个状态都是孤立存在的，用狄拉克符号表示它的状态就是  <span class="math notranslate nohighlight">\(|00\rangle\)</span> 、 <span class="math notranslate nohighlight">\(|01\rangle\)</span> 、 <span class="math notranslate nohighlight">\(|10\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|11\rangle\)</span> 。每个分组都对应一个切割值，可以将这个切割值看作是系统处在这个状态时的能量，系统处在 <span class="math notranslate nohighlight">\(|00\rangle\)</span> 状态时能量为 0 ，系统处在  <span class="math notranslate nohighlight">\(|01\rangle\)</span> 状态时能量为 1 ，系统处在  <span class="math notranslate nohighlight">\(|10\rangle\)</span> 状态时，能量为 1 ，系统处在  <span class="math notranslate nohighlight">\(|11\rangle\)</span> 状态时能量为 0 。</p>
+<p>  用哈密顿量表示成如下的矩阵形式:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;|00\rangle=\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right]|01\rangle=\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right]|10\rangle=\left[\begin{array}{l} 0 \\ 0 \\ 1 \\ 0 \end{array}\right]|11\rangle=\left[\begin{array}{l} 0 \\ 0 \\ 0 \\ 1 \end{array}\right] \\ &amp;E_{|00\rangle}=0 \quad E_{|01\rangle}=1 \quad E_{|10\rangle}=1 \quad E_{|11\rangle}=0 \end{aligned}\end{split}\]</div>
+<p>  它的第一个和第四个状态能量为0，第二个和第三个状态能量为1。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H=\left[\begin{array}{llll} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  对于这个简单的系统，可以发现，它其实对应着一个异或表达式，异或表达式的真值表如表4.5.13所示：</p>
+<p class="centered">
+<strong>表4.5.13 异或表达式的真值表</strong></p><img alt="../_images/表4.5.13.png" class="align-center" src="../_images/表4.5.13.png" />
+<p>  当变量a和变量b取不同值时，异或的结果为1，取相同值时，异或的结果为0。</p>
+<p>  a异或b也可以表示成两个逻辑与运算之和。</p>
+<div class="math notranslate nohighlight">
+\[a \oplus b=a \wedge \neg b+\neg a \wedge b\]</div>
+<p>  前面介绍过逻辑与相当于矩阵之间乘积，非操作相当于跟单位矩阵之间做减法操作，加操作相当于矩阵之间相加。则a异或b的哈密顿量可以用这样的公式来推导：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;H_{a \oplus b}=\frac{I+\sigma_{0}^{z}}{2} \cdot \frac{I-\sigma_{1}^{z}}{2}+\frac{I-\sigma_{0}^{z}}{2} \cdot \frac{I+\sigma_{1}^{z}}{2} \\ &amp;=\frac{I-\sigma_{0}^{z} \sigma_{1}^{z}}{2} \\ &amp;=\left[\begin{array}{llll} 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right] \end{aligned}\end{split}\]</div>
+<p>  对于复杂的最大切割系统，将其简化成杠铃图这样的简单系统的组合，其切割值就是各个简单系统切割值的和。对应这个复杂系统的最大切割问题，其哈密顿量表示如下：</p>
+<div class="math notranslate nohighlight">
+\[H_{\text {Maxcut }}=H_{1}+H_{2}+\cdots+H_{n}=\sum_{i j} \frac{1}{2}\left(I-\sigma_{i}^{z} \sigma_{j}^{z}\right)\]</div>
+<p><strong>在QPanda中构造最大切割问题对应的哈密顿量</strong></p>
+<p>  对于杠铃图来说，它对应的哈密顿量形式为</p>
+<div class="math notranslate nohighlight">
+\[\frac{I-\sigma_{i}^{z} \sigma_{j}^{z}}{2}\]</div>
+<p>  去掉这个表达式中的单位矩阵和常系数，它描述的其实是：</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{i}^{z} \sigma_{j}^{z}\]</div>
+<p>  之前介绍过在QPanda中用泡利算符类来描述泡利矩阵之间的关系。用 <span class="math notranslate nohighlight">\(\{ ^{\prime \prime} \text { Z0 Z1}^{\prime \prime} \text{} ,1\}\)</span> 来构造杠铃图对应的泡利算符类。其实Z0Z1对应的就是泡利算符之间的乘积关系，系数1表示切割的权重。</p>
+<p>  对方形图来说，它的哈密顿量是各个简单系统哈密顿量之和。在QPanda中可以通过map的形式构造多个表达式，各表达式之间对应的关系是加操作。</p>
+<div class="math notranslate nohighlight">
+\[\{ ^{\prime \prime} \text { Z0 Z1}^{\prime \prime} \text{} ,1\}\]</div>
+<div class="math notranslate nohighlight">
+\[\{ ^{\prime \prime} \text { Z1 Z2}^{\prime \prime} \text{} ,1\}\]</div>
+<div class="math notranslate nohighlight">
+\[\{ ^{\prime \prime} \text { Z2 Z3}^{\prime \prime} \text{} ,1\}\]</div>
+<div class="math notranslate nohighlight">
+\[\{ ^{\prime \prime} \text { Z3 Z0}^{\prime \prime} \text{} ,1\}\]</div>
+</section>
+<section id="id7">
+<h2>4.5.7 算法原理<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<p><strong>绝热量子计算</strong></p>
+<p>  绝热量子计算（Adiabatic quantum computation）是量子计算的一种形式，它依赖于绝热定理进行计算。 首先，对于一个特定的问题，找到一个（可能复杂的）哈密顿量，其基态描述了该问题的解决方案；然后，准备一个具有简单哈密顿量的系统并初始化为基态；最后，简单的哈密顿量绝热地演化为期望的复杂哈密顿量。 根据绝热定理，系统保持在基态，因此最后系统的状态描述了问题的解决方案， 绝热量子计算已经被证明在线路模型中与传统的量子计算是多项式等价的。</p>
+<p>  绝热量子计算是通过以下过程解决特定问题和其他组合搜索问题。通常这种问题就是寻找一种状态满足  <span class="math notranslate nohighlight">\(C_1 \wedge C_2 \wedge^{\cdots} \wedge C_{m}\)</span> , 该表达式包含可满足条件的M个子问题，每个子问题  <span class="math notranslate nohighlight">\(\mathrm{C}{i}\)</span> 值为True或False，并且可能包含n位，这里的每一位都是一个变量  <span class="math notranslate nohighlight">\(\mathrm{x}{j} \in{0,1}\)</span> 所以  <span class="math notranslate nohighlight">\(\mathrm{C}{i}\)</span> 是一个关于  <span class="math notranslate nohighlight">\(\mathrm{x}{1}, \mathrm{x}{2}, \cdots, \mathrm{x}{n}\)</span> 的布尔值函数，绝热量子算法利用量子绝热演化解决了这类问题。它以初始哈密顿量  <span class="math notranslate nohighlight">\(\mathrm{H}_{B}\)</span> 开始:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{H}_{B}=H_{B_{1}}+H_{B_{2}}+\cdots+H_{B_{M}}\]</div>
+<p>  这里  <span class="math notranslate nohighlight">\(H_{B_{i}}\)</span> 对应于该子问题  <span class="math notranslate nohighlight">\(\mathrm{C}{i}\)</span> 的哈密顿量，通常选择的  <span class="math notranslate nohighlight">\(H_{B_{i}}\)</span> 不会依赖于其它的子问题。然后经历绝热演化，以问题的哈密顿量  <span class="math notranslate nohighlight">\(\mathrm{H}_{P}\)</span> 结束:</p>
+<div class="math notranslate nohighlight">
+\[H_{P}=\sum_{C} H_{P, C}\]</div>
+<p>  这里  <span class="math notranslate nohighlight">\(\mathrm{H}_{P, C}\)</span> 是满足问题  <span class="math notranslate nohighlight">\(\mathrm{C}\)</span> 的的哈密顿量，它有特征值0和 1 。如果子问题  <span class="math notranslate nohighlight">\(\mathrm{C}\)</span> 满足条件则特征值为1，不满足则特征值为 0 。对于一个简单的绝热演化路径，如图4.5.8 所示</p>
+<img alt="../_images/4.5.8.png" class="align-center" src="../_images/4.5.8.png" />
+<p class="centered">
+<strong>图4.5.8 一个简单的绝热演化路径</strong></p><div class="math notranslate nohighlight">
+\[H(t)=\left(1-\frac{t}{T}\right) H_{B}+\frac{t}{T} H_{P}\]</div>
+<p>  令  <span class="math notranslate nohighlight">\(\mathrm{s}=\frac{\mathrm{t}}{T}\)</span> , 则有：</p>
+<div class="math notranslate nohighlight">
+\[\tilde{H}(t)=(1-s) H_{B}+(s) H_{P}\]</div>
+<p>  这就是算法的绝热演化哈密顿量。</p>
+<p>  根据绝热定理，从哈密顿量的基态开始  <span class="math notranslate nohighlight">\(\mathrm{H}_{B}\)</span> ，首先，经历一个绝热过程，最后以问题哈密顿量的基态结束 <span class="math notranslate nohighlight">\(\mathrm{H}_{P}\)</span> ;然后测量最终状态 <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> 个自旋的Z分量，这将产生一个 字符串  <span class="math notranslate nohighlight">\(\mathrm{Z}_{1}\)</span> ， <span class="math notranslate nohighlight">\(\mathrm{Z}_{2}\)</span> ， <span class="math notranslate nohighlight">\(\cdots\)</span> ， <span class="math notranslate nohighlight">\(\mathrm{Z}_{n}\)</span> 这很可能就是问题的结果。根据绝热定理  <span class="math notranslate nohighlight">\(\mathrm{T}=\left(\frac{\varepsilon}{g{\min }^{2}}\right)\)</span> 所示，这里运行时间T必须足够长以确保结果的正确性，而 <span class="math notranslate nohighlight">\(\mathrm{g}_{\min }=\min_{0 \leq s \leq 1}(E_{1}(S)-E_{0}(S))\)</span> 是基态和第一激发态之间的最小能隙。</p>
+<p><strong>初始哈密顿量</strong></p>
+<p>  QAOA定义的初始哈密顿量 <span class="math notranslate nohighlight">\(H_{B}\)</span> 是泡利X算符在每个量子位上的和。</p>
+<div class="math notranslate nohighlight">
+\[H_{B}=\sum_{i=0}^{n-1} \sigma_{i}^{x}\]</div>
+<p>  该哈密顿量具有基态，该基态是泡利算子最高能量对应的特征向量  <span class="math notranslate nohighlight">\((|+\rangle)\)</span> 的张量积。</p>
+<div class="math notranslate nohighlight">
+\[\left|\phi_{0}\right\rangle=|+\rangle_{0}|+\rangle_{1} \cdots|+\rangle_{\mathrm{n}-1}\]</div>
+<p><strong>QAOA量子线路</strong></p>
+<p>  以最大切割问题为例，QAOA线路是以 <span class="math notranslate nohighlight">\(H_B\)</span> 为生成元的酉变换跟以 <span class="math notranslate nohighlight">\(H_P\)</span> 为生成元的酉变换乘积的累积。</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{U}(\vec{\beta}, \vec{\gamma})=\prod_{\mathrm{i}=1}^{\mathrm{m}} \mathrm{U}\left(\mathrm{H}_{\mathrm{B}}, \beta_{\mathrm{i}}\right) \mathrm{U}\left(\mathrm{H}_{\mathrm{P}}, \gamma_{\mathrm{i}}\right)\]</div>
+<p>  其中  <span class="math notranslate nohighlight">\(\mathrm{m}\)</span> 表示演化步数，所以每一步对应的量子线路都是这两个酉变换之间的乘积，每一步都对应着两个参数 <span class="math notranslate nohighlight">\(\beta\)</span> 和  <span class="math notranslate nohighlight">\({\gamma}\)</span> ；这里，以  <span class="math notranslate nohighlight">\(H_{B}\)</span> 为生成元的酉变换等于 <span class="math notranslate nohighlight">\(e^{-i H_B \beta_i}\)</span> 为生成元的酉变换等于  <span class="math notranslate nohighlight">\(e^{-i H_{P} \gamma_{1}}\)</span> 。这里的  <span class="math notranslate nohighlight">\(\beta_{i}\)</span> 和  <span class="math notranslate nohighlight">\(\gamma_{i}\)</span> 表示步数对应的量子线路的参数。</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{U}\left(\mathrm{H}_{\mathrm{B}}, \beta_{\mathrm{i}}\right)=\mathrm{e}^{-\mathrm{iH}_{\mathrm{B}} \beta_{\mathrm{i}}}\]</div>
+<div class="math notranslate nohighlight">
+\[\mathrm{U}\left(\mathrm{H}_{\mathrm{P}}, \gamma_{\mathrm{i}}\right)=\mathrm{e}^{-\mathrm{iH}_{P} \gamma_{\mathrm{i}}}\]</div>
+<p>  那么，基态  <span class="math notranslate nohighlight">\(\left|\phi_{0}\right\rangle\)</span> ， 经过一组以 <span class="math notranslate nohighlight">\(\beta\)</span> 和 <span class="math notranslate nohighlight">\(\gamma\)</span> 为参数的酉变换后，演化到了基态  <span class="math notranslate nohighlight">\(\left|\phi_{1}\right\rangle\)</span> 。其中步数  <span class="math notranslate nohighlight">\(\mathrm{m}\)</span> 越大，量子线路得到的效果就越好。</p>
+<div class="math notranslate nohighlight">
+\[\left|\phi_{1}\right\rangle=|\vec{\beta}, \vec{\gamma}\rangle=U(\vec{\beta}, \vec{\gamma})\left|\phi_{0}\right\rangle\]</div>
+<p><strong>量子逻辑门</strong></p>
+<p>  对于以  <span class="math notranslate nohighlight">\(H_{B}\)</span> 为生成元，参数为  <span class="math notranslate nohighlight">\(\beta\)</span> 的酉变换，将  <span class="math notranslate nohighlight">\(H_{B}\)</span> 的值带入，然后可以推导出的是一组RX门操作。如下所示:</p>
+<div class="math notranslate nohighlight">
+\[H_{B}=\sum_{i=0}^{n-1} \sigma_{i}^{x}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{U}\left(H_{B}, \quad \beta_{i}\right)=e^{-i H_{B} \beta_{i}} \\ &amp;=e^{-{i} \sum_{n=0}^{N-1} \sigma_{n}^{x} \beta_{i}} \\ &amp;=\prod_{n=0}^{N-1} e^{-i \sigma_{n}^{x} \beta_{i}} \\ &amp;=\prod_{n=0}^{N-1} R X\left(n, 2 \beta_{i}\right) \end{aligned}\end{split}\]</div>
+<p>  同样，以  <span class="math notranslate nohighlight">\(H_{p}\)</span> 为生成元，参数为  <span class="math notranslate nohighlight">\(\gamma\)</span> 的酉变换，将最大切割对应的哈密顿量带入，推导得出其中前一项是个常数，再对后面一项进行推导，最终可以推导出是一组 CNOT门和RZ门的组合操作，如下所示:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{H}_{\mathrm{P}}=\sum_{\mathrm{ij}} \frac{1}{2}\left(\mathrm{I}-\sigma_{\mathrm{i}}^{z} \sigma_{\mathrm{j}}^{z}\right)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{U}\left(\mathrm{H}_{\mathrm{P}}, \gamma_{\mathrm{i}}\right)=\mathrm{e}^{-\mathrm{iH}_{\mathrm{p}} \gamma_{\mathrm{i}}}\\ &amp;=\mathrm{e}^{-\mathrm{i} \sum_{\mathrm{jk}} \frac{1}{2}\left(\mathrm{I}-\sigma_{j}^{2} \otimes \sigma_{j}^{2}\right) \gamma_{\mathrm{i}}}\\ &amp;=\prod_{\mathrm{jk}} \mathrm{e}^{-\mathrm{i} \frac{\gamma_{\mathrm{i}} \mathrm{I}}{2}} \cdot \prod_{\mathrm{jk}} \mathrm{e} \mathrm{e}^{\mathrm{i} \frac{\mathrm{y}_{\mathrm{i}}}{2} \sigma_{\mathrm{j}}^{2} \otimes \sigma_{\mathrm{j}}^{z}}\\ &amp;=\left[\begin{array}{cccc} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{array}\right]\left[\begin{array}{cccc} \mathrm{i}^{\mathrm{i} \frac{\gamma_{1}}{2}} &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; \mathrm{e}^{-\mathrm{i} \frac{\gamma_{1}}{2}} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; \mathrm{e}^{\mathrm{i} \frac{\gamma_{1}}{2}} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; \mathrm{e}^{-\mathrm{i}_{2}{ }^{\gamma_{1}}} \end{array}\right]\left[\begin{array}{llll} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{array}\right]\\ &amp;\equiv \mathrm{CNOT}(\mathrm{j}, \mathrm{k}) \mathrm{RZ}\left(\mathrm{k},-\gamma_{\mathrm{i}}\right) \mathrm{CNOT}(\mathrm{j}, \mathrm{k}) \end{aligned}\end{split}\]</div>
+<p>  对于图4.5.9所示的方形环图，假设当步长等于1时，求解其最大切割问题需要使用到4个量子比特。对于A，B，C，D这4个节点分别用0号比特，1号比特，2号比特和3号比特进行映射。</p>
+<a class="reference internal image-reference" href="../_images/4.5.9.png"><img alt="../_images/4.5.9.png" class="align-center" src="../_images/4.5.9.png" style="width: 350px;" /></a>
+<p class="centered">
+<strong>图4.5.9 方形环图</strong></p><p>  首先对所有量子比特作用一个H门， 制备该系统的初始状态。
+  然后进行以  <span class="math notranslate nohighlight">\(H_{P}\)</span> 为生成元，  <span class="math notranslate nohighlight">\(\gamma 1\)</span> 为参数的酉变换; 按上述推导，该酉变换对应的量子线路是一组由  <span class="math notranslate nohighlight">\(CNOT\)</span> 门和  <span class="math notranslate nohighlight">\(RZ\)</span> 门 组成的线路，对AB节点映射的0号和1号比特作用 了一个CNOT门， 又在1号比特上作用了一个RZ门，然后又在 0 号和1号比特上作用了一个CNOT门，其中0号比特是控制位，1号比特是受控位， RZ门的参数含有  <span class="math notranslate nohighlight">\(\gamma 1\)</span> ；同理，对  <span class="math notranslate nohighlight">\(B C, C D, D A\)</span> 映射的比特做同样的操作。</p>
+<p>  执行完以  <span class="math notranslate nohighlight">\(H_{P}\)</span> 为生成元，  <span class="math notranslate nohighlight">\(\gamma 1\)</span> 为参数的酉变换后，该线路接着执行以 <span class="math notranslate nohighlight">\(H_{B}\)</span> 为生成元， <span class="math notranslate nohighlight">\(\beta 1\)</span> 为参数的酉变换，由上述推导得出这个酉变换是一组RX门操作。 当  <span class="math notranslate nohighlight">\(\beta 1\)</span> 和  <span class="math notranslate nohighlight">\(\gamma 1\)</span> 设置了合适的参数后，初始状态经过这个量子线路变换后得到末态; 对末态进行测量，就可以高概率的得到该问题对应最大切割的比特串。 步数  <span class="math notranslate nohighlight">\(m=1\)</span> 时</p>
+<div class="math notranslate nohighlight">
+\[|\beta, \gamma\rangle=\mathrm{U}\left(\beta_{1}, \gamma_{1}\right)\left|\phi_{0}\right\rangle=\mathrm{U}\left(\mathrm{H}_{\mathrm{B}}, \beta_{1}\right) \mathrm{U}\left(\mathrm{H}_{\mathrm{P}}, \gamma_{1}\right)\left|\phi_{0}\right\rangle\]</div>
+<img alt="../_images/4.5.10.png" class="align-center" src="../_images/4.5.10.png" />
+<p class="centered">
+<strong>图4.5.10 线路图</strong></p><p>  如图4.5.10，红色部分就是步数为1时对应的线路，当步数增加，相当于红色线路重复执行，只不过线路对应的参数会不同。</p>
+<p><strong>QAOA的工作流程：</strong> </p>
+<blockquote>
+<div><p>第1步：制备线路的初始状态；</p>
+<p>第2步：初始化待优化的参数β和γ，主要是用来确定RZ门和RX门的旋转角度（通常参数初始化为0)；</p>
+<p>第3步：根据参数生成量子线路；</p>
+<p>第4步：测量量子状态计算每一个子项的期望；</p>
+<p>第5步：计算当前参数对应的总的期望值；</p>
+<p>第6步：将当前参数及其对应的期望值传入到经典优化器进行优化得到一组新的参数；</p>
+<p>第7步：重复执行3-6步，一直到满足预先设定好的结束条件。</p>
+</div></blockquote>
+<a class="reference internal image-reference" href="../_images/4.5.11.png"><img alt="../_images/4.5.11.png" class="align-center" src="../_images/4.5.11.png" style="width: 250px;" /></a>
+<p class="centered">
+<strong>图4.5.11 QAOA的工作流程图</strong></p><div class="math notranslate nohighlight">
+\[\text{Cost}(\vec{\beta}, \vec{\gamma})=\left\langle\phi_{0}\left|\mathrm{U}^{\dagger}(\vec{\beta}, \vec{\gamma}) \mathrm{H}_{\mathrm{p}} \mathrm{U}(\vec{\beta}, \vec{\gamma})\right| \phi_{0}\right\rangle\]</div>
+<img alt="../_images/4.5.12.png" class="align-center" src="../_images/4.5.12.png" />
+<p class="centered">
+<strong>图4.5.12 量子处理器与经典处理器的工作流程图</strong></p><p><strong>QAOA综合示例</strong></p>
+<p>  对于n对象的MAX-CUT问题，需要n个量子位来对结果进行编码，其中测量结果（二进制串）表示问题的切割配置。</p>
+<p>  通过 VQNet 可以有效地实现 MAX-CUT 问题的 QAOA 算法。 VQNet中QAOA的流程图如图4.5.13所示：</p>
+<img alt="../_images/4.5.13.png" class="align-center" src="../_images/4.5.13.png" />
+<p class="centered">
+<strong>图4.5.13 VQNet中QAOA的流程图</strong></p><p>  给定一个MAX-CUT的问题如图4.5.14所示：</p>
+<img alt="../_images/4.5.14a.png" class="align-center" src="../_images/4.5.14a.png" />
+<img alt="../_images/4.5.14b.png" class="align-center" src="../_images/4.5.14b.png" />
+<p class="centered">
+<strong>图4.5.14（Max-cut Graph-最大切割图，weight of Graph Edge-最大分割图对应边的权重表）</strong></p><p>  首先，输入MAX-CUT问题的图形信息，以用来构造相应的问题哈密顿量。</p>
+<p>​  problem = {‘Z0 Z4’:0.73,’Z0 Z5’:0.33,’Z0 Z6’:0.5,’Z1 Z4’:0.69,’Z1 Z5’:0.36,</p>
+<p>  ‘Z2 Z5’:0.88,’Z2 Z6’:0.58,’Z3 Z5’:0.67,’Z3 Z6’:0.43}</p>
+<p>  然后，使用哈密顿量和待优化的变量参数beta和gamma，构建QAOA 的VQC。 QOP 的输入参数是问题哈密顿量、VQC 、 一组量子比特和量子运行环境。QOP 的输出是问题哈密顿量的期望。 在这个问题中，损失函数是问题哈密顿量的期望，因此需要最小化 QOP 的输出。通过使用梯度下降优化器 MomentumOptimizer 来优化vqc中的变量beta和gamma。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &lt;string.h&gt;</span>
+<span class="mf">2.</span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="mf">3.</span><span class="c1">#include &quot;Components/Operator/PauliOperator.h&quot;</span>
+<span class="mf">4.</span><span class="c1">#include &quot;Components/Optimizer/AbstractOptimizer.h&quot;</span>
+<span class="mf">5.</span><span class="c1">#include &quot;QAlg/QAOA/QAOA.h&quot;</span>
+<span class="mf">6.</span>
+<span class="mf">7.</span><span class="n">USING_QPANDA</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span><span class="n">double</span> <span class="n">myFunc</span><span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">key</span><span class="p">,</span> <span class="n">const</span> <span class="n">PauliOperator</span><span class="o">&amp;</span> <span class="n">pauli</span><span class="p">)</span>
+<span class="mf">10.</span><span class="p">{</span>
+<span class="mf">11.</span>    <span class="n">double</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">12.</span>
+<span class="mf">13.</span>    <span class="n">QHamiltonian</span> <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">pauli</span><span class="o">.</span><span class="n">toHamiltonian</span><span class="p">();</span>
+<span class="mf">14.</span>
+<span class="mf">15.</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">hamiltonian</span><span class="o">.</span><span class="n">begin</span><span class="p">(),</span>
+<span class="mf">16.</span>        <span class="n">hamiltonian</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span>
+<span class="mf">17.</span>        <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">const</span> <span class="n">QHamiltonianItem</span><span class="o">&amp;</span> <span class="n">item</span><span class="p">)</span>
+<span class="mf">18.</span>        <span class="p">{</span>
+<span class="mf">19.</span>            <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">index_vec</span><span class="p">;</span>
+<span class="mf">20.</span>            <span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="nb">iter</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="mf">21.</span>                <span class="nb">iter</span> <span class="o">!=</span> <span class="n">item</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">end</span><span class="p">();</span>
+<span class="mf">22.</span>                <span class="nb">iter</span><span class="o">++</span><span class="p">)</span>
+<span class="mf">23.</span>            <span class="p">{</span>
+<span class="mf">24.</span>                <span class="n">index_vec</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="nb">iter</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">);</span>
+<span class="mf">25.</span>            <span class="p">}</span>
+<span class="mf">26.</span>
+<span class="mf">27.</span>            <span class="o">//</span>           <span class="n">double</span> <span class="n">value</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">second</span><span class="p">;</span>
+<span class="mf">28.</span>            <span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">index_vec</span><span class="o">.</span><span class="n">front</span><span class="p">();</span>
+<span class="mf">29.</span>            <span class="n">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="n">index_vec</span><span class="o">.</span><span class="n">back</span><span class="p">();</span>
+<span class="mf">30.</span>            <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">key</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="mf">31.</span>            <span class="p">{</span>
+<span class="mf">32.</span>                <span class="nb">sum</span> <span class="o">+=</span> <span class="n">item</span><span class="o">.</span><span class="n">second</span><span class="p">;</span>
+<span class="mf">33.</span>            <span class="p">}</span>
+<span class="mf">34.</span>        <span class="p">});</span>
+<span class="mf">35.</span>
+<span class="mf">36.</span>    <span class="k">return</span> <span class="nb">sum</span><span class="p">;</span>
+<span class="mf">37.</span><span class="p">}</span>
+<span class="mf">38.</span>
+<span class="mf">39.</span><span class="n">auto</span> <span class="n">getHamiltonian</span><span class="p">()</span>
+<span class="mf">40.</span><span class="p">{</span>
+<span class="mf">41.</span>    <span class="o">//</span><span class="k">return</span> <span class="n">PauliOperator</span><span class="p">({</span>
+<span class="mf">42.</span>    <span class="o">//</span>    <span class="p">{</span><span class="s2">&quot;Z0 Z4&quot;</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">},{</span><span class="s2">&quot;Z2 Z5&quot;</span><span class="p">,</span> <span class="mf">0.88</span><span class="p">},</span>
+<span class="mf">43.</span>    <span class="o">//</span>    <span class="p">{</span><span class="s2">&quot;Z0 Z5&quot;</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">},{</span><span class="s2">&quot;Z2 Z6&quot;</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">},</span>
+<span class="mf">44.</span>    <span class="o">//</span>    <span class="p">{</span><span class="s2">&quot;Z0 Z6&quot;</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">},{</span><span class="s2">&quot;Z3 Z5&quot;</span><span class="p">,</span> <span class="mf">0.67</span><span class="p">},</span>
+<span class="mf">45.</span>    <span class="o">//</span>    <span class="p">{</span><span class="s2">&quot;Z1 Z4&quot;</span><span class="p">,</span> <span class="mf">0.69</span><span class="p">},{</span><span class="s2">&quot;Z3 Z6&quot;</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">},</span>
+<span class="mf">46.</span>    <span class="o">//</span>    <span class="p">{</span><span class="s2">&quot;Z1 Z5&quot;</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">}</span>
+<span class="mf">47.</span>    <span class="o">//</span><span class="p">});</span>
+<span class="mf">48.</span>
+<span class="mf">49.</span>    <span class="k">return</span> <span class="n">PauliOperator</span><span class="p">(</span><span class="n">PauliOperator</span><span class="p">::</span><span class="n">PauliMap</span><span class="p">{</span> <span class="p">{</span>
+<span class="mf">50.</span>        <span class="p">{</span><span class="s2">&quot;Z0 Z6&quot;</span><span class="p">,</span> <span class="mf">0.49</span><span class="p">},</span>
+<span class="mf">51.</span>        <span class="p">{</span><span class="s2">&quot;Z6 Z1&quot;</span><span class="p">,</span> <span class="mf">0.59</span><span class="p">},</span>
+<span class="mf">52.</span>        <span class="p">{</span><span class="s2">&quot;Z1 Z7&quot;</span><span class="p">,</span> <span class="mf">0.44</span><span class="p">},</span>
+<span class="mf">53.</span>        <span class="p">{</span><span class="s2">&quot;Z7 Z2&quot;</span><span class="p">,</span> <span class="mf">0.56</span><span class="p">},</span>
+<span class="mf">54.</span>        <span class="p">{</span><span class="s2">&quot;Z2 Z8&quot;</span><span class="p">,</span> <span class="mf">0.63</span><span class="p">},</span>
+<span class="mf">55.</span>        <span class="p">{</span><span class="s2">&quot;Z8 Z13&quot;</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">},</span>
+<span class="mf">56.</span>        <span class="p">{</span><span class="s2">&quot;Z13 Z19&quot;</span><span class="p">,</span> <span class="mf">0.81</span><span class="p">},</span>
+<span class="mf">57.</span>        <span class="p">{</span><span class="s2">&quot;Z19 Z14&quot;</span><span class="p">,</span> <span class="mf">0.29</span><span class="p">},</span>
+<span class="mf">58.</span>        <span class="p">{</span><span class="s2">&quot;Z14 Z9&quot;</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">},</span>
+<span class="mf">59.</span>        <span class="p">{</span><span class="s2">&quot;Z9 Z4&quot;</span><span class="p">,</span> <span class="mf">0.43</span><span class="p">},</span>
+<span class="mf">60.</span>        <span class="p">{</span><span class="s2">&quot;Z13 Z18&quot;</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">},</span>
+<span class="mf">61.</span>        <span class="p">{</span><span class="s2">&quot;Z18 Z12&quot;</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">},</span>
+<span class="mf">62.</span>        <span class="p">{</span><span class="s2">&quot;Z12 Z7&quot;</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">},</span>
+<span class="mf">63.</span>        <span class="p">{</span><span class="s2">&quot;Z12 Z17&quot;</span><span class="p">,</span> <span class="mf">0.71</span><span class="p">},</span>
+<span class="mf">64.</span>        <span class="p">{</span><span class="s2">&quot;Z17 Z11&quot;</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">},</span>
+<span class="mf">65.</span>        <span class="p">{</span><span class="s2">&quot;Z11 Z6&quot;</span><span class="p">,</span> <span class="mf">0.64</span><span class="p">},</span>
+<span class="mf">66.</span>        <span class="p">{</span><span class="s2">&quot;Z11 Z16&quot;</span><span class="p">,</span> <span class="mf">0.57</span><span class="p">},</span>
+<span class="mf">67.</span>        <span class="p">{</span><span class="s2">&quot;Z16 Z10&quot;</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">},</span>
+<span class="mf">68.</span>        <span class="p">{</span><span class="s2">&quot;Z10 Z5&quot;</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">},</span>
+<span class="mf">69.</span>        <span class="p">{</span><span class="s2">&quot;Z10 Z15&quot;</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">},</span>
+<span class="mf">70.</span>        <span class="p">{</span><span class="s2">&quot;Z5 Z0&quot;</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">}}</span> <span class="p">});</span>
+<span class="mf">71.</span><span class="p">}</span>
+<span class="mf">72.</span>
+<span class="mf">73.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">74.</span><span class="p">{</span>
+<span class="mf">75.</span>    <span class="n">QAOA</span> <span class="n">qaoa</span><span class="p">;</span>
+<span class="mf">76.</span>    <span class="n">auto</span> <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">getHamiltonian</span><span class="p">();</span>
+<span class="mf">77.</span>    <span class="n">qaoa</span><span class="o">.</span><span class="n">setHamiltonian</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">);</span>
+<span class="mf">78.</span>    <span class="n">qaoa</span><span class="o">.</span><span class="n">setStep</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="mf">79.</span>    <span class="n">qaoa</span><span class="o">.</span><span class="n">setShots</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="mf">80.</span>    <span class="n">qaoa</span><span class="o">.</span><span class="n">getOptimizer</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setDisp</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
+<span class="mf">81.</span>    <span class="n">qaoa</span><span class="o">.</span><span class="n">regiestUserDefinedFunc</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">myFunc</span><span class="p">,</span>
+<span class="mf">82.</span>        <span class="n">std</span><span class="p">::</span><span class="n">placeholders</span><span class="p">::</span><span class="n">_1</span><span class="p">,</span>
+<span class="mf">83.</span>        <span class="n">hamiltonian</span><span class="p">));</span>
+<span class="mf">84.</span>
+<span class="mf">85.</span>    <span class="k">return</span> <span class="n">qaoa</span><span class="o">.</span><span class="n">exec</span><span class="p">();</span>
+<span class="mf">86.</span><span class="p">}</span>
+<span class="mf">87.</span>
+</pre></div>
+</div>
+<img alt="../_images/4.5.16.png" class="align-center" src="../_images/4.5.16.png" />
+<p class="centered">
+<strong>图4.5.15 测量结果</strong></p><p>  将图4.5.15的测量结果绘制出柱状，如图4.5.16所示，可以看到‘0001111’和‘1110000’这两个比特串测量得到的概率最大，也正是这个问题的解。</p>
+<img alt="../_images/4.5.17.png" class="align-center" src="../_images/4.5.17.png" />
+<p class="centered">
+<strong>图4.5.16 测量结果柱状图</strong></p></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4.4Grover%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-left" title="4.4 Grover算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.6VQE%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-right" title="4.6 VQE算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

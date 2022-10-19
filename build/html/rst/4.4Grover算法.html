@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.4 Grover算法 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.5 QAOA算法" href="4.5QAOA%E7%AE%97%E6%B3%95.html" />
+    <link rel="prev" title="4.3 Deutsch-Josza算法" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>4.4 Grover算法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/4.4Grover算法.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="grover">
+<h1>4.4 Grover算法<a class="headerlink" href="#grover" title="Permalink to this heading">¶</a></h1>
+<p>  什么是搜索算法呢？举一个简单的例子，在下班的高峰期，要从公司回到家里，开车走怎样的路线才能够耗时最短呢？最简单的想法，当然是把所有可能的路线一次一次的计算，根据路况计算每条路线所消耗的时间，最终可以得到用时最短的路线，即为最快路线，这样依次的将每一种路线计算出来，最终对比得到最短路线。搜索的速度与总路线数 <span class="math notranslate nohighlight">\(N\)</span> 相关，记为  <span class="math notranslate nohighlight">\(O(N)\)</span> ，而采用量子搜索算法，则可以以  <span class="math notranslate nohighlight">\(O(sqrt(N))\)</span> 的速度进行搜索，要远快于传统的搜索算法。</p>
+<p>  那么怎么实现Grover搜索算法呢？</p>
+<p>  首先，先化简一下搜索模型，将所有数据存在数据库中，假设有 <span class="math notranslate nohighlight">\(n\)</span> 个量子比特，用来记录数据库中的每一个数据的索引，一共可以表示 <span class="math notranslate nohighlight">\(2^n\)</span> 个数据，记为 <span class="math notranslate nohighlight">\(N\)</span> 个；希望搜索得到的数据有 <span class="math notranslate nohighlight">\(M\)</span> 个，为了表示一个数据是否是搜索的结果，建立一个函数：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x)\left\{\begin{array}{l} 0\left(x \neq x_{0}\right) \\ 1\left(x=x_{0}\right) \end{array}\right.\end{split}\]</div>
+<p>  其中 <span class="math notranslate nohighlight">\(x_0\)</span> 为搜索目标的索引值，也即是说，当搜索到目标时，函数值 <span class="math notranslate nohighlight">\(f(x)\)</span> 值为 <span class="math notranslate nohighlight">\(1\)</span> ，如果搜索的结果不是目标时， <span class="math notranslate nohighlight">\(f(x)\)</span> 值为 <span class="math notranslate nohighlight">\(0\)</span> 。假设有一个量子Oracle可以识别搜索问题的解，是别的结果通过Oracle的一个量子比特给出。可以将Oracle定义为:</p>
+<div class="math notranslate nohighlight">
+\[|x\rangle|q\rangle \stackrel{\text { Oracle }}{\longrightarrow}|x\rangle|q\oplus f(x)\rangle\]</div>
+<p>  其中 <span class="math notranslate nohighlight">\(|q \rangle\)</span> 是一个结果寄存器, ⨁ 是二进制加法。通过Oracle可以实现，当搜索的索引为目标结果时，结果寄存器翻转；反之，结果寄存器值不变；从而可以通过判断结果寄存器的值，来确定搜索的对象是否为目标值。</p>
+<p>  Oracle对量子态的具体操作是什么样的呢？同D-J算法相似，先将初态制备在 <span class="math notranslate nohighlight">\(|0\rangle^{\otimes n}\)</span>  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 态上， <span class="math notranslate nohighlight">\(|0\rangle^{\otimes n}\)</span> 为查询寄存器， <span class="math notranslate nohighlight">\(|1\rangle\)</span> 为结果寄存器。 经过 Hardmard 门操作后，可以将查询寄存器的量子态，变为所有结果的叠加态；也即是说，经过了 Hardmard 门，就可以得到所有结果的索引，而结果寄存器则变为 <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(|1\rangle-|0\rangle)\)</span> ，再使其通过Oracle，可以对每一个索引都进行一次检验，如果是目标结果，则将结果寄存器的量子态进行  <span class="math notranslate nohighlight">\({0}\)</span> 、 <span class="math notranslate nohighlight">\({1}\)</span> 翻转，即结果寄存器变为：</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sqrt{2}}(|1\rangle-|0\rangle)\stackrel{\text { Oracle }}{\longrightarrow}-\frac{1}{\sqrt{2}}(|1\rangle-|0\rangle)\]</div>
+<p>  而查询寄存器不变；但当检验的索引不是结果时，寄存器均不发生改变。因此，Oracle可以换一种表示方式：</p>
+<div class="math notranslate nohighlight">
+\[\left.\left.\right|\mathbf{x}\right\rangle\left(\frac{|0\rangle-|\mathbf{1}\rangle}{\sqrt{2}}\right) \stackrel{\text { Oracle }}{\longrightarrow}(-1)^{f(x)} |\mathbf{x}\rangle\left(\frac{(0)-|\mathbf{1}\rangle}{\sqrt{2}}\right)\]</div>
+<p>  其中， <span class="math notranslate nohighlight">\(|x\rangle\)</span> 是查询寄存器的等额叠加态中的一种情况。</p>
+<p>  如上述所知，Oracle的作用，是通过改变了解的相位，标记了搜索问题的解。</p>
+<p>  现在，将搜索问题的解通过相位标记区分出来，那么如何能够将量子态的末态变为已标记出的态呢？</p>
+<p>  将问题换一种思路进行考虑，当查询寄存器由初态经过 Hardmard 门后，会变为所有可能情况的等额叠加态；也就是说，它包含着所有搜索问题的解与非搜索问题的解。可以将这个态记为:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\frac{1}{\sqrt{N}} \sum_{x}|\mathrm{x}\rangle\]</div>
+<p>  将所有非搜索问题的解定义为一个量子态  <span class="math notranslate nohighlight">\(|\alpha\rangle\)</span> ,其中 <span class="math notranslate nohighlight">\(\Sigma_{x_{1}}\)</span> 代表着  <span class="math notranslate nohighlight">\(x\)</span> 上所有非搜索问题的解的和，记为:</p>
+<div class="math notranslate nohighlight">
+\[\left.\left.\right| \alpha\right\rangle=\frac{1}{\sqrt{N-M}} \sum_{x_1}|\mathrm{x}\rangle\]</div>
+<p>  显然， <span class="math notranslate nohighlight">\(|\beta\rangle\)</span> 为最终的量子态，而且  <span class="math notranslate nohighlight">\(|\alpha\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|\beta\rangle\)</span> 相互正交。利用简单的代数运算，就可以将初态  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 重新表示为:</p>
+<div class="math notranslate nohighlight">
+\[\left.\left.\right| \psi \right\rangle=\sqrt{\frac{N-M}{N}}|\alpha\rangle^{+} \sqrt{\frac{M}{N}}|\beta\rangle\]</div>
+<p>  初始态被搜索问题的解的集合和非搜索问题的解的集合重新定义，也即是说，初态属于  <span class="math notranslate nohighlight">\(|\alpha\rangle\)</span> 与  <span class="math notranslate nohighlight">\(|\beta\rangle\)</span> 张成的空间。因此，可以用平面向量来表示这三个量子态，如图4.4.1所示:</p>
+<img alt="../_images/wps577.jpg" class="align-center" src="../_images/wps577.jpg" />
+<p class="centered">
+<strong>图4.4.1</strong></p><p>  那么，Oracle作用在新的表示方法下的初态会产生怎样的影响呢？Oracle的作用是用负号标记搜索问题的解，所以，相当于将  <span class="math notranslate nohighlight">\(|\beta\rangle\)</span> 内每一个态前均增加一个负号，将所有的负号提取出来，可以得到：</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle\stackrel{\text { Oracle }}{\longrightarrow} \ \sqrt{\frac{N-M}{N}}|\alpha\rangle^{-} \sqrt{\frac{\mathrm{M}}{N}}|\beta\rangle\]</div>
+<p>  对应在平面向量中，相当于将  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 做关于  <span class="math notranslate nohighlight">\(|\alpha\rangle\)</span> 轴的对称，但仅有这一种操作是无法将量子态从  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 变为 <span class="math notranslate nohighlight">\(|\beta\rangle\)</span> ，还需要另一种对称操作。</p>
+<p>  第二种对称操作，是将量子态关于 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 对称的操作，这个操作由三个部分构成：</p>
+<p>  1. 将量子态经过一个 Hardmard 门；</p>
+<p>  2. 对量子态进行一个相位变换，将 <span class="math notranslate nohighlight">\(|0\rangle^{\otimes n}\)</span> 态的系数保持不变，将其他的量子态的系数增加一个负号，相当于 <span class="math notranslate nohighlight">\(2|0\rangle\langle 0|-\mathrm{I}\)</span> 酉变换算子；</p>
+<p>  3. 再经过一个 Hardmard 门。</p>
+<p>  这三步操作的数学表述为:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{H}^{\otimes n}\left(2|0\rangle\langle 0|-\mathrm{I}) \mathrm{H} ^{\otimes n}=2|\psi\rangle\langle\psi|-\mathrm{1}\right.\]</div>
+<p>  上述过程涉及到复杂的量子力学知识，这三部分的操作，只是为了实现将量子态关于 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 对称。如果想了解为什么这三步操作可以实现，可以阅读关于量子计算相关书籍进一步理解。</p>
+<p>  前面介绍的两种对称操作，合在一起称为一次Grover迭代。假设初态 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 与  <span class="math notranslate nohighlight">\(|\alpha\rangle\)</span> 可以表示为：</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\cos \frac{\theta}{2}|\alpha\rangle+\sin \frac{\theta}{2}|\beta\rangle\]</div>
+<p>  很容易得到：</p>
+<div class="math notranslate nohighlight">
+\[\cos \frac{\theta}{2}=\sqrt{\frac{N-M}{N}}\]</div>
+<p>  可以从几何图像上看到，每一次Grover迭代，可以使量子态逆时针旋转 <span class="math notranslate nohighlight">\(\theta\)</span> ，经历了k次Grover迭代，末态的量子态为：</p>
+<div class="math notranslate nohighlight">
+\[G^{k}|\psi\rangle=\cos \left(\frac{2 k+1}{2} \theta\right)|\alpha\rangle+\sin \left(\frac{2 k+1}{2} \theta\right)|\beta\rangle\]</div>
+<p>  因此，经过多次迭代操作，总可以使末态在 <span class="math notranslate nohighlight">\(|\beta\rangle\)</span> 态上概率很大，满足精确度的要求。经过严格的数学推导，可证明，迭代的次数  <span class="math notranslate nohighlight">\(R\)</span> 满足:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{R} \leq \frac{\pi}{4} \sqrt{\frac{N}{M}}\]</div>
+<p>  参考路线图4.4.2：</p>
+<img alt="../_images/4.4.2.png" class="align-center" src="../_images/4.4.2.png" />
+<p class="centered">
+<strong>图4.4.2 线路图</strong></p><p>  QPanda实现 Grover 算法的代码示例：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;Core/Core.h&quot;</span>
+<span class="mf">2.</span><span class="c1">#include &quot;Core/Utilities/Tools/Utils.h&quot;</span>
+<span class="mf">3.</span><span class="c1">#include &quot;QAlg/Grover/GroverAlgorithm.h&quot;</span>
+<span class="mf">4.</span><span class="c1">#include &quot;QAlg/Grover/QuantumWalkGroverAlg.h&quot;</span>
+<span class="mf">5.</span>
+<span class="mf">6.</span><span class="n">USING_QPANDA</span>
+<span class="mf">7.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="mf">8.</span>
+<span class="mf">9.</span><span class="n">static</span> <span class="n">size_t</span> <span class="n">g_shot</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
+<span class="mf">10.</span>
+<span class="mf">11.</span><span class="n">static</span> <span class="n">uint32_t</span> <span class="n">quantum_grover_search</span><span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint32_t</span><span class="o">&gt;&amp;</span> <span class="n">search_space</span><span class="p">,</span> <span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint32_t</span><span class="o">&gt;&amp;</span> <span class="n">search_data</span><span class="p">,</span>
+<span class="mf">12.</span> <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">size_t</span><span class="o">&gt;&amp;</span> <span class="n">search_result</span><span class="p">)</span>
+<span class="mf">13.</span><span class="p">{</span>
+<span class="mf">14.</span> <span class="n">search_result</span><span class="o">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="mf">15.</span> <span class="n">uint32_t</span> <span class="n">search_times</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">16.</span> <span class="n">uint32_t</span> <span class="n">repeat_times</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">17.</span>    <span class="n">auto</span> <span class="n">machine</span> <span class="o">=</span> <span class="n">CPUQVM</span><span class="p">();</span>
+<span class="mf">18.</span>    <span class="n">machine</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>
+<span class="mf">19.</span> <span class="n">machine</span><span class="o">.</span><span class="n">setConfigure</span><span class="p">({</span> <span class="mi">64</span><span class="p">,</span><span class="mi">64</span> <span class="p">});</span>
+<span class="mf">20.</span>
+<span class="mf">21.</span> <span class="n">CPUQVM</span> <span class="n">_tmp_qvm</span><span class="p">;</span>
+<span class="mf">22.</span> <span class="n">_tmp_qvm</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>
+<span class="mf">23.</span> <span class="n">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="n">_tmp_qvm</span><span class="o">.</span><span class="n">allocateCBit</span><span class="p">();</span>
+<span class="mf">24.</span>
+<span class="mf">25.</span> <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">search_result_for_check</span><span class="p">;</span>
+<span class="mf">26.</span> <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">search_space</span><span class="o">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="mf">27.</span> <span class="p">{</span>
+<span class="mf">28.</span>         <span class="k">if</span> <span class="p">(</span><span class="n">search_space</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">search_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+<span class="mf">29.</span>                 <span class="n">search_result_for_check</span><span class="o">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="mf">30.</span>         <span class="p">}</span>
+<span class="mf">31.</span> <span class="p">}</span>
+<span class="mf">32.</span>
+<span class="mf">33.</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Grover will search through &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">search_space</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; data.&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">34.</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Start grover search algorithm:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">35.</span>
+<span class="mf">36.</span> <span class="n">QProg</span> <span class="n">grover_Qprog</span><span class="p">;</span>
+<span class="mf">37.</span> <span class="n">QVec</span> <span class="n">measure_qubits</span><span class="p">;</span>
+<span class="mf">38.</span> <span class="n">uint32_t</span> <span class="n">qubit_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">39.</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">ClassicalCondition</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>
+<span class="mf">40.</span> <span class="n">const</span> <span class="n">double</span> <span class="n">max_repeat</span> <span class="o">=</span> <span class="mf">3.1415926</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(((</span><span class="n">double</span><span class="p">)</span><span class="n">search_space</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="o">/</span> <span class="p">((</span><span class="n">double</span><span class="p">)</span><span class="n">search_result_for_check</span><span class="o">.</span><span class="n">size</span><span class="p">()))</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">;</span>
+<span class="mf">41.</span> <span class="k">while</span> <span class="p">(</span><span class="n">true</span><span class="p">)</span>
+<span class="mf">42.</span> <span class="p">{</span>
+<span class="mf">43.</span>         <span class="n">measure_qubits</span><span class="o">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="mf">44.</span>         <span class="n">grover_Qprog</span> <span class="o">=</span> <span class="n">build_grover_prog</span><span class="p">(</span><span class="n">search_space</span><span class="p">,</span> <span class="n">x</span> <span class="o">==</span> <span class="n">search_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">machine</span><span class="p">,</span> <span class="n">measure_qubits</span><span class="p">,</span> <span class="o">++</span><span class="n">repeat_times</span><span class="p">);</span>
+<span class="mf">45.</span>         <span class="n">search_times</span> <span class="o">+=</span> <span class="n">repeat_times</span><span class="p">;</span>
+<span class="mf">46.</span>
+<span class="mf">47.</span>         <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">qubit_size</span><span class="p">){</span>
+<span class="mf">48.</span>                 <span class="n">QVec</span> <span class="n">_qv</span><span class="p">;</span>
+<span class="mf">49.</span>                 <span class="n">qubit_size</span> <span class="o">=</span> <span class="n">grover_Qprog</span><span class="o">.</span><span class="n">get_used_qubits</span><span class="p">(</span><span class="n">_qv</span><span class="p">);</span>
+<span class="mf">50.</span>                 <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Number of used-qubits: </span><span class="si">%u</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">qubit_size</span><span class="p">);</span>
+<span class="mf">51.</span>         <span class="p">}</span>
+<span class="mf">52.</span>
+<span class="mf">53.</span>         <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">c</span><span class="o">.</span><span class="n">size</span><span class="p">()){</span>
+<span class="mf">54.</span>                 <span class="n">c</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">allocateCBits</span><span class="p">(</span><span class="n">measure_qubits</span><span class="o">.</span><span class="n">size</span><span class="p">());</span>
+<span class="mf">55.</span>         <span class="p">}</span>
+<span class="mf">56.</span>
+<span class="mf">57.</span>         <span class="n">grover_Qprog</span> <span class="o">&lt;&lt;</span> <span class="n">MeasureAll</span><span class="p">(</span><span class="n">measure_qubits</span><span class="p">,</span> <span class="n">c</span><span class="p">);</span>
+<span class="mf">58.</span>         <span class="n">write_to_originir_file</span><span class="p">(</span><span class="n">grover_Qprog</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;Grover_prog.ir&quot;</span><span class="p">);</span>
+<span class="mf">59.</span>
+<span class="mf">60.</span>         <span class="n">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">runWithConfiguration</span><span class="p">(</span><span class="n">grover_Qprog</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">g_shot</span><span class="p">);</span>
+<span class="mf">61.</span>
+<span class="mf">62.</span>         <span class="n">std</span><span class="p">::</span><span class="nb">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">double</span><span class="o">&gt;</span> <span class="n">normal_result</span><span class="p">;</span>
+<span class="mf">63.</span>         <span class="k">for</span> <span class="p">(</span><span class="n">const</span> <span class="n">auto</span><span class="o">&amp;</span> <span class="n">_r</span> <span class="p">:</span> <span class="n">result</span><span class="p">){</span>
+<span class="mf">64.</span>                 <span class="n">normal_result</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">_r</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">_r</span><span class="o">.</span><span class="n">second</span><span class="o">/</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">g_shot</span><span class="p">));</span>
+<span class="mf">65.</span>         <span class="p">}</span>
+<span class="mf">66.</span>         <span class="n">search_result</span> <span class="o">=</span> <span class="n">search_target_from_measure_result</span><span class="p">(</span><span class="n">normal_result</span><span class="p">,</span> <span class="n">measure_qubits</span><span class="o">.</span><span class="n">size</span><span class="p">());</span>
+<span class="mf">67.</span>         <span class="k">if</span> <span class="p">((</span><span class="n">search_result</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mf">68.</span>                 <span class="o">||</span> <span class="p">((</span><span class="n">search_result</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">max_repeat</span> <span class="o">&lt;</span> <span class="n">repeat_times</span><span class="p">))){</span>
+<span class="mf">69.</span>                 <span class="k">break</span><span class="p">;</span>
+<span class="mf">70.</span>         <span class="p">}</span>
+<span class="mf">71.</span> <span class="p">}</span>
+<span class="mf">72.</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Draw grover_Qprog:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">grover_Qprog</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">73.</span>    <span class="k">return</span> <span class="n">search_times</span><span class="p">;</span>
+<span class="mf">74.</span><span class="p">}</span>
+<span class="mf">75.</span>
+<span class="mf">76.</span><span class="n">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="mf">77.</span><span class="p">{</span>
+<span class="mf">78.</span> <span class="nb">int</span> <span class="n">search_type</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="mf">79.</span> <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint32_t</span><span class="o">&gt;</span> <span class="n">search_data</span> <span class="o">=</span> <span class="p">{</span><span class="mi">21</span><span class="p">};</span>
+<span class="mf">80.</span> <span class="o">/*</span> <span class="n">run</span> <span class="n">search</span> <span class="n">algorithm</span> <span class="o">*/</span>
+<span class="mf">81.</span> <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">search_result</span><span class="p">;</span>
+<span class="mf">82.</span> <span class="n">uint32_t</span> <span class="n">search_cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">83.</span> <span class="k">try</span>
+<span class="mf">84.</span> <span class="p">{</span>
+<span class="mf">85.</span>         <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint32_t</span><span class="o">&gt;</span> <span class="n">search_sapce</span><span class="p">;</span>
+<span class="mf">86.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="mf">87.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="mf">88.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">89.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="mf">90.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">91.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="mf">92.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">93.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="mf">94.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">95.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">96.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">97.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">98.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">99.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="mf">100.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="mf">101.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>
+<span class="mf">102.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="mf">103.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+<span class="mf">104.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="mf">105.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="mf">106.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="mf">107.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="mf">108.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span>
+<span class="mf">109.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="mf">110.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="mf">111.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+<span class="mf">112.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="mf">113.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="mf">114.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="mf">115.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span>
+<span class="mf">116.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="mf">117.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span>
+<span class="mf">118.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span>
+<span class="mf">119.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="mf">120.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="mf">121.</span>        <span class="n">search_sapce</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="mf">122.</span>
+<span class="mf">123.</span>                <span class="n">search_cnt</span> <span class="o">=</span> <span class="n">quantum_grover_search</span><span class="p">(</span><span class="n">search_sapce</span><span class="p">,</span> <span class="n">search_data</span><span class="p">,</span> <span class="n">search_result</span><span class="p">);</span>
+<span class="mf">124.</span>
+<span class="mf">125.</span>        <span class="p">}</span>
+<span class="mf">126.</span>        <span class="n">catch</span> <span class="p">(</span><span class="n">const</span> <span class="n">std</span><span class="p">::</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
+<span class="mf">127.</span>        <span class="p">{</span>
+<span class="mf">128.</span>                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Got a exception: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="o">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">129.</span>                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="mf">130.</span>        <span class="p">}</span>
+<span class="mf">131.</span>        <span class="n">catch</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="mf">132.</span>        <span class="p">{</span>
+<span class="mf">133.</span>                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Got an unknow exception: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">134.</span>                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="mf">135.</span>        <span class="p">}</span>
+<span class="mf">136.</span>
+<span class="mf">137.</span>        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Search result:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="mf">138.</span>        <span class="k">for</span> <span class="p">(</span><span class="n">const</span> <span class="n">auto</span> <span class="o">&amp;</span><span class="n">result_item</span> <span class="p">:</span> <span class="n">search_result</span><span class="p">)</span>
+<span class="mf">139.</span>        <span class="p">{</span>
+<span class="mf">140.</span>                <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result_item</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; &quot;</span><span class="p">;</span>
+<span class="mf">141.</span>        <span class="p">}</span>
+<span class="mf">142.</span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">143.</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-left" title="4.3 Deutsch-Josza算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.5QAOA%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-right" title="4.5 QAOA算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

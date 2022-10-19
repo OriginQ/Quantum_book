@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.1 利用QPanda测试量子系统噪声 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.2 量子机器学习" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html" />
+    <link rel="prev" title="4.7 Shor分解算法" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>5.1 利用QPanda测试量子系统噪声</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/5.1利用QPanda测试量子系统噪声.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qpanda">
+<h1>5.1 利用QPanda测试量子系统噪声<a class="headerlink" href="#qpanda" title="Permalink to this heading">¶</a></h1>
+<p>  近些年来，量子计算机芯片包含的量子比特数和量子比特质量不断提升，可以预计，不远的将来会出现包含数百个量子比特，且量子比特质量足够高的量子计算机芯片，称之为NISQ装置。如何用NISQ装置解决具体的实际问题是一个研究热点，比如VQE,QAOA都是有应用前景的NISQ量子算法。NISQ装置中量子比特数还不允许纠错编码，所以NISQ装置是一种噪声容忍装置，在NISQ装置中运行的量子算法都会受到噪声的影响。NISQ量子算法需要对量子噪声有一定的免疫性，需要在含噪声的环境中研究NISQ量子算法。QPanda中包含噪声量子虚拟机，可以模拟带噪声的量子线路，测试量子算法在噪声影响下的性能变化，从而辅助NISQ量子算法的开发。首先对量子噪声做一简单介绍。</p>
+<p><strong>量子噪声</strong></p>
+<p>  量子计算机不是一个孤立系统，在运行的时候，不可避免会和环境产生耦合，从而影响量子计算机的运行过程，通常用噪声来描述环境对量子计算机的影响。 量子系统的噪声可以用一组算符和  <span class="math notranslate nohighlight">\(\mathrm{K}=\{\mathrm{K}{1}, \mathrm{~K}{2}, \ldots, \mathrm{K}{\mathrm{s}}\}\)</span> 描述： <span class="math notranslate nohighlight">\(\{\mathrm{K}{1}, \mathrm{~K}{2}, \ldots, \mathrm{K}{\mathrm{s}}\}\)</span> 也被称为Kraus算子，  <span class="math notranslate nohighlight">\(\mathrm{K}_{\mathrm{i}}\)</span> 需要满足关系式</p>
+<div class="math notranslate nohighlight">
+\[\sum_{\mathbf{i}} K_{i}^{\dagger} K_{i}=I\]</div>
+<p>  在噪声影响下，量子态的演化方式为:</p>
+<div class="math notranslate nohighlight">
+\[\rho \rightarrow \sum_{\mathrm{i}} K_{i} \rho K_{i}^{\dagger}\]</div>
+<p>  下面列举一些常见噪声的表示形式：</p>
+<p>  弛豫噪声:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{K}_{1}=\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; \sqrt{1-p} \end{array}\right], \mathrm{K}_{2}=\left[\begin{array}{cc} 0 &amp; \sqrt{p} \\ 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  比特翻转噪声:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{K}_{1}=\left[\begin{array}{cc} \sqrt{1-p} &amp; 0 \\ 0 &amp; \sqrt{1-p} \end{array}\right], \mathrm{K}_{2}=\left[\begin{array}{cc} 0 &amp; \sqrt{p} \\ \sqrt{p} &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  退相位噪声:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{K}_{1}=\left[\begin{array}{cc} \sqrt{1-p} &amp; 0 \\ 0 &amp; \sqrt{1-p} \end{array}\right], \mathrm{K}_{2}=\left[\begin{array}{cc} \sqrt{p} &amp; 0 \\ 0 &amp; -\sqrt{p} \end{array}\right]\end{split}\]</div>
+<p>  退极化噪声:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{K}_{1}=\sqrt{1-\frac{3}{4} p}\left[\begin{array}{ll} 1 &amp; 0 \\ 0 &amp; 1 \end{array}\right], \mathrm{K}_{2}=\frac{\sqrt{p}}{2}\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right] \\ &amp;\mathrm{K}_{3}=\frac{\sqrt{p}}{2}\left[\begin{array}{cc} 0 &amp; -i \\ -i &amp; 0 \end{array}\right], \mathrm{K}_{4}=\frac{\sqrt{p}}{2}\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right] \end{aligned}\end{split}\]</div>
+<p><strong>噪声虚拟机</strong></p>
+<p>  QPanda包含带噪声的量子虚拟机，噪声量子虚拟机可以模拟带噪声的量子线路，我们可以定义各种不同的量子噪声，用噪声量子虚拟机执行对应的含噪声量子线 路。下面介绍QPanda中量子噪声虚拟机的执行原理。 加入噪声后，量子线路中演化的量子态变成混态，所以需要用密度矩阵来描述量子态。与纯态相比，模拟混态演化需要更多的资源，不管是时间复杂度还是空间复杂度，都是纯态演化所需资源的平方量级。为节省资源，在QPanda中，用另外一种方式实现了噪声量子虚拟机，即借助蒙特卡洛方法， 演化过程中还是用态矢来 描述量子态。下面以实现一个噪声量子逻辑门的过程来说明QPandan噪声量子虚拟机的实现原理。</p>
+<p>  首先，假设输入态是一个纯态, 用  <span class="math notranslate nohighlight">\(|\phi\rangle\)</span> 表示，要实现的量子逻辑门用  <span class="math notranslate nohighlight">\(\mathrm{U}\)</span> 表示，量子噪声为 <span class="math notranslate nohighlight">\(\mathrm{~K}{1}\)</span> ,  <span class="math notranslate nohighlight">\(\mathrm{~K}{2}\)</span> , <span class="math notranslate nohighlight">\(\ldots\)</span> , <span class="math notranslate nohighlight">\(\mathrm{~K}{s}\)</span> 。含噪声的  <span class="math notranslate nohighlight">\(\mathrm{U}\)</span> 门实现步骤如下: 计算 <span class="math notranslate nohighlight">\(\mathrm{p}{\mathrm{i}}=\left\langle\phi\left|K_{i}^{\dagger} K_{i}\right| \phi\right\rangle\)</span> , <span class="math notranslate nohighlight">\(\mathrm{i}=1\)</span> , <span class="math notranslate nohighlight">\(2\)</span> , :math:` ldots` , <span class="math notranslate nohighlight">\(\mathrm{s} \cdot\)</span> 由噪声的定义，我们可以得到  <span class="math notranslate nohighlight">\(\sum_{\mathrm{i}} p_{i}=1\)</span> 。 生成  <span class="math notranslate nohighlight">\([0, 1)\)</span> 区间均匀分布的随机数  <span class="math notranslate nohighlight">\(\mathrm{r}\)</span> ， 根据上式的计算结果找到下标  <span class="math notranslate nohighlight">\(l\)</span> 满足</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{l-1} p_{i} \leq r \leq \sum_{i=1}^{l} p_{i}\]</div>
+<p>假设 <span class="math notranslate nohighlight">\(\sum_{i=1}^{0} p_{i}=0\)</span> 。  <span class="math notranslate nohighlight">\(|\phi\rangle\)</span> 的演化公式表示为:</p>
+<div class="math notranslate nohighlight">
+\[|\phi\rangle \rightarrow \mathrm{U} \frac{1}{\sqrt{\mathrm{P}_{1}}} K_{l}|\phi\rangle\]</div>
+<p>  当以上操作只执行一次时，得到的结果是错误的，但是，当执行以上步骤多次，然后对得到的执行结果做统计分析，就可以得到准确的输出态，假设执行了 <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 次， 得到了  <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 个输出态 <span class="math notranslate nohighlight">\(\left|\phi_{1}\right\rangle,\left|\phi_{2}\right\rangle, \ldots ,\left|\phi_{N}\right\rangle\)</span> , 那么最后的输出态可以表示为:</p>
+<div class="math notranslate nohighlight">
+\[\rho^{\prime}=\frac{1}{\mathrm{~N}} \sum_{n=1}^{N}\left|\phi_{i}\right\rangle\left\langle\phi_{i}\right|\]</div>
+<p><span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 个输出态 <span class="math notranslate nohighlight">\(\left|\phi_{1}\right\rangle,\left|\phi_{2}\right\rangle, \ldots\left|\phi_{N}\right\rangle\)</span> 在集合 <span class="math notranslate nohighlight">\(\{\left|\psi_{\mathrm{i}}\right\rangle=\mathrm{U} \frac{1}{\sqrt{\mathrm{P_i}}} K_{i}|\phi\rangle \mid \mathrm{i}=1,2, \ldots, \mathrm{s}\}\)</span> ，假设 <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 个态中 <span class="math notranslate nohighlight">\(\left|\psi_{\mathrm{i}}\right\rangle\)</span> 出现的次数为 <span class="math notranslate nohighlight">\(\mathrm{M}_{\mathrm{i}}\)</span> ，那么 <span class="math notranslate nohighlight">\(\rho^{\prime}\)</span> 可表示为</p>
+<div class="math notranslate nohighlight">
+\[\rho^{\prime}=\frac{1}{\mathrm{~N}} \sum_{n=1}^{s} \frac{M_{n}}{p_{n}} U K_{n}|\phi\rangle\langle\phi| K_{n}^{\dagger} U^{\dagger}\]</div>
+<p>  当  <span class="math notranslate nohighlight">\(\mathrm{N} \gg 1\)</span> 时，  <span class="math notranslate nohighlight">\(\mathrm{M}{\mathrm{i}} \cong \mathrm{N} p{i}\)</span> , 从而可以得到</p>
+<div class="math notranslate nohighlight">
+\[\rho^{\prime} \cong \sum_{n=1}^{s} U K_{n}|\phi\rangle\langle\phi| K_{n}^{\dagger} U^{\dagger}=\rho_{\text {out }}\]</div>
+<p>  即当 <span class="math notranslate nohighlight">\(\mathrm{N}\)</span> 足够大时，  <span class="math notranslate nohighlight">\(\rho^{\prime}\)</span> 近似等于  <span class="math notranslate nohighlight">\(|\phi\rangle\)</span> 经过噪声量子逻辑门 <span class="math notranslate nohighlight">\(\mathrm{U}\)</span> 后的输出态 <span class="math notranslate nohighlight">\(\rho\)</span> 。</p>
+<p>  当执行噪声量子线路时，量子线路由一系列量子逻辑门构成, 每个量子逻辑门都执行上面的步骤，执行多次量子线路，即可得到输出量子态密度矩阵的近似表达式，量子线路执行次数越多，得到的结果越准确。</p>
+<p>  通过上述方法， <span class="math notranslate nohighlight">\(QPanda\)</span> 中橾声量子虚拟机就可以用态矢来表示混态演化过程，通过多次运行量子线路得到噪声量子线路输出态的密度矩阵。</p>
+<p><strong>噪声QAOA测试</strong></p>
+<p>  前面的章节已经介绍过QAOA，QAOA是一种经典-量子混合算法，提供了一种解决组合优化问题的方法。QAOA运行在NISQ装置上，无法避免噪声的干扰，所以研究噪声对QAOA性能的影响是一项很重要的工作。下面介绍噪声对QAOA性能影响的一些研究进展。</p>
+<p>  首先，如何构建含噪声的QAOA，前面章节可知QAOA可以用VQNet实现，目前VQNet可以和QPanda中噪声量子虚拟机结合，执行含噪声的QAOA。这里选取的问题还是最大分割问题。</p>
+<p><strong>理论模型</strong></p>
+<p>  考虑一种特殊的噪声，可以表示为 <span class="math notranslate nohighlight">\(\mathrm{K}=\{\mathrm{a}{0} \mathrm{I}, \mathrm{a}{1} \mathrm{~K}{1}, \ldots, \mathrm{a}{\mathrm{s}} \mathrm{K}{\mathrm{s}}\}\)</span> ，即  <span class="math notranslate nohighlight">\(\mathrm{K}\)</span> 的Kraus算子中一项是单位阵乘以常数 <span class="math notranslate nohighlight">\(a_0\)</span> ，这里 <span class="math notranslate nohighlight">\(\mathrm{a}{i}, i=0,1, \ldots, s\)</span> 都是非负实数，比如，比特翻转噪声，退相位噪声，退极化噪声都属于这种类型的噪声。</p>
+<p><strong>噪声对损失函数的影响</strong></p>
+<p>  假设输入态是一个纯态 <span class="math notranslate nohighlight">\(\left|\phi_{\text {in }}\right\rangle\)</span> ，经过一个带噪声 <span class="math notranslate nohighlight">\({K}\)</span> 的量子逻辑门 <span class="math notranslate nohighlight">\(\mathrm{U}\)</span> 后，输出态 <span class="math notranslate nohighlight">\(\rho_{\text {out }}\)</span> 可以写为：</p>
+<div class="math notranslate nohighlight">
+\[\rho_{\text {out }}^{\text {noise }}= (1-p) U |\phi_{\text {in }}\rangle\ \langle\phi_{\text {in }}| \ U^{\dagger}+\sum_{i} U K_{i}|\phi_{\text {in }}\rangle\langle\phi_{\text {in }}|\ K_{i}^{\dagger} U^{\dagger}\]</div>
+<p>  这里定义 <span class="math notranslate nohighlight">\({1}-\mathrm{p}=\mathrm{a}{0}^{2}\)</span>  ， 不带噪声时，理想的输出态是 <span class="math notranslate nohighlight">\(\rho{\text {uut }}^{\text {ideal }}=U\left|\phi_{\text {in }}\right\rangle\left\langle\phi_{\text {in }}\right| U^{\dagger}\)</span> , 所以 <span class="math notranslate nohighlight">\(\rho_{\text {out }}^{\text {noise }}\)</span> 可进一步表示为</p>
+<div class="math notranslate nohighlight">
+\[\rho_{\text {out }}^{\text {noise }}=(1-p) { \rho }^{\text {ideal }}+\sum_{i} U K_{i}\left|\phi_{\text {in }}\right\rangle\left\langle\phi_{\text {in }}\right| K_{i}^{\dagger} U^{\dagger}\]</div>
+<p>  可以看到，在 <span class="math notranslate nohighlight">\(\rho_{\text {out }}^{\text {noise }}\)</span> 中， <span class="math notranslate nohighlight">\(\rho_{\text {out }}^{\text {ideal }}\)</span> 所占的比例是 <span class="math notranslate nohighlight">\(1-\mathrm{p}\)</span> 。更进一步的考虑，如果经过一个包含 <span class="math notranslate nohighlight">\(\mathrm{m}\)</span> 个量子逻辑门的量子线路，带噪声的输出态 <span class="math notranslate nohighlight">\(\rho_{\text {out }}^{\text {noise }}\)</span> 与理想输出态 <span class="math notranslate nohighlight">\(\rho_{\text {out }}^{\text {ideal }}\)</span> 的关系为</p>
+<div class="math notranslate nohighlight">
+\[\rho_{\text {out }}^{\text {noise }}=(1-\mathrm{p})^{m} \rho_{\text {out }}^{\text {ideal }}\]</div>
+<p>  特别的，比例因子 <span class="math notranslate nohighlight">\(\mathrm{P}=(1-\mathrm{p})^{m}\)</span> 是最坏的情况，对某些特殊的量子态，并不会受到某种噪声的影响，比特 <span class="math notranslate nohighlight">\(|\phi\rangle=|0\rangle\)</span> 不会受到退相位噪声的影响，所以带噪声的输出态 <span class="math notranslate nohighlight">\(\rho_{\text {out }}^{\text {noise }}\)</span> 与理想输出态 <span class="math notranslate nohighlight">\(\rho_{\text {out }}^{\text {ideal }}\)</span> 的关系重新写为</p>
+<div class="math notranslate nohighlight">
+\[\rho_{\text {out }}^{\text {noise }}=(1-p)^{\alpha m} \rho_{\text {out }}^{\text {ideal }}\]</div>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> 表示一个常数，与量子线路结构和噪声模型相关。</p>
+<p>​ 下面开始介绍噪声对QAOA量子线路的影响。在QAOA中，QAOA步数 <span class="math notranslate nohighlight">\(n\)</span> 与QAOA量子线路包含的量子逻辑门数目线性相关，对一个步数为 <span class="math notranslate nohighlight">\(n\)</span> 的QAOA量子线路 <span class="math notranslate nohighlight">\(\mathrm{U}(\vec{\gamma}, \vec{\beta})\)</span> , 如果没有噪声，经过 <span class="math notranslate nohighlight">\(\mathrm{U}(\vec{\gamma}, \vec{\beta})\)</span> 后，输出态为</p>
+<div class="math notranslate nohighlight">
+\[\left|\phi_{\text {out }}^{\text {ideal }}\right\rangle=\mathrm{U}(\vec{\gamma}, \vec{\beta})\left|\phi_{\text {in }}\right\rangle\]</div>
+<p>  QAOA中，损失函数定义为目标哈密顿量 <span class="math notranslate nohighlight">\(\mathrm{H}_{\mathrm{p}}\)</span> 的期望，在理想情况下，损失函数可表示为</p>
+<div class="math notranslate nohighlight">
+\[f^{\text {ideal }}(n)=\left\langle\phi_{\text {out }}^{\text {ideal }}\left|H_{p}\right| \phi_{\text {out }}^{\text {ideal }}\right\rangle\]</div>
+<p>  当  <span class="math notranslate nohighlight">\(Q A O A\)</span> 量子线路包含噪声 <span class="math notranslate nohighlight">\(N\)</span> 时，输出态为</p>
+<div class="math notranslate nohighlight">
+\[\rho_{\text {out }}^{\text {noise }}=(1-p)^{\alpha m}\left|\phi_{\text {out }}^{\text {ideal }}\right\rangle\langle\phi_{\text {out }}^{\text {ideal }}|+\sum_{i} p_{i}| \psi_{i}\rangle\left\langle\psi_{i}\right|\]</div>
+<p><span class="math notranslate nohighlight">\(\left|\psi_{\mathrm{i}}\right\rangle\)</span> 是由噪声产生的，每个 <span class="math notranslate nohighlight">\(\left|\psi_{\mathrm{i}}\right\rangle\)</span> 无规律的，另外在实际中，每个 <span class="math notranslate nohighlight">\(\mathrm{p}_{\mathrm{i}}\)</span> 都会很小，满足：</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i} p_{i}=1-(1-p)^{\alpha n}\]</div>
+<p>  当量子线路比较复杂时， <span class="math notranslate nohighlight">\(\left|\psi_{\mathrm{i}}\right\rangle\)</span> 个数会很多，求和项 <span class="math notranslate nohighlight">\(\sum_{i} p_{i}\left|\psi_{i}\right\rangle\left\langle\psi_{i}\right|\)</span> 会趋于一个统计平均值。比如，在最大分割问题中，一种有 <span class="math notranslate nohighlight">\(2^{\mathrm{n}}\)</span> 种方案，每条边  <span class="math notranslate nohighlight">\(\mathrm{C}{\mathrm{ij}}\)</span> 会出现 <span class="math notranslate nohighlight">\(2^{\mathrm{n}}\)</span> 次， 所以所有方案的平均结果为 <span class="math notranslate nohighlight">\(\mathrm{A}=-\sum{\mathrm{i}, \mathrm{j}} \frac{c_{i j}}{2}\)</span> , 从而 <span class="math notranslate nohighlight">\(\sum_{i} p_{i}\left|\psi_{i}\right\rangle\left\langle\psi_{i}\right|\)</span> 的统计平均值为 <span class="math notranslate nohighlight">\(\left(1-(1-p)^{\alpha n}\right) \mathrm{A}\)</span> ，从而带噪声的情况下， <span class="math notranslate nohighlight">\(QAOA\)</span> 损失函数可以写为：</p>
+<div class="math notranslate nohighlight">
+\[f^{\text {noise }}(n)=(1-p)^{a n} f^{\text {ideal }}(n)+\left(1-(1-p)^{a n}\right) \mathrm{A}\]</div>
+<p>当 <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 足够小时， <span class="math notranslate nohighlight">\(f^{\text {noise }}(n)\)</span> 可以近似为</p>
+<div class="math notranslate nohighlight">
+\[f^{\text {noise }}(n) \cong(1-\alpha n p) f^{\text {ideal }}(n)+\alpha n p A\]</div>
+<p>  从上面的式子，可以发现，噪声并没有改变  <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 参数空间的整体形状，只是将参数空间磨平，比例因子为 <span class="math notranslate nohighlight">\((1-p)^{\alpha n}\)</span></p>
+<p><strong>噪声对损失函数梯度的影响</strong></p>
+<p>  QAOA是一种经典-量子混合算法，其中参数优化过程是一个经典过程。我可以用典型的经典算法来优化QAOA量子线路的参数，比如Nelder-Mead算法，Powell算 法， Adagrad算法等。当使用梯度相关的优化算法时，需要计算损失函数的梯度。量子噪声对损失函数有影响，所以也会对损失函数的梯度产生影响。下面描述量 子噪声对损失函数的梯度 会有怎样的影响。</p>
+<p>  QAOA量子线路包含两种参数： <span class="math notranslate nohighlight">\(\vec{\gamma}\)</span> 和 <span class="math notranslate nohighlight">\(\vec{\beta}\)</span> ，分别表示问题哈密顿量 <span class="math notranslate nohighlight">\(\mathrm{H}{\mathrm{p}}\)</span> 和驱动哈密顿量 <span class="math notranslate nohighlight">\(\mathrm{H}{\mathrm{d}}\)</span> 的系数， <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 步数为 <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> 时， <span class="math notranslate nohighlight">\(\vec{\gamma}\)</span> 和  <span class="math notranslate nohighlight">\(\vec{\beta}\)</span> 都是 <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> 维向量。 VQNet中损失函数对 <span class="math notranslate nohighlight">\(\vec{\gamma}\)</span> 和 <span class="math notranslate nohighlight">\(\vec{\beta}\)</span> 的偏导如下式所示</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\frac{\partial f(\vec{\gamma}, \vec{\beta})}{\partial \gamma_{k}}=\sum_{i, j}-2 C_{i j} \frac{f(\vec{\gamma}, \vec{\beta})_{k i j}^{+}-f(\vec{\gamma}, \vec{\beta})_{k i j}^{-}}{2} \\ &amp;\frac{\partial f(\vec{\gamma}, \vec{\beta})}{\partial \beta_{k}}=\sum_{i=1}^{\ell}-2 \frac{f(\vec{\gamma}, \vec{\beta})_{k i}^{+}-f(\vec{\gamma}, \vec{\beta})_{k i}^{-}}{2} \end{aligned}\end{split}\]</div>
+<p>  第一个式子中 <span class="math notranslate nohighlight">\(f(\vec{\gamma}, \vec{\beta}){k i j}^{+}\)</span> 表示将  <span class="math notranslate nohighlight">\(Q A O A\)</span> 量子线路中与边  <span class="math notranslate nohighlight">\(C{\mathrm{ij}}\)</span> 关联的参数  <span class="math notranslate nohighlight">\(\gamma_{\mathrm{k}}\)</span> 改变为  <span class="math notranslate nohighlight">\(\gamma_{\mathrm{k}}+\frac{\pi}{2}\)</span> , 别的参数不变, 然后运行量子线路得到的损失函数， <span class="math notranslate nohighlight">\(f(\vec{\gamma}, \vec{\beta}){k i j}^{-}\)</span> 表示将对应 位置的参数 <span class="math notranslate nohighlight">\(\gamma{\mathrm{k}}\)</span> 改变为 <span class="math notranslate nohighlight">\(\gamma{\mathrm{k}}-\frac{\pi}{2}\)</span>  ，别的参数不变，然后运行量子线路得到的损失函数。同理，在第二个式子中， <span class="math notranslate nohighlight">\(f(\vec{\gamma}, \vec{\beta}){k i}^{+}\)</span> 和  <span class="math notranslate nohighlight">\(f(\vec{\gamma}, \vec{\beta}){k i}^{-}\)</span> 分别表示将第 <span class="math notranslate nohighlight">\(\mathrm{i}\)</span> 个比特上面包含  <span class="math notranslate nohighlight">\(\beta_{\mathrm{k}}\)</span> 的量子逻辑门的参数  <span class="math notranslate nohighlight">\(\gamma{\mathrm{k}}\)</span> 改变为  <span class="math notranslate nohighlight">\(\gamma_{\mathrm{k}}+\frac{\pi}{2}\)</span> 和  <span class="math notranslate nohighlight">\(\gamma_{\mathrm{k}}-\frac{\pi}{2}\)</span> ，别的参数不变，运行量子线路得到的损失函数。具体的公式推导可从VQNet文献中得到。</p>
+<p>  从上面两个公式，可以看出损失函数的梯度是一系列量子线路参数不同的损失函数的线性组合，从量子噪声对损失函数的影响公式中，可以推出量子噪声对损失函 数梯度的影响如下式所示:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial f(\vec{\gamma}, \vec{\beta})^{\text {noise }}}{\partial \theta_{k}}=(1-p)^{\alpha n} \frac{\partial f(\vec{\gamma}, \vec{\beta})^{\text {ideal }}}{\partial \theta_{k}}\]</div>
+<p><span class="math notranslate nohighlight">\(\theta_{\mathrm{k}} \in{\vec{\gamma}, \vec{\beta}}\)</span> ，可以看出，包含噪声的 <span class="math notranslate nohighlight">\(Q A O A\)</span> 量子线路得到的损失函数对线路参数 <span class="math notranslate nohighlight">\(\theta_{\mathrm{k}}\)</span> 的偏导与理想情况下损失函数对线路参数 <span class="math notranslate nohighlight">\(\theta_{\mathrm{k}}\)</span> 的偏导之间成比例，比例因子为 <span class="math notranslate nohighlight">\((1-p)^{a n}\)</span> 。</p>
+<p>  随着噪声参数变大，损失函数对参数偏导的绝对值变小, 换句话说，损失函数梯度的绝对值随噪声参数和 <span class="math notranslate nohighlight">\(QAOA\)</span> 步数的增加而变小, 这从另外一个角度说明了噪声 会使 <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 参数空间变平。另一方面，可以看出噪声不会改变损失函数梯度的方向，所以噪声只会影响 <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 参数优化过程的优化速度，并不会改变参数优化结果，理论上，当噪声参数 <span class="math notranslate nohighlight">\(p\)</span> 与  <span class="math notranslate nohighlight">\(Q A O A\)</span> 步数  <span class="math notranslate nohighlight">\(n\)</span> 的乘积比较小时，噪声  <span class="math notranslate nohighlight">\(Q A O A\)</span> 优化得到的量子线路参数与理想最优量子线路参数一致。</p>
+<p><strong>测试示例</strong></p>
+<p>  用QPanda噪声虚拟机和VQNet构建 <span class="math notranslate nohighlight">\(\mathrm{QAQA}\)</span> ，数模模拟几种噪声对 <span class="math notranslate nohighlight">\(\mathrm{QAQA}\)</span> 的影响，来验证上一节提出的模型。</p>
+<p><strong>最大分割问题选取</strong></p>
+<p>  选择最大分割问题作为测试问题，整个测试过程测试问题是固定的，最大分割问题对应的图如图5.1.1所示：</p>
+<a class="reference internal image-reference" href="../_images/5.1.1.png"><img alt="../_images/5.1.1.png" class="align-center" src="../_images/5.1.1.png" style="width: 350px;" /></a>
+<p class="centered">
+<strong>图5.1.1 最大分割图</strong></p><p><strong>理想结果</strong></p>
+<p>  首先演示理想情况下QAOA对这个问题的执行结果，QAOA步数为 <span class="math notranslate nohighlight">\(n=1 \sim 4\)</span> ，得到的损失函数优化过程如图5.1.2所示：</p>
+<a class="reference internal image-reference" href="../_images/5.1.2.png"><img alt="../_images/5.1.2.png" class="align-center" src="../_images/5.1.2.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图5.1.2 理想QAOA损失函数优化过程</strong></p><p>从图5.1.2可以看出，理想情况下，随着QAOA步数的增加，QAOA的性能不断提升，QAOA步数与优化后损失函数的关系如图5.1.3所示：</p>
+<a class="reference internal image-reference" href="../_images/5.1.3.png"><img alt="../_images/5.1.3.png" class="align-center" src="../_images/5.1.3.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>图5.1.3 QAOA性能与步数的关系</strong></p><p><strong>噪声对损失函数的影响</strong></p>
+<p>  首先，测试噪声对QAOA损失函数的影响，选取3中不同的噪声：退相位噪声，比特翻转噪声和退极化噪声。在前面的章节已经介绍过，这三种噪声都包含一个参数  <span class="math notranslate nohighlight">\(\mathrm{p}\)</span> ，选取 <span class="math notranslate nohighlight">\(\mathrm{p}\)</span> 的范围为 <span class="math notranslate nohighlight">\([0.0001,0.02]\)</span> ，很多NISQ装置中这些橾声的参数处于这个区间，另外更关注  <span class="math notranslate nohighlight">\(\mathrm{p}\)</span> 比较小的区间，所以通过如下公式在区间 <span class="math notranslate nohighlight">\([0.0001,0.02]\)</span> 中取11个点:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{p}_{\mathrm{i}}=0.0001 * 200^{0.1 \times \mathrm{i}}, \mathrm{i}=0,1,2, \ldots, 10\]</div>
+<p>  在接下来的测试中，对QAOA的损失函数简单做了变形，  <span class="math notranslate nohighlight">\(Q A O A\)</span> 损失函数是问题哈密顿量  <span class="math notranslate nohighlight">\(\mathrm{H}{\mathrm{p}}\)</span> 的期望，前面的章节已经介绍过，对最大分割问题， <span class="math notranslate nohighlight">\(\mathrm{H}{\mathrm{p}}\)</span> 可表示为</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{H}_{\mathrm{p}}=-\sum_{i, j} C_{i j} \frac{1-Z_{i} Z_{j}}{2}\]</div>
+<p>  为便于分析，丟弃  <span class="math notranslate nohighlight">\(\mathrm{H}{\mathrm{p}}\)</span> 中的常数项，并将其变为原来的两倍，这种变化不会对 <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 的执行产生影响，变换后的 <span class="math notranslate nohighlight">\(\mathrm{H}{\mathrm{p}}^{\prime}\)</span> 可表示为</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{H}_{\mathrm{p}}^{\prime}=\sum_{i, j} C_{i j} Z_{i} Z_{j}\]</div>
+<p>  则损失函数为:  <span class="math notranslate nohighlight">\(\mathrm{f}(\vec{\gamma}\)</span> , <span class="math notranslate nohighlight">\(\vec{\beta})=\left\langle\mathrm{H}_{\mathrm{p}}^{\prime}\right\rangle\)</span> 。</p>
+<p>  在测试过程中，固定QAOA量子线路的参数，测试损失函数与噪声参数的关系，具体测试结果如图5.1.4所示：</p>
+<a class="reference internal image-reference" href="../_images/5.1.4a.png"><img alt="../_images/5.1.4a.png" class="align-center" src="../_images/5.1.4a.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(a)退相位噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.4b.png"><img alt="../_images/5.1.4b.png" class="align-center" src="../_images/5.1.4b.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(b)比特翻转噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.4c.png"><img alt="../_images/5.1.4c.png" class="align-center" src="../_images/5.1.4c.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(c)退极化噪声</strong></p><p class="centered">
+<strong>图 5.1.4 不同步数下噪声参数与损失函数关系曲线</strong></p><p>  定义  <span class="math notranslate nohighlight">\(\mathrm{y}=\frac{\mathrm{f}(\vec{\gamma} \vec{\beta})^{\text {noise}}}{\mathrm{f}(\vec{\gamma} \vec{\beta})^{\text {ideal}}}\)</span> , 根据理论模型可得到 <span class="math notranslate nohighlight">\(\mathrm{y}\)</span> 与噪声参数 <span class="math notranslate nohighlight">\(\mathrm{p}\)</span> 及  <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 步数  <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> 的关系可表示为</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{y}=(1-\mathrm{p})^{\alpha \mathrm{n}}\]</div>
+<p>  用上面的公式对实验数据进行拟合，可以得到3种噪声对应的 3 个常数 <span class="math notranslate nohighlight">\(\alpha\)</span> ；</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\alpha_{\text {dephasing }}=16.051 \\ &amp;\alpha_{\text {bitflip }}=16.247 \\ &amp;\alpha_{\text {depolarizing }}=18.846 \end{aligned}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> 越大，说明对应噪声对  <span class="math notranslate nohighlight">\(Q A O A\)</span> 影响越大，可以看出退极化噪声对  <span class="math notranslate nohighlight">\(Q A O A\)</span> 影响最大。 下面考虑噪声参数  <span class="math notranslate nohighlight">\(\mathrm{p}\)</span> 和  <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 步数  <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> 比较小的实验数据，选取满足 <span class="math notranslate nohighlight">\(\mathrm{np}&lt;0.02\)</span> 的实验数据，当 <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 比较小时， <span class="math notranslate nohighlight">\(\mathrm{y} \cong 1-\alpha \mathrm{np}\)</span> ，令  <span class="math notranslate nohighlight">\(\mathrm{x}=\mathrm{np}\)</span> ，得到  <span class="math notranslate nohighlight">\(\mathrm{y}\)</span> 与  <span class="math notranslate nohighlight">\(\mathrm{x}\)</span> 关系如图  <span class="math notranslate nohighlight">\(5.1.5\)</span> 所示，其中 ”  <span class="math notranslate nohighlight">\(x\)</span> “点是实验数据，红线是斜率分别等于得到的3个拟合参数的直线，可以看出，当  <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 比较小时，噪声损失函数与理想损失函数的比特因子  <span class="math notranslate nohighlight">\(\mathrm{y}\)</span> 与  <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 成线性关系。</p>
+<a class="reference internal image-reference" href="../_images/5.1.5a.png"><img alt="../_images/5.1.5a.png" class="align-center" src="../_images/5.1.5a.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(a)退相位噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.5b.png"><img alt="../_images/5.1.5b.png" class="align-center" src="../_images/5.1.5b.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(b)比特翻转噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.5c.png"><img alt="../_images/5.1.5c.png" class="align-center" src="../_images/5.1.5c.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(c)退极化噪声</strong></p><p class="centered">
+<strong>图5.1.5 <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 比较小的区间噪声对QAOA损失函数的影响</strong></p><p><strong>噪声对损失函数的影响</strong></p>
+<p>  现在测试噪声对损失函数梯度的影响，噪声对损失函数的影响公式为：</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial f(\vec{\gamma}, \vec{\beta})^{\text {noise }}}{\partial \theta_{k}}=(1-p)^{\alpha n} \frac{\partial f(\vec{\gamma}, \vec{\beta})^{\text {ideal }}}{\partial \theta_{k}}\]</div>
+<p>  在这个测试中，固定 <span class="math notranslate nohighlight">\(QAOA\)</span> 量子线路的参数，测试损失函数对各参数的偏导与噪声参数的关系，  <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 的步数  <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> 的区间还是  <span class="math notranslate nohighlight">\(1 \sim 4\)</span> ， 噪声参数  <span class="math notranslate nohighlight">\(\mathrm{p}\)</span> 的选择方法与之前的 测试一致。为了减小统计误差，选取理想参数优化过程中梯度最大的量子线路参数序列作为测试参数。损失函数对各 <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 量子线路参数的偏导与噪声参数的关系 如图5.1.6所示，图中只包含 <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 步数  <span class="math notranslate nohighlight">\(\mathrm{n}=4\)</span> 的情况， <span class="math notranslate nohighlight">\(\mathrm{n}=1, 2, 3\)</span> 的情况与 <span class="math notranslate nohighlight">\(\mathrm{n}=4\)</span> 的情况类似，所以没有列出。</p>
+<a class="reference internal image-reference" href="../_images/5.1.6a.png"><img alt="../_images/5.1.6a.png" class="align-center" src="../_images/5.1.6a.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>(a)退相位噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.6b.png"><img alt="../_images/5.1.6b.png" class="align-center" src="../_images/5.1.6b.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>(b)比特翻转噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.6c.png"><img alt="../_images/5.1.6c.png" class="align-center" src="../_images/5.1.6c.png" style="width: 700px;" /></a>
+<p class="centered">
+<strong>退极化噪声</strong></p><p class="centered">
+<strong>(c)图5.1.6 噪声对损失函数梯度的影响</strong></p><p>  选取满足如下两个条件的数据: 一个条件还是 <span class="math notranslate nohighlight">\(\mathrm{np}&lt;0.02\)</span> ，另一个条件是 <span class="math notranslate nohighlight">\(\left|\frac{\partial \mathrm{f}(\vec{\gamma} \vec{\beta})}{\partial \theta_{\mathrm{k}}}\right|&gt;C, \theta_{k} \in{\vec{\gamma}, \vec{\beta}} \quad \mathrm{C}\)</span> 是一个常数，在这个测试中选择  <span class="math notranslate nohighlight">\(\mathrm{C}=2.5\)</span> 。 定义</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\mathrm{y}=\frac{\partial \mathrm{f}{(\vec{\gamma}, \vec{\beta})^{noise}}}{\partial \theta_{\mathrm{k}}} / {\frac{\partial \mathrm{f}(\vec{\gamma}, \vec{\beta})^{\text {ideal }}}{\partial \theta_{\mathrm{k}}}} \\ &amp;\mathrm{x}=\mathrm{np} \end{aligned}\end{split}\]</div>
+<p>  可以得到</p>
+<div class="math notranslate nohighlight">
+\[y \cong 1-\alpha x\]</div>
+<p>  将实验数据用上式拟合，拟合图像如图5.1.7所示，得到 3 个常数 <span class="math notranslate nohighlight">\(\alpha\)</span> ：</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{\text {dephasing }}=15.705, \alpha_{\text {bitflip }}=16.014, \alpha_{\text {depolarizing }}=17.213\]</div>
+<a class="reference internal image-reference" href="../_images/5.1.7a.png"><img alt="../_images/5.1.7a.png" class="align-center" src="../_images/5.1.7a.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(a)退相位噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.7b.png"><img alt="../_images/5.1.7b.png" class="align-center" src="../_images/5.1.7b.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(b)比特翻转噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.7c.png"><img alt="../_images/5.1.7c.png" class="align-center" src="../_images/5.1.7c.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(c)退极化噪声</strong></p><p class="centered">
+<strong>退极化噪声</strong></p><p class="centered">
+<strong>图5.1.7 噪声对损失函数梯度的影响数据拟合图像</strong></p><p><strong>噪声对QAOA的影响</strong></p>
+<p>  接下来测试噪声对QAOA运行过程及运行结果的影响，在不同噪声及不同参数下运行QAOA，得到优化后的QAOA量子线路参数和损失函数。测试的噪声类型及噪声参数区间与之前的测试一致。测试数据如图5.1.8所示：</p>
+<a class="reference internal image-reference" href="../_images/5.1.8a.png"><img alt="../_images/5.1.8a.png" class="align-center" src="../_images/5.1.8a.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(a)退相位噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.8b.png"><img alt="../_images/5.1.8b.png" class="align-center" src="../_images/5.1.8b.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(b)比特翻转噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.8c.png"><img alt="../_images/5.1.8c.png" class="align-center" src="../_images/5.1.8c.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(c)退极化噪声</strong></p><p class="centered">
+<strong>图5.1.8 噪声与QAOA优化损失函数的关系</strong></p><p>  首先，分析噪声参数对 <span class="math notranslate nohighlight">\(Q A O A\)</span> 优化后的参数的影响，用欧式空间距离的均方根来描述两组参数的距离 <span class="math notranslate nohighlight">\(\mathrm{d}\)</span> ， 用公式表示如下:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{d}=\sqrt{\frac{\left|\vec{\gamma}^{\text {noise }}-\vec{\gamma}^{\text {ideal }}\right|^{2}+\left|\vec{\beta}^{\text {noise }}-\vec{\beta}^{\text {ideal }}\right|^{2}}{2 n}}\]</div>
+<p>  噪声参数与距离的测试数据如图5.1.9所示：</p>
+<a class="reference internal image-reference" href="../_images/5.1.9.png"><img alt="../_images/5.1.9.png" class="align-center" src="../_images/5.1.9.png" style="width: 900px;" /></a>
+<p class="centered">
+<strong>图5.1.9. 噪声参数与距离的关系图 (a), (b), (c)分别表示退相位噪声，比特翻转噪声和退极化噪声</strong></p><p>  由此发现，当 <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 比较小时，噪声 <span class="math notranslate nohighlight">\(\mathrm{QAQA}\)</span> 优化后的参数与理想优化参数很接近，两组参数之间的距离主要来源于统计误差和优化算法的截止条件。前面已经得到噪 声会磨平 <span class="math notranslate nohighlight">\(\mathrm{QAQA}\)</span> 参数空间，所以含噪声的 <span class="math notranslate nohighlight">\(\mathrm{QAQA}\)</span> 损失函数娣度会比较小，梯度小的时候计算出来的梯度的相对误差会比较大，所以含噪声的 <span class="math notranslate nohighlight">\(\mathrm{OAOA}\)</span> 在优化到理想最优参数附近时，参数优化方向的可靠性会降低，导致无法优化到最优参数。另外一方面，在测试中，设置优化截止条件为  <span class="math notranslate nohighlight">\(\left|\frac{\ g r a d i e n t}{\mathrm{n}}\right|&lt;\mathrm{C}\)</span> ， <span class="math notranslate nohighlight">\(\mathrm{C}\)</span> 表示一个常数，取  <span class="math notranslate nohighlight">\(\mathrm{C}=0.05\)</span> ，这也是噪声  <span class="math notranslate nohighlight">\(\mathrm{QAQA}\)</span> 优化参数与理葙最优参数产生距离的一个原因。可以预计，当计算损失函数时，运行  <span class="math notranslate nohighlight">\(\mathrm{QAQA}\)</span> 线路的次数  <span class="math notranslate nohighlight">\(\mathrm{M} \rightarrow \infty\)</span> ，优化截止条件中的  <span class="math notranslate nohighlight">\(\mathrm{C} \rightarrow 0\)</span> ， 当  <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 比较小时，噪声  <span class="math notranslate nohighlight">\(\mathrm{QAOA}\)</span> 优化后的参数与理想优化参数是一样的。</p>
+<p>  对满足 <span class="math notranslate nohighlight">\(\mathrm{np}&lt;0.02\)</span> 条件的实验数据进行拟合，与之前的测试一样，定义:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{y}=\frac{\mathrm{f}(\vec{\gamma}, \vec{\beta})^{\text {noise }}}{\mathrm{f}(\vec{\gamma}, \vec{\beta})^{i d e a l}}, \mathrm{x}=\mathrm{np}\]</div>
+<p>  可以得到:</p>
+<div class="math notranslate nohighlight">
+\[y \cong 1-\alpha x\]</div>
+<p>  用上面的公式对实验数据进行拟合，可以得到3种噪声对应的3个常数 <span class="math notranslate nohighlight">\(\alpha\)</span> ：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\alpha_{\text {dephasing }}=24.133 \\ &amp;\alpha_{\text {bitflip }}=24.245 \\ &amp;\alpha_{\text {depolarizing }}=28.708 \end{aligned}\end{split}\]</div>
+<p>  拟合图像如图5.1.10所示，其中“x”点是实验数据，红线是斜率分别等于得到的3个拟合参数的直线，可以看出，当 <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 比较小时，噪声损失函数与理想损失函数的比特因子 <span class="math notranslate nohighlight">\(\mathrm{y}\)</span> 与 <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 成线性关系。</p>
+<a class="reference internal image-reference" href="../_images/5.1.10a.png"><img alt="../_images/5.1.10a.png" class="align-center" src="../_images/5.1.10a.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(a)退相位噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.10b.png"><img alt="../_images/5.1.10b.png" class="align-center" src="../_images/5.1.10b.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(b)比特翻转噪声</strong></p><a class="reference internal image-reference" href="../_images/5.1.10c.png"><img alt="../_images/5.1.10c.png" class="align-center" src="../_images/5.1.10c.png" style="width: 400px;" /></a>
+<p class="centered">
+<strong>(c)退极化噪声</strong></p><p class="centered">
+<strong>图5.1.10 噪声对QAOA运行结果的影响数据拟合图像</strong></p><p>  另一方面，发现这一节中得到的拟合常数 <span class="math notranslate nohighlight">\(\alpha\)</span> 明显比前两节的拟合常数  <span class="math notranslate nohighlight">\(\alpha\)</span> 大， 原因是噪声  <span class="math notranslate nohighlight">\(Q A O A\)</span> 优化参数与理想  <span class="math notranslate nohighlight">\(Q A O A\)</span> 优化参数之间存在距离，这个距离随着 <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 的增 加而增加，导致  <span class="math notranslate nohighlight">\(y\)</span> 值随着  <span class="math notranslate nohighlight">\(\mathrm{np}\)</span> 变化的斜率更大，即  <span class="math notranslate nohighlight">\(\alpha\)</span> 更大。</p>
+<p><strong>总结</strong></p>
+<p>  在这节中，介绍了噪声对NISQ量子算法性能影响的研究进展，讨论了一种特殊的噪声对 <span class="math notranslate nohighlight">\(QAOA\)</span> 的影响，提出了噪声对  <span class="math notranslate nohighlight">\(Q A O A\)</span> 影响的模型，并通过数值模拟验证了模型的正确性，为  <span class="math notranslate nohighlight">\(Q A O A\)</span> 在真实量子芯片上运行提供的参考。 这一研究领域还有很多开放性的问题，比如，本节介绍的方案只适用于一种噪声，即可以表示为 <span class="math notranslate nohighlight">\(\mathrm{K}=\{\mathrm{a}{0} \mathrm{I}, \mathrm{a}{1} \mathrm{~K}{1}, \mathrm{a}{2} \mathrm{~K}{2}, \ldots, \mathrm{a}{s} \mathrm{~K}_{\mathrm{s}}\}\)</span> 的噪声，所以一种任意的噪声对  <span class="math notranslate nohighlight">\(NISQ\)</span> 会有怎样的影响还是一个开放性的问题，另外噪声对别的 <span class="math notranslate nohighlight">\(NISQ\)</span> 算法的影响也是一个开放性的问题。   噪声对NISQ量子算法影响的研究是一个重要的研究方向，可以为  <span class="math notranslate nohighlight">\(\mathrm{NISO}\)</span> 装置，  <span class="math notranslate nohighlight">\(NISQ\)</span> 量子算法提供借鉴作用，需要研究人员不断去探索新的进展。</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-left" title="4.7 Shor分解算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html" class="btn btn-neutral float-right" title="5.2 量子机器学习" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

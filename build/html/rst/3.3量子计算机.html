@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.3 量子计算机 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.1 量子软件开发环境" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html" />
+    <link rel="prev" title="3.2 量子计算机硬件" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3.3 量子计算机</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.3.1 量子计算机整体架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.3.2 量子程序架构（设备代码的架构）</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>3.3 量子计算机</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/3.3量子计算机.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>3.3 量子计算机<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>3.3.1 量子计算机整体架构<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p><strong>量子计算的定位：异构计算</strong></p>
+<p>  量子计算领域属于一个新兴高速发展的领域，在近二十年间，不论是量子算法的研究，还是量子芯片的研发均取得了巨大的进展。由于量子计算的理论研究有限，目前所说的量子计算机并非是一个可独立完成计算任务的设备，而是一个可以对特定问题有指数级别加速的协处理器。相应的，目前所说的量子计算，如图3.3.1所示，本质上来说是一种异构运算，即在经典计算机执行计算任务的同时，将需要加速的程序在量子芯片上执行。</p>
+<img alt="../_images/3.3.1.png" class="align-center" src="../_images/3.3.1.png" />
+<p class="centered">
+<strong>图3.3.1 量子计算流程图（complexity-复杂性，result-结果）</strong></p><p><strong>量子程序代码构成：宿主代码+设备代码</strong></p>
+<p>  因此，量子计算的程序代码实际执行中分为两种，一种是运行在CPU上的宿主代码（Host code），主要用于执行不需要加速的任务，并为需要加速的任务提供需要的数据；一种是运行在量子芯片上的设备代码（Device code），主要用于描述量子线路，控制量子程序在量子芯片上的执行顺序，以及数据的传输。不同类型的代码由于其运行的物理位置不同，编译方式和访问的资源均不同，这跟英伟达公司推出的用GPU解决复杂的计算问题的并行计算架构CUDA非常类似。如表3.3.1所示，以下所提及的量子程序，指的是Device code。</p>
+<p class="centered">
+<strong>表3.3.1 CUDA与量子计算架构的对比</strong></p><table class="docutils align-center">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>区别</strong></p></td>
+<td><p><strong>量子计算架构</strong></p></td>
+<td><p><strong>CUDA并行运算架构</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>加速的问题</p></td>
+<td><p>QAOA，质数分解</p></td>
+<td><p>大规模并行计算</p></td>
+</tr>
+<tr class="row-odd"><td><p>描述语言</p></td>
+<td><p>C + 量子高级语言</p></td>
+<td><p>C/MATLAB + CUDA</p></td>
+</tr>
+<tr class="row-even"><td><p>执行设备</p></td>
+<td><p>量子芯片</p></td>
+<td><p>GPU</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h2>3.3.2 量子程序架构（设备代码的架构）<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p><strong>量子高级语言</strong></p>
+<p>  与经典计算机语言类似，描述量子程序的语言也有高级语言与低级语言之分。量子高级语言，类似于经典计算机语言中C++。在描述量子线路时，不需要考虑量子芯片的底层物理实现，包括可执行量子逻辑门的种类，量子比特的连通性等，这就像一个经典的程序设计师并不需要考虑底层的执行芯片是x86架构，还是RISC架构一样。QPanda,QRunes均属于量子高级语言。量子高级语言主要用于描述量子线路的逻辑门构成，量子程序段之间的执行顺序，如Qif,QWhile等，以及内存之间的通信。</p>
+<p><strong>量子汇编语言的编译原则</strong></p>
+<p>  量子高级语言会根据底层芯片的特点，通过量子程序编译器，编译为量子汇编语言。量子程序编译器一般会考虑两个方面：量子芯片可执行的量子逻辑门种类和量子比特的连通性。</p>
+<p><strong>不可直接执行的量子比特逻辑门拆分</strong></p>
+<p>  根据量子计算的原理，任意的单量子比特逻辑门可以拆分为绕X轴旋转的量子逻辑门和绕Y轴旋转量子逻辑门的序列；任意的两量子比特逻辑门可以拆分为由CNOT/CZ门和单量子比特逻辑门的序列。量子芯片提供的可直接执行的逻辑门是完备的，即可以表征所有的量子比特逻辑门，因此，如果量子高级语言描述的量子程序中包含了量子芯片不可直接执行的量子逻辑门，量子程序编译器会根据量子芯片提供的量子逻辑门将其转化为可执行量子逻辑门构成的序列。</p>
+<p><strong>量子比特连通性与不连通门的转换</strong></p>
+<p>  相同数量的量子比特对于不同的量子芯片结构，可执行两量子比特逻辑门的量子比特对可能完全不同。目前常见的量子芯片结构有链式结构，十字结构，以及全连通结构。对于链式结构，量子比特成链状排布，每个量子比特只能与其相邻的两个量子比特执行两量子比特逻辑门；对于十字结构，量子比特成方阵装排布，每个量子比特能与其相邻的四个量子比特执行两量子比特逻辑门；对于全连通结构，每个量子比特可以与其他所有量子比特执行两量子比特逻辑门。如果量子高级语言描述的量子程序中包含量子芯片不可直接执行的两量子比特逻辑门，量子程序编译器会根据量子芯片的连通性，利用交换门和可执行的两比特门的序列，取代量子程序中的两量子比特逻辑门。</p>
+<p>  例如图3.3.2，一个三量子比特的链式结构量子芯片，可执行两量子比特逻辑门的量子比特对有{ {1,2},{2,3} }，CNOT 1,3 对于此量子芯片是不可执行的逻辑门，可以用SWAP1,2、CNOT2,3、SWAP1,2构成的量子逻辑门序列取代CNOT1,3。</p>
+<img alt="../_images/3.3.2.png" class="align-center" src="../_images/3.3.2.png" />
+<p class="centered">
+<strong>图3.3.2 三量子比特的链式结构量子芯片</strong></p><p><strong>量子程序的可执行文件</strong></p>
+<p>  对于经典程序来说，汇编语言转化为计算机可直接执行二进制文件，即可被经典计算机执行；而量子芯片可直接执行的文件并非一串01组合的二进制文件，而是由测控设备产生的精密的脉冲模拟信号，因此对于量子汇编语言，应该转化成测控设备所能执行文件。此文件中不仅包含着每个量子比特逻辑门的脉冲波形，还需要包含波形的执行顺序，根据波形执行顺序的表征形式不同，量子计算硬件架构可细分为两类。</p>
+<p><strong>传统量子体系结构</strong></p>
+<p>  顺序执行的传统量子体系结构的可执行文件：量子程序的整段波形文件</p>
+<p>  在传统的量子体系结构中，波形执行顺序体现在波形文件中，即编译器将量子汇编程序中的量子比特逻辑门的波形，按照执行顺序拼接为一个整体的波形，并将此波形以二进制文件的形式存放至测控设备的内存中。波形文件本身包含着量子逻辑门的执行顺序，测控设备通过执行波形文件，输出测控波形。此量子体系结构对应的硬件架构为上位机-测控设备-量子芯片架构。</p>
+<p><strong>顺序执行的传统量子体系结构优缺点</strong></p>
+<p>  这种架构的优势在于，测控设备可以从内存中直接读取波形，并施加到量子芯片上，延时极短，执行效率很高，但由于上位机与测控设备之间的通信时间很长，远大于量子比特的退相干时间，即在量子比特完成测量发送至上位机，以及上位机根据测量结果将后续要执行的波形文件发送至测控设备内存的期间，量子比特已经退相干，无法继续执行量子比特逻辑门。因此，这种架构只能运行顺序执行的上位机发送的波形文件，在执行期间不可改变波形的执行顺序，进而无法执行包含基于测量结果的跳转量子程序。</p>
+<p><strong>顺序执行的传统量子体系结构的改进</strong></p>
+<p>  改进方案是将量子程序中可能执行的量子程序段的波形，全部上传至测控设备的内存中，当测量设备得到量子比特的测量结果时，根据测量结果决定接下来输出的波形在内存中的地址，且整个反馈过程的延时远小于量子比特的退相干时间。因此，此方案可以实现基于量子比特测量结果的反馈控制，但此方法需要将可能执行的量子程序段的波形全部存储在测控设备的内存中，随着量子比特数量和量子程序波形长度的增长，该架构对内存的开销极大，可扩展性较低。</p>
+<p><strong>增强扩展性的新量子体系结构</strong></p>
+<p>  增强扩展性的新量子体系结构的可执行文件构成：所有逻辑门的波形文件+微处理器程序</p>
+<p>  为了降低任意波形发生器的内存开销，增加系统的可扩展性，目前已有科研团队提出另一种量子计算机架构：上位机-微处理器-测控设备-量子芯片架构：该架构下，波形执行顺序通过微处理器发送的指令控制，虽然上位机与测控设备之间的通信速度很慢，但FPGA可以与测控设备高速通信，因此采用FPGA搭建的微处理器控制测控设备按顺序执行波形。编译器将量子汇编程序中的每个量子比特逻辑门的波形以二进制文件的形式存放至测控设备的内存中，并生成微处理器可执行的微处理器程序，微处理器通过执行该程序，在特定的时间向测控设备发送控制指令触发对应的测控波形，同时，该微处理器可以接收测控设备发送的量子比特的测量结果，并通过执行微处理器程序，决定测控设备执行的波形。</p>
+<p><strong>增强扩展性的新量子体系结构的优缺点</strong></p>
+<p>  优点是：测控设备无需存放量子程序对应的所有波形，大大减少了内存开销；但缺点在于，通过执行微处理器程序控制测控设备，对微处理器的执行速度要求较高。如果微处理器将微处理器程序转化为测控设备的控制指令的时间大于量子芯片执行波形的时间，则会导致量子芯片在退相干时间内执行的有效的量子比特逻辑门数量降低；另一方面，微处理器向测控设备发送控制指令存在延时，如果顺序执行量子程序，则该延迟无任何影响，但如果要执行基于测量结果跳转的量子程序，则每次反馈控制都会产生两倍延时时间的空泡，影响量子芯片的执行效率。</p>
+<p><strong>参考文献</strong></p>
+<p>[1] Loss, Daniel, and David P. DiVincenzo. “Quantum computation with quantum dots.” Physical Review A 57.1 (1998): 120.</p>
+<p>[2] Devoret, Michel H., and Robert J. Schoelkopf. “Superconducting circuits for quantum information: an outlook.” Science 339.6124 (2013): 1169-1174.</p>
+<p>[3] DiCarlo, L., et al. “Demonstration of two-qubit algorithms with a superconducting quantum processor.” Nature 460.7252 (2009): 240.</p>
+<p>[4]Kelly, Julian, et al. “State preservation by repetitive error detection in a superconducting quantum circuit.” Nature 519.7541 (2015): 66.</p>
+<p>[5]O’Malley, P. J. J., et al. “Scalable quantum simulation of molecular energies.” Physical Review X 6.3 (2016): 031007.</p>
+<p>[6]Neill, C., et al. “A blueprint for demonstrating quantum supremacy with superconducting qubits.” Science 360.6385 (2018): 195-199.</p>
+<p>[7]Kandala, Abhinav, et al. “Hardware-efficient variational quantum eigensolver for small molecules and quantum magnets.” Nature 549.7671 (2017): 242.</p>
+<p>[8] Otterbach, J. S., et al. “Unsupervised Machine Learning on a Hybrid Quantum Computer.” arXiv preprint arXiv:1712.05771(2017).</p>
+<p>[9] Song, Chao, et al. “10-qubit entanglement and parallel logic operations with a superconducting circuit.” Physical review letters 119.18 (2017): 180511.</p>
+<p>[10]Zhao, Peng, et al. “Circuit QED with qutrits: Coupling three or more atoms via virtual-photon exchange.” Physical Review A 96.4 (2017): 043833.</p>
+<p>[11]Wang, Tenghui, et al. “The experimental realization of high-fidelityshortcut-to-adiabaticity’quantum gates in a superconducting Xmon qubit.” arXiv preprint arXiv:1804.08247 (2018).</p>
+<p>[12]Li, Hai-Ou, et al. “Controlled Quantum Operations of a Semiconductor Three-Qubit System.” Physical Review Applied 9.2 (2018): 024015.</p>
+<p>[13] Zajac, David M., et al. “Resonantly driven CNOT gate for electron spins.” Science 359.6374 (2018): 439-442.</p>
+<p>[14] Muhonen, Juha T., et al. “Storing quantum information for 30 seconds in a nanoelectronic device.” Nature nanotechnology9.12 (2014): 986.</p>
+<p>[15] Veldhorst, Menno, et al. “A two-qubit logic gate in silicon.” Nature 526.7573 (2015): 410.</p>
+<p>[16] Watson, T. F., et al. “A programmable two-qubit quantum processor in silicon.” Nature (2018).</p>
+<p>[17] Yoneda, Jun, et al. “A quantum-dot spin qubit with coherence limited by charge noise and fidelity higher than 99.9%.” Nature nanotechnology 13.2 (2018): 102.</p>
+<p>[18] Cao, Gang, et al. “Ultrafast universal quantum control of a quantum-dot charge qubit using Landau–Zener–Stückelberg interference.” Nature communications 4 (2013): 1401.</p>
+<p>[19] Li, Hai-Ou, et al. “Conditional rotation of two strongly coupled semiconductor charge qubits.” Nature communications 6 (2015): 7681.</p>
+<p>[20] Cao, Gang, et al. “Tunable hybrid qubit in a GaAs double quantum dot.” Physical review letters 116.8 (2016): 086801.</p>
+<p>[21] Gulde, Stephan, et al. “Implementation of the Deutsch–Jozsa algorithm on an ion-trap quantum computer.” Nature 421.6918 (2003): 48.</p>
+<p>[22] Monroe, Christopher, and Jungsang Kim. “Scaling the ion trap quantum processor.” Science 339.6124 (2013): 1164-1169.</p>
+<p>[23] Debnath, Shantanu, et al. “Demonstration of a small programmable quantum computer with atomic qubits.” Nature 536.7614 (2016): 63.</p>
+<p>[24]Linke, Norbert M., et al. “Experimental comparison of two quantum computing architectures.” Proceedings of the National Academy of Sciences (2017): 201618020.</p>
+<p>[25]Zhang, Jiehang, et al. “Observation of a many-body dynamical phase transition with a 53-qubit quantum simulator.” Nature 551.7682 (2017): 601.</p>
+<p>[26] Schäfer, V. M., et al. “Fast quantum logic gates with trapped-ion qubits.” Nature 555.7694 (2018): 75</p>
+<p>[27] Zhang, Xiang, et al. “Experimental quantum simulation of fermion-antifermion scattering via boson exchange in a trapped ion.” Nature communications 9.1 (2018): 195.</p>
+<p>[28] Cui, Jin-Ming, et al. “Experimental Trapped-ion Quantum Simulation of the Kibble-Zurek dynamics in momentum space.” Scientific reports 6 (2016): 33381.</p>
+<p>[29]Weiss, David S., and Mark Saffman. “Quantum computing with neutral atoms.” Physics Today 70.7 (2017): 44.</p>
+<p>[30]Theis, L. S., et al. “High-fidelity Rydberg-blockade entangling gate using shaped, analytic pulses.” Physical Review A 94.3 (2016): 032306.</p>
+<p>[31]Dai, Han-Ning, et al. “Generation and detection of atomic spin entanglement in optical lattices.” Nature Physics 12.8 (2016): 783.</p>
+<p>[32] Bloch, Immanuel, Jean Dalibard, and Wilhelm Zwerger. “Many-body physics with ultracold gases.” Reviews of modern physics 80.3 (2008): 885.</p>
+<p>[33]Bernien, Hannes, et al. “Probing many-body dynamics on a 51-atom quantum simulator.” Nature 551.7682 (2017): 579.</p>
+<p>[34] Wu, Zhan, et al. “Realization of two-dimensional spin-orbit coupling for Bose-Einstein condensates.” Science 354.6308 (2016): 83-88.</p>
+<p>[35] Gershenfeld, Neil A., and Isaac L. Chuang. “Bulk spin-resonance quantum computation.” science 275.5298 (1997): 350-356.</p>
+<p>[36] Jones, Jonathan A., Michele Mosca, and Rasmus H. Hansen. “Implementation of a quantum search algorithm on a quantum computer.” Nature 393.6683 (1998): 344.</p>
+<p>[37] Vandersypen, Lieven MK, et al. “Experimental realization of Shor’s quantum factoring algorithm using nuclear magnetic resonance.” Nature 414.6866 (2001): 883.</p>
+<p>[38] Ryan, C. A., Martin Laforest, and Raymond Laflamme. “Randomized benchmarking of single-and multi-qubit control in liquid-state NMR quantum information processing.” New Journal of Physics 11.1 (2009): 013034.</p>
+<p>[39] Stern, Ady, and Netanel H. Lindner. “Topological quantum computation—from basic concepts to first experiments.” Science 339.6124 (2013): 1179-1184.</p>
+<p>[40]Mourik, Vincent, et al. “Signatures of Majorana fermions in hybrid superconductor-semiconductor nanowire devices.” Science 336.6084 (2012): 1003-1007.</p>
+<p>[41] Zhang, Hao, et al. “Quantized majorana conductance.” Nature 556.7699 (2018): 74.</p>
+<p>[42] Gazibegovic, Sasa, et al. “Epitaxy of advanced nanowire quantum devices.” Nature 548.7668 (2017): 434.</p>
+<p>[43] Vaitiekėnas, S., et al. “Selective area grown semiconductor-superconductor hybrids: a basis for topological networks.” arXiv preprint arXiv:1802.04210 (2018).</p>
+<p>[44]He, Qing Lin, et al. “Chiral Majorana fermion modes in a quantum anomalous Hall insulator–superconductor structure.” Science 357.6348 (2017): 294-299.</p>
+<p>[45] 图片引用自中国科学技术大学孔伟成博士的毕业论文。</p>
+<p>[46] 图片引用自中国科学技术大学孔伟成博士的毕业论文。</p>
+<p>[47] 图片引自npj Quantum Information 2, 16033 (2016)</p>
+<p>[48] 图片引自Phys. Rev. Appl. 3, 024010 (2015).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html" class="btn btn-neutral float-left" title="3.2 量子计算机硬件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html" class="btn btn-neutral float-right" title="4.1 量子软件开发环境" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

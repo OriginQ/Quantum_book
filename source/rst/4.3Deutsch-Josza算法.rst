@@ -1,0 +1,382 @@
+4.3 Deutsch-Josza算法
+==================================
+  量子算法是量子计算落地实用的最大驱动力，好的量子算法设计将更快速推动量子计算的发展。
+
+  Deutsch-Jozsa 量子算法，简称 D-J 算法， David Deutsch 和 Richard Jozsa 早在 1992 年提出了该算法，这是第一个展示了量子计算和经典计算在解决具体问题时所具有明显差异性的算法。
+
+  D-J 算法是这样描述的：给定两个不同类型的函数，通过计算，判断该函数是属于哪一类型的函数，其可用来演示说明量子计算如何在计算能力上远超经典计算。
+
+  D-J 算法所阐述的问题是：考虑一个函数 :math:`f(x)` , 它将  :math:`n`  个字符串  :math:`x` 作为输入并返回  :math:`0` 或  :math:`1` 。注意， :math:`n` 个字符串也是由 :math:`0` 和 :math:`1` 组成，函数形式如图4.3.1所示：
+
+  考虑 :math:`n=1` 的情况：
+
+.. math::
+   f:\{0,1\} \rightarrow\{0,1\}
+
+.. image:: ./images/4.3.1.png
+   :align: center
+.. centered:: 图4.3.1 函数形式
+
+.. math::
+    f:\{0,1\}^{n} \rightarrow\{0,1\}
+
+  这个函数称为常数函数。如果对任意 :math:`f(x)` 都等于 :math:`0` 或者 :math:`f(x)` 都等于 :math:`1` ​：
+
+.. math::
+    f(x) =0 \ or \ f(x) = 1 
+
+  而如果 :math:`f(x) = 0` 的个数等于 :math:`f(x) = 1` 的个数，则称这个函数为平衡函数：
+
+ :math:`f(x) =0` 的个数等于 :math:`f(x) = 1` 的个数
+
+  考虑一下最简单的情况：当 :math:`n=1` 的时候，常数函数的类型是这样的： :math:`f(0)` ， :math:`f(1)` 都指向 :math:`0` ；或者 :math:`f(0)` ， :math:`f(1)` 都指向 :math:`1` ，而平衡函数则是各占一半。回顾问题，要解决的是：给定输入和输出，如何快捷地判断 :math:`f(x)` 是属于常数函数，或是平衡函数。
+
+  如图4.3.2，在经典算法中，给定了输入之后，第一步是需要判断 :math:`f(0)` ， :math:`f(0)` 有两种情况， :math:`f(0) = 0` 或者 :math:`f(0) = 1` ；当确定  :math:`f(0)` 之后，再判断 :math:`f(1)` ，确定了 :math:`f(1)` 的值之后，就可以确定该函数的类型；整个过程需要两次，才可以判断函数的类型。按照这样的方式，对于经典算法 :math:`n` 个输入，在最糟糕的情况下 :math:`f` 必须要 :math:`2^{n-1}+1` 次才能判断出函数属于哪一类，即，最糟糕情形需要验证一半多一个数据；而如果使用量子算法，仅需  :math:`1` 次就可以判断出结果。
+
+.. image:: ./images/4.3.2.png
+   :align: center
+.. centered:: 图4.3.2  经典算法
+
+  通过图4.3.3所示的量子线路图来理解该算法是如何解决问题的。首先，对所有的比特都执行Hadamard 门操作，然后经过黑盒子 :math:`U_f` ，再对工作比特添加 Hadamard 门，然后测量。
+
+.. image:: ./images/4.3.3.png
+   :align: center
+.. centered:: 图4.3.3 量子线路图
+
+  按照实施步骤，表达形式：
+
+1. 初始化
+
+.. math::
+    |0\rangle^{\otimes n}|1\rangle
+
+2. 使用 Hadamard 门来构建叠加态
+
+.. math::
+    \rightarrow \frac{1}{\sqrt{2}} \sum_{x=0}^{2^{n}-1}|x\rangle\left[\frac{|0\rangle-|1\rangle}{\sqrt{2}}\right] 
+
+3. 使用  :math:`U_f` 来计算函数  :math:`f`
+
+.. math::
+    \rightarrow \frac{1}{\sqrt{2^{n}}} \sum_{x}|x\rangle\left[\frac{|0\oplus f(x)\rangle-|1\oplus f(x)\rangle}{\sqrt{2}}\right] \\= \frac{1}{\sqrt{2^{n}}} \sum_{x}(-1)^{f(x)}|x\rangle\left[\frac{|0\rangle-|1\rangle}{\sqrt{2}}\right]
+
+此处 :math:`\oplus` 运算表示求和后整除 :math:`2` 。 
+
+4. 在工作位上添加 Hadamard 门
+
+.. math::
+    \rightarrow \frac{1}{\sqrt{2^{n}}} \sum_{z} \sum_{x}(-1)^{x \cdot z+f(x)}|z\rangle\left[\frac{|0\rangle-|1\rangle}{\sqrt{2}}\right] 
+
+5. 测量工作位，输出结果，一次性就可以判断出结果
+
+.. math::
+    \rightarrow \mathrm{Z}
+
+
+4.3.1 在本源量子云计算服务平台上实现D-J算法
+--------------------------------------------
+  访问本源量子云平台：https://qcloud.originqc.com.cn/ ，选择仿真开发训练云进入量子线路编程页面。
+
+.. image:: ./images/4.3.4.png
+   :align: center
+.. centered:: 图4.3.4 本源量子云平台量子线路编程
+
+  首先新建项目“D-J算法”，点击保存。本源量子云平台提供包括“本源悟源1号”、“本源悟源2号”等在内的多种计算后端，本例选择“全振幅量子虚拟机”为计算后端。
+
+.. image:: ./images/4.3.5.png
+   :align: center
+.. centered:: 图4.3.5 创建项目
+
+  点击设置按钮（“”），可以设置实验参数。在模拟类型上，可以选择两种：Monte-Carlo方法和概率方法。
+
+.. image:: ./images/4.3.6.png
+   :align: center
+.. centered:: 图4.3.6 参数设置
+   
+  Monte-Carlo方法：通过多次数值模拟，对测量结果进行仿真。
+
+  概率方法：直接计算出需要的比特概率分布，而不需要真正的去计算测量过程。
+
+  其中概率方法比Monte-Carlo方法运行会快一些；由于是多次随机，Monte-Carlo方法每次运行的结果可能会不一样。这里选择Monte-Carlo方法。
+
+  以两个量子比特的D-J算法为例，它需要使用2个量子比特和1个经典寄存器去保存一次测量的值，输入好之后，点击保存。将线路上方的逻辑门通过鼠标拖拽到线路上，即可构建量子线路。
+
+  根据D-J算法的内容，首先需要在第一条线上添加一个Hadamard门。拖拽 :math:`H` 就可以在线路上插入一个Hadamard门。
+
+.. image:: ./images/4.3.7.png
+   :align: center
+.. centered:: 图4.3.7 拖入H门
+
+  插入逻辑门之后，双击这个逻辑门可以删除，也可以通过鼠标拖动这个门的位置；同样在其他地方点击，可以插入更多的量子逻辑门。根据DJ算法，将除了Oracle的部分添加上：
+
+  中间空出来的部分，就是Oracle可以插入的部分了。
+
+  有很多量子算法，Oracle是作为输入给出的，比如DJ算法和Grover算法等。所以，两比特DJ算法的量子程序就已经写好了。
+
+  这里，可以插入不同的Oracle试验一下；定义Oracle的输入输出是：
+
+.. math::
+    |x\rangle|y\rangle \rightarrow|x\rangle|f(x)+y \bmod 2\rangle
+
+  这里 :math:`f(x)` 会根据Oracle不同而编码到量子线路中，例如一个 :math:`CNOT` 门就可以做一个Oracle。
+
+
+  一个 :math:`CNOT` 门的效果是 :math:`|\mathrm{x}\rangle|\mathrm{y}\rangle \rightarrow|x\rangle|(x+y) \mathrm{mod} 2\rangle` ，对比上面的Oracle公式，相当于 :math:`f(x)=x` 。由此，可以看出 :math:`f(0)=0, f(1)=1` ，因此是一个平衡函数。
+
+
+  这个门能产生的效果是 :math:`|x\rangle|y\rangle \rightarrow|x\rangle|(1+y) \bmod 2\rangle` ，对比上面的Oracle公式，相当于 :math:`f(x)=1` ，这是一个常数函数。
+
+.. image:: ./images/4.3.8.png
+   :align: center
+.. centered:: 图4.3.8 CNOT与 Pauli-X 组合门
+
+
+  这个相当于把两种情况组合起来了，效果是  :math:`|\mathrm{x}\rangle|\mathrm{y}\rangle \rightarrow|x\rangle|(x+y+1) \mathrm{mod} 2\rangle` ，因此对应了 :math:`f(x)=x+1` ，同理，这是一个平衡函数。
+
+  依次来检验这三种Oracle，DJ算法是否能输出正确的结果。
+
+第一种： :math:`CNOT`
+
+  构建如图4.3.9所示的量子线路图，并设置如图4.3.10所示参数。设置重复实验次数为为默认次数100次；点击运行，就可以运行这个量子程序了。
+
+.. image:: ./images/4.3.9.png
+   :align: center
+.. centered:: 图4.3.9 量子线路图
+
+.. image:: ./images/4.3.10.png
+   :align: center
+.. centered:: 图4.3.10 设置实验参数
+
+  点击查看任务结果，如图4.3.11。
+
+.. image:: ./images/4.3.11.png
+   :align: center
+.. centered:: 图4.3.11 查看任务结果
+
+  查看“概率统计图”，可以看到在第一个量子比特上得到100%的1的测量值，如图4.3.12；这个柱状图的横轴表示不同的测量值，纵轴表示这个测量值对应的概率。这里只测到了1，概率为100%，符合预期。
+
+.. image:: ./images/4.3.12.png
+   :align: center
+.. centered:: 图4.3.12 任务结果—概率统计图
+
+  依次测试另外两种Oracle：
+
+.. image:: ./images/4.3.13.png
+   :align: center
+.. centered:: 图4.3.13 量子线路图
+
+  对于这种情况，可以看到测量值100%为0。
+
+.. image:: ./images/4.3.14.png
+   :align: center
+.. centered:: 图4.3.14 任务结果—概率统计图
+
+第三种情况：
+
+.. image:: ./images/4.3.15.png
+   :align: center
+.. centered:: 图4.3.15 量子线路图
+
+  由此，可以得到100%的1，说明这个Oracle代表一个平衡函数。
+
+.. image:: ./images/4.3.16.png
+   :align: center
+.. centered:: 图4.3.16 任务结果—概率统计图
+
+
+
+
+4.3.2 在QPanda上实现DJ算法
+-----------------------------------------
+  下面的代码可以在github的QPanda仓库中的Applications/DJ_Algorithm/DJ_Algorithm.cpp中找到。
+
+.. code-block::
+
+    1.#include "Core/Utilities/Tools/Utils.h"
+    2.#include "QAlg/DJ_Algorithm/DJ_Algorithm.h"
+    3.#include "QPandaNamespace.h"
+    4.#include "Core/Core.h"
+    5.#include <vector>
+    6.
+    7.using namespace std;
+    8.USING_QPANDA
+    9.
+    10.DJ_Oracle generate_two_qubit_oracle(vector<bool> oracle_function) {
+    11.    return [oracle_function](QVec qubit1, Qubit* qubit2) {
+    12.        QCircuit prog;
+    13.        if (oracle_function[0] == false &&
+    14.            oracle_function[1] == true)
+    15.        {
+    16.            prog << CNOT(qubit1[0], qubit2);
+    17.        }
+    18.        else if (oracle_function[0] == true &&
+    19.            oracle_function[1] == false)
+    20.        {
+    21.            prog << CNOT(qubit1[0], qubit2)
+    22.                << X(qubit2);
+    23.        }
+    24.        else if (oracle_function[0] == true &&
+    25.            oracle_function[1] == true)
+    26.        {
+    27.            prog << X(qubit2);
+    28.        }
+    29.        else
+    30.        { 
+    31.        }
+    32.        return prog;
+    33.    };
+    34.}
+    35.
+    36.void two_qubit_deutsch_jozsa_algorithm(vector<bool> boolean_function)
+    37.{
+    38.	auto qvm = CPUQVM();
+    39.	qvm.init();
+    40.    auto oracle = generate_two_qubit_oracle(boolean_function);
+    41.	
+    42.	auto prog = deutschJozsaAlgorithm(boolean_function, &qvm, oracle);
+    43.	auto result = qvm.directlyRun(prog);
+    44.	if (result["c0"] == false)
+    45.	{
+    46.		cout << "Constant function!" << endl;
+    47.	}
+    48.	else if (result["c0"] == true)
+    49.	{
+    50.		cout << "Balanced function!" << endl;
+    51.	}
+    52.}
+    53.
+    54.int main()
+    55.{
+    56.	while (1) {
+    57.		bool fx0 = 0, fx1 = 0;
+    58.		cout << "input the input function" << endl
+    59.			<< "The function has a boolean input" << endl
+    60.			<< "and has a boolean output" << endl
+    61.			<< "f(0)= (0/1)?";
+    62.		cin >> fx0;
+    63.		cout << "f(1)=(0/1)?";
+    64.		cin >> fx1;
+    65.		std::vector<bool> oracle_function({ fx0,fx1 });
+    66.		cout << "Programming the circuit..." << endl;
+    67.		two_qubit_deutsch_jozsa_algorithm(oracle_function);
+    68.	}
+    69.	return 0;
+    70.}    
+
+  整个文件利用QPanda的组件实现了一个Deutsch-Jozsa算法，并且提供了一个2 Qubit的示例。各个模块的介绍：
+
+
+**1. Deutsch_Jozsa_algorithm函数**
+
+  在实现这个函数的时候，并不是仅仅考虑了2 qubit的情况，而是对更一般的情况，即所有qubit的情况进行处理。
+
+  QPanda的核心逻辑在于对申请的量子比特进行量子线路构建，因此，这个函数会返回一个QProg类型，这个QProg类型会被放到量子机器中进行执行。
+
+  Deutsch_Jozsa_algorithm的参数有4个：
+
+​  vector<Qubit*> qubit1：一组qubit，它对应了上面所述的工作比特；
+
+​  Qubit* qubit2：一个qubit，它对应的是算法中的辅助比特；
+
+​  vector cbit：一组cbit，它对应的是qubit 1的测量值；
+
+​  DJ_Oracle oracle：输入的，待计算的Oracle
+
+  因此，这个算法的逻辑就可以表述为：通过输入的qubit1, qubit2构建量子线路；并且将oracle作用在qubit1和qubit2上；最后，对qubit1测量到cbit上。这个函数将量子算法的流程通过QPanda的组件编写出来，整个流程会被写入到一个QProg类型的对象中，最终，这个函数会返回这个对象。
+
+
+.. code-block::
+
+    1.auto prog = QProg();  
+
+  在函数中，首先可以通过QProg函数去创建一个空的量子程序。
+
+.. code-block::
+
+    1.prog << X(qubit2);  
+    2.prog << apply_QGate(qubit1, H) << H(qubit2);   
+
+  将逻辑门插入到这个量子程序的后面，依次是X门作用在qubit2上（将qubit2初始化为|1⟩），对qubit1和qubit2执行Hadamard门。
+
+.. code-block::
+
+    1.prog << oracle(qubit1, qubit2);
+
+  制备完纠缠态之后，就可以进行oracle计算。这里同样将oracle插入到量子程序中。
+
+.. code-block::
+   
+    1.prog << apply_QGate(qubit1, H) << MeasureAll(qubit1, cbit);
+
+  最后同样是一组Hadamard门，并且通过MeasureAll将qubit1整个测量到cbit上。
+
+
+
+**2. two_qubit_deutsch_jozsa_algorithm函数**
+
+  这个函数对两个比特的情况提供了一个演示。在这种情况下，需要对不同情况构建oracle，并且输入到这个算法中。构建oracle的方式就是通过这个函数的参数——一个vector类型来代表一个函数。这个函数相当于一个真值表，例如：
+
+.. code-block::
+
+    1.std::vector<bool> fx = {0, 1};
+
+  这表示fx[0] = 0，fx[1] = 1这种情况。
+
+  通过真值表构建对应oracle的方法：即generate_two_qubit_oracle，它恰好返回一个oracle类型，感兴趣的读者可以自行对这个oracle中的不同情况进行验证。
+
+  这个函数中最重要的步骤就是初始化量子机器，申请量子比特和经典寄存器，取得量子程序，执行并且获得最终结果。
+
+.. code-block::
+
+    1.auto qvm = CPUQVM();
+    2.qvm.init();
+
+  这个语句定义一个CPU执行的模拟器。可以指定为不同类型，例如GPU、单线程CPU、或者云量子计算机。并调用init()函数来初始化qvm。
+
+.. code-block::
+
+    1.auto qvec = qvm.qAllocMany(2);
+    2.auto c = qvm.cAlloc();
+
+  通过qAlloc和cAlloc可以从量子机器中申请一定量的量子比特。Many表示很多，所以qAllocMany和cAllocMany可以一次性申请多个量子比特。
+
+.. code-block::
+
+    1.auto oracle = generate_two_qubit_oracle(boolean_function);   
+
+  这个函数就是用于生成Oracle的。
+
+.. code-block::
+   
+    1.QProg prog;
+    2.prog << Deutsch_Jozsa_algorithm({ qvec[0] }, qvec[1], { c }, oracle);
+
+  这一段程序可以将上述量子程序打印出来。
+
+.. code-block::
+
+    1.qvm.directlyRun(prog);
+    2.if (c.eval() == false)
+    3.{
+    4.		cout << "Constant function!" << endl;
+    5.	}
+    6.	else if (c.eval() == true)
+    7.	{
+    8.		cout << "Balanced function!" << endl;
+    9.	}
+    10.}
+
+  函数directlyRun顾名思义是直接运行这个量子程序。QPanda提供很多运行量子程序的方式，而directlyRun表示这个量子程序在默认模式下运行1次。由于DJ算法是一个确定性算法，就只运行一次，运行结束后，可以从之前申请的经典寄存器中取得值：c.eval。这里false表示测量到|0⟩，true表示测量到|1⟩。通过测量的结果可以得到这个函数属于平衡函数还是常数函数。
+
+
+
+
+
+
+
+
+
+
+
+
+

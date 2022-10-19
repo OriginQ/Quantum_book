@@ -1,0 +1,259 @@
+1.3 向量空间
+==================================
+​  学习量子计算，要对量子力学有所了解，而量子力学是由希尔伯特空间来描述的，希尔伯特空间又是向量空间，因此首先要来介绍向量空间（vector spaces）[2,4,6,8]。
+
+​  向量空间本质上是一个由向量组成的集合，然后引进一些运算规则。那什么是向量呢？向量相对数量来说的，数量是只有大小的量，而向量不仅有大小而且还有方向的量。有时，向量也称为矢量。可以认为向量是数量的一个自然的扩充。
+
+​  假设有一个数域 :math:`K` （集合  :math:`K` 中任意两个元素的和、差、积、商（除数不为0）还属于集合 :math:`K` ，称该集合为数域 :math:`K` ），自然想到用直积将数域 :math:`K` 进行扩充，n个数域 :math:`K` 的直积可以表示为
+
+.. math::
+    K^{n}=\left\{\left(v_{1}, v_{2}, \cdots, v_{n}\right) \mid v_{i} \in K, i=1,2, \cdots, n\right\}
+
+​  其中  :math:`K^{n}` 元素  :math:`\left(v_{1}, v_{2}, \cdots, v_{n}\right)` 称为  :math:`n` 维向量，称  :math:`v_{i}` 为其第  :math:`i` 个分量。为了表示方便与统一将带小括号的元素  :math:`\left(v_{1}, v_{2}, \cdots, v_{n}\right)` 记作列向量, 即:
+
+.. math::
+    \left(v_{1}, v_{2}, \cdots, v_{n}\right):=\left[\begin{array}{c} v_{1} \\ v_{2} \\ \vdots \\ v_{n} \end{array}\right]
+
+​  在数学上，向量常用加粗的小写拉丁字母  **a, b, c, ……** 或者带箭头的小写拉丁字母  :math:`\vec{a}, \vec{b},\vec{c},\ldots` 来表示。而在量子物理上，常用带有狄拉克符号  :math:`(|*\rangle)` 的字母  :math:`|a\rangle` , :math:`|b\rangle` , :math:`|c\rangle` , :math:`\ldots` 来表示。这里统一采用带有狄拉克符号的表示方法，即:
+
+.. math::
+    |v\rangle:=\left(v_{1}, v_{2}, \cdots, v_{n}\right):=\left[\begin{array}{c} v_{1} \\ v_{2} \\ \vdots \\ v_{n} \end{array}\right]
+
+​  两个向量  :math:`| {u}\rangle` 、 :math:`| {v}\rangle` 相等的定义为向量的分量分别对应相等，即：
+
+.. math::
+    |u\rangle=|v\rangle \Leftrightarrow\left[\begin{array}{c} u_{1} \\ u_{2} \\ \vdots \\ u_{n} \end{array}\right]=\left[\begin{array}{c} v_{1} \\ v_{2} \\ \vdots \\ v_{n} \end{array}\right] \Leftrightarrow u_{1}=v_{1}, u_{2}=v_{2}, \cdots, u_{n}=v_{n}
+    
+​  其中  :math:`\Longleftrightarrow` 表示"等价于"。 规定  :math:`K^{n}` 中任意两向量  :math:`|u\rangle` 、 :math:`|v\rangle` 的加法运算为两向量对应分量分别做普通加法，即：
+
+.. math::
+     |u\rangle+|v\rangle=\left[\begin{array}{c} u_{1} \\ u_{2} \\ \vdots \\ u_{n} \end{array}\right]+\left[\begin{array}{c} v_{1} \\ v_{2} \\ \vdots \\ v_{n} \end{array}\right]:=\left[\begin{array}{c} u_{1}+v_{1} \\ u_{2}+v_{2} \\ \vdots \\ u_{n}+v_{n} \end{array}\right] 
+
+  规定数量  :math:`k \in K` 与向量  :math:`|u\rangle \in K^{n}` 之间的数乘运算为数量 :math:`k`与  :math:`|u\rangle` 的每一个分量分别做普通乘法，即：
+
+.. math::
+     k|u\rangle:=\left[\begin{array}{c} k u_{1} \\ k u_{2} \\ \vdots \\ k u_{n} \end{array}\right] 
+
+​  设  :math:`V \equiv K^{n}` ， 根据数域的性质，可以验证，对任意的  :math:`| {u}\rangle` , :math:`| {v}\rangle` , :math:`| {w}\rangle \in V` ，任意的  :math:`\alpha, \beta \in K` 满足以下运算法 则
+
+  (1) :math:`| {u}\rangle+| {v}\rangle=| {v}\rangle+| {u}\rangle` ；（加法交换律）
+
+  (2) :math:`(|u\rangle+|v\rangle)+|w\rangle=|u\rangle+(|v\rangle+|w\rangle)` ; (加法结合律)
+
+  (3) :math:`\mathrm{V}` 中有一个元素  :math:`(0,0, \cdots, 0)` ，记作  :math:`|\hat{0}\rangle` .它满足
+
+.. math::
+     |\hat{0}\rangle+|v\rangle=|v\rangle+|\hat{0}\rangle=|v\rangle, \forall|v\rangle \in V
+
+​具有该性质的元素  :math:`|\hat{0}\rangle` 称为V的零向量 (zero-vector) ;  
+
+  (4) 对于  :math:`|v\rangle \in V` 存在  :math:`\quad|\bar{v}\rangle:=\left[\begin{array}{c}-v_{1} \ -v_{2} \ \vdots \ -v_{n}\end{array}\right] \in V` , 使得
+
+.. math::
+     |v\rangle+|\bar{v}\rangle=|\hat{0}\rangle
+
+​具有该性质的元素  :math:`|\bar{v}\rangle` 称为  :math:`|v\rangle` 的负向量 (inverse)； 
+
+  (5)  :math:`1|v\rangle=|v\rangle` , 其中 1 是  :math:`K` 的单位元;
+
+  (6)  :math:`(\alpha \beta)|v\rangle=\alpha(\beta|v\rangle)` ;
+
+  (7)  :math:`(\alpha+\beta)|v\rangle=\alpha| {v}\rangle+\beta|v\rangle` ;
+
+  (8)  :math:`\alpha(|u\rangle+|v\rangle)=\alpha|u\rangle+\alpha|v\rangle` 。
+
+​  数域 :math:`K` 上所有n元有序数组组成的集合  :math:`K^{n}` ，再加上定义在其上的加法运算和数乘运算，以及满足的 8 条运算法则一起，称为数域 :math:`K` 上的一个n维向量空间。 在 :math:`V` 中，可以根据向量的加法运算来定义向量的减法运算为
+
+.. math::
+     |u\rangle-|v\rangle:=|u\rangle+|\bar{v}\rangle
+
+​  在 :math:`V` 上，定义加法运算和数乘运算之后，满足的8条运算法则可以推导出向量空间的一些其他性质：
+
+  性质1:  :math:`V` 中零向量是唯一的。
+
+  性质2:  :math:`V` 中每个向量  :math:`\alpha` 的负向量是唯一的。
+
+  性质3:  :math:`0|v\rangle=|0\rangle, \forall|v\rangle \in V` 。
+
+  性质4:  :math:`\alpha|0\rangle=|0\rangle, \forall \alpha \in K` 。
+
+  性质5: 如果  :math:`\alpha|v\rangle=|0\rangle` ，那么  :math:`\alpha=0` 或  :math:`|v\rangle=|0\rangle` 。
+
+  性质6:  :math:`(-1)|v\rangle=-|v\rangle, \forall|v\rangle \in V` 。
+
+​若  :math:`K^{n}` 的一个非空子集  :math:`U` 满足以下两条性质：
+
+  (1)  :math:`| {u}\rangle,| {v}\rangle \in U \Rightarrow| {u}\rangle+| {v}\rangle \in U` ,
+
+  (2)  :math:`| {u}\rangle \in U, k \in K \Rightarrow k| {u}\rangle \in U` ,
+
+​  则称  :math:`U` 为  :math:`K^{n}` 的一个线性子空间，简称为子空间 (subspace)。
+
+
+1.3.1 线性无关与基
+----------------------------------
+​  若想研究数域 :math:`K` 上向量空间V的结构特征，根据向量空间的定义，只能从V的向量的加法以及数乘这两种运算开始。对于V中的一组向量  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{s}\rangle\}` ，数域 :math:`K` 中的一组元素  :math:`\{\alpha_{1}, \alpha_{2}, \cdots, \alpha_{s}\}` ，作数乘和加法得到
+
+.. math::
+     \alpha_{1}|v_{1}\rangle+\alpha_{2}|v_{2}\rangle+\cdots+\alpha_{s}|v_{s}\rangle
+
+​  根据V中加法和数乘的封闭性，  :math:`\alpha_{1}|v_{1}\rangle+\alpha_{2}|v_{2}\rangle+\cdots+\alpha_{s}|v_{s}\rangle` 还是V中的一个向量, 称该向量是  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{s}\rangle\}` 一个线性组合 (linear combination)，  :math:`\{\alpha_{1}, \alpha_{2}, \cdots, \alpha_{s}\}` 称为系数。 为了方便，像  :math:`\{\alpha_{1}, \alpha_{2}, \cdots, \alpha_{s}\}` 这样按照一定顺序写出的有限多个向量称为  :math:`V` 的一个向量组。 如果 V中的一个向量  :math:`| {u}\rangle` 可以表示成向量组  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{s}\rangle\}` 的一个线性组合, 即：
+
+.. math::
+     |u\rangle=\sum_{i=1}^{s} \alpha_{i}|v_{i}\rangle
+
+​  那么称  :math:`| {u}\rangle` 可以由向量组  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{s}\rangle\}` 线性表示(或线性表出)。 若向量组  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{s}\rangle\}` 中至少存在一个向量可以由除自身外的其他向量线性表示, 则称这组向量线性相关 (linearly dependent)。否则, 向量组  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{s}\rangle\}` 中任意一个向量都不可以由其他向量线性表示，则称这组向量线性无关 (linearly independent)。 若向量空间V中的任意向量都可以由向量组  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{s}\rangle\}` 线性表示, 则称该向量组为向量空间 V的生成集 (spanning set)。 线性无关的生成集称为极小生成集。向量空间的极小生成集定义为向量空间的基，极小生成集中向量的个数定义为向量空间的维数。比如，当数域  :math:`K` 为复数域   :math:`C` 时，向量空间  :math:`C^{2}` 的基为由向量
+
+.. math::
+     \left|b_{1}\right\rangle:=\left[\begin{array}{l} 1 \\ 0 \end{array}\right], \quad\left|b_{2}\right\rangle=\left[\begin{array}{l} 0 \\ 1 \end{array}\right]
+
+​组成的集合。因为向量空间  :math:`C^{2}` 中的任意向量
+
+.. math::
+     |u\rangle=\left[\begin{array}{l}u_{1} \\u_{2}\end{array}\right]
+
+​  都可以写成向量组  :math:`\{|b_{1}\rangle\,|b_{2}\rangle\}` 的线性组合，即：
+
+.. math::
+     |u\rangle=u_{1}\left|b_{1}\right\rangle+u_{2}\left|b_{2}\right\rangle
+
+​  并且向量组  :math:`\{|b_{1}\rangle,|b_{2}\rangle\}` 线性无关。
+
+​​  因此，当知道向量空间的基时，就可以来用它们来线性表示该向量空间中的任意的向量。也可以说这组基张成了这个向量空间。
+
+​  然而需要注意的是向量空间的基并不唯一。比如，一组向量
+
+.. math::
+     \left|b_{1}\right\rangle:=\frac{1}{\sqrt{2}}\left[\begin{array}{l}1 \\1\end{array}\right],\left|b_{2}\right\rangle=\frac{1}{\sqrt{2}}\left[\begin{array}{c}1 \\-1\end{array}\right]
+
+​  就可以作为向量空间  :math:`C^{2}` 的另一组基。因为向量空间  :math:`C^{2}` 中的任意向量
+
+.. math::
+     |u\rangle=\left[\begin{array}{l} u_{1} \\ u_{2} \end{array}\right] 
+
+​  可以写成  :math:`\left|b_{1}\right\rangle` 与  :math:`\left|b_{2}\right\rangle` 的线性组合
+
+.. math::
+     |u\rangle=\frac{u_{1}+u_{2}}{\sqrt{2}}\left|b_{1}\right\rangle+\frac{u_{1}-u_{2}}{\sqrt{2}}\left|b_{2}\right\rangle 
+
+​  假设给定  :math:`n` 维向量空间  :math:`V` 的基  :math:`\{|b_{1}\rangle,|b_{2}\rangle, \cdots,|b_{n}\rangle\}` 和任意向量  :math:`|u\rangle` , 该向量都可以由该基线性表示，即
+
+.. math::
+     |u\rangle=\alpha_{1}\left|b_{1}\right\rangle+\alpha_{2}\left|b_{2}\right\rangle+\cdots+\alpha_{n}\left|b_{n}\right\rangle 
+
+​  将  :math:`|u\rangle` 在该基  :math:`\{|b_{1}\rangle,|b_{2}\rangle, \cdots,|b_{n}\rangle\}` 下的系数称为  :math:`|u\rangle` 在该基下的坐标表示, 可以写成列向量的形式，即
+
+.. math::
+     |u\rangle=\left[\begin{array}{c} \alpha_{1} \\ \alpha_{2} \\ \vdots \\ \alpha_{n} \end{array}\right] 
+
+​  从二维复向量空间的例子可以看出，同一个向量在不同的基下有着不同的坐标表示。
+
+​   **定理**  在  :math:`\mathrm{n}` 维向量空间中， 给定一个基, 向量空间中的任意向量的坐标表示是唯一的。 证明设  :math:`\{|b_{1}\rangle,|b_{2}\rangle, \cdots,|b_{n}\rangle\}` 为n维向量空间的一个基，根据基的定义，任意向量  :math:`|u\rangle` 都可以由这组基线性表示，即
+
+.. math::
+     |u\rangle=\alpha_{1}\left|b_{1}\right\rangle+\alpha_{2}\left|b_{2}\right\rangle+\cdots+\alpha_{n}\left|b_{n}\right\rangle 
+
+​  假设  :math:`| {u}\rangle` 在该基下的坐标表示是不唯一的，因此，存在另一种线性表示方式，即：
+
+.. math::
+     |u\rangle=\bar{\alpha}_{1}\left|b_{1}\right\rangle+\bar{\alpha}_{2}\left|b_{2}\right\rangle+\cdots+\bar{\alpha}_{n}\left|b_{n}\right\rangle 
+
+​  将这两个不同的坐标表示的向量做差，得到
+
+.. math::
+     |u\rangle-|u\rangle=\left(\alpha_{1}-\bar{\alpha}_{1}\right)\left|b_{1}\right\rangle+\left(\alpha_{2}-\bar{\alpha}_{2}\right)\left|b_{2}\right\rangle+\cdots+\left(\alpha_{n}-\bar{\alpha}_{n}\right)\left|b_{n}\right\rangle 
+
+
+
+  即
+
+.. math::
+     |\hat{0}\rangle=\left(\alpha_{1}-\bar{\alpha}_{1}\right)\left|b_{1}\right\rangle+\left(\alpha_{2}-\bar{\alpha}_{2}\right)\left|b_{2}\right\rangle+\cdots+\left(\alpha_{n}-\bar{\alpha}_{n}\right)\left|b_{n}\right\rangle
+
+​  因为基是线性无关的，所以有
+
+.. math::
+     \alpha_{i}-\bar{\alpha}_{i}=0, i=1,2, \cdots, n
+
+​  即：
+
+.. math::
+     \alpha_{i}=\bar{\alpha}_{i}, i=1,2, \cdots, n 
+     
+​  从而假设不成立，因此在给定基下，任意给定向量的坐标表示唯一。
+
+
+
+1.3.2 向量的内积
+----------------------------------
+​  向量的内积是一个从向量空间  :math:`V \times V` 到数域 :math:`K` 的一个映射  :math:`(-,-)` , 并满足以下性质:
+
+​  1、映射  :math:`(-,-)` 对第二项是线性的，即：
+
+.. math::
+     \left(|u\rangle, \sum_{i} \lambda_{i}\left|v_{i}\right\rangle\right)=\sum_{i} \lambda_{i}\left(|u\rangle,\left|v_{i}\right\rangle\right)
+
+​  2、交换共轭性，即：
+
+.. math::
+     (|u\rangle,|v\rangle)=(|v\rangle,|u\rangle)^{*}
+
+​  3、自内积非负性，即：
+
+.. math::
+     (|v\rangle,|v\rangle) \geq 0
+
+​  等号成立当且仅当  :math:`|v\rangle` 为零向量  :math:`|\hat{0}\rangle` 。 比如，在  :math:`\mathrm{n}` 维复向量空间中，定义内积为
+
+.. math::
+     (|u\rangle,|v\rangle):=\sum_{i} u_{i}^{*} v_{i} 
+
+​  其中
+
+.. math::
+     |u\rangle=\left[\begin{array}{c} u_{1} \\ u_{2} \\ \vdots \\ u_{n} \end{array}\right],|v\rangle=\left[\begin{array}{c} v_{1} \\ v_{2} \\ \vdots \\ v_{n} \end{array}\right]
+
+​  在量子力学中，内积  :math:`(|u\rangle,|v\rangle)` 的标准符号为  :math:`\langle u \mid v\rangle` ，即：
+
+.. math::
+     \langle u \mid v\rangle :=(|u\rangle,|v\rangle)
+
+​  这里  :math:`| {u}\rangle,| {v}\rangle` 均为内积空间中的向量，符号  :math:`\langle u|` 表示向量  :math:`| {u}\rangle` 的对偶向量 (dual vector)，
+
+.. math::
+     \langle u|:=\left[u_{1}^{*}, u_{2}^{*}, \cdots, u_{n}^{*}\right]
+
+​​  将拥有内积的空间称为内积空间（inner product space）。量子力学中常提到希尔伯特空间（Hilbert space），在有限维的情况下，希尔伯特空间与内积空间是一致的。无限维的情况，这里不加考虑。
+
+​  若向量  :math:`| {u}\rangle` 和向量  :math:`| {v}\rangle` 的内积为 0 ，则称这两个向量正交 (orthogonal) 。比如，向量  :math:`| {u}\rangle \equiv(1, 0),|v\rangle \equiv(0, 1)` ， 根据上面复向量空间内积的定义，可得  :math:`\langle u \mid v\rangle=1 \times 0+0 \times 1=0` 故  :math:`| {u}\rangle` , :math:`| {v}\rangle` 两向量正交。 向量  :math:`|v\rangle` 的模 (norm) 定义为
+
+.. math::
+     \|| v\rangle \|:=\sqrt{\langle v \mid v\rangle}
+
+​  若向量  :math:`| {v}\rangle` 满足  :math:`| v\rangle |=1` ，则称该向量为单位向量 (unit vector) 或归一化的 (normalized)。对于任意非零向量  :math:`| {u}\rangle` ，可以通过将该向量除以它的范数得到其归一化形式，即：
+
+.. math::
+      \frac{\left|v\right\rangle}{\mid\mid\left|v\right\rangle \mid\mid}
+
+
+​  设  :math:`\left|b_{1}\right\rangle,\left|b_{2}\right\rangle, \cdots,\left|b_{n}\right\rangle` 为向量空间的一组基，满足每一个向量都是单位向量, 并且不同向量的内积为 0 , 即：
+
+.. math::
+     \left\langle b_{i} \mid b_{j}\right\rangle= \begin{cases}1, & i=j \\ 0, & i \neq j\end{cases} 
+
+​  则称这组向量为向量空间的标准正交 (orthonormal) 基。 标准正交基能带来很多方便，比如在计算向量的内积时，就可以将向量的坐标对应相乘。 假设知道向量空间的一个非标准正交基  :math:`\left|u_{1}\right\rangle,\left|u_{2}\right\rangle, \cdots,\left|u_{n}\right\rangle` ，那么，可以通过Gram-Schmidt正交化来将非标准正交基转化为标准正交基。具体过程如下， 用向量组  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{n}\rangle\}` 来表示待生成的标准正交基, 首先定义
+
+.. math::
+     \left|v_{1}\right\rangle:=\frac{\left|u_{1}\right\rangle}{\mid\mid\left|u_{1}\right\rangle \mid\mid}
+
+​  接着对  :math:`1 \leq k \leq n-1` ， 递归地计算并定义
+
+.. math::
+     \left|v_{k+1}\right\rangle:=\frac{\left|u_{k+1}\right\rangle-\sum_{i=1}^{k}\left\langle v_{i}\left| \langle u_{k-1}\right| \mid v_{i}\right\rangle}{\|\left|u_{k+1}\right\rangle-\sum_{i=1}^{k}\left\langle v_{i} \mid u_{k-1}\right\rangle\left|v_{i}\right\rangle \|}
+
+​  在量子计算中，通常，用一组带有指标 :math:`i` 的向量 :math:`\mid i\rangle` 来表示标准正交基。
+
+
+
+
+

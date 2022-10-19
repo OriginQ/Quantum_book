@@ -1,0 +1,213 @@
+1.6 矩阵的函数
+==================================
+​  类似于实数的函数，可以定义矩阵的函数。例如在实数的多项式函数中只用到了加法和幂运算，也可以类似地定义矩阵的多项式函数，这里的矩阵一般为方阵，因为需要用到幂运算。下面主要介绍矩阵（方阵）的指数函数。
+
+​  定义 :math:`1.6.1`  :math:`e^{A}={I+A+\frac{A^{2}}{2!}+\frac{A^{3}}{3!}+\frac{A^{4}}{4!}+ \cdots}`
+
+​  这个定义相当于把 :math:`f(x)=e^{x}` 在原点泰勒展开（关于泰勒展开可见于微积分书中内容），然后把矩阵 :math:`A` 带入泰勒展开式进行运算。
+
+​  如果  :math:`A=diag\left\{A_{11}, A_{22} ,\cdots,A_{nn}\right\}` ，其中 :math:`A_{ii}`  是子矩阵，容易验证：
+
+.. math::
+    e^{A}=diag\left\{A_{11}, A_{22} ,\cdots,A_{nn}\right\}
+
+​  如果 :math:`A` 不是一个对角阵，可以运用线性代数中的酉变换，找到一个酉矩阵 :math:`U`  使得对角矩阵  :math:`D=diag\left\{D_{11}, D_{22} ,\cdots,D_{nn}\right\}`  满足 :math:`D=U A U^{\dagger}`  ，易知 :math:`A^{n}=U^{\dagger} D^{n} U` ，从而
+
+.. math::
+    e^{A}=U^{\dagger} e^{D} U = U^{\dagger}diag\left\{e^{D_{11}}, e^{D_{22}} ,\cdots,e^{D_{nn}}\right\}U
+
+​  类似于矩阵指数函数的定义，可以定义矩阵的其它函数。把矩阵代入其它函数的泰勒展开式即可。如矩阵的正弦函数可定义为：
+
+.. math::
+    sin(A)={A-\frac{A^{3}}{3!}+\frac{A^{5}}{5!}-\cdots}
+
+​  矩阵的余弦函数可定义为：
+
+.. math::
+    cos(A)={1-\frac{A^{2}}{2!}+\frac{A^{4}}{4!}-\cdots+(-1)^{n}\frac{A^{2n}}{(2n)!}+\cdots}
+
+​  下面介绍一个很重要的欧拉公式
+
+.. math::
+    e^{i \theta} =cos(\theta)+isin(\theta)
+
+​  这个公式其实是说等式两边的泰勒展式是相等的，下面来验证一下。先给出一些泰勒展式：
+
+.. math::
+    e^{i \theta} = 1 +\theta + \frac{\theta^{2}}{2!}+ \frac{\theta^{3}}{3!}+\cdots+ \frac{\theta^{n}}{n!}+\cdots
+
+.. math::
+    sin(\theta) =  1 - \frac{\theta^{2}}{2!}+ \frac{\theta^{4}}{4!} - \cdots+ (-1)^{n}\frac{\theta^{2n}}{2n!}+\cdots
+
+.. math::
+    cos(\theta) =  \theta - \frac{\theta^{3}}{3!}+ \frac{\theta^{5}}{5!} - \cdots+ (-1)^{n}\frac{\theta^{2n+1}}{(2n+1)!}+\cdots
+
+​  将以上三式代入欧拉公式等式两端，不难验证两端相等。
+
+
+
+1.7 线性算子与矩阵表示
+==================================
+
+1.7.1 线性算子
+----------------------------------
+​  正比例函数  :math:`y=k x(k \neq 0)`  ，即  :math:`f(x)=k x`  。比如，在日常生活中，一斤米 :math:`k` 元，买了 :math:`x` 斤，就要付给商家  :math:`{kx}`  元钱。正比例函数对任意的实数  :math:`x_{1}` , :math:`x_{2}`  ，  :math:`f\left(x_{1}+x_{2}\right)=k\left(x_{1}+x_{2}\right)=k x_{1}+k x_{2}=f\left(x_{1}\right)+f\left(x_{2}\right)` ; 对 任意的  :math:`x` , :math:`a` ,有  :math:`f(a x)=k(a x)=a(k x)=a f(x)`  。这说明正比例函数保持加法运算与数乘运算  :math:`[4]`  。受这类事例启发，给出线性算子的概念。 如果数域K上的向量空间  :math:`V \equiv K^{m}`  到向量空间  :math:`W \equiv K^{n}`  的一个映射  :math:`\sigma` 保持加法和数乘运算，即  :math:`\forall|u\rangle` , :math:`| {v}\rangle \in V` , :math:`k \in K` , 有
+
+.. math::
+    \begin{aligned} &\sigma(|u\rangle+|v\rangle)=\sigma(|u\rangle)+\sigma|v\rangle \\ &\sigma(k|u\rangle)=k \sigma(|u\rangle) \end{aligned}
+
+​  那么称  :math:`\sigma` 为  :math:`V` 到 :math:`W` 的一个线性算子。 根据线性算子的定义可以验证以下性质:
+
+.. math::
+    \sigma\left(\sum_{i} a_{i}\left|v_{i}\right\rangle\right)=\sum_{i} a_{i} \sigma\left(\left|v_{i}\right\rangle\right)
+
+​  通常  :math:`\sigma(|v\rangle)` 简记为 :math:`\sigma|v\rangle`  。当定义在向量空间  :math:`V`  上的线性算子  :math:`\sigma` 时， 意味着 :math:`\sigma` 是从 :math:`V`  到  :math:`V`  的一个线性算子。
+
+​  一个重要的线性算子是向量空间  :math:`V`  上的单位算子  :math:`I_{v}`  (identity operator)，它将  :math:`V`  中任意向量对应到自身 即
+
+.. math::
+    I_{v}|v\rangle \equiv|v\rangle, \forall|v\rangle \in V 
+    
+​  另一个重要的线性算子是向量空间  :math:`V` 上的零算子0 (zero operator)，它将  :math:`V`  中任意向量对应到V中零向量  :math:`|\hat{0}\rangle`  , 即
+
+.. math::
+    0|v\rangle \equiv|\hat{0}\rangle, \forall|v\rangle \in V
+    
+​  由于线性算子是映射的一种特殊情况，因此线性算子也可以做映射的合成，并满足合成的结合律。
+
+
+1.7.2 矩阵表示
+----------------------------------
+​  最直观的理解线性算子的方式就是通过线性算子的矩阵表示 (matrix representations)，因为矩阵能有一个直观的认识  :math:`[3,4,6,7]` 。
+
+​  设  :math:`\sigma: \mathrm{V} \rightarrow \mathrm{W}` 是向量空间  :math:`V` 到向量空间W的线性算子，选定向量组  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{n}\rangle\}`  为向量空间  :math:`V` 的一 个基，向量组  :math:`\{|w_{1}\rangle,|w_{2}\rangle, \cdots,|w_{m}\rangle\}`  为向量空间  :math:`W`  的一个基，由于向量空间 :math:`V` 中的任意向量  :math:`|v\rangle`  都可以由基  :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{n}\rangle\}` 线性表示, 根据线性算子的保持加法和数乘的性质，只要确定 :math:`\sigma` 作用在基 :math:`\{|v_{1}\rangle,|v_{2}\rangle, \cdots,|v_{n}\rangle\}` 上的像，从而也就确定了线性算子 :math:`\sigma` 作用在任意向量  :math:`| {v}\rangle` 上的像。 
+
+​  根据线性算子的定义可知，线性算子本质上是两个向量空间之间的映射，而映射表示一种对应关系。如果确 定空间V中每一个  :math:`|v\rangle` 在映射作用到向量空间 :math:`W` 中的像，也就确定从向量空间 :math:`V` 到向量空间 :math:`W` 的对应关系，即 线性算子  :math:`\sigma: V \rightarrow W` 也就被确定。 
+
+​  而 :math:`V` 中的每个元素都能被 :math:`V` 中的基线性表示，因此将线性算子  :math:`\sigma` 作用在基的每一个元素上面，得到 :math:`W` 中的像  :math:`\sigma|v_{1}\rangle, \sigma|v_{2}\rangle, \cdots, \sigma|v_{n}\rangle` 都确定，从而基的线性表示的像也被确定，那么线性算子也就被确定。 由于  :math:`\sigma|v_{j}\rangle, j=1,2, \cdots, n` 是 :math:`W` 中的元素，因此可以由 :math:`W` 中的基  :math:`\{\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \cdots,\left|w_{m}\right\rangle\}` 来线性表示， 即
+
+.. math::
+    \sigma|v_{j}\rangle=a_{1 j}|w_{1}\rangle+a_{2 j}|w_{2}\rangle+\cdots+a_{m j}|w_{m}\rangle=\sum_{i=1}^{m} a_{i j}|w_{i}\rangle
+
+​  写成矩阵的形式
+
+.. math::
+    \left[\sigma\left|v_{1}\right\rangle, \sigma\left|v_{2}\right\rangle, \cdots, \sigma\left|v_{n}\right\rangle\right]=\left[\left|w_{1}\right\rangle, \quad\left|w_{2}\right\rangle, \quad \cdots \quad,\left|w_{m}\right\rangle\right]\left[\begin{array}{cccc} a_{11} & a_{12} & \cdots & a_{1 n} \\ a_{21} & a_{22} & \cdots & a_{2 n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m 1} & a_{m 2} & \ldots & a_{m n} \end{array}\right]
+
+
+​  把上式右端的  :math:`m \times n` 矩阵记作 :math:`A` ， 称  :math:`A`  是线性算子  :math:`\sigma` 在 :math:`V` 的基 :math:`\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle` 和 :math:`W` 的基  :math:`\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \cdots,\left|w_{m}\right\rangle` 下的矩阵表示(matrix representation) 。 
+
+​  因此，对于给定基下的线性算子都可以找到与之对应的矩阵。并且这种矩阵表示方式是唯一的。 
+
+​  根据矩阵的运算法则以及线性算子的定义，也可以验证矩阵是一个线性算子。因此，在给定向量空间的基 下，线性算子与矩阵作用在同一向量空间上是等价的。 设  :math:`\sigma` 是域  :math:`G` 上 :math:`n`  维线性空间  :math:`V`  到  :math:`m` 维线性空间 :math:`W`  的一个线性算子，它在  :math:`V`  下的一个基  :math:`\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle` 和 :math:`W` 的一个基  :math:`\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \cdots,\left|w_{m}\right\rangle` 下的矩阵为 :math:`A` ,  :math:`V` 中向量 :math:`|v\rangle` 在基  :math:`\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle` 下的坐标为  :math:`X`  ，则有：
+
+.. math::
+    \begin{aligned} &\sigma|v\rangle=\sigma\left[\left(\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle\right) X\right]\\ & =\left[\sigma\left(\left|v_{1}\right\rangle,\left|v_{2}\right\rangle, \ldots,\left|v_{n}\right\rangle\right)\right] X \\ &=\left[\left(\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \ldots,\left|w_{m}\right\rangle\right) A\right] X \\ &{=}\left(\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \ldots,\left|w_{m}\right\rangle\right)(A X) \end{aligned} 
+
+​  因此  :math:`\sigma|v\rangle` 在 :math:`W` 的一个基  :math:`\left|w_{1}\right\rangle,\left|w_{2}\right\rangle, \cdots,\left|w_{m}\right\rangle` 下的坐标为  :math:`A X` 。 线性算子作用于向量空间中的元素所得到的新元素的坐标，实际上就是矩阵乘以向量空间中的元素的坐标。 因此前文矩阵的性质也对应于线性算子的性质。 
+
+​  根据线性算子的定义，可以将向量空间V中，两向量  :math:`| {u}\rangle` 和 :math:`| {v}\rangle` 的内积中的对偶  :math:`\left\langle {u} \right|` 也可以看作从向量空间  :math:`V` 到复数域 :math:`C` 的线性算子，即
+
+.. math::
+    \langle u|(|v\rangle)=\langle u \mid v\rangle=(|u\rangle,|v\rangle)=\sum_{i=1}^{n} u_{i}^{*} v_{i}=\left[\begin{array}{lll} u_{1}^{*} & \cdots & u_{n}^{*} \end{array}\right]\left[\begin{array}{c} v_{1} \\ \vdots \\ v_{n} \end{array}\right]
+
+​  而线性算子  :math:`\left\langle u\right|` 在向量空间V中标准正交基下的矩阵表示为1乘n的矩阵  :math:`\left[\begin{array}{lll}u_{1}^{*} & \cdots & u_{n}^{*}\end{array}\right]`  。
+
+
+1.7.3 向量外积
+----------------------------------
+​  一个n维向量可以看作一个1乘n或n乘1的矩阵，反过来，m乘n的矩阵可不可以看作一个向量呢? 本质上向量 和矩阵是一样的，只不过人们在不同的情况下，运用不同的表示方式。类比向量，矩阵的基又是什么呢? 矩 阵是一个线性映射，在给定基下，线性算子与矩阵等价，向量空间中的基与矩阵表示又有什么关系呢? 
+
+​  基于以上的疑问，下面引进向量外积的概念[6]。假设  :math:`| {v}\rangle | {w}\rangle ` 是m维内积空间 :math:`W`  中的向量，定义  :math:`| {v}\rangle\left\langle {w}\right|` 是从 :math:`V` 到 :math:`W` 的线性算子，并且满足运算规则。
+
+.. math::
+    (|w\rangle\langle v|)(|\tilde{v}\rangle):=|w\rangle(\langle v \mid \tilde{v}\rangle)=\langle v \mid \tilde{v}\rangle|w\rangle
+
+​  这里借助于内积的运算定义了外积。 设在给定标准正价基下，向量  :math:`|v\rangle,|w\rangle` 的坐标表示分别为:
+
+.. math::
+    |v\rangle=\left[\begin{array}{c} v_{1} \\ v_{2} \\ \vdots \\ v_{n} \end{array}\right],|w\rangle=\left[\begin{array}{c} w_{1} \\ w_{2} \\ \vdots \\ w_{m} \end{array}\right]
+
+​  从而线性算子  :math:`| {w}\rangle\left\langle\left. {v}\right|\right.` 的矩阵表示为:
+
+.. math::
+    |w\rangle\langle v|=\left[\begin{array}{c}w_{1} \\w_{2} \\\vdots \\w_{m}\end{array}\right]\left[\begin{array}{llll}v_{1}^{*} & v_{2}^{*} & \cdots & v_{n}^{*}\end{array}\right]=\left[\begin{array}{cccc}w_{1} v_{1}^{*} & w_{1} v_{2}^{*} & \cdots & w_{1} v_{n}^{*} \\w_{2} v_{1}^{*} & w_{2} v_{2}^{*} & \cdots & w_{2} v_{n}^{*} \\\vdots & \vdots & \ddots & \vdots \\w_{m} v_{1}^{*} & w_{m} v_{2}^{*} & \cdots & w_{m} v_{n}^{*}\end{array}\right] \text {. } 
+
+​  可以看出，在给定标准正交基下，线性算子  :math:`|w\rangle\left\langle\left. v\right| \right.` 的矩阵表示为向量 :math:`\mid {w}\rangle` 的坐标表示与  :math:`| {v}\rangle` 的对偶向量的坐标表示的矩阵乘法得到。
+
+
+1.7.4 对角表示
+----------------------------------
+​  向量空间V上的线性算子A的对角表示 (diagonal representation)  :math:`[4,6]`  是指 :math:`A` 可以表示成
+
+.. math::
+    A=\sum_{i} \lambda_{\rho}|i\rangle\langle i|
+
+​  其中向量  :math:`|i\rangle`  为线性算子 :math:`A` 的属于特征值 :math:`\lambda_{i}`  的标准正交化的特征向量。 若一个线性算子有对角表示，则该线性算子一定可对角化的 (diagonalizable)。 比如，Pauli Z矩阵有对角表示
+
+.. math::
+    Z=\left[\begin{array}{cc} 1 & 0 \\ 0 & -1 \end{array}\right]=1 \cdot|0\rangle\langle 0|+(-1) \cdot| 1\rangle\langle 1|
+
+​  而线性算子可对角化，不一定有对角表示。 比如，矩阵
+
+.. math::
+    \left[\begin{array}{ll} 1 & -2 \\ 0 & -1 \end{array}\right]
+
+​  特征值1对应的特征向量为  :math:`k_{1}\left[\begin{array}{cc}1 & 0\end{array}\right]^{T}`  ，特征值-1对应的特征向量为  :math:`k_{2}\left[\begin{array}{cc}1 & 1\end{array}\right]^{T}`  ，这两个特征向量并不正交， 因此不可以对角表示。 而矩阵
+
+.. math::
+    \left[\begin{array}{ll} 1 & 0 \\ 1 & 1 \end{array}\right]
+
+​  是不可对角化的。 
+
+​  **定理** 向量空间V上任意线性算子A是正规算子的充要条件是在  :math:`V`  的某个标准正交基下， 线性算子A有对角表示。
+
+
+1.7.5 影算子
+----------------------------------
+​  假设  :math:`U`  是  :math:`n`  维向量空间  :math:`V`  的k维子空间，可以从V标准正交基中找到  :math:`k`  维子空间  :math:`U`  的标准正交基并标记为  :math:`|1\rangle, \cdots|k\rangle`  ，定义
+
+.. math::
+    P:=\sum_{i=1}^{k}|i\rangle\langle i|
+
+​  为子空间 :math:`W` 上的投影算子 (projector) [6]。定义
+
+.. math::
+    Q:=\sum_{i=k+1}^{n}|i\rangle\langle i|
+
+​  为投影算子 :math:`P` 的正交补 (orthogonal complement )。可以验证
+
+.. math::
+    P+Q=I
+
+​  **定理** 对于任意投影  :math:`P`  ，满足  :math:`P^{2}=P`  。
+
+.. math::
+    P^{2}=\left(\sum_{i=1}^{k}|i\rangle\langle i|\right)^{2}=\sum_{i, j=1}^{k}|i\rangle\langle i \mid j\rangle\langle j|
+
+.. math::
+     \left\langle i \mid j\right\rangle=\delta_{i j} \begin{cases}1, & (i=j) \\ 0, & (i \neq j)\end{cases} 
+
+.. math::
+    \sum_{ i, j=1}^{k}|i\rangle\langle i \mid j\rangle  \langle j |=\sum_{i=1}^{k} \ | i\rangle \langle i|=P
+
+即  :math:`P^{2}=P`  。证毕。
+
+
+**参考文献**
+
+[1] 同济大学数学系.高等数学-上册（第六版）[M].高等教育出版社，2007年4月.
+
+[2] 同济大学数学系.高等数学-下册（第六版）[M].高等教育出版社，2007年6月.
+
+[3] 丘维声. 高等代数-上册 [M].清华大学出版社，2010年6月.
+
+[4] 丘维声. 高等代数-下册 [M].清华大学出版社，2010年10月.
+
+[5] James Stewart. Calculus(Eight Edition)[M]. CENGAGE Learning, 2016.
+
+[6] Michael A. Nielsen and Isaac L. Chuang. Quantum Computation and Quantum Information[M]. Cambridge University Press, 2010.
+
+[7] Giuliano Benenti, Giulio Casati and Giuliano Strini. Principles of Quantum Computation and Information(Volume I: Basic Concepts)[M]. World Scientific, 2004.
+
+[8] Mikio Nakahara and Tetsuo Ohmi . Quantum Computing-From Linear Algebra to Physical Realizations[M]. CRC Press, 2004.

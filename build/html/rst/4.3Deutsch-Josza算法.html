@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.3 Deutsch-Josza算法 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.4 Grover算法" href="4.4Grover%E7%AE%97%E6%B3%95.html" />
+    <link rel="prev" title="4.2 量子算法简介" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.3 Deutsch-Josza算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#d-j">4.3.1 在本源量子云计算服务平台上实现D-J算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#qpandadj">4.3.2 在QPanda上实现DJ算法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>4.3 Deutsch-Josza算法</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/4.3Deutsch-Josza算法.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deutsch-josza">
+<h1>4.3 Deutsch-Josza算法<a class="headerlink" href="#deutsch-josza" title="Permalink to this heading">¶</a></h1>
+<p>  量子算法是量子计算落地实用的最大驱动力，好的量子算法设计将更快速推动量子计算的发展。</p>
+<p>  Deutsch-Jozsa 量子算法，简称 D-J 算法， David Deutsch 和 Richard Jozsa 早在 1992 年提出了该算法，这是第一个展示了量子计算和经典计算在解决具体问题时所具有明显差异性的算法。</p>
+<p>  D-J 算法是这样描述的：给定两个不同类型的函数，通过计算，判断该函数是属于哪一类型的函数，其可用来演示说明量子计算如何在计算能力上远超经典计算。</p>
+<p>  D-J 算法所阐述的问题是：考虑一个函数 <span class="math notranslate nohighlight">\(f(x)\)</span> , 它将  <span class="math notranslate nohighlight">\(n\)</span>  个字符串  <span class="math notranslate nohighlight">\(x\)</span> 作为输入并返回  <span class="math notranslate nohighlight">\(0\)</span> 或  <span class="math notranslate nohighlight">\(1\)</span> 。注意， <span class="math notranslate nohighlight">\(n\)</span> 个字符串也是由 <span class="math notranslate nohighlight">\(0\)</span> 和 <span class="math notranslate nohighlight">\(1\)</span> 组成，函数形式如图4.3.1所示：</p>
+<p>  考虑 <span class="math notranslate nohighlight">\(n=1\)</span> 的情况：</p>
+<div class="math notranslate nohighlight">
+\[f:\{0,1\} \rightarrow\{0,1\}\]</div>
+<img alt="../_images/4.3.1.png" class="align-center" src="../_images/4.3.1.png" />
+<p class="centered">
+<strong>图4.3.1 函数形式</strong></p><div class="math notranslate nohighlight">
+\[f:\{0,1\}^{n} \rightarrow\{0,1\}\]</div>
+<p>  这个函数称为常数函数。如果对任意 <span class="math notranslate nohighlight">\(f(x)\)</span> 都等于 <span class="math notranslate nohighlight">\(0\)</span> 或者 <span class="math notranslate nohighlight">\(f(x)\)</span> 都等于 <span class="math notranslate nohighlight">\(1\)</span> ​：</p>
+<div class="math notranslate nohighlight">
+\[f(x) =0 \ or \ f(x) = 1\]</div>
+<p>  而如果 <span class="math notranslate nohighlight">\(f(x) = 0\)</span> 的个数等于 <span class="math notranslate nohighlight">\(f(x) = 1\)</span> 的个数，则称这个函数为平衡函数：</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(f(x) =0\)</span> 的个数等于 <span class="math notranslate nohighlight">\(f(x) = 1\)</span> 的个数</p>
+</div></blockquote>
+<p>  考虑一下最简单的情况：当 <span class="math notranslate nohighlight">\(n=1\)</span> 的时候，常数函数的类型是这样的： <span class="math notranslate nohighlight">\(f(0)\)</span> ， <span class="math notranslate nohighlight">\(f(1)\)</span> 都指向 <span class="math notranslate nohighlight">\(0\)</span> ；或者 <span class="math notranslate nohighlight">\(f(0)\)</span> ， <span class="math notranslate nohighlight">\(f(1)\)</span> 都指向 <span class="math notranslate nohighlight">\(1\)</span> ，而平衡函数则是各占一半。回顾问题，要解决的是：给定输入和输出，如何快捷地判断 <span class="math notranslate nohighlight">\(f(x)\)</span> 是属于常数函数，或是平衡函数。</p>
+<p>  如图4.3.2，在经典算法中，给定了输入之后，第一步是需要判断 <span class="math notranslate nohighlight">\(f(0)\)</span> ， <span class="math notranslate nohighlight">\(f(0)\)</span> 有两种情况， <span class="math notranslate nohighlight">\(f(0) = 0\)</span> 或者 <span class="math notranslate nohighlight">\(f(0) = 1\)</span> ；当确定  <span class="math notranslate nohighlight">\(f(0)\)</span> 之后，再判断 <span class="math notranslate nohighlight">\(f(1)\)</span> ，确定了 <span class="math notranslate nohighlight">\(f(1)\)</span> 的值之后，就可以确定该函数的类型；整个过程需要两次，才可以判断函数的类型。按照这样的方式，对于经典算法 <span class="math notranslate nohighlight">\(n\)</span> 个输入，在最糟糕的情况下 <span class="math notranslate nohighlight">\(f\)</span> 必须要 <span class="math notranslate nohighlight">\(2^{n-1}+1\)</span> 次才能判断出函数属于哪一类，即，最糟糕情形需要验证一半多一个数据；而如果使用量子算法，仅需  <span class="math notranslate nohighlight">\(1\)</span> 次就可以判断出结果。</p>
+<img alt="../_images/4.3.2.png" class="align-center" src="../_images/4.3.2.png" />
+<p class="centered">
+<strong>图4.3.2  经典算法</strong></p><p>  通过图4.3.3所示的量子线路图来理解该算法是如何解决问题的。首先，对所有的比特都执行Hadamard 门操作，然后经过黑盒子 <span class="math notranslate nohighlight">\(U_f\)</span> ，再对工作比特添加 Hadamard 门，然后测量。</p>
+<img alt="../_images/4.3.3.png" class="align-center" src="../_images/4.3.3.png" />
+<p class="centered">
+<strong>图4.3.3 量子线路图</strong></p><p>  按照实施步骤，表达形式：</p>
+<ol class="arabic simple">
+<li><p>初始化</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[|0\rangle^{\otimes n}|1\rangle\]</div>
+<ol class="arabic simple" start="2">
+<li><p>使用 Hadamard 门来构建叠加态</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\rightarrow \frac{1}{\sqrt{2}} \sum_{x=0}^{2^{n}-1}|x\rangle\left[\frac{|0\rangle-|1\rangle}{\sqrt{2}}\right]\]</div>
+<ol class="arabic simple" start="3">
+<li><p>使用  <span class="math notranslate nohighlight">\(U_f\)</span> 来计算函数  <span class="math notranslate nohighlight">\(f\)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rightarrow \frac{1}{\sqrt{2^{n}}} \sum_{x}|x\rangle\left[\frac{|0\oplus f(x)\rangle-|1\oplus f(x)\rangle}{\sqrt{2}}\right] \\= \frac{1}{\sqrt{2^{n}}} \sum_{x}(-1)^{f(x)}|x\rangle\left[\frac{|0\rangle-|1\rangle}{\sqrt{2}}\right]\end{split}\]</div>
+<p>此处 <span class="math notranslate nohighlight">\(\oplus\)</span> 运算表示求和后整除 <span class="math notranslate nohighlight">\(2\)</span> 。</p>
+<ol class="arabic simple" start="4">
+<li><p>在工作位上添加 Hadamard 门</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\rightarrow \frac{1}{\sqrt{2^{n}}} \sum_{z} \sum_{x}(-1)^{x \cdot z+f(x)}|z\rangle\left[\frac{|0\rangle-|1\rangle}{\sqrt{2}}\right]\]</div>
+<ol class="arabic simple" start="5">
+<li><p>测量工作位，输出结果，一次性就可以判断出结果</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\rightarrow \mathrm{Z}\]</div>
+<section id="d-j">
+<h2>4.3.1 在本源量子云计算服务平台上实现D-J算法<a class="headerlink" href="#d-j" title="Permalink to this heading">¶</a></h2>
+<p>  访问本源量子云平台：<a class="reference external" href="https://qcloud.originqc.com.cn/">https://qcloud.originqc.com.cn/</a> ，选择仿真开发训练云进入量子线路编程页面。</p>
+<img alt="../_images/4.3.4.png" class="align-center" src="../_images/4.3.4.png" />
+<p class="centered">
+<strong>图4.3.4 本源量子云平台量子线路编程</strong></p><p>  首先新建项目“D-J算法”，点击保存。本源量子云平台提供包括“本源悟源1号”、“本源悟源2号”等在内的多种计算后端，本例选择“全振幅量子虚拟机”为计算后端。</p>
+<img alt="../_images/4.3.5.png" class="align-center" src="../_images/4.3.5.png" />
+<p class="centered">
+<strong>图4.3.5 创建项目</strong></p><p>  点击设置按钮（“”），可以设置实验参数。在模拟类型上，可以选择两种：Monte-Carlo方法和概率方法。</p>
+<img alt="../_images/4.3.6.png" class="align-center" src="../_images/4.3.6.png" />
+<p class="centered">
+<strong>图4.3.6 参数设置</strong></p><p>  Monte-Carlo方法：通过多次数值模拟，对测量结果进行仿真。</p>
+<p>  概率方法：直接计算出需要的比特概率分布，而不需要真正的去计算测量过程。</p>
+<p>  其中概率方法比Monte-Carlo方法运行会快一些；由于是多次随机，Monte-Carlo方法每次运行的结果可能会不一样。这里选择Monte-Carlo方法。</p>
+<p>  以两个量子比特的D-J算法为例，它需要使用2个量子比特和1个经典寄存器去保存一次测量的值，输入好之后，点击保存。将线路上方的逻辑门通过鼠标拖拽到线路上，即可构建量子线路。</p>
+<p>  根据D-J算法的内容，首先需要在第一条线上添加一个Hadamard门。拖拽 <span class="math notranslate nohighlight">\(H\)</span> 就可以在线路上插入一个Hadamard门。</p>
+<img alt="../_images/4.3.7.png" class="align-center" src="../_images/4.3.7.png" />
+<p class="centered">
+<strong>图4.3.7 拖入H门</strong></p><p>  插入逻辑门之后，双击这个逻辑门可以删除，也可以通过鼠标拖动这个门的位置；同样在其他地方点击，可以插入更多的量子逻辑门。根据DJ算法，将除了Oracle的部分添加上：</p>
+<p>  中间空出来的部分，就是Oracle可以插入的部分了。</p>
+<p>  有很多量子算法，Oracle是作为输入给出的，比如DJ算法和Grover算法等。所以，两比特DJ算法的量子程序就已经写好了。</p>
+<p>  这里，可以插入不同的Oracle试验一下；定义Oracle的输入输出是：</p>
+<div class="math notranslate nohighlight">
+\[|x\rangle|y\rangle \rightarrow|x\rangle|f(x)+y \bmod 2\rangle\]</div>
+<p>  这里 <span class="math notranslate nohighlight">\(f(x)\)</span> 会根据Oracle不同而编码到量子线路中，例如一个 <span class="math notranslate nohighlight">\(CNOT\)</span> 门就可以做一个Oracle。</p>
+<p>  一个 <span class="math notranslate nohighlight">\(CNOT\)</span> 门的效果是 <span class="math notranslate nohighlight">\(|\mathrm{x}\rangle|\mathrm{y}\rangle \rightarrow|x\rangle|(x+y) \mathrm{mod} 2\rangle\)</span> ，对比上面的Oracle公式，相当于 <span class="math notranslate nohighlight">\(f(x)=x\)</span> 。由此，可以看出 <span class="math notranslate nohighlight">\(f(0)=0, f(1)=1\)</span> ，因此是一个平衡函数。</p>
+<p>  这个门能产生的效果是 <span class="math notranslate nohighlight">\(|x\rangle|y\rangle \rightarrow|x\rangle|(1+y) \bmod 2\rangle\)</span> ，对比上面的Oracle公式，相当于 <span class="math notranslate nohighlight">\(f(x)=1\)</span> ，这是一个常数函数。</p>
+<img alt="../_images/4.3.8.png" class="align-center" src="../_images/4.3.8.png" />
+<p class="centered">
+<strong>图4.3.8 CNOT与 Pauli-X 组合门</strong></p><p>  这个相当于把两种情况组合起来了，效果是  <span class="math notranslate nohighlight">\(|\mathrm{x}\rangle|\mathrm{y}\rangle \rightarrow|x\rangle|(x+y+1) \mathrm{mod} 2\rangle\)</span> ，因此对应了 <span class="math notranslate nohighlight">\(f(x)=x+1\)</span> ，同理，这是一个平衡函数。</p>
+<p>  依次来检验这三种Oracle，DJ算法是否能输出正确的结果。</p>
+<p>第一种： <span class="math notranslate nohighlight">\(CNOT\)</span></p>
+<p>  构建如图4.3.9所示的量子线路图，并设置如图4.3.10所示参数。设置重复实验次数为为默认次数100次；点击运行，就可以运行这个量子程序了。</p>
+<img alt="../_images/4.3.9.png" class="align-center" src="../_images/4.3.9.png" />
+<p class="centered">
+<strong>图4.3.9 量子线路图</strong></p><img alt="../_images/4.3.10.png" class="align-center" src="../_images/4.3.10.png" />
+<p class="centered">
+<strong>图4.3.10 设置实验参数</strong></p><p>  点击查看任务结果，如图4.3.11。</p>
+<img alt="../_images/4.3.11.png" class="align-center" src="../_images/4.3.11.png" />
+<p class="centered">
+<strong>图4.3.11 查看任务结果</strong></p><p>  查看“概率统计图”，可以看到在第一个量子比特上得到100%的1的测量值，如图4.3.12；这个柱状图的横轴表示不同的测量值，纵轴表示这个测量值对应的概率。这里只测到了1，概率为100%，符合预期。</p>
+<img alt="../_images/4.3.12.png" class="align-center" src="../_images/4.3.12.png" />
+<p class="centered">
+<strong>图4.3.12 任务结果—概率统计图</strong></p><p>  依次测试另外两种Oracle：</p>
+<img alt="../_images/4.3.13.png" class="align-center" src="../_images/4.3.13.png" />
+<p class="centered">
+<strong>图4.3.13 量子线路图</strong></p><p>  对于这种情况，可以看到测量值100%为0。</p>
+<img alt="../_images/4.3.14.png" class="align-center" src="../_images/4.3.14.png" />
+<p class="centered">
+<strong>图4.3.14 任务结果—概率统计图</strong></p><p>第三种情况：</p>
+<img alt="../_images/4.3.15.png" class="align-center" src="../_images/4.3.15.png" />
+<p class="centered">
+<strong>图4.3.15 量子线路图</strong></p><p>  由此，可以得到100%的1，说明这个Oracle代表一个平衡函数。</p>
+<img alt="../_images/4.3.16.png" class="align-center" src="../_images/4.3.16.png" />
+<p class="centered">
+<strong>图4.3.16 任务结果—概率统计图</strong></p></section>
+<section id="qpandadj">
+<h2>4.3.2 在QPanda上实现DJ算法<a class="headerlink" href="#qpandadj" title="Permalink to this heading">¶</a></h2>
+<p>  下面的代码可以在github的QPanda仓库中的Applications/DJ_Algorithm/DJ_Algorithm.cpp中找到。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="c1">#include &quot;Core/Utilities/Tools/Utils.h&quot;</span>
+<span class="mf">2.</span><span class="c1">#include &quot;QAlg/DJ_Algorithm/DJ_Algorithm.h&quot;</span>
+<span class="mf">3.</span><span class="c1">#include &quot;QPandaNamespace.h&quot;</span>
+<span class="mf">4.</span><span class="c1">#include &quot;Core/Core.h&quot;</span>
+<span class="mf">5.</span><span class="c1">#include &lt;vector&gt;</span>
+<span class="mf">6.</span>
+<span class="mf">7.</span><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="mf">8.</span><span class="n">USING_QPANDA</span>
+<span class="mf">9.</span>
+<span class="mf">10.</span><span class="n">DJ_Oracle</span> <span class="n">generate_two_qubit_oracle</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="nb">bool</span><span class="o">&gt;</span> <span class="n">oracle_function</span><span class="p">)</span> <span class="p">{</span>
+<span class="mf">11.</span>    <span class="k">return</span> <span class="p">[</span><span class="n">oracle_function</span><span class="p">](</span><span class="n">QVec</span> <span class="n">qubit1</span><span class="p">,</span> <span class="n">Qubit</span><span class="o">*</span> <span class="n">qubit2</span><span class="p">)</span> <span class="p">{</span>
+<span class="mf">12.</span>        <span class="n">QCircuit</span> <span class="n">prog</span><span class="p">;</span>
+<span class="mf">13.</span>        <span class="k">if</span> <span class="p">(</span><span class="n">oracle_function</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">false</span> <span class="o">&amp;&amp;</span>
+<span class="mf">14.</span>            <span class="n">oracle_function</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">true</span><span class="p">)</span>
+<span class="mf">15.</span>        <span class="p">{</span>
+<span class="mf">16.</span>            <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">CNOT</span><span class="p">(</span><span class="n">qubit1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qubit2</span><span class="p">);</span>
+<span class="mf">17.</span>        <span class="p">}</span>
+<span class="mf">18.</span>        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">oracle_function</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">true</span> <span class="o">&amp;&amp;</span>
+<span class="mf">19.</span>            <span class="n">oracle_function</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">false</span><span class="p">)</span>
+<span class="mf">20.</span>        <span class="p">{</span>
+<span class="mf">21.</span>            <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">CNOT</span><span class="p">(</span><span class="n">qubit1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qubit2</span><span class="p">)</span>
+<span class="mf">22.</span>                <span class="o">&lt;&lt;</span> <span class="n">X</span><span class="p">(</span><span class="n">qubit2</span><span class="p">);</span>
+<span class="mf">23.</span>        <span class="p">}</span>
+<span class="mf">24.</span>        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">oracle_function</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">true</span> <span class="o">&amp;&amp;</span>
+<span class="mf">25.</span>            <span class="n">oracle_function</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">true</span><span class="p">)</span>
+<span class="mf">26.</span>        <span class="p">{</span>
+<span class="mf">27.</span>            <span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">X</span><span class="p">(</span><span class="n">qubit2</span><span class="p">);</span>
+<span class="mf">28.</span>        <span class="p">}</span>
+<span class="mf">29.</span>        <span class="k">else</span>
+<span class="mf">30.</span>        <span class="p">{</span>
+<span class="mf">31.</span>        <span class="p">}</span>
+<span class="mf">32.</span>        <span class="k">return</span> <span class="n">prog</span><span class="p">;</span>
+<span class="mf">33.</span>    <span class="p">};</span>
+<span class="mf">34.</span><span class="p">}</span>
+<span class="mf">35.</span>
+<span class="mf">36.</span><span class="n">void</span> <span class="n">two_qubit_deutsch_jozsa_algorithm</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="nb">bool</span><span class="o">&gt;</span> <span class="n">boolean_function</span><span class="p">)</span>
+<span class="mf">37.</span><span class="p">{</span>
+<span class="mf">38.</span> <span class="n">auto</span> <span class="n">qvm</span> <span class="o">=</span> <span class="n">CPUQVM</span><span class="p">();</span>
+<span class="mf">39.</span> <span class="n">qvm</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>
+<span class="mf">40.</span>    <span class="n">auto</span> <span class="n">oracle</span> <span class="o">=</span> <span class="n">generate_two_qubit_oracle</span><span class="p">(</span><span class="n">boolean_function</span><span class="p">);</span>
+<span class="mf">41.</span>
+<span class="mf">42.</span> <span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">deutschJozsaAlgorithm</span><span class="p">(</span><span class="n">boolean_function</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">qvm</span><span class="p">,</span> <span class="n">oracle</span><span class="p">);</span>
+<span class="mf">43.</span> <span class="n">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">directlyRun</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+<span class="mf">44.</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">false</span><span class="p">)</span>
+<span class="mf">45.</span> <span class="p">{</span>
+<span class="mf">46.</span>         <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Constant function!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">47.</span> <span class="p">}</span>
+<span class="mf">48.</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">true</span><span class="p">)</span>
+<span class="mf">49.</span> <span class="p">{</span>
+<span class="mf">50.</span>         <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Balanced function!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">51.</span> <span class="p">}</span>
+<span class="mf">52.</span><span class="p">}</span>
+<span class="mf">53.</span>
+<span class="mf">54.</span><span class="n">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="mf">55.</span><span class="p">{</span>
+<span class="mf">56.</span> <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<span class="mf">57.</span>         <span class="nb">bool</span> <span class="n">fx0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fx1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">58.</span>         <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;input the input function&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+<span class="mf">59.</span>                 <span class="o">&lt;&lt;</span> <span class="s2">&quot;The function has a boolean input&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+<span class="mf">60.</span>                 <span class="o">&lt;&lt;</span> <span class="s2">&quot;and has a boolean output&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+<span class="mf">61.</span>                 <span class="o">&lt;&lt;</span> <span class="s2">&quot;f(0)= (0/1)?&quot;</span><span class="p">;</span>
+<span class="mf">62.</span>         <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">fx0</span><span class="p">;</span>
+<span class="mf">63.</span>         <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;f(1)=(0/1)?&quot;</span><span class="p">;</span>
+<span class="mf">64.</span>         <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">fx1</span><span class="p">;</span>
+<span class="mf">65.</span>         <span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="nb">bool</span><span class="o">&gt;</span> <span class="n">oracle_function</span><span class="p">({</span> <span class="n">fx0</span><span class="p">,</span><span class="n">fx1</span> <span class="p">});</span>
+<span class="mf">66.</span>         <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Programming the circuit...&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">67.</span>         <span class="n">two_qubit_deutsch_jozsa_algorithm</span><span class="p">(</span><span class="n">oracle_function</span><span class="p">);</span>
+<span class="mf">68.</span> <span class="p">}</span>
+<span class="mf">69.</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mf">70.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  整个文件利用QPanda的组件实现了一个Deutsch-Jozsa算法，并且提供了一个2 Qubit的示例。各个模块的介绍：</p>
+<p><strong>1. Deutsch_Jozsa_algorithm函数</strong></p>
+<p>  在实现这个函数的时候，并不是仅仅考虑了2 qubit的情况，而是对更一般的情况，即所有qubit的情况进行处理。</p>
+<p>  QPanda的核心逻辑在于对申请的量子比特进行量子线路构建，因此，这个函数会返回一个QProg类型，这个QProg类型会被放到量子机器中进行执行。</p>
+<p>  Deutsch_Jozsa_algorithm的参数有4个：</p>
+<p>​  vector&lt;Qubit*&gt; qubit1：一组qubit，它对应了上面所述的工作比特；</p>
+<p>​  Qubit* qubit2：一个qubit，它对应的是算法中的辅助比特；</p>
+<p>​  vector cbit：一组cbit，它对应的是qubit 1的测量值；</p>
+<p>​  DJ_Oracle oracle：输入的，待计算的Oracle</p>
+<p>  因此，这个算法的逻辑就可以表述为：通过输入的qubit1, qubit2构建量子线路；并且将oracle作用在qubit1和qubit2上；最后，对qubit1测量到cbit上。这个函数将量子算法的流程通过QPanda的组件编写出来，整个流程会被写入到一个QProg类型的对象中，最终，这个函数会返回这个对象。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">prog</span> <span class="o">=</span> <span class="n">QProg</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>  在函数中，首先可以通过QProg函数去创建一个空的量子程序。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">X</span><span class="p">(</span><span class="n">qubit2</span><span class="p">);</span>
+<span class="mf">2.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">apply_QGate</span><span class="p">(</span><span class="n">qubit1</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubit2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  将逻辑门插入到这个量子程序的后面，依次是X门作用在qubit2上（将qubit2初始化为|1⟩），对qubit1和qubit2执行Hadamard门。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">oracle</span><span class="p">(</span><span class="n">qubit1</span><span class="p">,</span> <span class="n">qubit2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  制备完纠缠态之后，就可以进行oracle计算。这里同样将oracle插入到量子程序中。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">apply_QGate</span><span class="p">(</span><span class="n">qubit1</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">MeasureAll</span><span class="p">(</span><span class="n">qubit1</span><span class="p">,</span> <span class="n">cbit</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  最后同样是一组Hadamard门，并且通过MeasureAll将qubit1整个测量到cbit上。</p>
+<p><strong>2. two_qubit_deutsch_jozsa_algorithm函数</strong></p>
+<p>  这个函数对两个比特的情况提供了一个演示。在这种情况下，需要对不同情况构建oracle，并且输入到这个算法中。构建oracle的方式就是通过这个函数的参数——一个vector类型来代表一个函数。这个函数相当于一个真值表，例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">std</span><span class="p">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="nb">bool</span><span class="o">&gt;</span> <span class="n">fx</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>  这表示fx[0] = 0，fx[1] = 1这种情况。</p>
+<p>  通过真值表构建对应oracle的方法：即generate_two_qubit_oracle，它恰好返回一个oracle类型，感兴趣的读者可以自行对这个oracle中的不同情况进行验证。</p>
+<p>  这个函数中最重要的步骤就是初始化量子机器，申请量子比特和经典寄存器，取得量子程序，执行并且获得最终结果。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">qvm</span> <span class="o">=</span> <span class="n">CPUQVM</span><span class="p">();</span>
+<span class="mf">2.</span><span class="n">qvm</span><span class="o">.</span><span class="n">init</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>  这个语句定义一个CPU执行的模拟器。可以指定为不同类型，例如GPU、单线程CPU、或者云量子计算机。并调用init()函数来初始化qvm。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">qvec</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="mf">2.</span><span class="n">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">.</span><span class="n">cAlloc</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>  通过qAlloc和cAlloc可以从量子机器中申请一定量的量子比特。Many表示很多，所以qAllocMany和cAllocMany可以一次性申请多个量子比特。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">auto</span> <span class="n">oracle</span> <span class="o">=</span> <span class="n">generate_two_qubit_oracle</span><span class="p">(</span><span class="n">boolean_function</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  这个函数就是用于生成Oracle的。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">QProg</span> <span class="n">prog</span><span class="p">;</span>
+<span class="mf">2.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">Deutsch_Jozsa_algorithm</span><span class="p">({</span> <span class="n">qvec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">},</span> <span class="n">qvec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">{</span> <span class="n">c</span> <span class="p">},</span> <span class="n">oracle</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  这一段程序可以将上述量子程序打印出来。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">qvm</span><span class="o">.</span><span class="n">directlyRun</span><span class="p">(</span><span class="n">prog</span><span class="p">);</span>
+<span class="mf">2.</span><span class="k">if</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="o">==</span> <span class="n">false</span><span class="p">)</span>
+<span class="mf">3.</span><span class="p">{</span>
+<span class="mf">4.</span>          <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Constant function!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">5.</span>  <span class="p">}</span>
+<span class="mf">6.</span>  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="o">==</span> <span class="n">true</span><span class="p">)</span>
+<span class="mf">7.</span>  <span class="p">{</span>
+<span class="mf">8.</span>          <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Balanced function!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="mf">9.</span>  <span class="p">}</span>
+<span class="mf">10.</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>  函数directlyRun顾名思义是直接运行这个量子程序。QPanda提供很多运行量子程序的方式，而directlyRun表示这个量子程序在默认模式下运行1次。由于DJ算法是一个确定性算法，就只运行一次，运行结束后，可以从之前申请的经典寄存器中取得值：c.eval。这里false表示测量到|0⟩，true表示测量到|1⟩。通过测量的结果可以得到这个函数属于平衡函数还是常数函数。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html" class="btn btn-neutral float-left" title="4.2 量子算法简介" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4.4Grover%E7%AE%97%E6%B3%95.html" class="btn btn-neutral float-right" title="4.4 Grover算法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

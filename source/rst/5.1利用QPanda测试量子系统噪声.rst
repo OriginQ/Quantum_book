@@ -1,0 +1,437 @@
+5.1 利用QPanda测试量子系统噪声
+==================================
+  近些年来，量子计算机芯片包含的量子比特数和量子比特质量不断提升，可以预计，不远的将来会出现包含数百个量子比特，且量子比特质量足够高的量子计算机芯片，称之为NISQ装置。如何用NISQ装置解决具体的实际问题是一个研究热点，比如VQE,QAOA都是有应用前景的NISQ量子算法。NISQ装置中量子比特数还不允许纠错编码，所以NISQ装置是一种噪声容忍装置，在NISQ装置中运行的量子算法都会受到噪声的影响。NISQ量子算法需要对量子噪声有一定的免疫性，需要在含噪声的环境中研究NISQ量子算法。QPanda中包含噪声量子虚拟机，可以模拟带噪声的量子线路，测试量子算法在噪声影响下的性能变化，从而辅助NISQ量子算法的开发。首先对量子噪声做一简单介绍。
+
+**量子噪声**
+
+  量子计算机不是一个孤立系统，在运行的时候，不可避免会和环境产生耦合，从而影响量子计算机的运行过程，通常用噪声来描述环境对量子计算机的影响。 量子系统的噪声可以用一组算符和  :math:`\mathrm{K}=\{\mathrm{K}{1}, \mathrm{~K}{2}, \ldots, \mathrm{K}{\mathrm{s}}\}` 描述： :math:`\{\mathrm{K}{1}, \mathrm{~K}{2}, \ldots, \mathrm{K}{\mathrm{s}}\}` 也被称为Kraus算子，  :math:`\mathrm{K}_{\mathrm{i}}` 需要满足关系式
+
+.. math::
+   \sum_{\mathbf{i}} K_{i}^{\dagger} K_{i}=I
+
+  在噪声影响下，量子态的演化方式为:
+
+.. math::
+   \rho \rightarrow \sum_{\mathrm{i}} K_{i} \rho K_{i}^{\dagger}
+
+  下面列举一些常见噪声的表示形式：
+
+  弛豫噪声:
+
+.. math::
+   \mathrm{K}_{1}=\left[\begin{array}{cc} 1 & 0 \\ 0 & \sqrt{1-p} \end{array}\right], \mathrm{K}_{2}=\left[\begin{array}{cc} 0 & \sqrt{p} \\ 0 & 0 \end{array}\right]
+
+  比特翻转噪声:
+
+.. math::
+   \mathrm{K}_{1}=\left[\begin{array}{cc} \sqrt{1-p} & 0 \\ 0 & \sqrt{1-p} \end{array}\right], \mathrm{K}_{2}=\left[\begin{array}{cc} 0 & \sqrt{p} \\ \sqrt{p} & 0 \end{array}\right]
+
+  退相位噪声:
+
+.. math::
+   \mathrm{K}_{1}=\left[\begin{array}{cc} \sqrt{1-p} & 0 \\ 0 & \sqrt{1-p} \end{array}\right], \mathrm{K}_{2}=\left[\begin{array}{cc} \sqrt{p} & 0 \\ 0 & -\sqrt{p} \end{array}\right]
+
+  退极化噪声:
+
+.. math::
+   \begin{aligned} &\mathrm{K}_{1}=\sqrt{1-\frac{3}{4} p}\left[\begin{array}{ll} 1 & 0 \\ 0 & 1 \end{array}\right], \mathrm{K}_{2}=\frac{\sqrt{p}}{2}\left[\begin{array}{ll} 0 & 1 \\ 1 & 0 \end{array}\right] \\ &\mathrm{K}_{3}=\frac{\sqrt{p}}{2}\left[\begin{array}{cc} 0 & -i \\ -i & 0 \end{array}\right], \mathrm{K}_{4}=\frac{\sqrt{p}}{2}\left[\begin{array}{cc} 1 & 0 \\ 0 & -1 \end{array}\right] \end{aligned}
+
+
+**噪声虚拟机**
+
+  QPanda包含带噪声的量子虚拟机，噪声量子虚拟机可以模拟带噪声的量子线路，我们可以定义各种不同的量子噪声，用噪声量子虚拟机执行对应的含噪声量子线 路。下面介绍QPanda中量子噪声虚拟机的执行原理。 加入噪声后，量子线路中演化的量子态变成混态，所以需要用密度矩阵来描述量子态。与纯态相比，模拟混态演化需要更多的资源，不管是时间复杂度还是空间复杂度，都是纯态演化所需资源的平方量级。为节省资源，在QPanda中，用另外一种方式实现了噪声量子虚拟机，即借助蒙特卡洛方法， 演化过程中还是用态矢来 描述量子态。下面以实现一个噪声量子逻辑门的过程来说明QPandan噪声量子虚拟机的实现原理。
+
+  首先，假设输入态是一个纯态, 用  :math:`|\phi\rangle` 表示，要实现的量子逻辑门用  :math:`\mathrm{U}` 表示，量子噪声为 :math:`\mathrm{~K}{1}` ,  :math:`\mathrm{~K}{2}` , :math:`\ldots` , :math:`\mathrm{~K}{s}` 。含噪声的  :math:`\mathrm{U}` 门实现步骤如下: 计算 :math:`\mathrm{p}{\mathrm{i}}=\left\langle\phi\left|K_{i}^{\dagger} K_{i}\right| \phi\right\rangle` , :math:`\mathrm{i}=1` , :math:`2` , :math:` \ldots` , :math:`\mathrm{s} \cdot` 由噪声的定义，我们可以得到  :math:`\sum_{\mathrm{i}} p_{i}=1` 。 生成  :math:`[0, 1)` 区间均匀分布的随机数  :math:`\mathrm{r}` ， 根据上式的计算结果找到下标  :math:`l` 满足
+
+.. math::
+   \sum_{i=1}^{l-1} p_{i} \leq r \leq \sum_{i=1}^{l} p_{i}
+
+假设 :math:`\sum_{i=1}^{0} p_{i}=0` 。  :math:`|\phi\rangle` 的演化公式表示为:
+
+.. math::
+   |\phi\rangle \rightarrow \mathrm{U} \frac{1}{\sqrt{\mathrm{P}_{1}}} K_{l}|\phi\rangle
+
+
+  当以上操作只执行一次时，得到的结果是错误的，但是，当执行以上步骤多次，然后对得到的执行结果做统计分析，就可以得到准确的输出态，假设执行了 :math:`\mathrm{N}` 次， 得到了  :math:`\mathrm{N}` 个输出态 :math:`\left|\phi_{1}\right\rangle,\left|\phi_{2}\right\rangle, \ldots ,\left|\phi_{N}\right\rangle` , 那么最后的输出态可以表示为:
+
+.. math::
+   \rho^{\prime}=\frac{1}{\mathrm{~N}} \sum_{n=1}^{N}\left|\phi_{i}\right\rangle\left\langle\phi_{i}\right|
+
+:math:`\mathrm{N}` 个输出态 :math:`\left|\phi_{1}\right\rangle,\left|\phi_{2}\right\rangle, \ldots\left|\phi_{N}\right\rangle` 在集合 :math:`\{\left|\psi_{\mathrm{i}}\right\rangle=\mathrm{U} \frac{1}{\sqrt{\mathrm{P_i}}} K_{i}|\phi\rangle \mid \mathrm{i}=1,2, \ldots, \mathrm{s}\}` ，假设 :math:`\mathrm{N}` 个态中 :math:`\left|\psi_{\mathrm{i}}\right\rangle` 出现的次数为 :math:`\mathrm{M}_{\mathrm{i}}` ，那么 :math:`\rho^{\prime}` 可表示为
+
+.. math::
+   \rho^{\prime}=\frac{1}{\mathrm{~N}} \sum_{n=1}^{s} \frac{M_{n}}{p_{n}} U K_{n}|\phi\rangle\langle\phi| K_{n}^{\dagger} U^{\dagger}
+
+
+  当  :math:`\mathrm{N} \gg 1` 时，  :math:`\mathrm{M}{\mathrm{i}} \cong \mathrm{N} p{i}` , 从而可以得到
+
+.. math::
+   \rho^{\prime} \cong \sum_{n=1}^{s} U K_{n}|\phi\rangle\langle\phi| K_{n}^{\dagger} U^{\dagger}=\rho_{\text {out }}
+
+
+  即当 :math:`\mathrm{N}` 足够大时，  :math:`\rho^{\prime}` 近似等于  :math:`|\phi\rangle` 经过噪声量子逻辑门 :math:`\mathrm{U}` 后的输出态 :math:`\rho` 。
+
+  当执行噪声量子线路时，量子线路由一系列量子逻辑门构成, 每个量子逻辑门都执行上面的步骤，执行多次量子线路，即可得到输出量子态密度矩阵的近似表达式，量子线路执行次数越多，得到的结果越准确。
+
+  通过上述方法， :math:`QPanda` 中橾声量子虚拟机就可以用态矢来表示混态演化过程，通过多次运行量子线路得到噪声量子线路输出态的密度矩阵。
+
+
+**噪声QAOA测试**
+
+  前面的章节已经介绍过QAOA，QAOA是一种经典-量子混合算法，提供了一种解决组合优化问题的方法。QAOA运行在NISQ装置上，无法避免噪声的干扰，所以研究噪声对QAOA性能的影响是一项很重要的工作。下面介绍噪声对QAOA性能影响的一些研究进展。
+
+  首先，如何构建含噪声的QAOA，前面章节可知QAOA可以用VQNet实现，目前VQNet可以和QPanda中噪声量子虚拟机结合，执行含噪声的QAOA。这里选取的问题还是最大分割问题。
+
+
+**理论模型**
+
+  考虑一种特殊的噪声，可以表示为 :math:`\mathrm{K}=\{\mathrm{a}{0} \mathrm{I}, \mathrm{a}{1} \mathrm{~K}{1}, \ldots, \mathrm{a}{\mathrm{s}} \mathrm{K}{\mathrm{s}}\}` ，即  :math:`\mathrm{K}` 的Kraus算子中一项是单位阵乘以常数 :math:`a_0` ，这里 :math:`\mathrm{a}{i}, i=0,1, \ldots, s` 都是非负实数，比如，比特翻转噪声，退相位噪声，退极化噪声都属于这种类型的噪声。
+
+
+**噪声对损失函数的影响**
+
+  假设输入态是一个纯态 :math:`\left|\phi_{\text {in }}\right\rangle` ，经过一个带噪声 :math:`{K}` 的量子逻辑门 :math:`\mathrm{U}` 后，输出态 :math:`\rho_{\text {out }}` 可以写为：
+
+.. math::
+   \rho_{\text {out }}^{\text {noise }}= (1-p) U |\phi_{\text {in }}\rangle\ \langle\phi_{\text {in }}| \ U^{\dagger}+\sum_{i} U K_{i}|\phi_{\text {in }}\rangle\langle\phi_{\text {in }}|\ K_{i}^{\dagger} U^{\dagger}
+
+  这里定义 :math:`{1}-\mathrm{p}=\mathrm{a}{0}^{2}`  ， 不带噪声时，理想的输出态是 :math:`\rho{\text {uut }}^{\text {ideal }}=U\left|\phi_{\text {in }}\right\rangle\left\langle\phi_{\text {in }}\right| U^{\dagger}` , 所以 :math:`\rho_{\text {out }}^{\text {noise }}` 可进一步表示为
+
+.. math::
+   \rho_{\text {out }}^{\text {noise }}=(1-p) { \rho }^{\text {ideal }}+\sum_{i} U K_{i}\left|\phi_{\text {in }}\right\rangle\left\langle\phi_{\text {in }}\right| K_{i}^{\dagger} U^{\dagger}
+
+  可以看到，在 :math:`\rho_{\text {out }}^{\text {noise }}` 中， :math:`\rho_{\text {out }}^{\text {ideal }}` 所占的比例是 :math:`1-\mathrm{p}` 。更进一步的考虑，如果经过一个包含 :math:`\mathrm{m}` 个量子逻辑门的量子线路，带噪声的输出态 :math:`\rho_{\text {out }}^{\text {noise }}` 与理想输出态 :math:`\rho_{\text {out }}^{\text {ideal }}` 的关系为
+
+.. math::
+   \rho_{\text {out }}^{\text {noise }}=(1-\mathrm{p})^{m} \rho_{\text {out }}^{\text {ideal }}
+
+  特别的，比例因子 :math:`\mathrm{P}=(1-\mathrm{p})^{m}` 是最坏的情况，对某些特殊的量子态，并不会受到某种噪声的影响，比特 :math:`|\phi\rangle=|0\rangle` 不会受到退相位噪声的影响，所以带噪声的输出态 :math:`\rho_{\text {out }}^{\text {noise }}` 与理想输出态 :math:`\rho_{\text {out }}^{\text {ideal }}` 的关系重新写为
+
+.. math::
+   \rho_{\text {out }}^{\text {noise }}=(1-p)^{\alpha m} \rho_{\text {out }}^{\text {ideal }}
+
+:math:`\alpha` 表示一个常数，与量子线路结构和噪声模型相关。
+
+​ 下面开始介绍噪声对QAOA量子线路的影响。在QAOA中，QAOA步数 :math:`n` 与QAOA量子线路包含的量子逻辑门数目线性相关，对一个步数为 :math:`n` 的QAOA量子线路 :math:`\mathrm{U}(\vec{\gamma}, \vec{\beta})` , 如果没有噪声，经过 :math:`\mathrm{U}(\vec{\gamma}, \vec{\beta})` 后，输出态为
+
+.. math::
+   \left|\phi_{\text {out }}^{\text {ideal }}\right\rangle=\mathrm{U}(\vec{\gamma}, \vec{\beta})\left|\phi_{\text {in }}\right\rangle
+
+  QAOA中，损失函数定义为目标哈密顿量 :math:`\mathrm{H}_{\mathrm{p}}` 的期望，在理想情况下，损失函数可表示为
+
+.. math::
+   f^{\text {ideal }}(n)=\left\langle\phi_{\text {out }}^{\text {ideal }}\left|H_{p}\right| \phi_{\text {out }}^{\text {ideal }}\right\rangle
+
+  当  :math:`Q A O A` 量子线路包含噪声 :math:`N` 时，输出态为
+
+.. math::
+   \rho_{\text {out }}^{\text {noise }}=(1-p)^{\alpha m}\left|\phi_{\text {out }}^{\text {ideal }}\right\rangle\langle\phi_{\text {out }}^{\text {ideal }}|+\sum_{i} p_{i}| \psi_{i}\rangle\left\langle\psi_{i}\right|
+
+
+:math:`\left|\psi_{\mathrm{i}}\right\rangle` 是由噪声产生的，每个 :math:`\left|\psi_{\mathrm{i}}\right\rangle` 无规律的，另外在实际中，每个 :math:`\mathrm{p}_{\mathrm{i}}` 都会很小，满足：
+
+.. math::
+   \sum_{i} p_{i}=1-(1-p)^{\alpha n} 
+
+
+  当量子线路比较复杂时， :math:`\left|\psi_{\mathrm{i}}\right\rangle` 个数会很多，求和项 :math:`\sum_{i} p_{i}\left|\psi_{i}\right\rangle\left\langle\psi_{i}\right|` 会趋于一个统计平均值。比如，在最大分割问题中，一种有 :math:`2^{\mathrm{n}}` 种方案，每条边  :math:`\mathrm{C}{\mathrm{ij}}` 会出现 :math:`2^{\mathrm{n}}` 次， 所以所有方案的平均结果为 :math:`\mathrm{A}=-\sum{\mathrm{i}, \mathrm{j}} \frac{c_{i j}}{2}` , 从而 :math:`\sum_{i} p_{i}\left|\psi_{i}\right\rangle\left\langle\psi_{i}\right|` 的统计平均值为 :math:`\left(1-(1-p)^{\alpha n}\right) \mathrm{A}` ，从而带噪声的情况下， :math:`QAOA` 损失函数可以写为：
+
+.. math::
+   f^{\text {noise }}(n)=(1-p)^{a n} f^{\text {ideal }}(n)+\left(1-(1-p)^{a n}\right) \mathrm{A}
+
+当 :math:`\mathrm{np}` 足够小时， :math:`f^{\text {noise }}(n)` 可以近似为
+
+.. math::
+   f^{\text {noise }}(n) \cong(1-\alpha n p) f^{\text {ideal }}(n)+\alpha n p A
+
+  从上面的式子，可以发现，噪声并没有改变  :math:`\mathrm{QAOA}` 参数空间的整体形状，只是将参数空间磨平，比例因子为 :math:`(1-p)^{\alpha n}`
+
+
+
+**噪声对损失函数梯度的影响**
+
+  QAOA是一种经典-量子混合算法，其中参数优化过程是一个经典过程。我可以用典型的经典算法来优化QAOA量子线路的参数，比如Nelder-Mead算法，Powell算 法， Adagrad算法等。当使用梯度相关的优化算法时，需要计算损失函数的梯度。量子噪声对损失函数有影响，所以也会对损失函数的梯度产生影响。下面描述量 子噪声对损失函数的梯度 会有怎样的影响。
+
+  QAOA量子线路包含两种参数： :math:`\vec{\gamma}` 和 :math:`\vec{\beta}` ，分别表示问题哈密顿量 :math:`\mathrm{H}{\mathrm{p}}` 和驱动哈密顿量 :math:`\mathrm{H}{\mathrm{d}}` 的系数， :math:`\mathrm{QAOA}` 步数为 :math:`\mathrm{n}` 时， :math:`\vec{\gamma}` 和  :math:`\vec{\beta}` 都是 :math:`\mathrm{n}` 维向量。 VQNet中损失函数对 :math:`\vec{\gamma}` 和 :math:`\vec{\beta}` 的偏导如下式所示
+
+.. math::
+   \begin{aligned} &\frac{\partial f(\vec{\gamma}, \vec{\beta})}{\partial \gamma_{k}}=\sum_{i, j}-2 C_{i j} \frac{f(\vec{\gamma}, \vec{\beta})_{k i j}^{+}-f(\vec{\gamma}, \vec{\beta})_{k i j}^{-}}{2} \\ &\frac{\partial f(\vec{\gamma}, \vec{\beta})}{\partial \beta_{k}}=\sum_{i=1}^{\ell}-2 \frac{f(\vec{\gamma}, \vec{\beta})_{k i}^{+}-f(\vec{\gamma}, \vec{\beta})_{k i}^{-}}{2} \end{aligned}
+
+  第一个式子中 :math:`f(\vec{\gamma}, \vec{\beta}){k i j}^{+}` 表示将  :math:`Q A O A` 量子线路中与边  :math:`C{\mathrm{ij}}` 关联的参数  :math:`\gamma_{\mathrm{k}}` 改变为  :math:`\gamma_{\mathrm{k}}+\frac{\pi}{2}` , 别的参数不变, 然后运行量子线路得到的损失函数， :math:`f(\vec{\gamma}, \vec{\beta}){k i j}^{-}` 表示将对应 位置的参数 :math:`\gamma{\mathrm{k}}` 改变为 :math:`\gamma{\mathrm{k}}-\frac{\pi}{2}`  ，别的参数不变，然后运行量子线路得到的损失函数。同理，在第二个式子中， :math:`f(\vec{\gamma}, \vec{\beta}){k i}^{+}` 和  :math:`f(\vec{\gamma}, \vec{\beta}){k i}^{-}` 分别表示将第 :math:`\mathrm{i}` 个比特上面包含  :math:`\beta_{\mathrm{k}}` 的量子逻辑门的参数  :math:`\gamma{\mathrm{k}}` 改变为  :math:`\gamma_{\mathrm{k}}+\frac{\pi}{2}` 和  :math:`\gamma_{\mathrm{k}}-\frac{\pi}{2}` ，别的参数不变，运行量子线路得到的损失函数。具体的公式推导可从VQNet文献中得到。
+
+  从上面两个公式，可以看出损失函数的梯度是一系列量子线路参数不同的损失函数的线性组合，从量子噪声对损失函数的影响公式中，可以推出量子噪声对损失函 数梯度的影响如下式所示:
+
+.. math::
+   \frac{\partial f(\vec{\gamma}, \vec{\beta})^{\text {noise }}}{\partial \theta_{k}}=(1-p)^{\alpha n} \frac{\partial f(\vec{\gamma}, \vec{\beta})^{\text {ideal }}}{\partial \theta_{k}}
+
+
+:math:`\theta_{\mathrm{k}} \in{\vec{\gamma}, \vec{\beta}}` ，可以看出，包含噪声的 :math:`Q A O A` 量子线路得到的损失函数对线路参数 :math:`\theta_{\mathrm{k}}` 的偏导与理想情况下损失函数对线路参数 :math:`\theta_{\mathrm{k}}` 的偏导之间成比例，比例因子为 :math:`(1-p)^{a n}` 。
+
+  随着噪声参数变大，损失函数对参数偏导的绝对值变小, 换句话说，损失函数梯度的绝对值随噪声参数和 :math:`QAOA` 步数的增加而变小, 这从另外一个角度说明了噪声 会使 :math:`\mathrm{QAOA}` 参数空间变平。另一方面，可以看出噪声不会改变损失函数梯度的方向，所以噪声只会影响 :math:`\mathrm{QAOA}` 参数优化过程的优化速度，并不会改变参数优化结果，理论上，当噪声参数 :math:`p` 与  :math:`Q A O A` 步数  :math:`n` 的乘积比较小时，噪声  :math:`Q A O A` 优化得到的量子线路参数与理想最优量子线路参数一致。
+
+
+**测试示例**
+
+  用QPanda噪声虚拟机和VQNet构建 :math:`\mathrm{QAQA}` ，数模模拟几种噪声对 :math:`\mathrm{QAQA}` 的影响，来验证上一节提出的模型。
+
+
+**最大分割问题选取**
+
+  选择最大分割问题作为测试问题，整个测试过程测试问题是固定的，最大分割问题对应的图如图5.1.1所示：
+
+.. image:: ./images/5.1.1.png
+   :align: center
+   :width: 350 px
+.. centered:: 图5.1.1 最大分割图
+
+
+**理想结果**
+
+  首先演示理想情况下QAOA对这个问题的执行结果，QAOA步数为 :math:`n=1 \sim 4` ，得到的损失函数优化过程如图5.1.2所示：
+
+.. image:: ./images/5.1.2.png
+   :align: center
+   :width: 400 px
+.. centered:: 图5.1.2 理想QAOA损失函数优化过程
+
+从图5.1.2可以看出，理想情况下，随着QAOA步数的增加，QAOA的性能不断提升，QAOA步数与优化后损失函数的关系如图5.1.3所示：
+
+.. image:: ./images/5.1.3.png
+   :align: center
+   :width: 400 px
+.. centered:: 图5.1.3 QAOA性能与步数的关系
+
+
+**噪声对损失函数的影响**
+
+  首先，测试噪声对QAOA损失函数的影响，选取3中不同的噪声：退相位噪声，比特翻转噪声和退极化噪声。在前面的章节已经介绍过，这三种噪声都包含一个参数  :math:`\mathrm{p}` ，选取 :math:`\mathrm{p}` 的范围为 :math:`[0.0001,0.02]` ，很多NISQ装置中这些橾声的参数处于这个区间，另外更关注  :math:`\mathrm{p}` 比较小的区间，所以通过如下公式在区间 :math:`[0.0001,0.02]` 中取11个点:
+
+.. math::
+   \mathrm{p}_{\mathrm{i}}=0.0001 * 200^{0.1 \times \mathrm{i}}, \mathrm{i}=0,1,2, \ldots, 10
+
+
+  在接下来的测试中，对QAOA的损失函数简单做了变形，  :math:`Q A O A` 损失函数是问题哈密顿量  :math:`\mathrm{H}{\mathrm{p}}` 的期望，前面的章节已经介绍过，对最大分割问题， :math:`\mathrm{H}{\mathrm{p}}` 可表示为
+
+.. math::
+   \mathrm{H}_{\mathrm{p}}=-\sum_{i, j} C_{i j} \frac{1-Z_{i} Z_{j}}{2}
+
+
+  为便于分析，丟弃  :math:`\mathrm{H}{\mathrm{p}}` 中的常数项，并将其变为原来的两倍，这种变化不会对 :math:`\mathrm{QAOA}` 的执行产生影响，变换后的 :math:`\mathrm{H}{\mathrm{p}}^{\prime}` 可表示为
+
+.. math::
+   \mathrm{H}_{\mathrm{p}}^{\prime}=\sum_{i, j} C_{i j} Z_{i} Z_{j}
+
+
+  则损失函数为:  :math:`\mathrm{f}(\vec{\gamma}` , :math:`\vec{\beta})=\left\langle\mathrm{H}_{\mathrm{p}}^{\prime}\right\rangle` 。
+
+  在测试过程中，固定QAOA量子线路的参数，测试损失函数与噪声参数的关系，具体测试结果如图5.1.4所示：
+
+.. image:: ./images/5.1.4a.png
+   :align: center
+   :width: 400 px
+.. centered:: (a)退相位噪声
+
+.. image:: ./images/5.1.4b.png
+   :align: center
+   :width: 400 px
+.. centered:: (b)比特翻转噪声
+
+.. image:: ./images/5.1.4c.png
+   :align: center
+   :width: 400 px
+.. centered:: (c)退极化噪声
+.. centered:: 图 5.1.4 不同步数下噪声参数与损失函数关系曲线
+
+  定义  :math:`\mathrm{y}=\frac{\mathrm{f}(\vec{\gamma} \vec{\beta})^{\text {noise}}}{\mathrm{f}(\vec{\gamma} \vec{\beta})^{\text {ideal}}}` , 根据理论模型可得到 :math:`\mathrm{y}` 与噪声参数 :math:`\mathrm{p}` 及  :math:`\mathrm{QAOA}` 步数  :math:`\mathrm{n}` 的关系可表示为
+
+.. math::
+   \mathrm{y}=(1-\mathrm{p})^{\alpha \mathrm{n}}
+
+
+  用上面的公式对实验数据进行拟合，可以得到3种噪声对应的 3 个常数 :math:`\alpha` ；
+
+.. math::
+    \begin{aligned} &\alpha_{\text {dephasing }}=16.051 \\ &\alpha_{\text {bitflip }}=16.247 \\ &\alpha_{\text {depolarizing }}=18.846 \end{aligned}
+
+
+:math:`\alpha` 越大，说明对应噪声对  :math:`Q A O A` 影响越大，可以看出退极化噪声对  :math:`Q A O A` 影响最大。 下面考虑噪声参数  :math:`\mathrm{p}` 和  :math:`\mathrm{QAOA}` 步数  :math:`\mathrm{n}` 比较小的实验数据，选取满足 :math:`\mathrm{np}<0.02` 的实验数据，当 :math:`\mathrm{np}` 比较小时， :math:`\mathrm{y} \cong 1-\alpha \mathrm{np}` ，令  :math:`\mathrm{x}=\mathrm{np}` ，得到  :math:`\mathrm{y}` 与  :math:`\mathrm{x}` 关系如图  :math:`5.1.5` 所示，其中 "  :math:`x` "点是实验数据，红线是斜率分别等于得到的3个拟合参数的直线，可以看出，当  :math:`\mathrm{np}` 比较小时，噪声损失函数与理想损失函数的比特因子  :math:`\mathrm{y}` 与  :math:`\mathrm{np}` 成线性关系。
+
+.. image:: ./images/5.1.5a.png
+   :align: center
+   :width: 400 px
+.. centered:: (a)退相位噪声
+
+.. image:: ./images/5.1.5b.png
+   :align: center
+   :width: 400 px
+.. centered:: (b)比特翻转噪声
+
+.. image:: ./images/5.1.5c.png
+   :align: center
+   :width: 400 px
+.. centered:: (c)退极化噪声
+.. centered:: 图5.1.5 :math:`\mathrm{np}` 比较小的区间噪声对QAOA损失函数的影响
+
+
+**噪声对损失函数的影响**
+
+  现在测试噪声对损失函数梯度的影响，噪声对损失函数的影响公式为：
+
+.. math::
+   \frac{\partial f(\vec{\gamma}, \vec{\beta})^{\text {noise }}}{\partial \theta_{k}}=(1-p)^{\alpha n} \frac{\partial f(\vec{\gamma}, \vec{\beta})^{\text {ideal }}}{\partial \theta_{k}}
+
+
+  在这个测试中，固定 :math:`QAOA` 量子线路的参数，测试损失函数对各参数的偏导与噪声参数的关系，  :math:`\mathrm{QAOA}` 的步数  :math:`\mathrm{n}` 的区间还是  :math:`1 \sim 4` ， 噪声参数  :math:`\mathrm{p}` 的选择方法与之前的 测试一致。为了减小统计误差，选取理想参数优化过程中梯度最大的量子线路参数序列作为测试参数。损失函数对各 :math:`\mathrm{QAOA}` 量子线路参数的偏导与噪声参数的关系 如图5.1.6所示，图中只包含 :math:`\mathrm{QAOA}` 步数  :math:`\mathrm{n}=4` 的情况， :math:`\mathrm{n}=1, 2, 3` 的情况与 :math:`\mathrm{n}=4` 的情况类似，所以没有列出。
+
+.. image:: ./images/5.1.6a.png
+   :align: center
+   :width: 700 px
+.. centered:: (a)退相位噪声
+
+.. image:: ./images/5.1.6b.png
+   :align: center
+   :width: 700 px
+.. centered:: (b)比特翻转噪声
+
+.. image:: ./images/5.1.6c.png
+   :align: center
+   :width: 700 px
+.. centered:: 退极化噪声
+.. centered:: (c)图5.1.6 噪声对损失函数梯度的影响
+
+  选取满足如下两个条件的数据: 一个条件还是 :math:`\mathrm{np}<0.02` ，另一个条件是 :math:`\left|\frac{\partial \mathrm{f}(\vec{\gamma} \vec{\beta})}{\partial \theta_{\mathrm{k}}}\right|>C, \theta_{k} \in{\vec{\gamma}, \vec{\beta}} \quad \mathrm{C}` 是一个常数，在这个测试中选择  :math:`\mathrm{C}=2.5` 。 定义
+
+.. math::
+   \begin{aligned} &\mathrm{y}=\frac{\partial \mathrm{f}{(\vec{\gamma}, \vec{\beta})^{noise}}}{\partial \theta_{\mathrm{k}}} / {\frac{\partial \mathrm{f}(\vec{\gamma}, \vec{\beta})^{\text {ideal }}}{\partial \theta_{\mathrm{k}}}} \\ &\mathrm{x}=\mathrm{np} \end{aligned}
+
+
+  可以得到
+
+.. math::
+   y \cong 1-\alpha x 
+
+
+  将实验数据用上式拟合，拟合图像如图5.1.7所示，得到 3 个常数 :math:`\alpha` ：
+
+.. math::
+   \alpha_{\text {dephasing }}=15.705, \alpha_{\text {bitflip }}=16.014, \alpha_{\text {depolarizing }}=17.213
+
+
+
+.. image:: ./images/5.1.7a.png
+   :align: center
+   :width: 400 px
+.. centered:: (a)退相位噪声
+
+.. image:: ./images/5.1.7b.png
+   :align: center
+   :width: 400 px
+.. centered:: (b)比特翻转噪声
+
+.. image:: ./images/5.1.7c.png
+   :align: center
+   :width: 400 px
+.. centered:: (c)退极化噪声
+.. centered:: 退极化噪声
+.. centered:: 图5.1.7 噪声对损失函数梯度的影响数据拟合图像
+
+
+**噪声对QAOA的影响**
+
+  接下来测试噪声对QAOA运行过程及运行结果的影响，在不同噪声及不同参数下运行QAOA，得到优化后的QAOA量子线路参数和损失函数。测试的噪声类型及噪声参数区间与之前的测试一致。测试数据如图5.1.8所示：
+
+.. image:: ./images/5.1.8a.png
+   :align: center
+   :width: 400 px
+.. centered:: (a)退相位噪声
+
+.. image:: ./images/5.1.8b.png
+   :align: center
+   :width: 400 px
+.. centered:: (b)比特翻转噪声
+
+.. image:: ./images/5.1.8c.png
+   :align: center
+   :width: 400 px
+.. centered:: (c)退极化噪声
+.. centered:: 图5.1.8 噪声与QAOA优化损失函数的关系
+
+  首先，分析噪声参数对 :math:`Q A O A` 优化后的参数的影响，用欧式空间距离的均方根来描述两组参数的距离 :math:`\mathrm{d}` ， 用公式表示如下:
+
+.. math::
+   \mathrm{d}=\sqrt{\frac{\left|\vec{\gamma}^{\text {noise }}-\vec{\gamma}^{\text {ideal }}\right|^{2}+\left|\vec{\beta}^{\text {noise }}-\vec{\beta}^{\text {ideal }}\right|^{2}}{2 n}}
+
+  噪声参数与距离的测试数据如图5.1.9所示：
+
+.. image:: ./images/5.1.9.png
+   :align: center
+   :width: 900 px
+.. centered:: 图5.1.9. 噪声参数与距离的关系图 (a), (b), (c)分别表示退相位噪声，比特翻转噪声和退极化噪声
+
+
+  由此发现，当 :math:`\mathrm{np}` 比较小时，噪声 :math:`\mathrm{QAQA}` 优化后的参数与理想优化参数很接近，两组参数之间的距离主要来源于统计误差和优化算法的截止条件。前面已经得到噪 声会磨平 :math:`\mathrm{QAQA}` 参数空间，所以含噪声的 :math:`\mathrm{QAQA}` 损失函数娣度会比较小，梯度小的时候计算出来的梯度的相对误差会比较大，所以含噪声的 :math:`\mathrm{OAOA}` 在优化到理想最优参数附近时，参数优化方向的可靠性会降低，导致无法优化到最优参数。另外一方面，在测试中，设置优化截止条件为  :math:`\left|\frac{\ g r a d i e n t}{\mathrm{n}}\right|<\mathrm{C}` ， :math:`\mathrm{C}` 表示一个常数，取  :math:`\mathrm{C}=0.05` ，这也是噪声  :math:`\mathrm{QAQA}` 优化参数与理葙最优参数产生距离的一个原因。可以预计，当计算损失函数时，运行  :math:`\mathrm{QAQA}` 线路的次数  :math:`\mathrm{M} \rightarrow \infty` ，优化截止条件中的  :math:`\mathrm{C} \rightarrow 0` ， 当  :math:`\mathrm{np}` 比较小时，噪声  :math:`\mathrm{QAOA}` 优化后的参数与理想优化参数是一样的。
+
+  对满足 :math:`\mathrm{np}<0.02` 条件的实验数据进行拟合，与之前的测试一样，定义:
+
+.. math::
+   \mathrm{y}=\frac{\mathrm{f}(\vec{\gamma}, \vec{\beta})^{\text {noise }}}{\mathrm{f}(\vec{\gamma}, \vec{\beta})^{i d e a l}}, \mathrm{x}=\mathrm{np}
+
+
+  可以得到:
+
+.. math::
+   y \cong 1-\alpha x
+
+
+  用上面的公式对实验数据进行拟合，可以得到3种噪声对应的3个常数 :math:`\alpha` ：
+
+.. math::
+   \begin{aligned} &\alpha_{\text {dephasing }}=24.133 \\ &\alpha_{\text {bitflip }}=24.245 \\ &\alpha_{\text {depolarizing }}=28.708 \end{aligned} 
+
+
+  拟合图像如图5.1.10所示，其中“x”点是实验数据，红线是斜率分别等于得到的3个拟合参数的直线，可以看出，当 :math:`\mathrm{np}` 比较小时，噪声损失函数与理想损失函数的比特因子 :math:`\mathrm{y}` 与 :math:`\mathrm{np}` 成线性关系。
+
+
+.. image:: ./images/5.1.10a.png
+   :align: center
+   :width: 400 px
+.. centered:: (a)退相位噪声
+
+.. image:: ./images/5.1.10b.png
+   :align: center
+   :width: 400 px
+.. centered:: (b)比特翻转噪声
+
+.. image:: ./images/5.1.10c.png
+   :align: center
+   :width: 400 px
+.. centered:: (c)退极化噪声
+.. centered:: 图5.1.10 噪声对QAOA运行结果的影响数据拟合图像
+
+  另一方面，发现这一节中得到的拟合常数 :math:`\alpha` 明显比前两节的拟合常数  :math:`\alpha` 大， 原因是噪声  :math:`Q A O A` 优化参数与理想  :math:`Q A O A` 优化参数之间存在距离，这个距离随着 :math:`\mathrm{np}` 的增 加而增加，导致  :math:`y` 值随着  :math:`\mathrm{np}` 变化的斜率更大，即  :math:`\alpha` 更大。
+
+
+
+**总结**
+
+
+  在这节中，介绍了噪声对NISQ量子算法性能影响的研究进展，讨论了一种特殊的噪声对 :math:`QAOA` 的影响，提出了噪声对  :math:`Q A O A` 影响的模型，并通过数值模拟验证了模型的正确性，为  :math:`Q A O A` 在真实量子芯片上运行提供的参考。 这一研究领域还有很多开放性的问题，比如，本节介绍的方案只适用于一种噪声，即可以表示为 :math:`\mathrm{K}=\{\mathrm{a}{0} \mathrm{I}, \mathrm{a}{1} \mathrm{~K}{1}, \mathrm{a}{2} \mathrm{~K}{2}, \ldots, \mathrm{a}{s} \mathrm{~K}_{\mathrm{s}}\}` 的噪声，所以一种任意的噪声对  :math:`NISQ` 会有怎样的影响还是一个开放性的问题，另外噪声对别的 :math:`NISQ` 算法的影响也是一个开放性的问题。   噪声对NISQ量子算法影响的研究是一个重要的研究方向，可以为  :math:`\mathrm{NISO}` 装置，  :math:`NISQ` 量子算法提供借鉴作用，需要研究人员不断去探索新的进展。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

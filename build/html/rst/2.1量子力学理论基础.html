@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1 量子力学基础理论 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2 量子程序" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html" />
+    <link rel="prev" title="1.3 量子计算软件介绍" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.1 量子力学基础理论</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1.1 量子系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.1.2 观测量和计算基下的测量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.1.3 复合系统与联合测量</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>2.1 量子力学基础理论</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/2.1量子力学理论基础.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>2.1 量子力学基础理论<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>2.1.1 量子系统<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>  对于一个非物理专业的人而言，量子力学概念晦涩难懂。鉴于此，本章节仅介绍量子力学的一些基础概念加之部分数学的相关知识，甚至不涉及薛定谔方程，就足够开始量子计算机的应用。这如同不需去了解CPU的工作原理以及经典计算机的组成原理，但仍能在日常生活中使用经典计算机或者编写经典程序一样。</p>
+<p>  在本章里，彻底抛却数学公式，纯粹去介绍宽泛的概念，目的仅仅想让读者都能了解这个问题——“量子究竟是什么”。</p>
+<p>  如果不想被量子的诡异事实所颠覆，并且对于线性代数很有把握的话，那么可以直接过渡到本教材的后面章节开始学习。</p>
+<p><strong>量子化 Quantization与量子态 Quantum State</strong></p>
+<p>  简而言之，量子态就是一个微观粒子的状态。</p>
+<p>  描述一个粒子的状态时，总要找一些能够用来区分微观粒子的属性。如图2.1.1，在宏观世界中，假设一个人在一栋楼中活动，如果他在一层，就称处于”1态”；在二层，就称处于“2态”；在地下一层，就称处于“-1 态”。微观粒子也有这样的属性，比如它的位置。</p>
+<img alt="../_images/wps62.png" class="align-center" src="../_images/wps62.png" />
+<p class="centered">
+<strong>图2.1.1 一个人在一栋楼中活动</strong></p><p>  但是假设这个人正在上楼梯，进入到一个模糊的状态，这样就不太容易区分到底是在“1态”还是“2态”，此时就需要找一些客观存在的参数去描述这一方面的属性，比如所处的海拔。通常，在日常生活中，这些描述都是连续的，因为这些参数会被分割成更小的部分。</p>
+<p>  然而，无限分割下去，直到不得不靠“几个原子”这种单位去描述物体的长度时，量子效应就出场了。薛定谔方程告诉人们，一定会遇到不可分割的最小单位，这种最小单位，统称为量子；这种现象，被称为量子化。这是量子的第一个特性。</p>
+<p>  量子化的属性有很多种，但在此优先考虑一种——能量。经过长期探索得知，原子的光谱只会有几个峰值，而不是连续的谱线，这代表了原子内电子的能量只会出现几种情况，电子不可能具有几种情况之外的中间值，这就是能量的量子化。每一种能量，被称之为一个“能级”。</p>
+<p>  同样以一栋楼为例，在微观的世界里面，一栋楼的楼梯被拆掉了，这使得微观粒子要么在一楼，要么在二楼，仅存在于整数的楼层，但是，这不代表微观粒子就失去了上下楼的机会。这里就是量子的第二个特性——跃迁。</p>
+<p>  当一个原子中的电子获得了来自原子外的能量时，它就有可能克服能级之间能量的差距，跳跃到另外一个态上面，并且这个电子也可以将自己的能量释放出来，跳跃到能量较低的能级上面。当然，能级本身是稳定的，不管怎么跃迁，电子的能量都只能处在这几个能级上，这是原则。</p>
+<p>  最后，回顾下什么是量子态呢？你可以想象一下电子处在不同的能级（类似宏观世界的楼层）上面，给这些楼层命名称之  <span class="math notranslate nohighlight">\(|1F\rangle\)</span> ,  <span class="math notranslate nohighlight">\(|2F\rangle\)</span> ,  <span class="math notranslate nohighlight">\(|3F\rangle\)</span> ……，电子处于不同的能级就说明它处在不同的量子态，这样就可以区分出来不同的量子态。如果能想象到此种情形，那就已经明白了什么是量子态了。</p>
+<p><strong>量子叠加性 Quantum Superposition</strong></p>
+<p>  如果仅仅是把能级建成大楼，然后把大楼的楼梯、电梯全拆掉，（并且不追问原因）这件事情倒也不难理解，然而剩余部分，就无法用普通的现实去想象了。</p>
+<p>  量子叠加性是量子的第三个特性。量子理论中，薛定谔的猫的故事是量子叠加性的一个典型示例，故事的末尾告诉我们：猫处于生与死的叠加态。什么是生与死的叠加态？既生又死？实际上，这个故事是关于量子叠加性的一个有争议的思想实验。</p>
+<img alt="../_images/wps63.png" class="align-center" src="../_images/wps63.png" />
+<p class="centered">
+<strong>图2.1.2 薛定谔的猫实验</strong></p><p>  首先，必须接受一个假设，即量子的世界里面，同时存在几个状态是可能的。就像这栋楼里面的每个人，在不去观察他们时，他们同时存在于所有楼层，这就是量子叠加性。</p>
+<p>  但或许大家会有疑问，即便在现实生活中，也无法得知一栋大楼里面任何一个人的位置，最多了解他在办公桌上坐着的概率比较大而已，那这样就是量子叠加性吗？很遗憾，并非如此。因为某一时刻，即便无法确定，但这个人肯定存在于这栋楼某一个位置，不可能出现在这栋楼不同的位置，量子叠加不是一种“概率性”存在，事实上，对于量子本身，它就是“同时存在”于很多状态的叠加上。经过无数的实验证明，当物体小到分子、原子、电子那个级别的时候，叠加是客观存在的，尽管无人知道原因。</p>
+<p>  那么为什么我们感受不到叠加性呢？如果每个粒子都有这种叠加性，那是不是作为粒子组合的人也应该具有叠加性呢？</p>
+<p>  一个宏观物体是由巨大数量的粒子构成的集合体。一个粒子虽然是叠加的，但是一群粒子就能开始体现统计的平均性，就像连续扔一百次硬币，还是有可能出现全部是正面的情况，但是扔一亿次硬币的时候（如果没有做假），那会得到一个趋于稳定的结果——正反面各一半。何况每个人身体里的粒子比一亿还要多几亿倍的几亿倍（差不多有27 ∼ 28位数那么多），所以人是绝无可能有叠加性的。</p>
+<p><strong>状态的演化 Evolution of State</strong></p>
+<p>  状态的演化是指量子态随时间发生变化。对于一个两能级的量子系统，量子状态的演化类似于地球上的位置随时间变化一样，量子态可以想象成一个单位球面上的点，它随时间演化就同球面上点的位置随时间发生变化类似。</p>
+<p><strong>测量和坍缩 Measurement And Collapse</strong></p>
+<p>  薛定谔宣称，不打开盒子，猫就处于生和死的“叠加态”，又称：“当我们打开盒子，经过了我们的观察，猫就会坍缩到一个确定的生、死状态上”。</p>
+<img alt="../_images/wps64.png" class="align-center" src="../_images/wps64.png" />
+<p class="centered">
+<strong>图2.1.3 薛定谔的猫</strong></p><p>  什么叫做“观察”之后“坍缩”到确定的状态上？难道不是这个装置而是第一个看到猫的人决定了猫的生死吗？</p>
+<p>  这里提出量子的第四个特性：“测量和坍缩假设”。测量和坍缩对量子态的影响仍然是一个争议话题，所以用了“假设”。这个特性的描述如下：
+对于一个叠加态而言，可以去测量它，测量的结果一定是这一组量子化之后的、确定的、分立的态中的一个。测量得到任意的态的概率是这个叠加态和测量态的内积的平方，测量之后，叠加态就会坍缩到这个确定的态之上。</p>
+<p>  简而言之，如果在一个微观粒子处在1楼和2楼叠加态的话，只能测出来它在1楼或者2楼，这个概率是由它们的叠加权重决定的，但是一旦对这个粒子进行测量，这个粒子的状态就会发生变化，不再是原来那个既在1楼又在2楼的叠加态，而是处在一个确定的状态（1楼或者2楼）。换句话说，测量影响了这个粒子本身的状态。   在上一节中，已经说明了叠加本身是一种客观存在的现象，那么测量、观察这种主观的事情是如何影响到客观叠加的呢？</p>
+<p>  比较主流的理论是说因为微观粒子太小，测量仪器本身会对这个粒子产生一定的影响，导致粒子本身发生了变化。但是没有足够的证据证明这种说法。</p>
+<p>  回到薛定谔的猫。薛定谔之所以提出这个思想实验，是想让宏观事物——猫，和微观事物——放射性原子，建立“纠缠”，从而把量子力学的诡异现象从微观世界引到现实世界中来。“如果我们承认微观粒子具有这些“叠加“、”坍缩“的性质的话，那猫也具有了”——这是薛定谔的思想。关于这个问题，目前并没有确切的证据证明猫不是处于这样的状态。</p>
+<p>  通过形象的描述介绍了量子力学的一些基础概念，下面将用数学的方式将这些概念重新表述一遍。（阅读下面的内容需要一定的数理基础，包括高等数学，线性代数，概率论中的基本概念。）</p>
+<p><strong>1）态矢 State Vector</strong></p>
+<p>  量子态可用线性代数中的向量来描述，在物理学中，向量常称作矢量。在量子理论中，描述量子态的向量称为态矢，态矢分为左矢和右矢。</p>
+<p>  右矢（ket）：</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\left[\mathrm{c}{1}, c{2}, \ldots, c_{n}\right]^{T}\]</div>
+<p>  左矢（bra）：</p>
+<div class="math notranslate nohighlight">
+\[\langle\psi|=\left[\mathrm{c}{1}^{*}, c{2}^{*}, \ldots, c_{n}^{*}\right]\]</div>
+<p>  采用竖线和尖括号的组合描述一个量子态，其中每一个分量都是复数，右上角标 <span class="math notranslate nohighlight">\(T\)</span> 表示转置。这种形式表示量子态是一个矢量。右矢表示一个 <span class="math notranslate nohighlight">\(n \times 1\)</span> 的列矢量，左矢表示一个 <span class="math notranslate nohighlight">\(1 \times n\)</span> 的行矢量。另外，在讨论同一个问题时，如果左矢和右矢在括号内的描述相同的话，那么这两个矢量互为转置共轭。</p>
+<p><strong>2）内积和外积</strong></p>
+<p>  对于任意的两个量子态的矩阵（坐标）表示如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;|\alpha\rangle=\left[a_{1}, a_{2}, \ldots, a_{n}\right]^{T} \\ &amp;|\beta\rangle=\left[b_{1}, b_{2}, \ldots, b_{n}\right]^{T} \end{aligned}\end{split}\]</div>
+<p>其内积定义为：</p>
+<div class="math notranslate nohighlight">
+\[\langle\alpha \mid \beta\rangle=\sum_{i=1}^{n} a_{i}^{*} b_{i}\]</div>
+<p>其外积定义为：</p>
+<div class="math notranslate nohighlight">
+\[|\alpha\rangle\langle\beta|=\left[a_{i} b^{*}_{j} \right]_{n \times n}\]</div>
+<p>表示一个 <span class="math notranslate nohighlight">\(n \times n\)</span> 矩阵。</p>
+<p><strong>两能级系统 Two Level System</strong></p>
+<p>  事物的二元化：0和1、无和有、高和低、开和关、天和地、阴和阳、生和死、产生和消灭。二元化是一种将事物关系简化的哲学，基于二进制的计算理论正是利用了这种哲学思想。</p>
+<p>  在谈论量子计算原理前，先了解经典计算机的工作流程。经典计算机就是在不断地处理0、1的二进制数码，它们代表着逻辑电路中的高低电平，对于这些二进制数码的产生、传输、处理、读取，最终反馈到像显示器这种输出设备上的信号，就是一个计算机的工作流程。</p>
+<p>  对于微观量子而言，有一个决定粒子性质的最直接参量——能量。粒子的能量只会在几个分立的能级上面取值，限制取值的可能性种类为两种，这就构成了两能级系统。除了某些特殊的情况之外，这两个能级必定能找出来一个较低的，称之为基态(ground state)，记为 <span class="math notranslate nohighlight">\(|\mathrm{g}\rangle\)</span> ；另一个能量较高的，称之为激发态(excited state)，记为  <span class="math notranslate nohighlight">\(|\mathrm{e}\rangle\)</span> 。</p>
+<p>  量子计算机里面也由两种状态来构成基本计算单元，只不过这里的两种状态是指量子态的 <span class="math notranslate nohighlight">\(|\mathrm{e}\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|\mathrm{g}\rangle\)</span> ，这就是一个两能级系统的特征。以列矢量的方式将它们记为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|\mathrm{e}\rangle=\left[\begin{array}{l} 1 \\ 0 \end{array}\right],|\mathrm{g}\rangle=\left[\begin{array}{l} 0 \\ 1 \end{array}\right]\end{split}\]</div>
+<p>  行矢量的形式记为</p>
+<div class="math notranslate nohighlight">
+\[\langle\mathrm{e}|=\left[\begin{array}{ll} 1 &amp; 0 \end{array}\right],\langle\mathrm{g}|=\left[\begin{array}{ll} 0 &amp; 1 \end{array}\right]\]</div>
+<p>  和经典的比特类比，常将 <span class="math notranslate nohighlight">\(|\mathrm{e}\rangle\)</span> 记做 <span class="math notranslate nohighlight">\(|0\rangle\)</span> ，将 <span class="math notranslate nohighlight">\(|\mathrm{g}\rangle\)</span> 记做，并称 <span class="math notranslate nohighlight">\(|\mathrm{1}\rangle\)</span> 之为量子比特（quantum bits）。</p>
+<p>  任意叠加态（superposition）  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 可以写作 <span class="math notranslate nohighlight">\(|\mathrm{0}\rangle\)</span> 和 <span class="math notranslate nohighlight">\(|\mathrm{1}\rangle\)</span> 的线性组合</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\]</div>
+<p>  其中复数 <span class="math notranslate nohighlight">\(\alpha\)</span> 和  <span class="math notranslate nohighlight">\(\beta\)</span> 称为振幅（amplitudes），并且满足归一化条件</p>
+<div class="math notranslate nohighlight">
+\[|\alpha|^{2}+|\beta|^{2}=1\]</div>
+<p>  其中 <span class="math notranslate nohighlight">\(|\alpha|\)</span> 表示复数 <span class="math notranslate nohighlight">\(\alpha\)</span> 的模。</p>
+<p><strong>状态的演化 Evolution of State</strong></p>
+<p>  量子态可以由态矢（或称向量）来表示，量子也可以有不同的状态，并且可以同时处于不同的状态，那么量子态是如何随时间演化呢？如下例：</p>
+<p>  假设：封闭的(closed)量子系统的演化（evolution）由酉变换（unitary transformation）来描述。具体地，在 <span class="math notranslate nohighlight">\(t_1\)</span> 时刻系统处于状态 <span class="math notranslate nohighlight">\(|\psi_1 \rangle\)</span> ，经过一个和时间 <span class="math notranslate nohighlight">\(t_1\)</span> 和  <span class="math notranslate nohighlight">\(t_2\)</span> 有关的酉变换  <span class="math notranslate nohighlight">\(U\)</span> ，系统在  <span class="math notranslate nohighlight">\(t_2\)</span> 时刻的状态</p>
+<div class="math notranslate nohighlight">
+\[\left|\psi_{2}\right\rangle=U\left|\psi_{1}\right\rangle\]</div>
+<p>  这里的酉变换 <span class="math notranslate nohighlight">\(U\)</span> 可以理解为是一个矩阵，并且满足</p>
+<div class="math notranslate nohighlight">
+\[U U^{\dagger}=I\]</div>
+<p>  其中 <span class="math notranslate nohighlight">\(U^{\dagger}\)</span> 表示对矩阵 <span class="math notranslate nohighlight">\(U\)</span> 取转置共轭。根据可逆矩阵的定义可知， <span class="math notranslate nohighlight">\(U\)</span> 也是一个可逆矩阵，因此酉变换也是一个可逆变换。</p>
+<p>  而在量子计算中，各种形式的酉矩阵被称作量子门。例如Pauli矩阵也是一组酉矩阵，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\sigma_{0} \equiv I \equiv\left[\begin{array}{ll} 1 &amp; 0 \\ 0 &amp; 1 \end{array}\right] \quad \sigma_{1} \equiv \sigma_{x} \equiv X \equiv\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right] \\ &amp;\sigma_{2} \equiv \sigma_{y} \equiv Y \equiv\left[\begin{array}{cc} 0 &amp; -i \\ i &amp; 0 \end{array}\right] \quad \sigma_{3} \equiv \sigma_{z} \equiv Z \equiv\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right] \end{aligned}\end{split}\]</div>
+<p>  以X门作用在量子态上为例，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;X|0\rangle=\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \end{array}\right]=\left[\begin{array}{l} 0 \\ 1 \end{array}\right]=|1\rangle \\ &amp;X|1\rangle=\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right]\left[\begin{array}{l} 0 \\ 1 \end{array}\right]=\left[\begin{array}{l} 1 \\ 0 \end{array}\right]=|0\rangle \end{aligned}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}X|\psi\rangle=\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right]\left[\begin{array}{l} \alpha \\ \beta \end{array}\right]=\left[\begin{array}{c} \beta \\ \alpha \end{array}\right]\end{split}\]</div>
+<p>  从上述中看出，量子态的演化本质上可以看作是对量子态对应的矩阵做变换，即是做矩阵的乘法。 由于 <span class="math notranslate nohighlight">\(X\)</span> 门和经典逻辑门中的非门类似，有时也常称 <span class="math notranslate nohighlight">\(X\)</span> 门为量子非门（quantum NOT gate）。</p>
+<p><strong>叠加态和测量 Superposition State And Measurement</strong></p>
+<p>  按照态矢的描述，这两个矢量可以构成一个二维空间的基。任何一个态都可以写为这两个基在复数空间上的线性组合，即</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\alpha|0\rangle+\beta e^{i {\theta}}|1\rangle\]</div>
+<p>  其中  <span class="math notranslate nohighlight">\(e^{i \theta}\)</span> 表示模为1幅角为  <span class="math notranslate nohighlight">\(\theta\)</span> 的复数。</p>
+<p>  可以定义测量就是将量子态 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 投影到另一个态 <span class="math notranslate nohighlight">\(|\alpha\rangle\)</span> 上。获得这个态的概率是它们内积的平方，即</p>
+<div class="math notranslate nohighlight">
+\[P_{\alpha}=|\langle\psi \mid \alpha\rangle|^{2}\]</div>
+<p>  其它概率下会将量子态投影到它的正交态上去，即</p>
+<div class="math notranslate nohighlight">
+\[P_{\alpha \perp}=1-P_{\alpha}\]</div>
+<p>测量之后量子态就坍缩到测量到的态上。</p>
+<p><strong>相位、纯态和混合态 Phase, Pure State and Mixed State</strong></p>
+<p>  如果将量子态初始化到某一个未知的叠加态上面，能否通过反复的测量得到它的表达式呢？看以下这两种情况：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\left|\psi_{1}\right\rangle=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \\ &amp;\left|\psi_{2}\right\rangle=\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle) \end{aligned}\end{split}\]</div>
+<p>  发现在 <span class="math notranslate nohighlight">\(|0\rangle\)</span> ， <span class="math notranslate nohighlight">\(|1\rangle\)</span> 的方向上测量，它们的表现都是一半概率为0，一半概率为1，根本不能区分。从这个现象可以知道无法通过概率得到态的相位信息  <span class="math notranslate nohighlight">\(\theta\)</span> ，实际上，量子态的相位是量子相干性的体现。</p>
+<p>  另一种情况，假设左手抓着一个袋子，这个袋子里面有无数的量子态，它们全都是  <span class="math notranslate nohighlight">\(\left|\psi_{1}\right\rangle=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\)</span> 这种叠加态；另外，有一个机器可以在 <span class="math notranslate nohighlight">\(|0\rangle\)</span> ， <span class="math notranslate nohighlight">\(|1\rangle\)</span> 的方向上测量。</p>
+<p>  每次拿出一个态，对它进行测量，不管它是 <span class="math notranslate nohighlight">\(|0\rangle\)</span> ，还是 <span class="math notranslate nohighlight">\(|1\rangle\)</span> ，都扔到右手边的另一个袋子里面，如此反复，这样右边袋子里面的态越来越多了。由于测量结果对于这两种情况是等概率的，所以袋子里面约有一半的态是 <span class="math notranslate nohighlight">\(|0\rangle\)</span> ，另一半是 <span class="math notranslate nohighlight">\(|1\rangle\)</span> 。</p>
+<p>  假设从右边的袋子里取出一个，在不知道手上的态是什么情况下，能说它和左边袋子里的态一样都是 <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\)</span> 吗？</p>
+<p>  答案是不能。右边袋子里的态，实际上是一种经典的概率叠加，和等量的红球白球装在袋子里面一样。这样的态是不具有相位的。它只能表示为</p>
+<div class="math notranslate nohighlight">
+\[\left\{\left|\psi_{0}\right\rangle=|0\rangle: P_{0}=0.5,\left|\psi_{1}\right\rangle=|1\rangle: P_{1}=0.5\right\}\]</div>
+<p>  这种类似于概率列表的形式。</p>
+<p>  所以，定义纯态就是“纯粹的量子态”，它不仅具有概率，还具有相位（也就是量子相干性）。混合态是纯态的概率性叠加，它往往失去了（部分或全部的）相位信息。</p>
+<p><strong>密度矩阵和布洛赫球 Density Matrix And Bloch Sphere</strong></p>
+<p>  态矢是对纯态的描述，如果要描述一个混合态，就必须写成态集合和概率的列表形式，非常繁琐。因此采用密度矩阵来描述。</p>
+<p>  对于一个纯态而言，密度矩阵的形式是：</p>
+<div class="math notranslate nohighlight">
+\[\rho=|\psi\rangle\langle\psi|\]</div>
+<p>  而对于一个混合态而言，密度矩阵的形式是：</p>
+<div class="math notranslate nohighlight">
+\[\rho=\sum_{i} P_{i}\left|\psi_{i}\right\rangle\left\langle\psi_{i}\right|\]</div>
+<p>  其中 <span class="math notranslate nohighlight">\(\{P_{i},\left|\psi_{i}\right\rangle\}\)</span> 是系统所处的态及其概率。</p>
+<p>  密度矩阵有以下的性质：</p>
+<p>  对于一个两能级体系表述的态，不论是纯的还是混合的，都可以用密度矩阵  <span class="math notranslate nohighlight">\(\rho\)</span> 表示</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\rho=\rho^{2}\)</span> 当且仅当量子态是纯态时成立。</p>
+</div></blockquote>
+<p>   <span class="math notranslate nohighlight">\(\rho\)</span> 对角线上的分量表示整个系统如果经历一次测量，那么可以得到这个态的概率。如果只去操作和测量一个两能级体系，那么是分辨不出相同的密度矩阵的。</p>
+<p>  密度矩阵已经完备地表示了一个两能级系统可能出现的任何状态。为了更加直观地理解量子叠加态与逻辑门的作用，引入布洛赫球的概念，如图2.1.4，它能够方便地表示一个量子比特的任意状态。</p>
+<img alt="../_images/2.1.4.png" class="align-center" src="../_images/2.1.4.png" />
+<p class="centered">
+<strong>图2.1.4 布洛赫球</strong></p><p>  如果量子态是一个纯态，那么它是球面上的点。点的 <span class="math notranslate nohighlight">\(z\)</span> 坐标衡量了它的  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|1\rangle\)</span> 的概率，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;P(0)=\frac{1+z}{2} \\ &amp;P(1)=\frac{1-z}{2} \end{aligned}\end{split}\]</div>
+<p>  最上面表示  <span class="math notranslate nohighlight">\(|0\rangle\)</span> 态，最下面表示 <span class="math notranslate nohighlight">\(|1\rangle\)</span> 态。</p>
+<p>  再沿着平行于 <span class="math notranslate nohighlight">\(XY\)</span> 平面的方向，并且穿过这个点的 <span class="math notranslate nohighlight">\(Z\)</span> 坐标，可以得到一个圆，这个圆就象征着相位的复平面；这个点在这个圆上交 <span class="math notranslate nohighlight">\(X\)</span> 轴的角度就是单位复数的幅角。经过这个过程可以将每个纯态都与球面上的点一一对应了起来。</p>
+<p>  对于混合态而言，因为根据之前的描述，混合态实际上是多个纯态的经典统计概率的叠加。对于每一个纯态分量，连接球心和球面上的点，可以形成一个矢量。根据概率列表，对所有的纯态矢量进行加权平均，即可得到混合态的矢量，即得到了混合态对应的点。</p>
+<p>  混合态是布洛赫球内部的点，根据混合的程度不同，矢量的长度也不同。最大混合态是球心，它意味着这里不存在任何量子叠加性。</p>
+<p>  例如 <span class="math notranslate nohighlight">\((1,0,0)\)</span> 和 <span class="math notranslate nohighlight">\((-1,0,0)\)</span> 点在布洛赫球上就是在 <span class="math notranslate nohighlight">\(X\)</span> 方向上的顶点和 <span class="math notranslate nohighlight">\(-X\)</span> 方向上的顶点。它们对应的量子态的概率分布就是 <span class="math notranslate nohighlight">\(Z\)</span> 坐标，即为 <span class="math notranslate nohighlight">\(0\)</span> ​。所以，</p>
+<div class="math notranslate nohighlight">
+\[P 0(|\psi _{1}\rangle)=P 0(|\psi _{2}\rangle)=0.5\]</div>
+<p>  沿 <span class="math notranslate nohighlight">\(XY\)</span> 平面横切，得到一个圆，可以看到这两个点对应的幅角是 <span class="math notranslate nohighlight">\(\theta_1 =0\)</span> ， <span class="math notranslate nohighlight">\(\theta_2 = \pi\)</span> ，由此推断出量子态分别为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp;\left|\psi_{1}\right\rangle=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \\ &amp;\left|\psi_{2}\right\rangle=\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle) \end{aligned}\end{split}\]</div>
+<p>  如果将这两个态以 <span class="math notranslate nohighlight">\(1/2\)</span> ,  <span class="math notranslate nohighlight">\(1/2\)</span> 的概率混合，在布洛赫球上面的坐标将表示为 <span class="math notranslate nohighlight">\((0,0,0)\)</span> ，也就是球心。对应到密度矩阵的表述，为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho=\frac{1}{2}|\psi_{1}\rangle\langle\psi_{1} |+\frac{1}{2}|\ \psi_{2}\rangle\langle\psi_{2}| \ =\left[\begin{array}{cc} 0.5 &amp; 0 \\ 0 &amp; 0.5 \end{array}\right]\end{split}\]</div>
+<p>  即为最大混合态。</p>
+</section>
+<section id="id3">
+<h2>2.1.2 观测量和计算基下的测量<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>  量子比特（qubit）不同于经典的比特（bit），一个量子比特 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 可以同时处于 <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 和 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 两个状态，可用线性代数中的线性组合（linear combination）来表示为</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\]</div>
+<p>  在量子力学中常称量子比特 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 处于 <span class="math notranslate nohighlight">\(|0\rangle\)</span> 和 <span class="math notranslate nohighlight">\(|1\rangle\)</span> 的叠加态（superpositions），其中α、β都是复数（complex number），两维复向量空间的一组标准正交基（orthonormal basis）组成一 <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 和 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 组计算基（computational basis）。</p>
+<p>  量子比特的信息不能直接获取，而是通过测量来获取量子比特的可观测的信息。可观测量在量子理论中由自伴算子（self-adjoint operators）来表征，自伴的有时也称Hermitian。量子理论中的可观测量与经典力学中的动力学量，如位置、动量和角动量等对应，而系统的其他特征，如质量或电荷，并不在可观测量的类别之中，它是作为参数被引入到系统的哈密顿量（Hamiltonian）。</p>
+<p>  在量子力学中测量（measure）会导致坍塌，即是说测量会影响到原来的量子状态，因此量子状态的全部信息不可能通过一次测量得到。当对量子比特 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 进行测量时，仅能得到该量子比特概率 <span class="math notranslate nohighlight">\(|\alpha|^2\)</span> 处在 <span class="math notranslate nohighlight">\(|0 \rangle\)</span> 态，或概率 <span class="math notranslate nohighlight">\(|\beta|^2\)</span> 处在 <span class="math notranslate nohighlight">\(|1 \rangle\)</span> 态。由于所有情况的概率和为 <span class="math notranslate nohighlight">\(1\)</span> ，则有 <span class="math notranslate nohighlight">\(|\alpha|^{2}+|\beta|^{2}=1\)</span> 。</p>
+<p>  当对量子进行测量时，会发生什么变化呢？</p>
+<p>  假设：量子测量是由测量算子（measurement operators）的集合 <span class="math notranslate nohighlight">\(\{M_{i}\}\)</span> 来描述，这些算子可以作用在待测量系统的状态空间（state space）上。指标（index） <span class="math notranslate nohighlight">\(i\)</span> 表示在实验上可能发生的结果。如果测量前的量子系统处在最新状态 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> ，那么结果  <span class="math notranslate nohighlight">\(i\)</span> 发生的概率为</p>
+<div class="math notranslate nohighlight">
+\[p(i)=\left\langle\psi\left|M_{i}^{\dagger} M_{i}\right| \psi\right\rangle\]</div>
+<p>  并且测量后的系统状态变为</p>
+<div class="math notranslate nohighlight">
+\[\frac{M_{i}|\psi\rangle}{\sqrt{\left\langle\psi\left|M_{i}^{\dagger} M_{i}\right| \psi\right\rangle}}\]</div>
+<p>  由于所有可能情况的概率和为 <span class="math notranslate nohighlight">\(1\)</span> ​，即</p>
+<div class="math notranslate nohighlight">
+\[1=\sum_{i} p(i)=\sum_{i}\left\langle\psi\left|M_{i}^{\dagger} M_{i}\right| \psi\right\rangle\]</div>
+<p>  因此，测量算子需满足</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i} M_{i}^{\dagger} M_{i}=I\]</div>
+<p>  该方程被称为完备性方程（completeness equation）。</p>
+<p>  再例如，在计算基下单量子比特的测量。单量子比特在计算基下有两个测量算子，分别是 <span class="math notranslate nohighlight">\(M_{0}=|0\rangle\left\langle 0\left|, M_{1}=\right| 1\right\rangle\langle 1|\)</span> ​。注意到这两个测量算子都是自伴的，即</p>
+<div class="math notranslate nohighlight">
+\[M_{0}^{\dagger}=M_{0}, M_{1}^{\dagger}=M_{1}\]</div>
+<p>  且</p>
+<div class="math notranslate nohighlight">
+\[M_{0}^{2}=M_{0}, M_{1}^{2}=M_{1}\]</div>
+<p>  因此</p>
+<div class="math notranslate nohighlight">
+\[M_{0}^{\dagger} M_{0}+M_{1}^{\dagger} M_{1}=M_{0}+M_{1}=I\]</div>
+<p>  该测量算子满足完备性方程。</p>
+<p>  设系统被测量时的状态是 <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> ，则测量结果为 <span class="math notranslate nohighlight">\(0\)</span> 的概率为</p>
+<div class="math notranslate nohighlight">
+\[p(0)=\left\langle\psi\left|M_{0}^{\dagger} M_{0}\right| \psi\right\rangle=\left\langle\psi\left|M_{0}\right| \psi\right\rangle=|\alpha|^{2}\]</div>
+<p>  对应测量后的状态为</p>
+<div class="math notranslate nohighlight">
+\[\frac{M_{0}|\psi\rangle}{\sqrt{\left\langle\psi\left|M_{0}^{\dagger} M_{0}\right| \psi\right\rangle}}=\frac{M_{0}|\psi\rangle}{|\alpha|}=\frac{\alpha}{|\alpha|}|0\rangle\]</div>
+<p>  测量结果为1的概率为</p>
+<div class="math notranslate nohighlight">
+\[p(1)=\left\langle\psi\left|M_{1}^{\dagger} M_{1}\right| \psi\right\rangle=\left\langle\psi\left|M_{1}\right| \psi\right\rangle=|\beta|^{2}\]</div>
+<p>  测量后的状态为</p>
+<div class="math notranslate nohighlight">
+\[\frac{M_{1}|\psi\rangle}{\sqrt{\left\langle\psi\left|M_{1}^{\dagger} M_{1}\right| \psi\right\rangle}}=\frac{M_{1}|\psi\rangle}{|\beta|}=\frac{\beta}{|\beta|}|1\rangle\]</div>
+<p>  量子测量有很多种方式，比如投影测量（projective measurements）、POVM测量（Positive Operator-Valued Measure）。</p>
+<p><strong>投影测量</strong></p>
+<p>  为什么要介绍投影测量呢？因为当测量算子具有酉变换性质时，投影测量和一般测量等价。</p>
+<p>  投影测量由一个可观测量（observable） <span class="math notranslate nohighlight">\(\Lambda\)</span> 来描述，可观测量 <span class="math notranslate nohighlight">\(\Lambda\)</span> 是一个待观测系统的状态空间上的自伴算子。可观测量 <span class="math notranslate nohighlight">\(\Lambda\)</span> 可以写成谱分解的形式</p>
+<div class="math notranslate nohighlight">
+\[\Lambda=\sum_{i} \lambda_{i} P_{i}\]</div>
+<p>  这里的 <span class="math notranslate nohighlight">\(P_i\)</span> ​为在 <span class="math notranslate nohighlight">\(\Lambda\)</span> ​的特征值 <span class="math notranslate nohighlight">\(\lambda_{1}\)</span> ​对应特征空间上的投影。测量的可能结果对应于可观测量的特征 <span class="math notranslate nohighlight">\(\Lambda\)</span> 值 <span class="math notranslate nohighlight">\(\lambda_{i}\)</span> ​。在对状态 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> ​测量之后，得到结果  <span class="math notranslate nohighlight">\(i\)</span> 的概率为</p>
+<div class="math notranslate nohighlight">
+\[p_{i}=p\left(\lambda=\lambda_{i}\right)=\left\langle\psi\left|P_{i}\right| \psi\right\rangle\]</div>
+<p>  若测量后，结果 <span class="math notranslate nohighlight">\(i\)</span> 发生，则量子系统最新的状态为</p>
+<div class="math notranslate nohighlight">
+\[\frac{P_{i}|\psi\rangle}{\sqrt{p_{i}}}\]</div>
+<p>  投影测量有一个重要的特征就是很容易计算投影测量的平均值 <span class="math notranslate nohighlight">\(E(\Lambda)\)</span> 。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{r} E(\Lambda)=\sum_{i} \lambda_{i} p_{i} \\ =\sum_{i} \lambda_{i}\left\langle\psi\left|P_{i}\right| \psi\right\rangle \\ =\left\langle\psi|\left(\sum_{i} \lambda_{i} P_{i}\right) \mid \psi\right\rangle \\ =\langle\psi|\Lambda| \psi\rangle \end{array}\end{split}\]</div>
+<p>  这个公式它能够简化很多计算。观测量 <span class="math notranslate nohighlight">\(\Lambda\)</span> 的平均值通常也记作 <span class="math notranslate nohighlight">\(\langle\Lambda\rangle \equiv\langle\psi|\Lambda| \psi\rangle\)</span> 。因此，观测量 <span class="math notranslate nohighlight">\(\Lambda\)</span> 的标准差（standard deviation） <span class="math notranslate nohighlight">\(\Delta(\Lambda)\)</span> 满足</p>
+<div class="math notranslate nohighlight">
+\[[\Delta(\Lambda)]^{2}=\left\langle(\Lambda-\langle\Lambda\rangle)^{2}\right\rangle=\left\langle\Lambda^{2}\right\rangle-\langle\Lambda\rangle^{2}\]</div>
+<p>  标准差是一个刻画典型分散程度的度量。</p>
+</section>
+<section id="id4">
+<h2>2.1.3 复合系统与联合测量<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>  拥有两个或两个以上的量子比特的量子系统通常被称为复合系统（composite systems）。单量子比特系统的描述与测量已有所了解，那么多个量子比特的系统该如何描述以及怎样去测量呢？单量子比特系统与多量子比特系统之间又有怎样的关系呢？首先，解决这些问题，需要认识一个新的运算-张量积（tensor products）。</p>
+<p><strong>张量积</strong></p>
+<p>  张量积是两个向量空间形成一个更大向量空间的运算。在量子力学中，量子的状态由希尔伯特空间（Hilbert spaces）中的单位向量来描述。</p>
+<p>  设 <span class="math notranslate nohighlight">\(H_1\)</span> 和 <span class="math notranslate nohighlight">\(H_2\)</span> 分别为 <span class="math notranslate nohighlight">\(n_1\)</span> 和 <span class="math notranslate nohighlight">\(n_2\)</span> 维的希尔伯特空间。 <span class="math notranslate nohighlight">\(H_1\)</span> 和 <span class="math notranslate nohighlight">\(H_2\)</span> 的张量积为一个 <span class="math notranslate nohighlight">\(n_{1} n_{2}\)</span> 维的希尔伯特空间 <span class="math notranslate nohighlight">\(H \equiv H_{1} \otimes H_{2}\)</span> ，对于 <span class="math notranslate nohighlight">\(H_1\)</span> 中的每一个向量 <span class="math notranslate nohighlight">\(\left|h_{1}\right\rangle\)</span> 和 <span class="math notranslate nohighlight">\(H_2\)</span> 中的每一个向量 <span class="math notranslate nohighlight">\(\left|h_{2}\right\rangle\)</span> 在 <span class="math notranslate nohighlight">\(H\)</span> 都有中唯一的向量 <span class="math notranslate nohighlight">\(\left|h_{1}\right\rangle \otimes\left|h_{2}\right\rangle\)</span> ，并且 <span class="math notranslate nohighlight">\(H\)</span> 中向量可表示为向量 <span class="math notranslate nohighlight">\(\left|h_{1}\right\rangle \otimes\left|h_{2}\right\rangle\)</span> 的线性叠加。还要满足以下基本性质：</p>
+<p>（i）对任意 <span class="math notranslate nohighlight">\(\left|h_{1}\right\rangle \in H_{1},\left|h_{2}\right\rangle \in H_{2}\)</span> ​ ，以及任意复数  <span class="math notranslate nohighlight">\(c \in \mathbb{C}\)</span> ​，都有</p>
+<div class="math notranslate nohighlight">
+\[c\left(\left|h_{1}\right\rangle \otimes\left|h_{2}\right\rangle\right)=\left(c\left|h_{1}\right\rangle\right) \otimes\left|h_{2}\right\rangle=\left|h_{1}\right\rangle \otimes\left(c\left|h_{2}\right\rangle\right)\]</div>
+<p>（ii）对任意 <span class="math notranslate nohighlight">\(\left|h_{1}^{1}\right\rangle,\left|h_{1}^{2}\right\rangle \in H_{1}\)</span>  ，任意 <span class="math notranslate nohighlight">\(\left|h_{2}\right\rangle \in H_{2}\)</span>  ，都有</p>
+<div class="math notranslate nohighlight">
+\[\left(\left|h_{1}^{1}\right\rangle+\left|h_{1}^{2}\right\rangle\right) \otimes\left|h_{2}\right\rangle=\left|h_{1}^{1}\right\rangle \otimes\left|h_{2}\right\rangle+\left|h_{1}^{2}\right\rangle \otimes\left|h_{2}\right\rangle\]</div>
+<p>（iii）对任意  <span class="math notranslate nohighlight">\(\left|h_{1}\right\rangle \in H_{1}\)</span>  ，任意  <span class="math notranslate nohighlight">\(\left|h_{2}^{1}\right\rangle,\left|h_{2}^{2}\right\rangle \in H_{2}\)</span> ，都有</p>
+<div class="math notranslate nohighlight">
+\[\left|h_{1}\right\rangle \otimes\left(\left|h_{2}^{1}\right\rangle+\left|h_{2}^{2}\right\rangle\right)=\left|h_{1}\right\rangle \otimes\left|h_{2}^{1}\right\rangle+\left|h_{1}\right\rangle \otimes\left|h_{2}^{2}\right\rangle\]</div>
+<p><span class="math notranslate nohighlight">\(\left|h_{1}\right\rangle \otimes\left|h_{2}\right\rangle\)</span>  经常被简写为   <span class="math notranslate nohighlight">\(\left|h_{1}\right\rangle\left|h_{2}\right\rangle,\left|h_{1}, h_{2}\right\rangle\)</span> 或  <span class="math notranslate nohighlight">\(\left|h_{1} h_{2}\right\rangle\)</span>  。</p>
+<p>  如果  <span class="math notranslate nohighlight">\(|i\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|j\rangle\)</span> 分别为  <span class="math notranslate nohighlight">\(H_{1}\)</span> 和  <span class="math notranslate nohighlight">\(H_{2}\)</span> 的标准正交基，那么  <span class="math notranslate nohighlight">\(|i\rangle \otimes|j\rangle\)</span> 为  <span class="math notranslate nohighlight">\(H \equiv H_{1} \otimes H_{2}\)</span> 的标准正交基。例如，现在有两个 <span class="math notranslate nohighlight">\(2\)</span> 维的希尔伯特空间  <span class="math notranslate nohighlight">\(H_{1}\)</span> 和  <span class="math notranslate nohighlight">\(H_{2}\)</span> ，并且都 有一组标准正交基  <span class="math notranslate nohighlight">\({|0\rangle,|1\rangle}\)</span> ，那么  <span class="math notranslate nohighlight">\(H\)</span> 的标准正交基为  <span class="math notranslate nohighlight">\({|00\rangle,|01\rangle,|10\rangle,|11\rangle}\)</span> 。因此，任意给定  <span class="math notranslate nohighlight">\(H\)</span> 中的向量  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 都可以表示成这组标准正交基的线性组合</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\varepsilon_{00}|00\rangle+\varepsilon_{01}|01\rangle+\varepsilon_{10}|10\rangle+\varepsilon_{11}|11\rangle\]</div>
+<p>其中  <span class="math notranslate nohighlight">\(\varepsilon_{i j} \equiv\langle i j \mid \psi\rangle, i, j \in{0,1}\)</span> 。</p>
+<p>  设  <span class="math notranslate nohighlight">\(A\)</span> 和  <span class="math notranslate nohighlight">\(B\)</span> 分别为  <span class="math notranslate nohighlight">\(H_{1}\)</span> 和  <span class="math notranslate nohighlight">\(H_{2}\)</span> 上的线性算子，那么算子 <span class="math notranslate nohighlight">\(A \otimes B\)</span> 作用到  <span class="math notranslate nohighlight">\(H\)</span> 中的任意向量</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\sum_{i j} \varepsilon_{i j}|i j\rangle=\sum_{i j} \varepsilon_{i j}|i\rangle \otimes|j\rangle\]</div>
+<p>  被定义为</p>
+<div class="math notranslate nohighlight">
+\[(A \otimes B)|\psi\rangle=(A \otimes B)\left(\sum_{\ddot j} \varepsilon_{i j}|i\rangle \otimes|j\rangle\right) \equiv \sum_{i j} \varepsilon_{i j}(A|i\rangle) \otimes(B|j\rangle)\]</div>
+<p>  可以证明以这种方式定义  <span class="math notranslate nohighlight">\(A \otimes B\)</span> 为  <span class="math notranslate nohighlight">\(H_{1} \otimes H_{2}\)</span> 上的线性算子。</p>
+<p>  对于  <span class="math notranslate nohighlight">\(H\)</span> 中的两个任意向量  <span class="math notranslate nohighlight">\(|\alpha\rangle=\sum_{ij} \alpha_{i j}|i j\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|\beta\rangle=\sum_{ij} \beta_{i j}|i j\rangle\)</span> ，这两个向量的内积被定义为</p>
+<div class="math notranslate nohighlight">
+\[\langle\alpha \mid \beta\rangle \equiv \sum_{i j} \alpha_{i j}^{*} \beta_{i j}\]</div>
+<p>  也可以证明这种函数满足之前的内积定义。</p>
+<p>  这样的表达形式优点是表示比较简练，缺点是不太容易有直观的认识。下面给出线性算子张量积的矩阵表示的运算规则-克罗内科积（Kronecker product）。设   <span class="math notranslate nohighlight">\(A\)</span> 是   <span class="math notranslate nohighlight">\(m \times n\)</span> 的矩阵，  <span class="math notranslate nohighlight">\(B\)</span> 是  <span class="math notranslate nohighlight">\(p \times q\)</span> 的矩阵。  <span class="math notranslate nohighlight">\(A \otimes B\)</span> 的矩阵形式定义为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A \otimes B \equiv\left[\begin{array}{cccc} A_{11} B &amp; A_{12} B &amp; \cdots &amp; A_{1 n} B \\ A_{21} B &amp; A_{22} B &amp; \cdots &amp; A_{2 n} B \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ A_{m 1} B &amp; A_{m 2} B &amp; \cdots &amp; A_{m n} B \end{array}\right]\end{split}\]</div>
+<p>  这里  <span class="math notranslate nohighlight">\(A \otimes B\)</span> 是一个  <span class="math notranslate nohighlight">\(m p \times n q\)</span> 的矩阵， <span class="math notranslate nohighlight">\(A_{i j} B\)</span> 表示矩阵  <span class="math notranslate nohighlight">\(A\)</span> 的中的第  <span class="math notranslate nohighlight">\(i\)</span> 行，第  <span class="math notranslate nohighlight">\(j\)</span> 列元素与矩阵  <span class="math notranslate nohighlight">\(B\)</span> 相乘。</p>
+<p>  例如, Pauli矩阵  <span class="math notranslate nohighlight">\(\sigma_{x}\)</span> 和  <span class="math notranslate nohighlight">\(\sigma_{y}\)</span> 做张量积生成的矩阵为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_{x} \otimes \sigma_{y}=\left[\begin{array}{cc} 0 \cdot \sigma_{y} &amp; 1 \cdot \sigma_{y} \\ 1 \cdot \sigma_{y} &amp; 0 \cdot \sigma_{y} \end{array}\right]=\left[\begin{array}{cccc} 0 &amp; 0 &amp; 0 &amp; -i \\ 0 &amp; 0 &amp; i &amp; 0 \\ 0 &amp; -i &amp; 0 &amp; 0 \\ i &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  举个反例就可以验证张量积并不满足交换律。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_{y} \otimes \sigma_{x}=\left[\begin{array}{cc} 0 \cdot \sigma_{x} &amp; -i \cdot \sigma_{x} \\ i \cdot \sigma_{x} &amp; 0 \cdot \sigma_{x} \end{array}\right]=\left[\begin{array}{cccc} 0 &amp; 0 &amp; 0 &amp; -i \\ 0 &amp; 0 &amp; -i &amp; 0 \\ 0 &amp; i &amp; 0 &amp; 0 \\ i &amp; 0 &amp; 0 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  可以看出  <span class="math notranslate nohighlight">\(\sigma_{x} \otimes \sigma_{y} \neq \sigma_{y} \otimes \sigma_{x}\)</span> 。</p>
+<p>  两个向量做张量积该如何表示呢? 其实在给定基下，向量的坐标表示也可以看作一个特殊的矩阵。例如向量  <span class="math notranslate nohighlight">\(|\alpha\rangle=\alpha_{1}|0\rangle+\alpha_{2}|1\rangle\)</span> 和  <span class="math notranslate nohighlight">\(|\beta\rangle=\beta_{1}|0\rangle+\beta_{2}|1\rangle\)</span> 在标准正交基  <span class="math notranslate nohighlight">\({|0\rangle,|1\rangle}\)</span> 下的矩阵表示分别为  <span class="math notranslate nohighlight">\(|\alpha\rangle=\left[\alpha_{1}, \alpha_{2}\right]^{T}\)</span> 和  <span class="math notranslate nohighlight">\(|\beta\rangle=\left[\beta_{1}, \beta_{2}\right]^{T}\)</span> 。因此, <span class="math notranslate nohighlight">\(|\alpha\rangle \otimes|\beta\rangle\)</span> 的矩阵表示为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|\alpha\rangle \otimes|\beta\rangle=\left[\begin{array}{c} \alpha_{1}|\beta\rangle \\ \alpha_{2}|\beta\rangle \end{array}\right]=\left[\begin{array}{c} \alpha_{1} \beta_{1} \\ \alpha_{1} \beta_{2} \\ \alpha_{2} \beta_{1} \\ \alpha_{2} \beta_{2} \end{array}\right]\end{split}\]</div>
+<p>  假设: 复合物理系统的状态空间由子物理系统状态空间的张量积生成，即是说，如果有被 <span class="math notranslate nohighlight">\(1\)</span> 到 <span class="math notranslate nohighlight">\(n\)</span> 标记的系统，第  <span class="math notranslate nohighlight">\({i}\)</span> 个系统的状态为  <span class="math notranslate nohighlight">\(\left|\psi_{i}\right\rangle\)</span> ，那么生成的整个系统的联合状态为  <span class="math notranslate nohighlight">\(\left|\psi_{1}\right\rangle \otimes\left|\psi_{2}\right\rangle \otimes \cdots \otimes\left|\psi_{n}\right\rangle\)</span> 。</p>
+<p>  复合系统有单量子系统不具有的另一个奇特现象就是纠缠 (entanglement)。在数学上，设态  <span class="math notranslate nohighlight">\(|\psi\rangle \in H_{1} \otimes H_{2}\)</span> ，若不存在  <span class="math notranslate nohighlight">\(|\alpha\rangle \in H_{1},|\beta\rangle \in H_{2}\)</span> ，使得</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=|\alpha\rangle \otimes|\beta\rangle\]</div>
+<p>  则称  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 是纠缠的 (entangled)。否则, 称  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> 不处于纠缠态 (entangled state) 。</p>
+<p>  例如， 在双量子比特系统中：  <span class="math notranslate nohighlight">\(\left|\psi_{1}\right\rangle=1 / \sqrt{2}(|00\rangle-|11\rangle)\)</span> 处于纠缠态。而  <span class="math notranslate nohighlight">\(\left|\psi_{2}\right\rangle=1 / \sqrt{2}(|00\rangle+|01\rangle)\)</span> 是非纠缠的，这是因为  <span class="math notranslate nohighlight">\(\left|\psi_{2}\right\rangle\)</span> 还可分成  <span class="math notranslate nohighlight">\(1 / \sqrt{2}|0\rangle \otimes(|0\rangle+|1\rangle)\)</span> 。</p>
+<p><strong>复合系统的状态演化</strong></p>
+<p>  已知两能级的量子系统的状态是通过酉变换来实现演化的，那么复合系统的状态该如何随时间发生演化呢? 复合系统可以看成是子系统的张成，因此以下假设可以 说明复合系统中量子态的变化。</p>
+<p>  假设：复合系统中量子态的演化是由张成复合系统的子系统中量子态的演化对应的酉变换做张量生成的变换来描述，即是说，如果有被 1 到n标记的系统，第 <span class="math notranslate nohighlight">\({i}\)</span> 个系统在  <span class="math notranslate nohighlight">\(t_{1}\)</span> 时刻的状态为  <span class="math notranslate nohighlight">\(\left|\psi_{i}^{1}\right\rangle\)</span> ，那么生成的整个系统的联合状态  <span class="math notranslate nohighlight">\(\left|\psi^{1}\right\rangle\)</span> 为  <span class="math notranslate nohighlight">\(\left|\psi_{1}^{1}\right\rangle \otimes\left|\psi_{2}^{1}\right\rangle \otimes \cdots \otimes\left|\psi_{n}^{1}\right\rangle \)</span> 时刻，通过酉变换 <span class="math notranslate nohighlight">\(U_{i}\)</span> 将第  <span class="math notranslate nohighlight">\({i}\)</span> 个系统的状态演化为  <span class="math notranslate nohighlight">\(\left|\psi_{i}^{2}\right\rangle\)</span> ，那么在  <span class="math notranslate nohighlight">\(t_{2}\)</span> 时刻，复合系统的状态通过变换  <span class="math notranslate nohighlight">\(U_{1} \otimes U_{2} \otimes \cdots \otimes U_{n}\)</span> 演化为  <span class="math notranslate nohighlight">\(\left|\psi_{1}^{2}\right\rangle \otimes\left|\psi_{2}^{2}\right\rangle \otimes \cdots \otimes\left|\psi_{n}^{2}\right\rangle\)</span> 。</p>
+<p>  例如，复合系统  <span class="math notranslate nohighlight">\(H\)</span> 由两能级系统  <span class="math notranslate nohighlight">\(H_{1}\)</span> 和  <span class="math notranslate nohighlight">\(H_{2}\)</span> 复合而成，在  <span class="math notranslate nohighlight">\(t_{1}\)</span> 时刻，两个系统的状态都为  <span class="math notranslate nohighlight">\(|0\rangle\)</span> ，则复合系统的状态为  <span class="math notranslate nohighlight">\(|00\rangle\)</span> ; 在时刻  <span class="math notranslate nohighlight">\(t_{2}\)</span> 第一个系统经过 <span class="math notranslate nohighlight">\(X\)</span> 门，状态变为  <span class="math notranslate nohighlight">\(|1\rangle\)</span> ，第二个系统经过  <span class="math notranslate nohighlight">\(Z\)</span> 门，状态为  <span class="math notranslate nohighlight">\(|0\rangle\)</span> ，那么复合系统的状态经过变换</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X \otimes Z=\left[\begin{array}{ll} 0 &amp; 1 \\ 1 &amp; 0 \end{array}\right] \otimes\left[\begin{array}{cc} 1 &amp; 0 \\ 0 &amp; -1 \end{array}\right]=\left[\begin{array}{cccc} 0 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 \\ 0 &amp; 0 &amp; -1 &amp; 0 \end{array}\right]\end{split}\]</div>
+<p>  变为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[X \otimes Z]|00\rangle=\left[\begin{array}{cccc} 0 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 \\ 0 &amp; 0 &amp; -1 &amp; 0 \end{array}\right]\left[\begin{array}{l} 1 \\ 0 \\ 0 \\ 0 \end{array}\right]=\left[\begin{array}{l} 0 \\ 1 \\ 0 \\ 0 \end{array}\right]=|01\rangle\end{split}\]</div>
+<p>  本质上复合系统中量子态的演化也是矩阵的乘法，与单个子系统相比，只不过是多了张量积的运算。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html" class="btn btn-neutral float-left" title="1.3 量子计算软件介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html" class="btn btn-neutral float-right" title="2.2 量子程序" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

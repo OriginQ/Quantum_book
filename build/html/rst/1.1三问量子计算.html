@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1 三问量子计算 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.2 量子计算的发展历史" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html" />
+    <link rel="prev" title="量子计算与编程入门" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.1 三问量子计算</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.1.1 什么是量子计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.1.2 为什么我们需要量子计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">1.1.3 什么样的研究机构参与量子计算的研发</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.4%E5%B0%86%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87%E4%B8%8A.html">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>1.1 三问量子计算</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/1.1三问量子计算.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>1.1 三问量子计算<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>1.1.1 什么是量子计算<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>  量子计算是一种遵循量子力学规律调控量子信息单元进行计算的新型计算模式。在理解量子计算的概念时，通常将它和经典计算相比较。
+如图1.1.1，经典计算使用2进制的数字电子方式进行运算，而二进制总是处于0或1的确定状态。量子计算和现有的计算模式完全不同，它借助量子力学的叠加特性，能够实现计算状态的叠加，它不仅包含0和1，还包含0和1同时存在的叠加态（Superposition）。</p>
+<img alt="../_images/1.1.1.png" class="align-center" src="../_images/1.1.1.png" />
+<p class="centered">
+<strong>图1.1.1 经典计算与量子计算的区别</strong></p><p>  普通计算机中的2位寄存器在某一时间仅能存储4个二进制数（00、01、10、11）中的一个，而量子计算机中的2位量子位（qubit）寄存器可同时存储这四种状态的叠加状态。
+随着量子比特数目的递增，对于n个量子比特而言，量子信息可以处于2种可能状态的叠加，配合量子力学演化的并行性，可以展现比传统计算机更快的处理速度；加上量子纠缠（Entanglement）等特性，理论上，量子计算机相较于当前使用最强算法的经典计算机，在一些具体问题上，有更快的处理速度和更强的处理能力。</p>
+</section>
+<section id="id3">
+<h2>1.1.2 为什么我们需要量子计算<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<p>  根据摩尔定律，集成电路上可容纳的晶体管数目每隔约18-24个月增加一倍，性能也相应增加一倍。例如当前智能手机的CPU芯片，业内已经能够达到5nm的工艺节点，但是随着芯片元件集成度的不断提高，芯片内部单位体积内散热也相应增加，再由于现有材料散热速度有限，就会因“热耗效应”产生计算上限；
+另一方面，元器件尺寸的不断缩小，在纳米甚至更小尺度下经典计算世界的物理规律将不再适用，产生“尺寸效应”。受到来自这两个方面的阻碍，再加之信息化社会的计算数据每日都在海量剧增，人类必须另觅他途，寻找新的计算方式，而量子计算可能是一个答案。</p>
+<img alt="../_images/1.1.2.png" class="align-center" src="../_images/1.1.2.png" />
+<p class="centered">
+<strong>图1.1.2 寻找新的计算方式</strong></p><p>  量子计算的基本思想是利用量子力学的规则和思想来处理问题和信息，遵循这样的思维导向可以轻易了解到量子计算的优势所在。
+在传统的计算机中，每当输入对应数量的信息，电脑即会相应地输出对应的数据；而如今将量子力学应用在计算机硬件设备中并且输入信息，就不仅是有序提供一些输入和读出数据那么简单，利用量子叠加态定律可实现一键式处理多个输入的强并行性；与传统的程序相比，这是一个指数级的加速和飞跃。除了理论意义上的计算速度的增长，量子计算还具有在不同领域发挥作用的现实可能性。</p>
+<p><strong>大数据检索</strong></p>
+<p>  在当前的大数据和人工智能时代，量子计算可以解决海量的数据检索问题、以及当前令人束手无策的物流优化问题，实现成本节省和减少碳排放等。在海量信息充斥和庞杂的时代，强大的数据分析和梳理工具无疑对人们的生活和工作有着很大帮助。</p>
+<img alt="../_images/1.1.3.png" class="align-center" src="../_images/1.1.3.png" />
+<p class="centered">
+<strong>图1.1.3 大数据检索</strong></p><p><strong>量子模拟</strong></p>
+<p>  在量子模拟方面，特别是生化制药中，量子模拟有望利用相应的量子算法在更长的时间范围内准确地进行分子模拟，从而实现当前技术水平无法做到的精确建模，这有助于加速寻找能够挽救生命的新型药物，并显著地缩短药物的开发周期。在这方面的一个领域特别有希望，模拟化学刺激对大量亚原子粒子的影响，称为量子化学。</p>
+<img alt="../_images/1.1.4.png" class="align-center" src="../_images/1.1.4.png" />
+<p class="centered">
+<strong>图1.1.4 量子化学</strong></p><p>  量子计算机可以帮助加快对比不同药物对一系列疾病的相互作用和影响的过程，来确定最佳药物。此外，量子计算还可以带来真正的个性化医疗，利用基因组学的先进技术为每个病人量身定制治疗计划；基因组测序产生了大量的数据，整条DNA链的表达需要强大的计算能力和存储容量。一些公司正在迅速降低人类基因组测序所需的成本和资源。从理论上来说，量子计算机将使基因组测序更加高效，更容易在全球范围内扩展。</p>
+<p>  利用量子计算机，还能够分析全世界范围内的DNA 数据模式，以便在更深层次上了解基因组成，并有可能发现以前未知的疾病模式。</p>
+<p><strong>金融服务</strong></p>
+<p>  金融分析师工作中通常依赖由市场和投资组合表现的概率和假设组成的算法。量子计算可以帮助消除数据盲点，防止毫无根据的金融假设造成损失。</p>
+<p>  具体来说，量子计算影响金融服务行业的方式是解决复杂的优化问题，如投资组合风险优化和欺诈检测。量子计算可以更好地确定有吸引力的投资组合，因为有成千上万的资产具有相互关联的依赖性，并且可以更有效地识别关键的欺诈模式。</p>
+<img alt="../_images/1.1.5.png" class="align-center" src="../_images/1.1.5.png" />
+<p class="centered">
+<strong>图1.1.5 金融服务</strong></p><p><strong>人工智能</strong></p>
+<p>  在人工智能方面，量子计算能有效提高机器学习的深度和速度，突破人工智能发展的瓶颈。量子机器学习可以帮助人工智能以类似人类的方式，更有效地执行复杂的任务，例如，使人形机器人能够在不可预知的情况下实时做出优化决策。在量子计算机上训练人工智能可以提高计算机视觉识别、模式识别、语音识别、机器翻译等性能。</p>
+<img alt="../_images/1.1.6.png" class="align-center" src="../_images/1.1.6.png" />
+<p class="centered">
+<strong>图1.1.6 人工智能</strong></p><p><strong>现代农业</strong></p>
+<p>  量子计算机可以更有效地制造肥料。几乎所有的肥料都是由氨制成，提高生产氨(或替代物)的能力则意味着更便宜、更低能耗的肥料；高质量的肥料将有利于环境，并有助于养活地球上不断增长的人口；但由于催化剂组合数量是无限的，所以在改进制造或替代氨的工艺方面进展甚微。</p>
+<img alt="../_images/1.1.7.png" class="align-center" src="../_images/1.1.7.png" />
+<p class="centered">
+<strong>图1.1.7 现代农业</strong></p><p>  从本质上讲，如果没有1900年代被称为Haber-Bosch Process的工业技术，则无法人工模拟这一过程， 因为它需要极高的热量和压力将氮、氢和铁转化成氨。如果用今天的超级计算机进行数字化测试，找出合适的催化剂组合来制造氨，那么则需要几个世纪的时间；但是，量子计算机能够快速分析化学催化过程，并提出最佳的催化剂组合来产生氨。</p>
+<p><strong>云计算</strong></p>
+<p>  量子云计算正在成为富有前景的领域。量子云平台可以简化编程，并提供对量子计算机的低成本访问。IBM、谷歌和阿里巴巴在内的大公司均在部署量子云计算项目，本源量子的云平台早在2017年就已上线，不断迭代更新的强大功能为量子编程和量子计算提供了全新的视角和可能性。</p>
+<img alt="../_images/1.1.8.png" class="align-center" src="../_images/1.1.8.png" />
+<p class="centered">
+<strong>图1.1.8 量子云计算</strong></p><p><strong>网络安全</strong></p>
+<p>  量子计算机可以用来破解保护敏感数据和电子通信安全的密码，同时，量子计算机也可以用来保护数据免受量子黑客攻击，这需要一种被称为量子加密的技术。量子加密是一种将纠缠光子(entangled photons)通过量子密钥分配(QKD)进行远距离传输的想法，目的是保护敏感的通信；最重要的一点是，如果量子加密通信被人截获，加密方案将立即显示中断迹象，并显示通信不安全。这依赖于测量量子系统的行为会破坏系统的原理，被称之为“测量效应”。</p>
+<img alt="../_images/1.1.9.png" class="align-center" src="../_images/1.1.9.png" />
+<p class="centered">
+<strong>图1.1.9 量子加密</strong></p><p>  随着量子计算资源成本的下降以及量子基础知识的普及，更多的相关行业者将会出现，量子计算将会在各个行业中有越来越多的应用，特别是在那些传统计算机效率低下的领域，量子计算机的作用将会愈发明显。</p>
+</section>
+<section id="id4">
+<h2>1.1.3 什么样的研究机构参与量子计算的研发<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<p>  近年来，世界各个科技强国都高度重视量子计算研究，纷纷发布自己的量子信息科技战略，企图抢占下一轮科技发展的制高点，争取早日实现“量子霸权”。其中，D-Wave、谷歌、Rigetti Computing、1Qbit、IBM等都是研发量子计算的世界领军机构。</p>
+<img alt="../_images/1.1.10.png" class="align-center" src="../_images/1.1.10.png" />
+<p class="centered">
+<strong>图1.1.10 量子计算的研发机构</strong></p><p><strong>D-Wave</strong></p>
+<p>  D-Wave Systems，总部位于加拿大，致力于量子计算机的研发和探索。于2011年5月11日正式发布了全球第一款商用型量子计算机“D-Wave One”。该机器采用了128-qubit（量子比特）的处理器，理论运算速度已经远远超越现有任何超级电子计算机，不过严格来说，这还算不上真正意义的通用量子计算机，只是借助一些量子力学方法解决特殊问题的机器。通用任务方面还远不是传统硅处理器的对手，而且编程方面也需要重新学习，此外，为尽可能降低qubit的能级，需要利用低温超导状态下的铌产生qubit，D-Wave 的工作温度需保持在绝对零度附近（20 mK）。</p>
+<p>  2017年1月，D-Wave公司推出D-Wave 2000Q，其声称该系统由2000个qubit构成，可以用于求解最优化、网络安全、机器学习和采样等问题。对于测试一些基准问题，如最优化问题和基于机器学习的采样问题，D-Wave 2000Q胜过当前高度专业化的算法1000到10000倍。</p>
+<p><strong>谷歌</strong></p>
+<p>  全球最大的搜索引擎公司也在量子计算方面有所涉足和进展。2016年，谷歌与加州大学合作布局超导量子计算，报道了9位超导量子比特的高精度操控，并购买了初创企业D-Wave公司的量子退火机，探索人工智能领域。</p>
+<p><strong>微软</strong></p>
+<p>  微软在2018年宣布，争取在五年内造出第一台拥有100个拓扑量子比特的量子计算机，并且将其整合到Azure云业务当中。</p>
+<p>  微软的量子技术采用“拓扑量子比特（Topological qubit）”进行计算，而不是普通的“逻辑量子比特（logical qubit）”。拓扑量子比特通过基本粒子的拓扑位置和拓扑运动来处理信息，无论外界如何干扰基本粒子的运动路径，从拓扑角度来看，只要它还是连续变化，两个对换位置的基本粒子都是完全等价的；也即是说，用拓扑量子比特进行计算，对于外界的干扰有极强的容错能力，这样一来基于拓扑量子比特的计算机就可以把规模做得很大，能力做得很强。</p>
+<p><strong>英特尔</strong></p>
+<p>  在CES 2018（国际消费类电子产品展览会），英特尔正式展示了49量子比特的超导量子计算芯片，这块49量子比特的量子计算芯片大小与消费级x86 CPU相当。与传统计算芯片一样，量子计算芯片在计算单元数量增加、密度增大的情况下，会产生一定的干扰。而现阶段量子计算对于内部、外部干扰极其敏感，以致于只能在超低温超导条件下运行。英特尔将49量子比特芯片做到这种密度和大小，具有里程碑式的意义。</p>
+<p><strong>IBM</strong></p>
+<p>  IBM在CES 2019正式亮相了Q System One，将其宣传为”世界上为商用和科研打造的首个全面集成化的通用量子计算系统”，拥有20个量子位的计算力。IBM 表示，它的主要成就是将一个实验性的量子计算机在可靠性（和外观）上与大型量子计算机更接近。量子计算需要极其精细的环境，量子芯片需要保持在绝对零度，并且受到的电波动或物理振动干扰要尽可能最小。IBM 表示，Q System One 可以最大限度地减少这些问题。</p>
+<p><strong>阿里巴巴</strong></p>
+<p>  2015年，阿里巴巴与中科院联合成立了量子计算机实验室，主攻量子计算机难题。</p>
+<p>  2018年5月8日，阿里巴巴宣布已经研制出世界上运算最快的量子电路模拟器“太章”，并已成功模拟了81（9x9）比特40层基准的谷歌随机量子电路。</p>
+<p>  对于阿里巴巴的核心业务在线购物平台而言，量子计算机处理电商平台的搜索、购买、交易等海量数据的效率将提高数十倍。阿里早已布局云计算领域，目前阿里的云计算已经服务全球超18个国家与地区，在阿里巴巴2018财年（从2017年4月1日至2018年3月31日），云计算业务收入已到133.90亿元。量子计算机的出现将会极大地提高阿里云计算的能力，并能够更加高效精准的利用大数据。</p>
+<p><strong>百度</strong></p>
+<p>  2018年3月8日上午，百度宣布成立量子计算研究所，开展量子计算软件和信息技术应用业务研究。百度全力推动“百度量子、量子百度”的研究规划，计划五年时间里组建世界一流的量子计算研究所，并在之后的五年将量子计算逐渐融入百度的业务中来。</p>
+<p><strong>本源量子</strong></p>
+<p>  2017年9月11日，本源量子计算科技有限责任公司成立。作为国内首家以量子计算为主营业务的新势力公司，以量子芯片、量子测控、量子软件、量子云、量子计算机以及未来的量子人工智能等为核心业务，目前已研制出量子比特处理器玄微XW B2-100、量子测控一体机OriginQ Quantum AIO，并且上线了本源量子计算云平台、发布了完全自主的高级量子编程语言QRunes、量子编程软件开发工具QPanda等产品。通过与中国科学院量子信息重点实验室的强强联合，本源量子的未来发展不可限量。</p>
+<img alt="../_images/1.1.11.png" class="align-center" src="../_images/1.1.11.png" />
+<p class="centered">
+<strong>图1.1.11 本源量子</strong></p></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="量子计算与编程入门" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html" class="btn btn-neutral float-right" title="1.2 量子计算的发展历史" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

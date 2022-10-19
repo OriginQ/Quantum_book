@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.4 将量子程序编译到不同的量子芯片上 &mdash; 量子计算与编程入门 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.1 概述" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html" />
+    <link rel="prev" title="5.3 使用单振幅和部分振幅量子虚拟机" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> 量子计算与编程入门
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">第一章 背景知识</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1.1%E4%B8%89%E9%97%AE%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97.html">1.1 三问量子计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.html">1.2 量子计算的发展历史</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E8%BD%AF%E4%BB%B6%E4%BB%8B%E7%BB%8D.html">1.3 量子计算软件介绍</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第二章 量子计算基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2.1%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">2.1 量子力学基础理论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.2%E9%87%8F%E5%AD%90%E7%A8%8B%E5%BA%8F.html">2.2 量子程序</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第三章 量子计算硬件基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3.1%E9%87%8F%E5%AD%90%E8%8A%AF%E7%89%87.html">3.1 量子芯片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E7%A1%AC%E4%BB%B6.html">3.2 量子计算机硬件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.3%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA.html">3.3 量子计算机</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第四章 量子算法与编程</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="4.1%E9%87%8F%E5%AD%90%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html">4.1 量子软件开发环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.2%E9%87%8F%E5%AD%90%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B.html">4.2 量子算法简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.3Deutsch-Josza%E7%AE%97%E6%B3%95.html">4.3 Deutsch-Josza算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.4Grover%E7%AE%97%E6%B3%95.html">4.4 Grover算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.5QAOA%E7%AE%97%E6%B3%95.html">4.5 QAOA算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.6VQE%E7%AE%97%E6%B3%95.html">4.6 VQE算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.7Shor%E5%88%86%E8%A7%A3%E7%AE%97%E6%B3%95.html">4.7 Shor分解算法</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">第五章 量子计算前言话题</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="5.1%E5%88%A9%E7%94%A8QPanda%E6%B5%8B%E8%AF%95%E9%87%8F%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%99%AA%E5%A3%B0.html">5.1 利用QPanda测试量子系统噪声</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.2%E9%87%8F%E5%AD%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0.html">5.2 量子机器学习</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html">5.3 使用单振幅和部分振幅量子虚拟机</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.4 将量子程序编译到不同的量子芯片上</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录一 量子计算数学基础</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html">1.1 概述</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html#id2">1.2 集合与映射</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%802.html">1.3 向量空间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%803.html">1.4 矩阵与矩阵的运算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%804.html">1.5 矩阵的特征及矩阵</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html">1.6 矩阵的函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%805.html#id2">1.7 线性算子与矩阵表示</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录二 量子编程工具安装与配置</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">2.1 QPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#pyqpanda">2.2 pyQPanda</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#vqnet">2.3 VQNet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%952%E9%87%8F%E5%AD%90%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html#qurator">2.4 Qurator</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">附录三 量子化学工具的安装与使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html">3.1 ChemiQ化学软件的安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id1">3.2 ChemiQ软件应用示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#id2">3.3  ChemiQ接口介绍与使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="%E9%99%84%E5%BD%953%E9%87%8F%E5%AD%90%E5%8C%96%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.html#vqe">3.4 非梯度下降法实现VQE算法代码示例</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">量子计算与编程入门</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>5.4 将量子程序编译到不同的量子芯片上</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst/5.4将量子程序编译到不同的量子芯片上.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>5.4 将量子程序编译到不同的量子芯片上<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<p>  任何的量子程序，最终是要放到量子计算机中去运行的。和量子虚拟机相比，在量子计算机中运行有几个重要的区别：</p>
+<p><strong>支持的逻辑门</strong></p>
+<p>  量子芯片中往往不一定允许执行所有的酉变换，对于单比特门来说，通常只支持一个子集。由于这个定理: 任何的两个不同方向的旋转 <span class="math notranslate nohighlight">\({U}{\bar{x}}(\theta)=e^{i \vec{\sigma x} \theta}\)</span> 和  <span class="math notranslate nohighlight">\(\mathrm{U}{\bar{y}}(\theta)=e^{i \vec{\sigma} \bar{y} \theta}\)</span> ， 一定能通过依次施加不同角度的旋转操作，构成任何的单比特上的酉变换。因此，量子计算机中若支持两个方向的旋转操作， 即可实现任意的单门。</p>
+<p>  QPanda中提供了一个配置量子计算机中支持逻辑门的方式。通过配置，可以将任意的量子程序编译到支持的量子逻辑门中。</p>
+<p><strong>量子芯片拓扑结构</strong></p>
+<p>  编写量子程序，或者设计量子算法时，往往在任意两个比特之间都有可能出现逻辑门的连接。然而，对于实际的量子芯片，有可能这种连接关系是受限的。例如量子比特在芯片上以网格式排列，只有最近邻（nearest neighbor）的量子比特之间才允许进行操作。那么，对于原有的量子程序，我们必须将所有不支持操作的量子逻辑门进行变换，或者对量子比特进行重新映射。</p>
+<p>  QPanda中提供了一个配置量子芯片拓扑结构的方式。</p>
+<p>  指令集</p>
+<p>  量子指令集是由各公司定义的量子计算机控制指令集，它适配于量子软件开发包，一般可以用于直接控制该公司的量子计算机。QPanda中通用的量子程序表示方式是QProg类，它提供的是一种对量子程序的抽象通用表述形式。QPanda提供一系列函数，将QProg类映射到不同的量子指令集上，包括QRunes，QASM，Quil……</p>
+<p>  配置支持的逻辑门</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="o">&lt;</span><span class="n">QGate</span><span class="o">&gt;</span>
+<span class="mf">2.</span>    <span class="o">&lt;</span><span class="n">SingleGate</span><span class="o">&gt;</span>
+<span class="mf">3.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="n">rx</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">4.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="n">Ry</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">5.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="n">RZ</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">6.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="n">S</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">7.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="n">H</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">8.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="n">X1</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">9.</span>     <span class="o">&lt;/</span><span class="n">SingleGate</span><span class="o">&gt;</span>
+<span class="mf">10.</span>     <span class="o">&lt;</span><span class="n">DoubleGate</span><span class="o">&gt;</span>
+<span class="mf">11.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span><span class="o">&gt;</span><span class="n">CNOT</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">12.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span><span class="o">&gt;</span><span class="n">CZ</span><span class="o">/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">13.</span>        <span class="o">&lt;</span><span class="n">Gate</span>  <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span><span class="o">&gt;</span><span class="n">ISWAP</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">14.</span>     <span class="o">&lt;/</span><span class="n">DoubleGate</span><span class="o">&gt;</span>
+<span class="mf">15.</span><span class="o">&lt;/</span><span class="n">QGate</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>  在QPanda中，指令集的配置是通过QPandaConfig.xml中QGate元素来配置的。</p>
+<p>  QGate中的元素介绍：</p>
+<p>  SingleGate: 单量子逻辑门配置，是QGate的子元素</p>
+<p>  DoubleGate: 双量子逻辑门配置， 是QGate的子元素</p>
+<p>  Gate: 内容配置支持的量子逻辑门，属性time配置量子逻辑门的时钟周期，是DoubleGate和SingleGate的子元素。</p>
+<p>  示例：一个量子芯片支持单门RX、RY和双门CNOT，RX、RY的时钟周期均为2，CNOT的时钟周期为5。下面我们就配置这个量子芯片支持的逻辑门。</p>
+<p>  首先，打开QPandaConfig.xml文件，找到QGate元素，可以看到QGate元素的子元素SingleGate和DoubleGate，并删除SingleGate和DoubleGate元素中所有的内容。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="o">&lt;</span><span class="n">QGate</span><span class="o">&gt;</span>
+<span class="mf">2.</span>        <span class="o">&lt;</span><span class="n">SingleGate</span><span class="o">&gt;</span>
+<span class="mf">3.</span><span class="o">&lt;/</span><span class="n">SingleGate</span><span class="o">&gt;</span>
+<span class="mf">4.</span>        <span class="o">&lt;</span><span class="n">DoubleGate</span><span class="o">&gt;</span>
+<span class="mf">5.</span>        <span class="o">&lt;/</span><span class="n">DoubleGate</span><span class="o">&gt;</span>
+<span class="mf">6.</span> <span class="o">&lt;/</span><span class="n">QGate</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>  然后，分别向SingleGate和DoubleGate 元素中添加Gate元素（Gate元素的内容为量子逻辑门，属性值time为逻辑门的时钟周期）。在SingleGate元素中添加两个Gate子元素，属性time均为2，内容分别为RX、RY。在DoubleGate元素中添加一个Gate子元素，属性time为5，内容为CNOT。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="o">&lt;</span><span class="n">QGate</span><span class="o">&gt;</span>
+<span class="mf">2.</span>        <span class="o">&lt;</span><span class="n">SingleGate</span><span class="o">&gt;</span>
+<span class="mf">3.</span>        <span class="o">&lt;</span><span class="n">Gate</span> <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="n">RX</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">4.</span>            <span class="o">&lt;</span><span class="n">Gate</span> <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="n">RY</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">5.</span><span class="o">&lt;/</span><span class="n">SingleGate</span><span class="o">&gt;</span>
+<span class="mf">6.</span>        <span class="o">&lt;</span><span class="n">DoubleGate</span><span class="o">&gt;</span>
+<span class="mf">7.</span>            <span class="o">&lt;</span><span class="n">Gate</span> <span class="n">time</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span><span class="o">&gt;</span><span class="n">CNOT</span><span class="o">&lt;/</span><span class="n">Gate</span><span class="o">&gt;</span>
+<span class="mf">8.</span>        <span class="o">&lt;/</span><span class="n">DoubleGate</span><span class="o">&gt;</span>
+<span class="mf">9.</span> <span class="o">&lt;/</span><span class="n">QGate</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>  配置量子芯片拓扑结构</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="o">&lt;</span><span class="n">Metadata</span><span class="o">&gt;</span>
+<span class="mf">2.</span>      <span class="o">&lt;</span><span class="n">QubitCount</span><span class="o">&gt;</span><span class="mi">8</span><span class="o">&lt;/</span><span class="n">QubitCount</span><span class="o">&gt;</span>
+<span class="mf">3.</span>          <span class="o">&lt;</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">4.</span>              <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="o">&gt;</span>
+<span class="mf">5.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">6.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;8&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">7.</span>               <span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">8.</span>               <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span>
+<span class="mf">9.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">10.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">11.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;7&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">12.</span>                <span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">13.</span>                <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span><span class="o">&gt;</span>
+<span class="mf">14.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">15.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;4&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">16.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;6&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">17.</span>                <span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">18.</span>                <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+<span class="mf">19.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">20.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">21.</span>                <span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">22.</span>                <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span><span class="o">&gt;</span>
+<span class="mf">23.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;4&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">24.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;6&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">25.</span>                <span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">26.</span>                <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;6&quot;</span><span class="o">&gt;</span>
+<span class="mf">27.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">28.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">29.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;7&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">30.</span>                <span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">31.</span>                <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;7&quot;</span><span class="o">&gt;</span>
+<span class="mf">32.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">33.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;6&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">34.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;8&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">35.</span>                <span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">36.</span>                <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;8&quot;</span><span class="o">&gt;</span>
+<span class="mf">37.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;7&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">38.</span>                  <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">39.</span>                <span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">40.</span>          <span class="o">&lt;/</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">41.</span><span class="o">&lt;/</span><span class="n">Metadata</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>  在QPanda中，量子芯片拓扑结构是通过QPandaConfig.xml中Metadata元素来配置的。</p>
+<p><strong>Metadata中的元素介绍</strong></p>
+<p>  QubitCount：量子比特的个数，是metadata的子元素。</p>
+<p>  QubitMatrix：量子比特拓扑图，是metadata的子元素。</p>
+<p>  Qubit：量子比特配置，属性QubitNum表示量子比特序号，是QubitMatrix的子元素。</p>
+<p>  AdjacentQubit：内容是边的权重，属性QubitNum是指与其父元素Qubit连接的量子比特序号。</p>
+<p>  例如图5.4.1，将下面的量子拓扑结构配置到QPandaConfig.xml中，圆圈表示量子比特，圆圈里的值表示量子比特序号，线条表示是否连接，线条上数值的值表示权重。</p>
+<img alt="../_images/5.4.1.png" class="align-center" src="../_images/5.4.1.png" />
+<p class="centered">
+<strong>图5.4.1 将量子拓扑结构配置到QPandaConfig.xml中</strong></p><p>  首先，找到Metadata元素，并删除其QubitMatrix中的所有内容：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="o">&lt;</span><span class="n">Metadata</span><span class="o">&gt;</span>
+<span class="mf">2.</span>    <span class="o">&lt;</span><span class="n">QubitCount</span><span class="o">&gt;</span><span class="mi">8</span><span class="o">&lt;/</span><span class="n">QubitCount</span><span class="o">&gt;</span>
+<span class="mf">3.</span><span class="o">&lt;</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">4.</span><span class="o">&lt;/</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">5.</span><span class="o">&lt;/</span><span class="n">Metadata</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>  然后， 根据拓扑图向QPandaConfig.xml中添加配置。先配置量子比特的个数。例子中的量子比特个数为4个：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="o">&lt;</span><span class="n">Metadata</span><span class="o">&gt;</span>
+<span class="mf">2.</span>    <span class="o">&lt;</span><span class="n">QubitCount</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">&lt;/</span><span class="n">QubitCount</span><span class="o">&gt;</span>
+<span class="mf">3.</span><span class="o">&lt;</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">4.</span><span class="o">&lt;/</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">5.</span><span class="o">&lt;/</span><span class="n">Metadata</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>  再配置拓扑结构，添加第一个量子比特的拓扑配置，在QubitMatrix下添加Qubit子元素，其属性QubitNum的值为1，第一个量子比特与第二个量子比特和第三个量子比特连接，其权重都是1，所以Qubit会有两个AdjacentQubit子元素，第一个AdjacentQubit元素的属性QubitNum的值是2，第二个AdjacentQubit元素的属性QubitNum的值是3，其内容都是1，将第一个量子比特的拓扑配置添加到配置中：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="o">&lt;</span><span class="n">Metadata</span><span class="o">&gt;</span>
+<span class="mf">2.</span>    <span class="o">&lt;</span><span class="n">QubitCount</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">&lt;/</span><span class="n">QubitCount</span><span class="o">&gt;</span>
+<span class="mf">3.</span><span class="o">&lt;</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">4.</span>    <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="mf">5.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">2</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">6.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">3</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">7.</span><span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">8.</span><span class="o">&lt;/</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">9.</span><span class="o">&lt;/</span><span class="n">Metadata</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>  以此类推，将后面的几个量子比特拓扑结构添加到配置中：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="o">&lt;</span><span class="n">Metadata</span><span class="o">&gt;</span>
+<span class="mf">2.</span>    <span class="o">&lt;</span><span class="n">QubitCount</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">&lt;/</span><span class="n">QubitCount</span><span class="o">&gt;</span>
+<span class="mf">3.</span><span class="o">&lt;</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">4.</span>     <span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="mf">5.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">2</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">6.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">3</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">7.</span><span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">8.</span><span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">2</span><span class="o">&gt;</span>
+<span class="mf">9.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">1</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">10.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">4</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">11.</span><span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">12.</span><span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">3</span><span class="o">&gt;</span>
+<span class="mf">13.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">1</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">14.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">4</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">15.</span><span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">16.</span><span class="o">&lt;</span><span class="n">Qubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">4</span><span class="o">&gt;</span>
+<span class="mf">17.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">2</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">18.</span>        <span class="o">&lt;</span><span class="n">AdjacentQubit</span> <span class="n">QubitNum</span> <span class="o">=</span> <span class="mi">3</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;/</span><span class="n">AdjacentQubit</span><span class="o">&gt;</span>
+<span class="mf">19.</span><span class="o">&lt;/</span><span class="n">Qubit</span><span class="o">&gt;</span>
+<span class="mf">20.</span><span class="o">&lt;/</span><span class="n">QubitMatrix</span><span class="o">&gt;</span>
+<span class="mf">21.</span><span class="o">&lt;/</span><span class="n">Metadata</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>转换到不同的指令集</strong></p>
+<p>  将量子程序编译到不同的量子芯片实际上就是可以将量子程序编译成的量子芯片对应的指令集，QPanda2当前支持将量子程序编译成QUIL指令集、IBM的QASM指令集、本源量子的QRunes指令集。</p>
+<p>  QUIL指令集是采用“指令+参数列表的设计方法”，一个简单的例子如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">X</span> <span class="mi">0</span>
+<span class="mf">2.</span><span class="n">Y</span> <span class="mi">1</span>
+<span class="mf">3.</span><span class="n">CNOT</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="mf">4.</span><span class="n">H</span> <span class="mi">0</span>
+<span class="mf">5.</span><span class="n">RX</span><span class="p">(</span><span class="o">-</span><span class="mf">3.141593</span><span class="p">)</span> <span class="mi">0</span>
+<span class="mf">6.</span><span class="n">MEASURE</span> <span class="mi">1</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>  QASM具有C和汇编语言的元素，语句用分号分隔，忽略空格，同时语言是区分大小写的。注释以一对前斜线开始，并以新的行结束。一个简单的QASM指令集如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">OPENQASM</span> <span class="mf">2.0</span><span class="p">;</span>
+<span class="mf">2.</span><span class="n">include</span> <span class="s2">&quot;qelib1.inc&quot;</span><span class="p">;</span>
+<span class="mf">3.</span><span class="n">qreg</span> <span class="n">q</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="mf">4.</span><span class="n">creg</span> <span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="mf">5.</span>
+<span class="mf">6.</span><span class="n">x</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="mf">7.</span><span class="n">h</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="mf">8.</span><span class="n">tdg</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="mf">9.</span><span class="n">sdg</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="mf">10.</span><span class="n">cx</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="mf">11.</span><span class="n">cx</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="mf">12.</span><span class="n">u1</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="mf">13.</span><span class="n">u2</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="n">pi</span><span class="p">)</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="mf">14.</span><span class="n">u3</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">pi</span><span class="p">)</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="mf">15.</span><span class="n">cz</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="mf">16.</span><span class="n">ccx</span> <span class="n">q</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+<span class="mf">17.</span><span class="n">cu3</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="n">pi</span><span class="p">,</span><span class="n">pi</span><span class="p">)</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="mf">18.</span><span class="n">measure</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="mf">19.</span><span class="n">measure</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>  如何利用QPanda2将量子程序转化为想要的指令集呢？可以使用下面的方法，首先利用QPanda2构建一个量子程序：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">QProg</span> <span class="n">prog</span><span class="p">;</span>
+<span class="mf">2.</span><span class="n">auto</span> <span class="n">qubits</span> <span class="o">=</span> <span class="n">qvm</span><span class="o">-&gt;</span><span class="n">qAllocMany</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="mf">3.</span><span class="n">auto</span> <span class="n">cbits</span>  <span class="o">=</span> <span class="n">qvm</span><span class="o">-&gt;</span><span class="n">cAllocMany</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="mf">4.</span>
+<span class="mf">5.</span><span class="n">prog</span> <span class="o">&lt;&lt;</span> <span class="n">X</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">6.</span>    <span class="o">&lt;&lt;</span> <span class="n">Y</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="mf">7.</span>    <span class="o">&lt;&lt;</span> <span class="n">H</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="mf">8.</span>    <span class="o">&lt;&lt;</span> <span class="n">RX</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="mf">3.14</span><span class="p">)</span>
+<span class="mf">9.</span>    <span class="o">&lt;&lt;</span> <span class="n">Measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cbits</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>  然后调用QPanda2的工具接口，完成转换，比如转化为QUIL指令集可以调用下面的接口：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">instructions</span> <span class="o">=</span> <span class="n">convert_qprog_to_quil</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">qvm</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  得到转化后的QUIL指令集：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">X</span> <span class="mi">0</span>
+<span class="mf">2.</span><span class="n">Y</span> <span class="mi">1</span>
+<span class="mf">3.</span><span class="n">H</span> <span class="mi">2</span>
+<span class="mf">4.</span><span class="n">RX</span><span class="p">(</span><span class="mf">3.140000</span><span class="p">)</span> <span class="mi">3</span>
+<span class="mf">5.</span><span class="n">MEASURE</span> <span class="mi">0</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>  转化为QASM指令集与转化为QUIL指令集的方法类似，可以调用下面的接口：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">instructions</span> <span class="o">=</span> <span class="n">convert_qprog_to_qasm</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">qvm</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>  得到转化后的QASM指令集：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="n">openqasm</span> <span class="mf">2.0</span><span class="p">;</span>
+<span class="mf">2.</span><span class="n">qreg</span>  <span class="n">q</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="mf">3.</span><span class="n">creg</span> <span class="n">c</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="mf">4.</span><span class="n">x</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="mf">5.</span><span class="n">y</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="mf">6.</span><span class="n">h</span> <span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="mf">7.</span><span class="n">rx</span><span class="p">(</span><span class="mf">3.140000</span><span class="p">)</span>  <span class="n">q</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="mf">8.</span><span class="n">measure</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="5.3%E4%BD%BF%E7%94%A8%E5%8D%95%E6%8C%AF%E5%B9%85%E5%92%8C%E9%83%A8%E5%88%86%E6%8C%AF%E5%B9%85%E9%87%8F%E5%AD%90%E8%99%9A%E6%8B%9F%E6%9C%BA.html" class="btn btn-neutral float-left" title="5.3 使用单振幅和部分振幅量子虚拟机" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E9%99%84%E5%BD%951%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%801.html" class="btn btn-neutral float-right" title="1.1 概述" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Original Quantum.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
